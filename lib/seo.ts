@@ -123,6 +123,23 @@ export function buildRecipeJsonLd(recipe: Recipe): object {
   };
 }
 
+export function buildFaqJsonLd(faq: Recipe["faq"]): object | null {
+  if (!faq?.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
 export function buildWebsiteJsonLd(): object {
   return {
     "@context": "https://schema.org",

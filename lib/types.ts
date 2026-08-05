@@ -1,5 +1,10 @@
 export type Difficulty = "nem" | "mellem" | "svær";
 
+export interface RecipeFaq {
+  question: string;
+  answer: string;
+}
+
 export interface RecipeFrontmatter {
   title: string;
   slug: string;
@@ -17,6 +22,7 @@ export interface RecipeFrontmatter {
   featured?: boolean;
   ingredients: string[];
   steps: string[];
+  faq: RecipeFaq[];
 }
 
 export interface Recipe extends RecipeFrontmatter {

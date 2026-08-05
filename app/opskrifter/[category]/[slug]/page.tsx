@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { RecipeCard } from "@/components/RecipeCard";
+import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { RecipeContent } from "@/components/mdx/RecipeContent";
 import { Ingredients } from "@/components/mdx/RecipeMDX";
 import { Steps } from "@/components/mdx/RecipeMDX";
@@ -21,6 +22,7 @@ import {
 import {
   absoluteUrl,
   buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
   buildRecipeJsonLd,
   buildRecipeMetadata,
 } from "@/lib/seo";
@@ -61,14 +63,16 @@ export default async function RecipePage({ params }: RecipePageProps) {
     { name: recipe.title, url: recipeUrl },
   ];
 
+  const faqJsonLd = buildFaqJsonLd(recipe.faq);
+  const jsonLd = [
+    buildRecipeJsonLd(recipe),
+    buildBreadcrumbJsonLd(breadcrumbItems),
+    ...(faqJsonLd ? [faqJsonLd] : []),
+  ];
+
   return (
     <>
-      <JsonLd
-        data={[
-          buildRecipeJsonLd(recipe),
-          buildBreadcrumbJsonLd(breadcrumbItems),
-        ]}
-      />
+      <JsonLd data={jsonLd} />
 
       <article>
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-iron md:aspect-[21/9] md:max-h-[520px]">
@@ -173,6 +177,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 ))}
               </div>
             )}
+
+            <RecipeFaqSection items={recipe.faq} />
           </div>
         </div>
 
