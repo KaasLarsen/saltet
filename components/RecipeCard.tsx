@@ -13,27 +13,28 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
 
   return (
     <Link href={href} className="group block">
-      <article className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-charcoal/5 transition-shadow hover:shadow-md">
-        <div className="relative aspect-[4/3] overflow-hidden">
+      <article>
+        <div className="relative aspect-[4/3] overflow-hidden border border-ink/15 bg-oak/30">
           <Image
             src={recipe.image}
             alt={recipe.imageAlt}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority={priority}
           />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/25 to-transparent opacity-60" />
         </div>
-        <div className="p-5">
-          <div className="mb-2 flex items-center gap-3 text-xs text-charcoal/50">
+        <div className="pt-4">
+          <div className="mb-2 flex items-center gap-3 text-[11px] uppercase tracking-[0.14em] text-smoke">
             <span>{formatDuration(recipe.totalTime)}</span>
-            <span>·</span>
+            <span className="text-ink/25">·</span>
             <span>{difficultyLabel(recipe.difficulty)}</span>
           </div>
-          <h2 className="font-serif text-xl font-medium text-charcoal group-hover:text-accent transition-colors">
+          <h2 className="font-serif text-2xl leading-snug text-ink transition-colors group-hover:text-wood">
             {recipe.title}
           </h2>
-          <p className="mt-2 line-clamp-2 text-sm text-charcoal/65 leading-relaxed">
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/60">
             {recipe.description}
           </p>
         </div>

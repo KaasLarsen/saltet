@@ -9,7 +9,7 @@ export const siteConfig = {
   name: "Saltet",
   url: siteUrl,
   description:
-    "Enkle, lækre opskrifter til hverdagen. Start med airfryer — mere kommer snart.",
+    "Groft, enkelt og med smag. Nordiske opskrifter — airfryer først, flere kategorier på vej.",
   locale: "da_DK",
   language: "da",
 };

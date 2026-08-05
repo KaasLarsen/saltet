@@ -71,7 +71,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
       />
 
       <article>
-        <div className="relative aspect-[16/9] w-full max-h-[480px] overflow-hidden bg-charcoal/5 md:aspect-[21/9]">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-iron md:aspect-[21/9] md:max-h-[520px]">
           <Image
             src={recipe.image}
             alt={recipe.imageAlt}
@@ -80,6 +80,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
             sizes="100vw"
             priority
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
         </div>
 
         <div className="mx-auto max-w-6xl px-5 md:px-8">
@@ -97,33 +98,43 @@ export default async function RecipePage({ params }: RecipePageProps) {
             />
 
             <header>
-              <h1 className="font-serif text-3xl font-medium leading-tight text-charcoal md:text-4xl md:leading-tight">
+              <h1 className="font-serif text-4xl leading-tight text-ink md:text-5xl md:leading-[1.1]">
                 {recipe.title}
               </h1>
-              <p className="mt-4 text-lg text-charcoal/70 leading-relaxed">
+              <p className="mt-5 text-lg leading-relaxed text-ink/65">
                 {recipe.description}
               </p>
 
-              <dl className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-charcoal/55">
-                <div className="flex gap-1.5">
-                  <dt className="font-medium text-charcoal/70">Forberedelse:</dt>
-                  <dd>{formatDuration(recipe.prepTime)}</dd>
+              <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-ink/15 py-5 text-sm sm:grid-cols-3 md:grid-cols-5">
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                    Forberedelse
+                  </dt>
+                  <dd className="mt-1 text-ink">{formatDuration(recipe.prepTime)}</dd>
                 </div>
-                <div className="flex gap-1.5">
-                  <dt className="font-medium text-charcoal/70">Tilberedning:</dt>
-                  <dd>{formatDuration(recipe.cookTime)}</dd>
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                    Tilberedning
+                  </dt>
+                  <dd className="mt-1 text-ink">{formatDuration(recipe.cookTime)}</dd>
                 </div>
-                <div className="flex gap-1.5">
-                  <dt className="font-medium text-charcoal/70">Portioner:</dt>
-                  <dd>{recipe.servings}</dd>
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                    Portioner
+                  </dt>
+                  <dd className="mt-1 text-ink">{recipe.servings}</dd>
                 </div>
-                <div className="flex gap-1.5">
-                  <dt className="font-medium text-charcoal/70">Sværhedsgrad:</dt>
-                  <dd>{difficultyLabel(recipe.difficulty)}</dd>
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                    Sværhedsgrad
+                  </dt>
+                  <dd className="mt-1 text-ink">{difficultyLabel(recipe.difficulty)}</dd>
                 </div>
-                <div className="flex gap-1.5">
-                  <dt className="font-medium text-charcoal/70">Publiceret:</dt>
-                  <dd>{formatDate(recipe.publishedAt)}</dd>
+                <div>
+                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                    Publiceret
+                  </dt>
+                  <dd className="mt-1 text-ink">{formatDate(recipe.publishedAt)}</dd>
                 </div>
               </dl>
             </header>
@@ -134,14 +145,14 @@ export default async function RecipePage({ params }: RecipePageProps) {
 
             <div className="mt-12 grid gap-12 lg:grid-cols-2">
               <section>
-                <h2 className="font-serif text-2xl font-medium text-charcoal mb-5">
+                <h2 className="mb-5 font-serif text-2xl text-ink">
                   Ingredienser
                 </h2>
                 <Ingredients items={recipe.ingredients} />
               </section>
 
               <section>
-                <h2 className="font-serif text-2xl font-medium text-charcoal mb-5">
+                <h2 className="mb-5 font-serif text-2xl text-ink">
                   Fremgangsmåde
                 </h2>
                 <Steps items={recipe.steps} />
@@ -153,7 +164,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 {recipe.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-charcoal/5 px-3 py-1 text-xs text-charcoal/60"
+                    className="border border-ink/20 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-ink/55"
                   >
                     {tag}
                   </span>
@@ -164,12 +175,12 @@ export default async function RecipePage({ params }: RecipePageProps) {
         </div>
 
         {related.length > 0 && (
-          <section className="border-t border-charcoal/5 bg-white/50 py-14">
+          <section className="border-t border-ink/15 bg-paper/50 py-14">
             <div className="mx-auto max-w-6xl px-5 md:px-8">
-              <h2 className="font-serif text-2xl font-medium text-charcoal mb-8">
+              <h2 className="mb-8 font-serif text-3xl text-ink">
                 Flere {categoryName.toLowerCase()}-opskrifter
               </h2>
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map((r) => (
                   <RecipeCard key={r.slug} recipe={r} />
                 ))}

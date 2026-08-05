@@ -12,16 +12,16 @@ interface BreadcrumbsProps {
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav aria-label="Brødkrumme" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-2 text-sm text-charcoal/50">
+      <ol className="flex flex-wrap items-center gap-2 text-[12px] uppercase tracking-[0.12em] text-smoke">
         {items.map((item, index) => (
           <li key={item.label} className="flex items-center gap-2">
-            {index > 0 && <span aria-hidden="true">/</span>}
+            {index > 0 && <span aria-hidden="true" className="text-ink/25">/</span>}
             {item.href ? (
-              <Link href={item.href} className="hover:text-charcoal">
+              <Link href={item.href} className="hover:text-ink">
                 {item.label}
               </Link>
             ) : (
-              <span className="text-charcoal/70">{item.label}</span>
+              <span className="text-ink/70">{item.label}</span>
             )}
           </li>
         ))}

@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
+import { Instrument_Serif, Source_Sans_3 } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { buildWebsiteJsonLd, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
   subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const sourceSans = Source_Sans_3({
+  variable: "--font-source-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -49,8 +50,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="da" className={`${fraunces.variable} ${dmSans.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased bg-cream text-charcoal font-sans">
+    <html
+      lang="da"
+      className={`${instrument.variable} ${sourceSans.variable} h-full`}
+    >
+      <body className="min-h-full flex flex-col bg-linen text-ink font-sans antialiased">
         <JsonLd data={buildWebsiteJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>

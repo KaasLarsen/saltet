@@ -45,13 +45,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           { label: category.name },
         ]}
       />
-      <h1 className="font-serif text-3xl font-medium text-charcoal md:text-4xl">
+      <h1 className="font-serif text-4xl text-ink md:text-5xl">
         {category.headline}
       </h1>
-      <p className="mt-3 max-w-xl text-charcoal/65 leading-relaxed">
+      <p className="mt-4 max-w-xl leading-relaxed text-ink/60">
         {category.description}
       </p>
-      <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
           <RecipeCard key={recipe.slug} recipe={recipe} />
         ))}

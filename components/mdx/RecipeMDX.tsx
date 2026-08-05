@@ -6,13 +6,13 @@ interface IngredientsProps {
 
 export function Ingredients({ items }: IngredientsProps) {
   return (
-    <ul className="space-y-2">
+    <ul className="divide-y divide-ink/10 border-y border-ink/15">
       {items.map((item) => (
         <li
           key={item}
-          className="flex items-start gap-3 text-charcoal/85 leading-relaxed"
+          className="flex items-start gap-3 py-3 text-ink/85 leading-relaxed"
         >
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-herb" />
           {item}
         </li>
       ))}
@@ -29,10 +29,10 @@ export function Steps({ items }: StepsProps) {
     <ol className="space-y-6">
       {items.map((step, index) => (
         <li key={step} className="flex gap-4">
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/15 font-serif text-sm font-medium text-accent">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-ink/25 font-serif text-sm text-ink">
             {index + 1}
           </span>
-          <p className="pt-1 text-charcoal/85 leading-relaxed">{step}</p>
+          <p className="pt-1 leading-relaxed text-ink/85">{step}</p>
         </li>
       ))}
     </ol>
@@ -45,11 +45,11 @@ interface TipProps {
 
 export function Tip({ children }: TipProps) {
   return (
-    <aside className="my-8 rounded-2xl border border-accent/20 bg-accent/5 px-5 py-4">
-      <p className="mb-1 text-xs font-medium uppercase tracking-wider text-accent">
+    <aside className="my-8 border-l-2 border-herb bg-paper/70 px-5 py-4">
+      <p className="mb-1 text-[11px] font-medium uppercase tracking-[0.16em] text-herb">
         Tip
       </p>
-      <div className="text-charcoal/80 leading-relaxed">{children}</div>
+      <div className="leading-relaxed text-ink/75">{children}</div>
     </aside>
   );
 }

@@ -8,20 +8,20 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-charcoal/5 bg-cream/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-ink/15 bg-linen/92 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
         <Link
           href="/"
-          className="font-serif text-2xl font-medium tracking-tight text-charcoal"
+          className="font-serif text-3xl tracking-tight text-ink"
         >
           Saltet
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-5 md:gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-charcoal/70 transition-colors hover:text-charcoal"
+              className="text-[13px] uppercase tracking-[0.14em] text-ink/65 transition-colors hover:text-ink"
             >
               {link.label}
             </Link>
