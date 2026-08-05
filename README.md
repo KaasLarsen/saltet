@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Saltet — saltet.dk
 
-## Getting Started
+Minimalistisk dansk opskriftsside bygget med Next.js, MDX og Tailwind CSS. Hostet på Vercel.
 
-First, run the development server:
+## Kom i gang lokalt
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Åbn [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Kopiér `.env.example` til `.env.local` og sæt:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+NEXT_PUBLIC_SITE_URL=https://saltet.dk
+```
 
-## Learn More
+## Tilføj en ny opskrift
 
-To learn more about Next.js, take a look at the following resources:
+1. Opret en `.mdx`-fil i `content/recipes/[kategori]/`, fx `content/recipes/airfryer/min-opskrift.mdx`
+2. Tilføj et billede i `public/recipes/[kategori]/min-opskrift.jpg`
+3. Commit og push til `main` — Vercel deployer automatisk
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### MDX-format
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```yaml
+---
+title: "Din opskriftstitel"
+slug: min-opskrift
+category: airfryer
+description: "Kort beskrivelse til Google og sociale medier (max ~155 tegn)."
+prepTime: "PT10M"
+cookTime: "PT20M"
+totalTime: "PT30M"
+servings: 4
+difficulty: nem          # nem | mellem | svær
+tags: [tag1, tag2]
+image: /recipes/airfryer/min-opskrift.jpg
+imageAlt: "Beskrivende alt-tekst til billedet"
+publishedAt: 2026-08-05
+featured: false          # true = vises på forsiden
+ingredients:
+  - "500 g ingrediens"
+  - "1 spsk olie"
+steps:
+  - "Første trin i fremgangsmåden."
+  - "Andet trin."
+---
 
-## Deploy on Vercel
+Brødtekst med intro og tips. Brug `<Tip>` komponenten:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<Tip>
+Dit tip til læseren.
+</Tip>
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Ny kategori
+
+1. Opret mappe: `content/recipes/ovn/`
+2. Tilføj kategorien i `lib/categories.ts`
+3. Opskrifter i den nye mappe vises automatisk i navigation og sitemap
+
+## SEO
+
+Sitet genererer automatisk:
+
+- `sitemap.xml` — alle opskrifter og kategorier
+- `robots.txt`
+- JSON-LD Recipe schema på hver opskriftsside
+- BreadcrumbList schema
+- Open Graph og Twitter cards
+- Canonical URLs
+
+Test rich results: [Google Rich Results Test](https://search.google.com/test/rich-results)
+
+Tilføj sitet i [Google Search Console](https://search.google.com/search-console) og indsend sitemap: `https://saltet.dk/sitemap.xml`
+
+## Deploy (Vercel + GitHub)
+
+### GitHub
+
+Repoet pushes til GitHub. Ved push til `main` deployer Vercel automatisk.
+
+### Vercel
+
+1. Gå til [vercel.com/new](https://vercel.com/new) og importér GitHub-repoet
+2. Framework: **Next.js** (auto-detekteret)
+3. Environment variable: `NEXT_PUBLIC_SITE_URL` = `https://saltet.dk`
+4. Deploy
+
+### DNS (saltet.dk)
+
+Hos din domæne-registrar, sæt:
+
+| Type  | Navn | Værdi                |
+|-------|------|----------------------|
+| A     | @    | `76.76.21.21`        |
+| CNAME | www  | `cname.vercel-dns.com` |
+
+I Vercel → Project → Settings → Domains, tilføj:
+
+- `saltet.dk`
+- `www.saltet.dk`
+
+Vercel udsteder SSL automatisk.
+
+## Projektstruktur
+
+```
+app/                    # Next.js sider
+components/             # UI-komponenter
+content/recipes/        # MDX opskrifter
+lib/                    # Parser, SEO, kategorier
+public/recipes/         # Opskriftsbilleder
+```
+
+## Hvad du skal levere
+
+| Punkt            | Status   | Handling                                      |
+|------------------|----------|-----------------------------------------------|
+| Domæne DNS       | Fra dig  | Peg A/CNAME records som beskrevet ovenfor     |
+| Opskrift-tekster | Løbende  | Erstat AI-udkast med dine egne opskrifter     |
+| Billeder         | Løbende  | Erstat med egne fotos for bedst SEO           |
+| Logo/brand       | Valgfrit | Tekst-logo "Saltet" bruges indtil videre      |
+| Search Console   | Fra dig  | Verificér domæne og indsend sitemap           |
+
+## Scripts
+
+```bash
+npm run dev      # Udvikling
+npm run build    # Production build
+npm run start    # Kør production lokalt
+npm run lint     # ESLint
+```
