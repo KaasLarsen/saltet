@@ -8,6 +8,7 @@ const siteUrl =
 export const siteConfig = {
   name: "Saltet",
   url: siteUrl,
+  email: "info@saltet.dk",
   description:
     "Groft, enkelt og med smag. Nordiske opskrifter — airfryer først, flere kategorier på vej.",
   locale: "da_DK",

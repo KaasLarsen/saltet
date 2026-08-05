@@ -21,6 +21,9 @@ const STATIC_ROUTES: {
   { path: "/opskrifter", changeFrequency: "weekly", priority: 0.9 },
   { path: "/tags", changeFrequency: "weekly", priority: 0.7 },
   { path: "/om", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/kontakt", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/cookies", changeFrequency: "yearly", priority: 0.2 },
+  { path: "/privatliv", changeFrequency: "yearly", priority: 0.2 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

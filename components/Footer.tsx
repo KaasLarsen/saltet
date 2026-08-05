@@ -1,36 +1,33 @@
 import Link from "next/link";
-import { categories } from "@/lib/categories";
+import { siteConfig } from "@/lib/seo";
+
+const footerLinks = [
+  { href: "/om", label: "Om" },
+  { href: "/kontakt", label: "Kontakt" },
+  { href: "/cookies", label: "Cookies" },
+  { href: "/privatliv", label: "Privatliv" },
+];
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-bone/10 bg-iron text-bone">
-      <div className="mx-auto max-w-5xl px-5 py-14 text-center md:px-8">
-        <Link href="/" className="font-serif text-2xl text-bone">
-          Saltet
-        </Link>
-        <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-bone/50">
-          Groft. Enkelt. Mad med smag af køkkenbordet — træ, jern og
-          krydderurter.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
-          {categories.map((cat) => (
+    <footer className="mt-auto border-t border-bone/10 bg-iron">
+      <div className="mx-auto max-w-5xl px-5 py-8 text-center md:px-8">
+        <nav
+          aria-label="Sidefod"
+          className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+        >
+          {footerLinks.map((link) => (
             <Link
-              key={cat.slug}
-              href={`/opskrifter/${cat.slug}`}
-              className="text-[12px] uppercase tracking-[0.14em] text-bone/55 transition-colors hover:text-bone"
+              key={link.href}
+              href={link.href}
+              className="text-[11px] uppercase tracking-[0.16em] text-bone/40 transition-colors hover:text-bone/70"
             >
-              {cat.name}
+              {link.label}
             </Link>
           ))}
-          <Link
-            href="/tags"
-            className="text-[12px] uppercase tracking-[0.14em] text-bone/55 transition-colors hover:text-bone"
-          >
-            Tags
-          </Link>
-        </div>
-        <p className="mt-10 border-t border-bone/10 pt-6 text-xs text-bone/30">
-          © {new Date().getFullYear()} Saltet · saltet.dk
+        </nav>
+        <p className="mt-5 text-xs text-bone/25">
+          © {new Date().getFullYear()} {siteConfig.name}
         </p>
       </div>
     </footer>
