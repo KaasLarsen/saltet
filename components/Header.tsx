@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SaltShakerMark } from "@/components/SaltShakerMark";
 
 const navLinks = [
   { href: "/opskrifter", label: "Opskrifter" },
@@ -12,9 +13,10 @@ export function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:px-8">
         <Link
           href="/"
-          className="font-serif text-3xl tracking-tight text-bone"
+          className="inline-flex items-center gap-1.5 font-serif text-3xl tracking-tight text-bone"
         >
           Saltet
+          <SaltShakerMark className="mb-0.5 h-[1.15em] w-[1.15em] shrink-0 text-bone/80" />
         </Link>
         <nav className="flex items-center gap-5 md:gap-8">
           {navLinks.map((link) => (

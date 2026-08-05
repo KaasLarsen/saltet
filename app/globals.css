@@ -82,3 +82,26 @@ body {
 .delay-3 {
   animation-delay: 0.36s;
 }
+
+@keyframes salt-fall {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.55;
+    transform: translateY(1.5px);
+  }
+}
+
+.salt-sprinkle {
+  animation: salt-fall 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .salt-sprinkle {
+    animation: none;
+  }
+}
