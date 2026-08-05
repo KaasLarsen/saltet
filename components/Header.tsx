@@ -16,7 +16,7 @@ export function Header() {
           className="inline-flex items-center gap-1.5 font-serif text-3xl tracking-tight text-bone"
         >
           Saltet
-          <SaltShakerMark className="mb-0.5 h-[1.15em] w-[1.15em] shrink-0 text-bone/80" />
+          <SaltShakerMark className="mb-0.5 h-[0.95em] w-[0.95em] shrink-0 text-bone/70" />
         </Link>
         <nav className="flex items-center gap-5 md:gap-8">
           {navLinks.map((link) => (
