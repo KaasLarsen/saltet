@@ -54,7 +54,7 @@ export default function RootLayout({
       lang="da"
       className={`${instrument.variable} ${sourceSans.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-linen text-ink font-sans antialiased">
+      <body className="min-h-full flex flex-col bg-stone text-bone font-sans antialiased">
         <JsonLd data={buildWebsiteJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>

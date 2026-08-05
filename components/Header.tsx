@@ -8,11 +8,11 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/15 bg-linen/92 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
+    <header className="sticky top-0 z-50 border-b border-bone/10 bg-iron/90 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:px-8">
         <Link
           href="/"
-          className="font-serif text-3xl tracking-tight text-ink"
+          className="font-serif text-3xl tracking-tight text-bone"
         >
           Saltet
         </Link>
@@ -21,7 +21,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-[13px] uppercase tracking-[0.14em] text-ink/65 transition-colors hover:text-ink"
+              className="text-[13px] uppercase tracking-[0.14em] text-bone/55 transition-colors hover:text-bone"
             >
               {link.label}
             </Link>

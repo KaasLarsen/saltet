@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #e6dfd2;
-  --foreground: #1a1917;
-  --ink: #1a1917;
-  --iron: #2c2b28;
-  --wood: #6b5344;
-  --oak: #c4b49a;
-  --linen: #e6dfd2;
-  --herb: #5c6b4a;
-  --smoke: #8a8478;
-  --paper: #efe8db;
+  /* Rå nordisk: kul, aske, jern, eg — ikke blød creme */
+  --background: #221f1c;
+  --foreground: #e4ddd2;
+  --ink: #e4ddd2;
+  --iron: #12110f;
+  --wood: #9a7352;
+  --ash: #3a3631;
+  --bone: #e4ddd2;
+  --herb: #8a9a6e;
+  --smoke: #9a9288;
+  --stone: #2c2925;
 }
 
 @theme inline {
@@ -19,11 +20,11 @@
   --color-ink: var(--ink);
   --color-iron: var(--iron);
   --color-wood: var(--wood);
-  --color-oak: var(--oak);
-  --color-linen: var(--linen);
+  --color-ash: var(--ash);
+  --color-bone: var(--bone);
   --color-herb: var(--herb);
   --color-smoke: var(--smoke);
-  --color-paper: var(--paper);
+  --color-stone: var(--stone);
   --font-sans: var(--font-source-sans);
   --font-serif: var(--font-instrument);
 }
@@ -31,16 +32,15 @@
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(107, 83, 68, 0.08), transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(92, 107, 74, 0.06), transparent 45%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    radial-gradient(ellipse at 50% 0%, rgba(154, 115, 82, 0.07), transparent 55%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--herb) 35%, transparent);
-  color: var(--ink);
+  background: color-mix(in srgb, var(--herb) 40%, transparent);
+  color: var(--bone);
 }
 
 @keyframes rise {

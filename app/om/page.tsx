@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
+    <div className="mx-auto max-w-2xl px-5 py-12 text-center md:px-8 md:py-16">
       <p className="mb-4 text-[12px] uppercase tracking-[0.18em] text-herb">
         Om os
       </p>
-      <h1 className="font-serif text-4xl text-ink md:text-5xl">
+      <h1 className="font-serif text-4xl text-bone md:text-5xl">
         Om {siteConfig.name}
       </h1>
-      <div className="mt-8 space-y-5 leading-relaxed text-ink/70">
+      <div className="mt-8 space-y-5 text-left leading-relaxed text-bone/65 md:text-center">
         <p>
           {siteConfig.name} er for dig, der vil lave god mad uden bøvl — men
           med smag. Vi tror på enkle opskrifter, klare trin og et køkken der

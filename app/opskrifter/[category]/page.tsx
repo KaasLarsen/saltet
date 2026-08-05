@@ -37,21 +37,23 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const recipes = getRecipesByCategory(categorySlug);
 
   return (
-    <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
-      <Breadcrumbs
-        items={[
-          { label: "Forside", href: "/" },
-          { label: "Opskrifter", href: "/opskrifter" },
-          { label: category.name },
-        ]}
-      />
-      <h1 className="font-serif text-4xl text-ink md:text-5xl">
+    <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
+      <div className="flex justify-center">
+        <Breadcrumbs
+          items={[
+            { label: "Forside", href: "/" },
+            { label: "Opskrifter", href: "/opskrifter" },
+            { label: category.name },
+          ]}
+        />
+      </div>
+      <h1 className="font-serif text-4xl text-bone md:text-5xl">
         {category.headline}
       </h1>
-      <p className="mt-4 max-w-xl leading-relaxed text-ink/60">
+      <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
         {category.description}
       </p>
-      <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
           <RecipeCard key={recipe.slug} recipe={recipe} />
         ))}

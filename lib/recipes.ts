@@ -81,3 +81,22 @@ export function getAllRecipeParams(): { category: string; slug: string }[] {
     slug: r.slug,
   }));
 }
+
+export function searchRecipes(query: string): Recipe[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return getAllRecipes();
+
+  return getAllRecipes().filter((r) => {
+    const haystack = [
+      r.title,
+      r.description,
+      r.category,
+      ...r.tags,
+      ...r.ingredients,
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return haystack.includes(q);
+  });
+}
