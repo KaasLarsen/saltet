@@ -11,8 +11,8 @@ interface CategoryPageProps {
 }
 
 export async function generateStaticParams() {
-  const { categories } = await import("@/lib/categories");
-  return categories.map((c) => ({ category: c.slug }));
+  const { getAllCategorySlugs } = await import("@/lib/categories");
+  return getAllCategorySlugs().map((slug) => ({ category: slug }));
 }
 
 export async function generateMetadata({

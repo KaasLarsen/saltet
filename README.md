@@ -66,12 +66,14 @@ Dit tip til læseren.
 
 Sitet genererer automatisk:
 
-- `sitemap.xml` — alle opskrifter og kategorier
+- `sitemap.xml` — **alle** offentlige sider: forside, om, opskrifter, kategorier, tags og enkeltopskrifter
 - `robots.txt`
-- JSON-LD Recipe schema på hver opskriftsside
+- JSON-LD Recipe + FAQ schema på hver opskriftsside
 - BreadcrumbList schema
 - Open Graph og Twitter cards
 - Canonical URLs
+
+Når du tilføjer en **ny fast side** (fx `/kontakt`), skal stien også tilføjes i `STATIC_ROUTES` i [`app/sitemap.ts`](app/sitemap.ts). Opskrifter, tags og kategorier opdateres automatisk.
 
 Test rich results: [Google Rich Results Test](https://search.google.com/test/rich-results)
 
