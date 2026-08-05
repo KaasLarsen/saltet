@@ -22,6 +22,12 @@ export function Footer() {
               {cat.name}
             </Link>
           ))}
+          <Link
+            href="/tags"
+            className="text-[12px] uppercase tracking-[0.14em] text-bone/55 transition-colors hover:text-bone"
+          >
+            Tags
+          </Link>
         </div>
         <p className="mt-10 border-t border-bone/10 pt-6 text-xs text-bone/30">
           © {new Date().getFullYear()} Saltet · saltet.dk

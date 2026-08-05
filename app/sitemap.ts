@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 import { categories } from "@/lib/categories";
 import { getAllRecipes } from "@/lib/recipes";
+import { getAllTags } from "@/lib/tags";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const recipes = getAllRecipes();
+  const tags = getAllTags();
   const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -21,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: absoluteUrl("/tags"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
       url: absoluteUrl("/om"),
       lastModified: now,
       changeFrequency: "monthly",
@@ -35,6 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const tagPages: MetadataRoute.Sitemap = tags.map((tag) => ({
+    url: absoluteUrl(`/tags/${tag.slug}`),
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.65,
+  }));
+
   const recipePages: MetadataRoute.Sitemap = recipes.map((recipe) => ({
     url: absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`),
     lastModified: new Date(recipe.publishedAt),
@@ -42,5 +57,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...categoryPages, ...recipePages];
+  return [...staticPages, ...categoryPages, ...tagPages, ...recipePages];
 }

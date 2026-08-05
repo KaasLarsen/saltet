@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
+import { RecipeTags } from "@/components/RecipeTags";
 import { RecipeContent } from "@/components/mdx/RecipeContent";
 import { Ingredients } from "@/components/mdx/RecipeMDX";
 import { Steps } from "@/components/mdx/RecipeMDX";
@@ -165,18 +166,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
               </section>
             </div>
 
-            {recipe.tags.length > 0 && (
-              <div className="mt-12 flex flex-wrap justify-center gap-2">
-                {recipe.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="border border-bone/20 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-bone/50"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            <RecipeTags tags={recipe.tags} className="mt-12" />
 
             <RecipeFaqSection items={recipe.faq} />
           </div>
