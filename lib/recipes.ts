@@ -48,10 +48,50 @@ export function getRecipesByCategory(category: string): Recipe[] {
   return getAllRecipes().filter((r) => r.category === category);
 }
 
+function hashString(value: string): number {
+  let hash = 2166136261;
+  for (let i = 0; i < value.length; i++) {
+    hash ^= value.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+/** Fingerprint of the recipe catalog — changes when recipes are added/removed. */
+function catalogFingerprint(recipes: Recipe[]): number {
+  return hashString(
+    recipes
+      .map((r) => `${r.category}/${r.slug}`)
+      .sort()
+      .join("|")
+  );
+}
+
+/**
+ * Opskrifter til forsiden.
+ * Nyeste `publishedAt` først. Når mange deler samme dato, vælges et
+ * deterministisk udsnit der skifter, når kataloget ændrer sig (nye opskrifter).
+ */
 export function getFeaturedRecipes(limit = 3): Recipe[] {
-  const featured = getAllRecipes().filter((r) => r.featured);
-  if (featured.length >= limit) return featured.slice(0, limit);
-  return getAllRecipes().slice(0, limit);
+  const all = getAllRecipes();
+  if (all.length === 0) return [];
+
+  const featured = all.filter((r) => r.featured);
+  const pool = featured.length >= limit ? featured : all;
+  const fingerprint = catalogFingerprint(all);
+
+  return [...pool]
+    .sort((a, b) => {
+      const byDate =
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+      if (byDate !== 0) return byDate;
+
+      return (
+        hashString(`${b.category}/${b.slug}:${fingerprint}`) -
+        hashString(`${a.category}/${a.slug}:${fingerprint}`)
+      );
+    })
+    .slice(0, limit);
 }
 
 export function getRecipe(category: string, slug: string): Recipe | undefined {

@@ -40,7 +40,7 @@ tags: [tag1, tag2]
 image: /recipes/airfryer/min-opskrift.jpg
 imageAlt: "Beskrivende alt-tekst til billedet"
 publishedAt: 2026-08-05
-featured: false          # true = vises på forsiden
+featured: false          # true = kandidat til "Udvalgte" på forsiden (nyeste først; skifter når kataloget ændrer sig)
 ingredients:
   - "500 g ingrediens"
   - "1 spsk olie"
