@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { CategoryFilters } from "@/components/CategoryFilters";
 import { RecipeCard } from "@/components/RecipeCard";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { getCategory } from "@/lib/categories";
+import { MIN_RECIPES_FOR_FILTERS } from "@/lib/recipe-filters";
 import { getRecipesByCategory } from "@/lib/recipes";
 import { buildCategoryMetadata } from "@/lib/seo";
+import type { RecipeFrontmatter } from "@/lib/types";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -29,12 +33,30 @@ export async function generateMetadata({
   );
 }
 
+function toListItem(recipe: {
+  content: string;
+} & RecipeFrontmatter): RecipeFrontmatter {
+  const { content: _content, ...rest } = recipe;
+  return rest;
+}
+
+function RecipeGrid({ recipes }: { recipes: RecipeFrontmatter[] }) {
+  return (
+    <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
+      {recipes.map((recipe) => (
+        <RecipeCard key={recipe.slug} recipe={recipe} />
+      ))}
+    </div>
+  );
+}
+
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category: categorySlug } = await params;
   const category = getCategory(categorySlug);
   if (!category) notFound();
 
-  const recipes = getRecipesByCategory(categorySlug);
+  const recipes = getRecipesByCategory(categorySlug).map(toListItem);
+  const showFilters = recipes.length >= MIN_RECIPES_FOR_FILTERS;
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -53,11 +75,23 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
         {category.description}
       </p>
-      <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
-        {recipes.map((recipe) => (
-          <RecipeCard key={recipe.slug} recipe={recipe} />
-        ))}
-      </div>
+
+      {showFilters ? (
+        <Suspense
+          fallback={
+            <>
+              <p className="mt-10 text-[12px] uppercase tracking-[0.14em] text-bone/40">
+                {recipes.length} opskrifter
+              </p>
+              <RecipeGrid recipes={recipes} />
+            </>
+          }
+        >
+          <CategoryFilters recipes={recipes} />
+        </Suspense>
+      ) : (
+        <RecipeGrid recipes={recipes} />
+      )}
     </div>
   );
 }

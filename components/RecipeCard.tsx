@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Recipe } from "@/lib/types";
+import type { RecipeFrontmatter } from "@/lib/types";
 import { formatDuration, difficultyLabel } from "@/lib/format";
 
 interface RecipeCardProps {
-  recipe: Recipe;
+  recipe: RecipeFrontmatter;
   priority?: boolean;
 }
 
