@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { CategoryFilters } from "@/components/CategoryFilters";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -33,21 +32,11 @@ export async function generateMetadata({
   );
 }
 
-function toListItem(recipe: {
-  content: string;
-} & RecipeFrontmatter): RecipeFrontmatter {
+function toListItem(
+  recipe: { content: string } & RecipeFrontmatter
+): RecipeFrontmatter {
   const { content: _content, ...rest } = recipe;
   return rest;
-}
-
-function RecipeGrid({ recipes }: { recipes: RecipeFrontmatter[] }) {
-  return (
-    <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.slug} recipe={recipe} />
-      ))}
-    </div>
-  );
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -77,20 +66,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </p>
 
       {showFilters ? (
-        <Suspense
-          fallback={
-            <>
-              <p className="mt-10 text-[12px] uppercase tracking-[0.14em] text-bone/40">
-                {recipes.length} opskrifter
-              </p>
-              <RecipeGrid recipes={recipes} />
-            </>
-          }
-        >
-          <CategoryFilters recipes={recipes} />
-        </Suspense>
+        <CategoryFilters recipes={recipes} />
       ) : (
-        <RecipeGrid recipes={recipes} />
+        <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
+          {recipes.map((recipe) => (
+            <RecipeCard key={recipe.slug} recipe={recipe} />
+          ))}
+        </div>
       )}
     </div>
   );

@@ -1,5 +1,4 @@
 import type { Difficulty, RecipeFrontmatter } from "./types";
-import { slugifyTag } from "./tags";
 
 export const MIN_RECIPES_FOR_FILTERS = 12;
 export const TOP_TAG_LIMIT = 6;
@@ -17,6 +16,17 @@ export interface TagFacet {
   label: string;
   slug: string;
   count: number;
+}
+
+function slugifyTag(tag: string): string {
+  return tag
+    .toLowerCase()
+    .trim()
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "oe")
+    .replace(/å/g, "aa")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 /** Konverter ISO 8601-varighed (PT1H10M) til minutter. */

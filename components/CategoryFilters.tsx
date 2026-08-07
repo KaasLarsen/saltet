@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useMemo, type ReactNode } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { RecipeCard } from "@/components/RecipeCard";
 import { difficultyLabel } from "@/lib/format";
 import {
@@ -46,19 +46,24 @@ function FilterGroup({
   );
 }
 
+function readFiltersFromLocation(): CategoryFilterValues {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  return {
+    tid: parseTimeFilter(params.get("tid") ?? undefined),
+    svar: parseDifficultyFilter(params.get("svar") ?? undefined),
+    emne: params.get("emne") ?? undefined,
+  };
+}
+
 export function CategoryFilters({ recipes }: CategoryFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [filters, setFilters] = useState<CategoryFilterValues>({});
 
-  const filters: CategoryFilterValues = useMemo(
-    () => ({
-      tid: parseTimeFilter(searchParams.get("tid") ?? undefined),
-      svar: parseDifficultyFilter(searchParams.get("svar") ?? undefined),
-      emne: searchParams.get("emne") ?? undefined,
-    }),
-    [searchParams]
-  );
+  useEffect(() => {
+    setFilters(readFiltersFromLocation());
+  }, []);
 
   const difficulties = useMemo(
     () => getAvailableDifficulties(recipes),
@@ -73,31 +78,25 @@ export function CategoryFilters({ recipes }: CategoryFiltersProps) {
 
   const updateFilters = useCallback(
     (patch: Partial<CategoryFilterValues> & { clear?: boolean }) => {
-      const params = new URLSearchParams(searchParams.toString());
+      setFilters((current) => {
+        const next: CategoryFilterValues = patch.clear
+          ? {}
+          : {
+              ...current,
+              ...patch,
+            };
 
-      if (patch.clear) {
-        params.delete("tid");
-        params.delete("svar");
-        params.delete("emne");
-      } else {
-        if ("tid" in patch) {
-          if (patch.tid == null) params.delete("tid");
-          else params.set("tid", String(patch.tid));
-        }
-        if ("svar" in patch) {
-          if (patch.svar == null) params.delete("svar");
-          else params.set("svar", patch.svar);
-        }
-        if ("emne" in patch) {
-          if (!patch.emne) params.delete("emne");
-          else params.set("emne", patch.emne);
-        }
-      }
+        const params = new URLSearchParams();
+        if (next.tid != null) params.set("tid", String(next.tid));
+        if (next.svar) params.set("svar", next.svar);
+        if (next.emne) params.set("emne", next.emne);
 
-      const qs = params.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+        const qs = params.toString();
+        router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+        return next;
+      });
     },
-    [pathname, router, searchParams]
+    [pathname, router]
   );
 
   return (
@@ -119,7 +118,10 @@ export function CategoryFilters({ recipes }: CategoryFiltersProps) {
               className={chipClass(filters.tid === minutes)}
               onClick={() =>
                 updateFilters({
-                  tid: filters.tid === minutes ? undefined : (minutes as TimeFilter),
+                  tid:
+                    filters.tid === minutes
+                      ? undefined
+                      : (minutes as TimeFilter),
                 })
               }
               aria-pressed={filters.tid === minutes}
@@ -197,9 +199,7 @@ export function CategoryFilters({ recipes }: CategoryFiltersProps) {
 
       {filtered.length === 0 ? (
         <div className="mt-12">
-          <p className="text-bone/50">
-            Ingen opskrifter matcher filtrene.
-          </p>
+          <p className="text-bone/50">Ingen opskrifter matcher filtrene.</p>
           <button
             type="button"
             onClick={() => updateFilters({ clear: true })}
