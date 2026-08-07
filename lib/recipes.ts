@@ -71,9 +71,10 @@ function catalogFingerprint(recipes: Recipe[]): number {
  * Opskrifter til forsiden.
  * Nyeste `publishedAt` først. Når mange deler samme dato, vælges et
  * deterministisk udsnit der skifter, når kataloget ændrer sig (nye opskrifter).
+ * Valgfri `category` begrænser udvalget til én kategori (fx airfryer / grill).
  */
-export function getFeaturedRecipes(limit = 3): Recipe[] {
-  const all = getAllRecipes();
+export function getFeaturedRecipes(limit = 3, category?: string): Recipe[] {
+  const all = category ? getRecipesByCategory(category) : getAllRecipes();
   if (all.length === 0) return [];
 
   const featured = all.filter((r) => r.featured);

@@ -6,7 +6,10 @@ import { getFeaturedRecipes } from "@/lib/recipes";
 import { categories } from "@/lib/categories";
 
 export default function HomePage() {
-  const featured = getFeaturedRecipes(3);
+  const featuredByCategory = categories.map((cat) => ({
+    category: cat,
+    recipes: getFeaturedRecipes(3, cat.slug),
+  }));
 
   return (
     <>
@@ -45,28 +48,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
-        <div className="mb-10 border-b border-bone/10 pb-4 text-center">
-          <h2 className="font-serif text-3xl text-bone md:text-4xl">
-            Udvalgte opskrifter
-          </h2>
-          <Link
-            href="/opskrifter"
-            className="mt-3 inline-block text-[12px] uppercase tracking-[0.14em] text-smoke transition-colors hover:text-bone"
+      {featuredByCategory.map(({ category, recipes }, sectionIndex) =>
+        recipes.length === 0 ? null : (
+          <section
+            key={category.slug}
+            className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20"
           >
-            Se alle
-          </Link>
-        </div>
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((recipe, index) => (
-            <RecipeCard
-              key={recipe.slug}
-              recipe={recipe}
-              priority={index === 0}
-            />
-          ))}
-        </div>
-      </section>
+            <div className="mb-10 border-b border-bone/10 pb-4 text-center">
+              <h2 className="font-serif text-3xl text-bone md:text-4xl">
+                Udvalgte {category.name.toLowerCase()}
+              </h2>
+              <Link
+                href={`/opskrifter/${category.slug}`}
+                className="mt-3 inline-block text-[12px] uppercase tracking-[0.14em] text-smoke transition-colors hover:text-bone"
+              >
+                Se alle
+              </Link>
+            </div>
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {recipes.map((recipe, index) => (
+                <RecipeCard
+                  key={`${recipe.category}/${recipe.slug}`}
+                  recipe={recipe}
+                  priority={sectionIndex === 0 && index === 0}
+                />
+              ))}
+            </div>
+          </section>
+        )
+      )}
 
       <section className="border-y border-bone/10 bg-ash/40">
         <div className="mx-auto max-w-5xl px-5 py-16 text-center md:px-8">
