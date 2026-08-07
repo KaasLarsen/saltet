@@ -16,6 +16,13 @@ export const categories: Category[] = [
       "Sommer på grillen — saftigt kød, grønt med røg og klassiske sides til haven.",
     headline: "Grill opskrifter",
   },
+  {
+    slug: "plancha",
+    name: "Plancha",
+    description:
+      "Høj varme på stålpladen — skorpe, saft og plancha-klassikere til have og terrasse.",
+    headline: "Plancha opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
