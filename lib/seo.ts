@@ -10,7 +10,7 @@ export const siteConfig = {
   url: siteUrl,
   email: "info@saltet.dk",
   description:
-    "Groft, enkelt og med smag. Nordiske opskrifter — airfryer først, flere kategorier på vej.",
+    "Groft, enkelt og med smag. Nordiske opskrifter til airfryer, grill og mere.",
   locale: "da_DK",
   language: "da",
 };

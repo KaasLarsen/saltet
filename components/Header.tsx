@@ -8,6 +8,7 @@ import { SaltShakerMark } from "@/components/SaltShakerMark";
 const navLinks = [
   { href: "/opskrifter", label: "Opskrifter" },
   { href: "/opskrifter/airfryer", label: "Airfryer" },
+  { href: "/opskrifter/grill", label: "Grill" },
   { href: "/om", label: "Om" },
 ];
 

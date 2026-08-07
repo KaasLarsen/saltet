@@ -9,6 +9,13 @@ export const categories: Category[] = [
       "Sprøde, saftige retter fra airfryeren — hurtigt, nemt og fuld af smag.",
     headline: "Airfryer opskrifter",
   },
+  {
+    slug: "grill",
+    name: "Grill",
+    description:
+      "Sommer på grillen — saftigt kød, grønt med røg og klassiske sides til haven.",
+    headline: "Grill opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
