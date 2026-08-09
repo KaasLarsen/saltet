@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
+import { SearchResults } from "@/components/SearchResults";
 import { getAllRecipes, searchRecipes } from "@/lib/recipes";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
+import type { Recipe, RecipeFrontmatter } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Alle opskrifter",
@@ -14,12 +16,19 @@ interface AllRecipesPageProps {
   searchParams: Promise<{ q?: string }>;
 }
 
+function toListItem(recipe: Recipe): RecipeFrontmatter {
+  const { content: _content, ...rest } = recipe;
+  return rest;
+}
+
 export default async function AllRecipesPage({
   searchParams,
 }: AllRecipesPageProps) {
   const { q } = await searchParams;
   const query = q?.trim() ?? "";
-  const recipes = query ? searchRecipes(query) : getAllRecipes();
+  const recipes = (query ? searchRecipes(query) : getAllRecipes()).map(
+    toListItem
+  );
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -40,6 +49,8 @@ export default async function AllRecipesPage({
         <p className="mt-12 text-bone/50">
           Ingen opskrifter matchede din søgning. Prøv et andet ord.
         </p>
+      ) : query ? (
+        <SearchResults recipes={recipes} query={query} />
       ) : (
         <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
           {recipes.map((recipe) => (
