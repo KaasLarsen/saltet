@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/opskrifter/gryde", label: "Gryde" },
   { href: "/opskrifter/pande", label: "Pande" },
   { href: "/opskrifter/sylte", label: "Sylte" },
+  { href: "/opskrifter/dips", label: "Dips" },
 ];
 
 export function Header() {

@@ -44,6 +44,13 @@ export const categories: Category[] = [
       "Klassisk dansk syltning — syrlige, søde og krydrede glas til smørrebrød, grill og vinterens fade.",
     headline: "Sylte opskrifter",
   },
+  {
+    slug: "dips",
+    name: "Dips",
+    description:
+      "Dips, dressinger og saucer — fra tzatziki og aioli til mormordressing, mayo-varianter og BBQ.",
+    headline: "Dips & dressinger",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
