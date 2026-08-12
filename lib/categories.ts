@@ -37,6 +37,13 @@ export const categories: Category[] = [
       "Høj varme på panden — skorpe, saft og hverdagsretter der er klar på komfuret.",
     headline: "Pande opskrifter",
   },
+  {
+    slug: "sylte",
+    name: "Sylte",
+    description:
+      "Klassisk dansk syltning — syrlige, søde og krydrede glas til smørrebrød, grill og vinterens fade.",
+    headline: "Sylte opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {

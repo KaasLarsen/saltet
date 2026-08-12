@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/opskrifter/plancha", label: "Plancha" },
   { href: "/opskrifter/gryde", label: "Gryde" },
   { href: "/opskrifter/pande", label: "Pande" },
+  { href: "/opskrifter/sylte", label: "Sylte" },
 ];
 
 export function Header() {
