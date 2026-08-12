@@ -10,6 +10,7 @@ export const CATEGORY_NAV = [
   { slug: "dips", name: "Dips" },
   { slug: "sous-vide", name: "Sous Vide" },
   { slug: "trykkoger", name: "Trykkoger" },
+  { slug: "dehydrator", name: "Dehydrator" },
 ] as const;
 
 export type CategoryNavSlug = (typeof CATEGORY_NAV)[number]["slug"];

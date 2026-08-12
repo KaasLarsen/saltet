@@ -65,6 +65,13 @@ export const categories: Category[] = [
       "Hurtige simreretter i trykkoger og Instant Pot — gullasch, supper, pulled pork og hverdagsretter på en brøkdel af tiden.",
     headline: "Trykkoger opskrifter",
   },
+  {
+    slug: "dehydrator",
+    name: "Dehydrator",
+    description:
+      "Tørrede snacks, jerky, chips og pulver i dehydrator — frugtlæder, grøntsagschips, krydderier og turmad med præcise temperaturer.",
+    headline: "Dehydrator opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
