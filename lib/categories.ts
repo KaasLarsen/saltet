@@ -72,6 +72,13 @@ export const categories: Category[] = [
       "Tørrede snacks, jerky, chips og pulver i dehydrator — frugtlæder, grøntsagschips, krydderier og turmad med præcise temperaturer.",
     headline: "Dehydrator opskrifter",
   },
+  {
+    slug: "roeremaskine",
+    name: "Røremaskine",
+    description:
+      "Dej, fars og salte klassikere i røremaskine — pizza, brød, pasta, smør og tærtedej med præcis æltning.",
+    headline: "Røremaskine opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
