@@ -27,7 +27,7 @@ export default function HomePage() {
 
         <div className="relative mx-auto flex min-h-[88vh] max-w-3xl flex-col items-center justify-end px-5 pb-16 pt-28 text-center md:pb-24">
           <p className="animate-rise mb-4 text-[12px] uppercase tracking-[0.22em] text-bone/65">
-            Nordisk køkken · Airfryer, grill & plancha
+            Nordisk køkken · Airfryer, grill, plancha, gryde & pande
           </p>
           <h1 className="animate-rise delay-1 font-serif text-5xl leading-[1.05] text-bone md:text-7xl md:leading-[1.02]">
             Saltet

@@ -11,12 +11,14 @@ interface SearchResultsProps {
 }
 
 /** Fast rækkefølge for kendte metoder — undgår server-only categories-import i client. */
-const METHOD_ORDER = ["airfryer", "grill", "plancha"] as const;
+const METHOD_ORDER = ["airfryer", "grill", "plancha", "gryde", "pande"] as const;
 
 const METHOD_LABELS: Record<string, string> = {
   airfryer: "Airfryer",
   grill: "Grill",
   plancha: "Plancha",
+  gryde: "Gryde",
+  pande: "Pande",
 };
 
 function methodLabel(slug: string): string {

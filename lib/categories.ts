@@ -23,6 +23,20 @@ export const categories: Category[] = [
       "Høj varme på stålpladen — skorpe, saft og plancha-klassikere til have og terrasse.",
     headline: "Plancha opskrifter",
   },
+  {
+    slug: "gryde",
+    name: "Gryde",
+    description:
+      "Langsom varme i gryden — gryderetter, supper og one-pot-klassikere med dyb smag.",
+    headline: "Gryde opskrifter",
+  },
+  {
+    slug: "pande",
+    name: "Pande",
+    description:
+      "Høj varme på panden — skorpe, saft og hverdagsretter der er klar på komfuret.",
+    headline: "Pande opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {

@@ -10,6 +10,8 @@ const navLinks = [
   { href: "/opskrifter/airfryer", label: "Airfryer" },
   { href: "/opskrifter/grill", label: "Grill" },
   { href: "/opskrifter/plancha", label: "Plancha" },
+  { href: "/opskrifter/gryde", label: "Gryde" },
+  { href: "/opskrifter/pande", label: "Pande" },
 ];
 
 export function Header() {
