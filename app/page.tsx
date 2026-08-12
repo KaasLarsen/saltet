@@ -79,22 +79,21 @@ export default function HomePage() {
       )}
 
       <section className="border-y border-bone/10 bg-ash/40">
-        <div className="mx-auto max-w-5xl px-5 py-16 text-center md:px-8">
-          <h2 className="mb-8 font-serif text-3xl text-bone">Kategorier</h2>
-          <div className="mx-auto grid max-w-xl gap-4">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-14">
+          <h2 className="mb-6 text-center font-serif text-2xl text-bone md:text-3xl">
+            Kategorier
+          </h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {categories.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/opskrifter/${cat.slug}`}
-                className="group border border-bone/15 bg-stone/60 p-6 transition-colors hover:border-bone/40 hover:bg-ash"
+                className="group border border-bone/12 bg-stone/50 px-3 py-4 text-center transition-colors hover:border-bone/35 hover:bg-ash sm:px-4 sm:py-5"
               >
-                <p className="mb-2 text-[11px] uppercase tracking-[0.18em] text-herb">
-                  Kategori
-                </p>
-                <h3 className="font-serif text-2xl text-bone transition-colors group-hover:text-wood">
+                <h3 className="font-serif text-lg text-bone transition-colors group-hover:text-wood sm:text-xl">
                   {cat.name}
                 </h3>
-                <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-bone/55">
+                <p className="mt-1.5 line-clamp-2 text-[11px] leading-snug text-bone/45 sm:text-xs">
                   {cat.description}
                 </p>
               </Link>
