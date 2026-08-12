@@ -51,6 +51,13 @@ export const categories: Category[] = [
       "Dips, dressinger og saucer — fra tzatziki og aioli til mormordressing, mayo-varianter og BBQ.",
     headline: "Dips & dressinger",
   },
+  {
+    slug: "sous-vide",
+    name: "Sous Vide",
+    description:
+      "Præcise tider og temperaturer til sous vide — oksekød, svin, fjerkræ, fisk og grønt uden gætteri.",
+    headline: "Sous vide opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
