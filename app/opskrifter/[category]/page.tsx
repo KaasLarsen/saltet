@@ -58,7 +58,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           ]}
         />
       </div>
-      <h1 className="font-serif text-4xl text-bone md:text-5xl">
+      <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
         {category.headline}
       </h1>
       <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">

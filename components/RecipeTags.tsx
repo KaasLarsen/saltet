@@ -15,7 +15,7 @@ export function RecipeTags({ tags, className = "" }: RecipeTagsProps) {
         <Link
           key={tag}
           href={tagHref(tag)}
-          className="border border-bone/20 px-3 py-1 text-[11px] uppercase tracking-[0.12em] text-bone/50 transition-colors hover:border-bone/45 hover:text-bone"
+          className="rounded-lg border-2 border-bone/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-bone/55 transition-colors hover:border-pool hover:text-pool"
         >
           {tag}
         </Link>

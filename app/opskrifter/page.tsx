@@ -32,7 +32,7 @@ export default async function AllRecipesPage({
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
-      <h1 className="font-serif text-4xl text-bone md:text-5xl">
+      <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
         {query ? "Søgeresultater" : "Alle opskrifter"}
       </h1>
       <p className="mx-auto mt-4 max-w-xl text-bone/55 leading-relaxed">

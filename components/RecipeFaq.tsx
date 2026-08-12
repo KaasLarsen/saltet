@@ -11,19 +11,19 @@ export function RecipeFaqSection({ items }: RecipeFaqProps) {
     <section className="mt-14 text-left" aria-labelledby="faq-heading">
       <h2
         id="faq-heading"
-        className="mb-6 text-center font-serif text-2xl text-bone"
+        className="mb-6 text-center font-serif text-2xl uppercase tracking-wide text-bone"
       >
         Ofte stillede spørgsmål
       </h2>
-      <div className="divide-y divide-bone/10 border-y border-bone/15">
+      <div className="overflow-hidden rounded-2xl border-2 border-bone/20 divide-y divide-bone/10">
         {items.map((item) => (
-          <details key={item.question} className="group py-4">
-            <summary className="cursor-pointer list-none font-medium text-bone marker:content-none [&::-webkit-details-marker]:hidden">
+          <details key={item.question} className="group bg-ash/30 px-4 py-4">
+            <summary className="cursor-pointer list-none font-semibold text-bone marker:content-none [&::-webkit-details-marker]:hidden">
               <span className="flex items-start justify-between gap-4">
                 <span>{item.question}</span>
                 <span
                   aria-hidden="true"
-                  className="mt-0.5 shrink-0 text-smoke transition-transform group-open:rotate-45"
+                  className="mt-0.5 shrink-0 font-bold text-herb transition-transform group-open:rotate-45"
                 >
                   +
                 </span>

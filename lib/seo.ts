@@ -10,7 +10,7 @@ export const siteConfig = {
   url: siteUrl,
   email: "info@saltet.dk",
   description:
-    "Groft, enkelt og med smag. Nordiske opskrifter til airfryer, grill, plancha, gryde, pande og mere.",
+    "Salt på maden. Opskrifter med kant til airfryer, grill, plancha, gryde og pande — enkelt, sprødt og med smag.",
   locale: "da_DK",
   language: "da",
 };

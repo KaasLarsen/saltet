@@ -14,7 +14,9 @@ export default function TagsIndexPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
-      <h1 className="font-serif text-4xl text-bone md:text-5xl">Tags</h1>
+      <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
+        Tags
+      </h1>
       <p className="mx-auto mt-4 max-w-xl text-bone/55 leading-relaxed">
         Find opskrifter via emne — klik på et tag for at se alle matchende
         retter.
@@ -24,7 +26,7 @@ export default function TagsIndexPage() {
           <Link
             key={tag.slug}
             href={`/tags/${tag.slug}`}
-            className="border border-bone/20 px-4 py-2 text-[12px] uppercase tracking-[0.14em] text-bone/65 transition-colors hover:border-bone/45 hover:text-bone"
+            className="rounded-xl border-2 border-bone/20 bg-ash/50 px-4 py-2 text-[12px] font-bold uppercase tracking-[0.14em] text-bone/70 shadow-[3px_3px_0_0_rgba(212,255,0,0.35)] transition-[transform,border-color,box-shadow] hover:-translate-y-0.5 hover:border-herb hover:shadow-[4px_4px_0_0_rgba(212,255,0,0.7)]"
           >
             {tag.label}
             <span className="ml-2 text-smoke">{tag.count}</span>

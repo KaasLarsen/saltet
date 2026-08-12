@@ -61,10 +61,12 @@ export default async function TagPage({ params }: TagPageProps) {
           ]}
         />
       </div>
-      <p className="mb-3 text-[12px] uppercase tracking-[0.18em] text-herb">
+      <p className="mb-3 inline-flex rotate-[-2deg] rounded-lg border-2 border-iron bg-herb px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-iron">
         Tag
       </p>
-      <h1 className="font-serif text-4xl text-bone md:text-5xl">{tag.label}</h1>
+      <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
+        {tag.label}
+      </h1>
       <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
         {recipes.length} opskrift{recipes.length === 1 ? "" : "er"} med dette
         tag.

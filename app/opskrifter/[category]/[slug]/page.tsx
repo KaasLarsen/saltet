@@ -85,7 +85,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone via-transparent to-iron/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone via-transparent to-iron/40" />
+          <div className="absolute inset-0 bg-[repeating-linear-gradient(-18deg,transparent,transparent_16px,rgba(212,255,0,0.03)_16px,rgba(212,255,0,0.03)_17px)]" />
         </div>
 
         <div className="mx-auto max-w-5xl px-5 md:px-8">
@@ -105,43 +106,53 @@ export default async function RecipePage({ params }: RecipePageProps) {
             </div>
 
             <header>
-              <h1 className="font-serif text-4xl leading-tight text-bone md:text-5xl md:leading-[1.1]">
+              <h1 className="font-serif text-4xl uppercase leading-tight tracking-wide text-bone md:text-5xl md:leading-[1.05]">
                 {recipe.title}
               </h1>
               <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-bone/60">
                 {recipe.description}
               </p>
 
-              <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-bone/10 py-5 text-sm sm:grid-cols-3 md:grid-cols-5">
+              <dl className="mt-8 grid grid-cols-2 gap-3 rounded-2xl border-2 border-bone/15 bg-ash/40 p-4 text-sm sm:grid-cols-3 md:grid-cols-5">
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                  <dt className="text-[11px] font-bold uppercase tracking-[0.14em] text-herb">
                     Forberedelse
                   </dt>
-                  <dd className="mt-1 text-bone">{formatDuration(recipe.prepTime)}</dd>
+                  <dd className="mt-1 font-semibold text-bone">
+                    {formatDuration(recipe.prepTime)}
+                  </dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                  <dt className="text-[11px] font-bold uppercase tracking-[0.14em] text-herb">
                     Tilberedning
                   </dt>
-                  <dd className="mt-1 text-bone">{formatDuration(recipe.cookTime)}</dd>
+                  <dd className="mt-1 font-semibold text-bone">
+                    {formatDuration(recipe.cookTime)}
+                  </dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                  <dt className="text-[11px] font-bold uppercase tracking-[0.14em] text-herb">
                     Portioner
                   </dt>
-                  <dd className="mt-1 text-bone">{recipe.servings}</dd>
+                  <dd className="mt-1 font-semibold text-bone">
+                    {recipe.servings}
+                  </dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                  <dt className="text-[11px] font-bold uppercase tracking-[0.14em] text-herb">
                     Sværhedsgrad
                   </dt>
-                  <dd className="mt-1 text-bone">{difficultyLabel(recipe.difficulty)}</dd>
+                  <dd className="mt-1 font-semibold text-bone">
+                    {difficultyLabel(recipe.difficulty)}
+                  </dd>
                 </div>
                 <div>
-                  <dt className="text-[11px] uppercase tracking-[0.14em] text-smoke">
+                  <dt className="text-[11px] font-bold uppercase tracking-[0.14em] text-herb">
                     Publiceret
                   </dt>
-                  <dd className="mt-1 text-bone">{formatDate(recipe.publishedAt)}</dd>
+                  <dd className="mt-1 font-semibold text-bone">
+                    {formatDate(recipe.publishedAt)}
+                  </dd>
                 </div>
               </dl>
             </header>
@@ -152,14 +163,14 @@ export default async function RecipePage({ params }: RecipePageProps) {
 
             <div className="mt-12 grid gap-12 text-left lg:grid-cols-2">
               <section>
-                <h2 className="mb-5 font-serif text-2xl text-bone">
+                <h2 className="mb-5 font-serif text-2xl uppercase tracking-wide text-bone">
                   Ingredienser
                 </h2>
                 <Ingredients items={recipe.ingredients} />
               </section>
 
               <section>
-                <h2 className="mb-5 font-serif text-2xl text-bone">
+                <h2 className="mb-5 font-serif text-2xl uppercase tracking-wide text-bone">
                   Fremgangsmåde
                 </h2>
                 <Steps items={recipe.steps} />
@@ -173,9 +184,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
         </div>
 
         {related.length > 0 && (
-          <section className="border-t border-bone/10 bg-ash/30 py-14">
+          <section className="border-t-2 border-bone/15 bg-ash/40 py-14">
             <div className="mx-auto max-w-5xl px-5 text-center md:px-8">
-              <h2 className="mb-8 font-serif text-3xl text-bone">
+              <h2 className="mb-8 font-serif text-3xl uppercase tracking-wide text-bone">
                 Flere {categoryName.toLowerCase()}-opskrifter
               </h2>
               <div className="grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">

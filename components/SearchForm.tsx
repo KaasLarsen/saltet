@@ -31,10 +31,10 @@ export function SearchForm({
         Søg efter opskrift
       </label>
       <div
-        className={`flex border ${
+        className={`flex overflow-hidden rounded-2xl border-2 ${
           isHero
-            ? "border-bone/35 bg-iron/55 backdrop-blur-sm"
-            : "border-bone/20 bg-ash"
+            ? "border-bone/40 bg-iron/70 shadow-[4px_4px_0_0_rgba(212,255,0,0.85)] backdrop-blur-sm"
+            : "border-bone/25 bg-ash shadow-[3px_3px_0_0_rgba(255,92,57,0.55)]"
         }`}
       >
         <input
@@ -51,10 +51,10 @@ export function SearchForm({
         />
         <button
           type="submit"
-          className={`shrink-0 border-l px-5 text-[11px] uppercase tracking-[0.16em] transition-colors ${
+          className={`shrink-0 border-l-2 px-5 text-[12px] font-bold uppercase tracking-[0.14em] transition-colors ${
             isHero
-              ? "border-bone/35 text-bone hover:bg-bone hover:text-iron"
-              : "border-bone/20 text-bone/80 hover:bg-bone hover:text-iron"
+              ? "border-bone/40 bg-herb text-iron hover:bg-bone"
+              : "border-bone/25 bg-wood text-bone hover:bg-herb hover:text-iron"
           }`}
         >
           Søg

@@ -26,10 +26,10 @@ function methodLabel(slug: string): string {
 }
 
 function chipClass(active: boolean): string {
-  return `border px-3 py-1 text-[11px] uppercase tracking-[0.12em] transition-colors ${
+  return `rounded-lg border-2 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] transition-colors ${
     active
-      ? "border-bone/45 text-bone"
-      : "border-bone/20 text-bone/50 hover:border-bone/45 hover:text-bone"
+      ? "border-herb bg-herb text-iron"
+      : "border-bone/25 text-bone/55 hover:border-herb hover:text-herb"
   }`;
 }
 

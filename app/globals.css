@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* Rå nordisk: kul, aske, jern, eg — ikke blød creme */
-  --background: #221f1c;
-  --foreground: #e4ddd2;
-  --ink: #e4ddd2;
-  --iron: #12110f;
-  --wood: #9a7352;
-  --ash: #3a3631;
-  --bone: #e4ddd2;
-  --herb: #8a9a6e;
-  --smoke: #9a9288;
-  --stone: #2c2925;
+  /* Skate court 80s/90s: sort deck, acid, punch, pool */
+  --background: #0c0c0c;
+  --foreground: #f2f0e8;
+  --ink: #f2f0e8;
+  --iron: #050505;
+  --wood: #ff5c39;
+  --ash: #1a1a1a;
+  --bone: #f2f0e8;
+  --herb: #d4ff00;
+  --smoke: #8f8f86;
+  --stone: #111111;
+  --pool: #00e5c0;
+  --radius-sticker: 1rem;
 }
 
 @theme inline {
@@ -25,32 +27,45 @@
   --color-herb: var(--herb);
   --color-smoke: var(--smoke);
   --color-stone: var(--stone);
-  --font-sans: var(--font-source-sans);
-  --font-serif: var(--font-instrument);
+  --color-pool: var(--pool);
+  --font-sans: var(--font-barlow);
+  --font-serif: var(--font-archivo);
+  --radius-sticker: var(--radius-sticker);
 }
 
 body {
   background-color: var(--background);
   background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(154, 115, 82, 0.07), transparent 55%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+    linear-gradient(
+      135deg,
+      rgba(212, 255, 0, 0.04) 0%,
+      transparent 42%,
+      rgba(255, 92, 57, 0.05) 100%
+    ),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 11px,
+      rgba(242, 240, 232, 0.015) 11px,
+      rgba(242, 240, 232, 0.015) 12px
+    );
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--herb) 40%, transparent);
-  color: var(--bone);
+  background: var(--herb);
+  color: var(--iron);
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px) rotate(-0.4deg);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) rotate(0);
   }
 }
 
@@ -63,24 +78,15 @@ body {
   }
 }
 
-.animate-rise {
-  animation: rise 0.7s ease-out both;
-}
-
-.animate-fade {
-  animation: fade-in 1s ease-out both;
-}
-
-.delay-1 {
-  animation-delay: 0.12s;
-}
-
-.delay-2 {
-  animation-delay: 0.24s;
-}
-
-.delay-3 {
-  animation-delay: 0.36s;
+@keyframes sticker-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 @keyframes salt-fall {
@@ -95,13 +101,50 @@ body {
   }
 }
 
+.animate-rise {
+  animation: rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade {
+  animation: fade-in 0.9s ease-out both;
+}
+
+.animate-sticker {
+  animation: sticker-pop 0.55s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.32s;
+}
+
 .salt-sprinkle {
   animation: salt-fall 2.8s ease-in-out infinite;
   transform-origin: center;
 }
 
+.sticker {
+  border-radius: var(--radius-sticker);
+  border: 2px solid color-mix(in srgb, var(--bone) 22%, transparent);
+}
+
+.sticker-fill {
+  border-radius: var(--radius-sticker);
+  border: 2px solid var(--bone);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .salt-sprinkle {
+  .salt-sprinkle,
+  .animate-rise,
+  .animate-fade,
+  .animate-sticker {
     animation: none;
   }
 }

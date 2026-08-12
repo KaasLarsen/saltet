@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-2xl px-5 py-12 text-center md:px-8 md:py-16">
-      <p className="mb-4 text-[12px] uppercase tracking-[0.18em] text-herb">
+      <p className="mb-4 inline-flex rotate-[-2deg] rounded-lg border-2 border-iron bg-herb px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-iron">
         Privatliv
       </p>
-      <h1 className="font-serif text-4xl text-bone md:text-5xl">
+      <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
         Privatlivspolitik
       </h1>
       <div className="mt-8 space-y-5 text-left leading-relaxed text-bone/65 md:text-center">
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           Skriver du til os på{" "}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="text-bone underline decoration-bone/25 underline-offset-4 transition-colors hover:decoration-wood"
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
           >
             {siteConfig.email}
           </a>
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
           Om cookies: se vores{" "}
           <Link
             href="/cookies"
-            className="text-bone underline decoration-bone/25 underline-offset-4 transition-colors hover:decoration-wood"
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
           >
             cookiepolitik
           </Link>
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           Spørgsmål om privatliv? Skriv til{" "}
           <a
             href={`mailto:${siteConfig.email}`}
-            className="text-bone underline decoration-bone/25 underline-offset-4 transition-colors hover:decoration-wood"
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
           >
             {siteConfig.email}
           </a>

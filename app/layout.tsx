@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Source_Sans_3 } from "next/font/google";
+import { Archivo_Black, Barlow } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { buildWebsiteJsonLd, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
+const archivo = Archivo_Black({
+  variable: "--font-archivo",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const barlow = Barlow({
+  variable: "--font-barlow",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -55,9 +56,9 @@ export default function RootLayout({
   return (
     <html
       lang="da"
-      className={`${instrument.variable} ${sourceSans.variable} h-full`}
+      className={`${archivo.variable} ${barlow.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-stone text-bone font-sans antialiased">
+      <body className="flex min-h-full flex-col bg-stone font-sans text-bone antialiased">
         <JsonLd data={buildWebsiteJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>

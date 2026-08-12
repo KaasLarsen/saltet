@@ -11,10 +11,12 @@ export const metadata: Metadata = {
 export default function CookiesPage() {
   return (
     <div className="mx-auto max-w-2xl px-5 py-12 text-center md:px-8 md:py-16">
-      <p className="mb-4 text-[12px] uppercase tracking-[0.18em] text-herb">
+      <p className="mb-4 inline-flex rotate-[-2deg] rounded-lg border-2 border-iron bg-herb px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-iron">
         Cookiepolitik
       </p>
-      <h1 className="font-serif text-4xl text-bone md:text-5xl">Cookies</h1>
+      <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
+        Cookies
+      </h1>
       <div className="mt-8 space-y-5 text-left leading-relaxed text-bone/65 md:text-center">
         <p>
           {siteConfig.name} bruger kun teknisk nødvendige cookies, der får
@@ -33,7 +35,7 @@ export default function CookiesPage() {
           Læs også vores{" "}
           <Link
             href="/privatliv"
-            className="text-bone underline decoration-bone/25 underline-offset-4 transition-colors hover:decoration-wood"
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
           >
             privatlivspolitik
           </Link>

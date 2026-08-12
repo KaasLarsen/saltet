@@ -40,34 +40,43 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-bone/10 bg-iron/90 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4 md:px-8">
+    <header className="sticky top-0 z-50 border-b-2 border-bone/15 bg-iron/95 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3.5 md:px-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 font-serif text-3xl tracking-tight text-bone"
+          className="inline-flex items-center gap-1.5 font-serif text-2xl uppercase tracking-wide text-bone transition-colors hover:text-herb md:text-3xl"
         >
           Saltet
-          <SaltShakerMark className="mb-0.5 h-[0.95em] w-[0.95em] shrink-0 text-bone/70" />
+          <SaltShakerMark className="mb-0.5 h-[0.85em] w-[0.85em] shrink-0 text-herb" />
         </Link>
 
         <nav
           aria-label="Hovedmenu"
-          className="hidden items-center gap-8 md:flex"
+          className="hidden items-center gap-1 md:flex"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[13px] uppercase tracking-[0.14em] text-bone/55 transition-colors hover:text-bone"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active =
+              pathname === link.href ||
+              (link.href !== "/opskrifter" && pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-lg px-2.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
+                  active
+                    ? "bg-herb text-iron"
+                    : "text-bone/55 hover:bg-bone/10 hover:text-bone"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <button
           type="button"
-          className="relative flex h-10 w-10 items-center justify-center text-bone md:hidden"
+          className="relative flex h-10 w-10 items-center justify-center rounded-lg border-2 border-bone/25 text-bone md:hidden"
           aria-expanded={open}
           aria-controls={menuId}
           aria-label={open ? "Luk menu" : "Åbn menu"}
@@ -75,17 +84,17 @@ export function Header() {
         >
           <span aria-hidden className="relative block h-3.5 w-5">
             <span
-              className={`absolute left-0 top-0 block h-px w-full bg-current transition-transform duration-300 ease-out ${
+              className={`absolute left-0 top-0 block h-0.5 w-full bg-current transition-transform duration-300 ease-out ${
                 open ? "translate-y-[6.5px] rotate-45" : ""
               }`}
             />
             <span
-              className={`absolute left-0 top-[6.5px] block h-px w-full bg-current transition-opacity duration-200 ${
+              className={`absolute left-0 top-[6.5px] block h-0.5 w-full bg-current transition-opacity duration-200 ${
                 open ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`absolute left-0 top-[13px] block h-px w-full bg-current transition-transform duration-300 ease-out ${
+              className={`absolute left-0 top-[13px] block h-0.5 w-full bg-current transition-transform duration-300 ease-out ${
                 open ? "-translate-y-[6.5px] -rotate-45" : ""
               }`}
             />
@@ -102,14 +111,14 @@ export function Header() {
         <div className="overflow-hidden">
           <nav
             aria-label="Mobilmenu"
-            className="border-t border-bone/10 px-5 pb-5 pt-3"
+            className="border-t-2 border-bone/15 px-5 pb-5 pt-3"
           >
-            <ul className="flex flex-col">
+            <ul className="flex flex-col gap-1">
               {navLinks.map((link, index) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`block border-b border-bone/10 py-3.5 text-[13px] uppercase tracking-[0.14em] text-bone/70 transition-colors hover:text-bone ${
+                    className={`block rounded-xl border-2 border-bone/10 bg-ash/60 px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-bone/80 transition-colors hover:border-herb hover:text-herb ${
                       open ? "animate-rise" : ""
                     }`}
                     style={

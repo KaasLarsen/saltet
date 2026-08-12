@@ -1,6 +1,6 @@
 # Saltet — saltet.dk
 
-Minimalistisk dansk opskriftsside bygget med Next.js, MDX og Tailwind CSS. Hostet på Vercel.
+Dansk opskriftsside med skate 80s/90s vibe — bygget med Next.js, MDX og Tailwind CSS. Hostet på Vercel.
 
 ## Kom i gang lokalt
 
