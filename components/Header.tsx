@@ -15,6 +15,7 @@ const navLinks = [
   { href: "/opskrifter/sylte", label: "Sylte" },
   { href: "/opskrifter/dips", label: "Dips" },
   { href: "/opskrifter/sous-vide", label: "Sous Vide" },
+  { href: "/opskrifter/trykkoger", label: "Trykkoger" },
 ];
 
 export function Header() {

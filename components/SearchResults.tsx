@@ -20,6 +20,7 @@ const METHOD_ORDER = [
   "sylte",
   "dips",
   "sous-vide",
+  "trykkoger",
 ] as const;
 
 const METHOD_LABELS: Record<string, string> = {
@@ -31,6 +32,7 @@ const METHOD_LABELS: Record<string, string> = {
   sylte: "Sylte",
   dips: "Dips",
   "sous-vide": "Sous Vide",
+  trykkoger: "Trykkoger",
 };
 
 function methodLabel(slug: string): string {

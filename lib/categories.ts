@@ -58,6 +58,13 @@ export const categories: Category[] = [
       "Præcise tider og temperaturer til sous vide — oksekød, svin, fjerkræ, fisk og grønt uden gætteri.",
     headline: "Sous vide opskrifter",
   },
+  {
+    slug: "trykkoger",
+    name: "Trykkoger",
+    description:
+      "Hurtige simreretter i trykkoger og Instant Pot — gullasch, supper, pulled pork og hverdagsretter på en brøkdel af tiden.",
+    headline: "Trykkoger opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
