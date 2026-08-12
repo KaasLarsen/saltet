@@ -3,40 +3,15 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { RecipeCard } from "@/components/RecipeCard";
+import {
+  CATEGORY_NAV_ORDER,
+  categoryNavLabel,
+} from "@/lib/category-nav";
 import type { RecipeFrontmatter } from "@/lib/types";
 
 interface SearchResultsProps {
   recipes: RecipeFrontmatter[];
   query: string;
-}
-
-/** Fast rækkefølge for kendte metoder — undgår server-only categories-import i client. */
-const METHOD_ORDER = [
-  "airfryer",
-  "grill",
-  "plancha",
-  "gryde",
-  "pande",
-  "sylte",
-  "dips",
-  "sous-vide",
-  "trykkoger",
-] as const;
-
-const METHOD_LABELS: Record<string, string> = {
-  airfryer: "Airfryer",
-  grill: "Grill",
-  plancha: "Plancha",
-  gryde: "Gryde",
-  pande: "Pande",
-  sylte: "Sylte",
-  dips: "Dips",
-  "sous-vide": "Sous Vide",
-  trykkoger: "Trykkoger",
-};
-
-function methodLabel(slug: string): string {
-  return METHOD_LABELS[slug] ?? slug.charAt(0).toUpperCase() + slug.slice(1);
 }
 
 function chipClass(active: boolean): string {
@@ -54,9 +29,10 @@ function readMetodeFromLocation(): string | undefined {
 
 function getMethodsInResults(recipes: RecipeFrontmatter[]): string[] {
   const present = new Set(recipes.map((r) => r.category));
-  const knownOrder = METHOD_ORDER.filter((slug) => present.has(slug));
+  const knownOrder = CATEGORY_NAV_ORDER.filter((slug) => present.has(slug));
+  const knownSet = new Set<string>(knownOrder);
   const extras = Array.from(present)
-    .filter((slug) => !knownOrder.includes(slug as (typeof METHOD_ORDER)[number]))
+    .filter((slug) => !knownSet.has(slug))
     .sort((a, b) => a.localeCompare(b, "da"));
   return [...knownOrder, ...extras];
 }
@@ -119,7 +95,7 @@ export function SearchResults({ recipes, query }: SearchResultsProps) {
               }
               aria-pressed={activeMetode === slug}
             >
-              {methodLabel(slug)}
+              {categoryNavLabel(slug)}
             </button>
           ))}
         </div>
