@@ -17,6 +17,13 @@ export const categories: Category[] = [
     headline: "Grill opskrifter",
   },
   {
+    slug: "roeg",
+    name: "Røg",
+    description:
+      "Koldrøgning, varmrøgning og røgpistol — bacon, laks, BBQ og hurtige indendørs røghacks.",
+    headline: "Røg opskrifter",
+  },
+  {
     slug: "plancha",
     name: "Plancha",
     description:

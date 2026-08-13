@@ -3,6 +3,7 @@
 export const CATEGORY_NAV = [
   { slug: "airfryer", name: "Airfryer" },
   { slug: "grill", name: "Grill" },
+  { slug: "roeg", name: "Røg" },
   { slug: "plancha", name: "Plancha" },
   { slug: "gryde", name: "Gryde" },
   { slug: "pande", name: "Pande" },
