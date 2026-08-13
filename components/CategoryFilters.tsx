@@ -28,7 +28,6 @@ import type { Difficulty, RecipeFrontmatter } from "@/lib/types";
 interface CategoryFiltersProps {
   recipes: RecipeFrontmatter[];
   showFilters?: boolean;
-  children: ReactNode;
 }
 
 function chipClass(active: boolean): string {
@@ -88,7 +87,6 @@ function LoopIcon({ className }: { className?: string }) {
 export function CategoryFilters({
   recipes,
   showFilters = true,
-  children,
 }: CategoryFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -173,44 +171,7 @@ export function CategoryFilters({
   const queryActive = Boolean(filters.q?.trim());
 
   return (
-    <div className="relative">
-      <div ref={searchWrapRef} className="absolute right-0 top-0 z-20">
-        <button
-          type="button"
-          onClick={() => setSearchOpen((open) => !open)}
-          className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors ${
-            searchOpen || queryActive
-              ? "text-herb"
-              : "text-bone/40 hover:text-bone"
-          }`}
-          aria-expanded={searchOpen}
-          aria-controls={searchId}
-          aria-label="Søg i kategorien"
-        >
-          <LoopIcon className="h-5 w-5" />
-        </button>
-        {searchOpen ? (
-          <div className="absolute right-0 top-full mt-1 w-[min(18rem,calc(100vw-2.5rem))] overflow-hidden rounded-xl border-2 border-bone/25 bg-ash shadow-lg shadow-black/30">
-            <label htmlFor={searchId} className="sr-only">
-              Søg i kategorien
-            </label>
-            <input
-              ref={searchRef}
-              id={searchId}
-              type="search"
-              value={filters.q ?? ""}
-              onChange={(e) => updateFilters({ q: e.target.value || undefined })}
-              placeholder="Søg i kategorien…"
-              className="w-full bg-transparent px-3 py-2.5 text-sm text-bone outline-none placeholder:text-smoke"
-              autoComplete="off"
-            />
-          </div>
-        ) : null}
-      </div>
-
-      {children}
-
-      <div className="mt-10">
+    <div className="mt-10">
       {showFilters ? (
         <div className="flex flex-col items-center gap-4">
         <FilterGroup label="Tid">
@@ -303,11 +264,48 @@ export function CategoryFilters({
         </div>
       ) : null}
 
-      <p className="mt-8 text-[12px] uppercase tracking-[0.14em] text-bone/40">
-        {active
-          ? `Viser ${filtered.length} af ${recipes.length}`
-          : `${recipes.length} opskrifter`}
-      </p>
+      <div className="relative mt-8 flex items-center justify-center gap-1">
+        <p className="text-[12px] uppercase tracking-[0.14em] text-bone/40">
+          {active
+            ? `Viser ${filtered.length} af ${recipes.length}`
+            : `${recipes.length} opskrifter`}
+        </p>
+        <div ref={searchWrapRef} className="relative">
+          <button
+            type="button"
+            onClick={() => setSearchOpen((open) => !open)}
+            className={`flex h-7 w-7 items-center justify-center rounded-md transition-colors ${
+              searchOpen || queryActive
+                ? "text-herb"
+                : "text-bone/35 hover:text-bone"
+            }`}
+            aria-expanded={searchOpen}
+            aria-controls={searchId}
+            aria-label="Søg i kategorien"
+          >
+            <LoopIcon className="h-4 w-4" />
+          </button>
+          {searchOpen ? (
+            <div className="absolute left-1/2 top-full z-20 mt-1 w-[min(18rem,calc(100vw-2.5rem))] -translate-x-1/2 overflow-hidden rounded-xl border-2 border-bone/25 bg-ash shadow-lg shadow-black/30">
+              <label htmlFor={searchId} className="sr-only">
+                Søg i kategorien
+              </label>
+              <input
+                ref={searchRef}
+                id={searchId}
+                type="search"
+                value={filters.q ?? ""}
+                onChange={(e) =>
+                  updateFilters({ q: e.target.value || undefined })
+                }
+                placeholder="Søg i kategorien…"
+                className="w-full bg-transparent px-3 py-2.5 text-sm text-bone outline-none placeholder:text-smoke"
+                autoComplete="off"
+              />
+            </div>
+          ) : null}
+        </div>
+      </div>
 
       {filtered.length === 0 ? (
         <div className="mt-12">
@@ -329,7 +327,6 @@ export function CategoryFilters({
           ))}
         </div>
       )}
-      </div>
     </div>
   );
 }

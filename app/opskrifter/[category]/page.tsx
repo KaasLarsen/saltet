@@ -48,23 +48,23 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
-      <CategoryFilters recipes={recipes} showFilters={showFilters}>
-        <div className="flex justify-center pr-10">
-          <Breadcrumbs
-            items={[
-              { label: "Forside", href: "/" },
-              { label: "Opskrifter", href: "/opskrifter" },
-              { label: category.name },
-            ]}
-          />
-        </div>
-        <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
-          {category.headline}
-        </h1>
-        <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
-          {category.description}
-        </p>
-      </CategoryFilters>
+      <div className="flex justify-center">
+        <Breadcrumbs
+          items={[
+            { label: "Forside", href: "/" },
+            { label: "Opskrifter", href: "/opskrifter" },
+            { label: category.name },
+          ]}
+        />
+      </div>
+      <h1 className="font-serif text-4xl uppercase tracking-wide text-bone md:text-5xl">
+        {category.headline}
+      </h1>
+      <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
+        {category.description}
+      </p>
+
+      <CategoryFilters recipes={recipes} showFilters={showFilters} />
     </div>
   );
 }
