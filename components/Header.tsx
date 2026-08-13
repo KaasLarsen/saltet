@@ -32,6 +32,14 @@ function pathIsActive(pathname: string, href: string, exact = false): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+function dropdownItemClass(active: boolean) {
+  return `block px-3.5 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
+    active
+      ? "bg-herb/20 text-herb"
+      : "text-bone/70 hover:bg-bone/10 hover:text-bone"
+  }`;
+}
+
 function Chevron({ open }: { open: boolean }) {
   return (
     <svg
@@ -136,6 +144,13 @@ export function Header() {
               );
             }
 
+            const allChild = item.children.find(
+              (child) => child.href === item.href
+            );
+            const methodChildren = item.children.filter(
+              (child) => child.href !== item.href
+            );
+
             return (
               <div
                 key={item.href}
@@ -159,34 +174,45 @@ export function Header() {
                 </button>
 
                 {desktopOpen ? (
-                  <ul
+                  <div
                     id={dropdownId}
                     role="menu"
-                    className="absolute right-0 top-full z-50 mt-2 min-w-[12.5rem] rounded-xl border-2 border-bone/15 bg-iron py-1.5 shadow-lg shadow-black/30"
+                    className="absolute right-0 top-full z-50 mt-2 w-[min(28rem,calc(100vw-2.5rem))] max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain rounded-xl border-2 border-bone/15 bg-iron py-1.5 shadow-lg shadow-black/30"
                   >
-                    {item.children.map((child) => {
-                      const isAll = child.href === item.href;
-                      const active = isAll
-                        ? pathname === child.href
-                        : pathIsActive(pathname, child.href);
-                      return (
-                        <li key={`${child.href}-${child.label}`} role="none">
-                          <Link
-                            role="menuitem"
-                            href={child.href}
-                            className={`block px-3.5 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
-                              active
-                                ? "bg-herb/20 text-herb"
-                                : "text-bone/70 hover:bg-bone/10 hover:text-bone"
-                            }`}
-                            onClick={() => setDesktopOpen(false)}
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                    {allChild ? (
+                      <Link
+                        role="menuitem"
+                        href={allChild.href}
+                        className={dropdownItemClass(
+                          pathname === allChild.href
+                        )}
+                        onClick={() => setDesktopOpen(false)}
+                      >
+                        {allChild.label}
+                      </Link>
+                    ) : null}
+
+                    <div
+                      className="mx-2 my-1 border-t border-bone/15"
+                      aria-hidden
+                    />
+
+                    <div className="grid grid-cols-2">
+                      {methodChildren.map((child) => (
+                        <Link
+                          key={`${child.href}-${child.label}`}
+                          role="menuitem"
+                          href={child.href}
+                          className={dropdownItemClass(
+                            pathIsActive(pathname, child.href)
+                          )}
+                          onClick={() => setDesktopOpen(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 ) : null}
               </div>
             );
