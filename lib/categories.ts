@@ -100,6 +100,13 @@ export const categories: Category[] = [
       "Støbejern og Dutch Oven — grydebrød med knasende skorpe, langtidssimmer under tungt låg, steak på pande og bålmad.",
     headline: "Støbejern opskrifter",
   },
+  {
+    slug: "fermentering",
+    name: "Fermentering",
+    description:
+      "Saltning, sprængning og mælkesyregæring — sauerkraut, kimchi, gravad laks, bacon, citroner og umami-nørderi med salt som motor.",
+    headline: "Fermentering & saltning",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
