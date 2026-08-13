@@ -1,4 +1,28 @@
-import { ReactNode } from "react";
+import Link from "next/link";
+import { Fragment, type ReactNode } from "react";
+
+function LinkedText({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return (
+    <>
+      {parts.map((part, index) => {
+        const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (!match) {
+          return <Fragment key={index}>{part}</Fragment>;
+        }
+        return (
+          <Link
+            key={index}
+            href={match[2]}
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-2 hover:text-pool hover:decoration-pool"
+          >
+            {match[1]}
+          </Link>
+        );
+      })}
+    </>
+  );
+}
 
 interface IngredientsProps {
   items: string[];
@@ -13,7 +37,7 @@ export function Ingredients({ items }: IngredientsProps) {
           className="flex items-start gap-3 px-4 py-3 leading-relaxed text-bone/80"
         >
           <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rotate-45 rounded-[2px] bg-herb" />
-          {item}
+          <LinkedText text={item} />
         </li>
       ))}
     </ul>
@@ -32,7 +56,9 @@ export function Steps({ items }: StepsProps) {
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border-2 border-herb bg-herb/15 font-serif text-sm text-herb">
             {index + 1}
           </span>
-          <p className="pt-1.5 leading-relaxed text-bone/80">{step}</p>
+          <p className="pt-1.5 leading-relaxed text-bone/80">
+            <LinkedText text={step} />
+          </p>
         </li>
       ))}
     </ol>
