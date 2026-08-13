@@ -10,6 +10,7 @@ export interface CategoryFilterValues {
   tid?: TimeFilter;
   svar?: Difficulty;
   emne?: string;
+  q?: string;
 }
 
 export interface TagFacet {
@@ -53,11 +54,33 @@ export function parseDifficultyFilter(
   return undefined;
 }
 
+export function recipeMatchesQuery(
+  recipe: RecipeFrontmatter,
+  query: string
+): boolean {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+
+  const haystack = [
+    recipe.title,
+    recipe.description,
+    recipe.category,
+    ...recipe.tags,
+    ...recipe.ingredients,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return haystack.includes(q);
+}
+
 export function filterRecipes<T extends RecipeFrontmatter>(
   recipes: T[],
   filters: CategoryFilterValues
 ): T[] {
   return recipes.filter((recipe) => {
+    if (filters.q && !recipeMatchesQuery(recipe, filters.q)) return false;
+
     if (filters.svar && recipe.difficulty !== filters.svar) return false;
 
     if (filters.tid != null) {
@@ -119,5 +142,10 @@ export function getTopTagsForRecipes(
 }
 
 export function hasActiveFilters(filters: CategoryFilterValues): boolean {
-  return filters.tid != null || filters.svar != null || Boolean(filters.emne);
+  return (
+    filters.tid != null ||
+    filters.svar != null ||
+    Boolean(filters.emne) ||
+    Boolean(filters.q?.trim())
+  );
 }

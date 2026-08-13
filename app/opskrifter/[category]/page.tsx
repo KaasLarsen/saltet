@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CategoryFilters } from "@/components/CategoryFilters";
-import { RecipeCard } from "@/components/RecipeCard";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { getCategory } from "@/lib/categories";
 import { MIN_RECIPES_FOR_FILTERS } from "@/lib/recipe-filters";
@@ -65,15 +64,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         {category.description}
       </p>
 
-      {showFilters ? (
-        <CategoryFilters recipes={recipes} />
-      ) : (
-        <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
-          {recipes.map((recipe) => (
-            <RecipeCard key={recipe.slug} recipe={recipe} />
-          ))}
-        </div>
-      )}
+      <CategoryFilters recipes={recipes} showFilters={showFilters} />
     </div>
   );
 }
