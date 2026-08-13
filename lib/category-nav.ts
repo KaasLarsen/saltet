@@ -14,6 +14,7 @@ export const CATEGORY_NAV = [
   { slug: "dehydrator", name: "Dehydrator" },
   { slug: "roeremaskine", name: "Røremaskine" },
   { slug: "pizzaovn", name: "Pizzaovn" },
+  { slug: "stobejern", name: "Støbejern" },
 ] as const;
 
 export type CategoryNavSlug = (typeof CATEGORY_NAV)[number]["slug"];

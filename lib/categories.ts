@@ -93,6 +93,13 @@ export const categories: Category[] = [
       "Høj varme i pizzaovnen — neapolitansk pizza, fladbrød, støbejernsstegning og after-bake med char og leopard-skorpe.",
     headline: "Pizzaovn opskrifter",
   },
+  {
+    slug: "stobejern",
+    name: "Støbejern",
+    description:
+      "Støbejern og Dutch Oven — grydebrød med knasende skorpe, langtidssimmer under tungt låg, steak på pande og bålmad.",
+    headline: "Støbejern opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
