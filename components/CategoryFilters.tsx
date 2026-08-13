@@ -28,6 +28,7 @@ import type { Difficulty, RecipeFrontmatter } from "@/lib/types";
 interface CategoryFiltersProps {
   recipes: RecipeFrontmatter[];
   showFilters?: boolean;
+  children: ReactNode;
 }
 
 function chipClass(active: boolean): string {
@@ -87,11 +88,13 @@ function LoopIcon({ className }: { className?: string }) {
 export function CategoryFilters({
   recipes,
   showFilters = true,
+  children,
 }: CategoryFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchId = useId();
   const searchRef = useRef<HTMLInputElement>(null);
+  const searchWrapRef = useRef<HTMLDivElement>(null);
   const [filters, setFilters] = useState<CategoryFilterValues>({});
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -103,6 +106,28 @@ export function CategoryFilters({
 
   useEffect(() => {
     if (searchOpen) searchRef.current?.focus();
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+
+    function onPointerDown(e: MouseEvent) {
+      const el = searchWrapRef.current;
+      if (el && !el.contains(e.target as Node)) {
+        setSearchOpen(false);
+      }
+    }
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setSearchOpen(false);
+    }
+
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
   }, [searchOpen]);
 
   const difficulties = useMemo(
@@ -140,25 +165,32 @@ export function CategoryFilters({
     [pathname, router]
   );
 
-  function openSearch() {
-    setSearchOpen(true);
-  }
-
-  function closeSearch() {
-    setSearchOpen(false);
-    updateFilters({ q: undefined });
-  }
-
   function clearAll() {
     setSearchOpen(false);
     updateFilters({ clear: true });
   }
 
+  const queryActive = Boolean(filters.q?.trim());
+
   return (
-    <div className="mt-10">
-      <div className="mx-auto mb-8 flex w-full max-w-lg flex-col items-center">
+    <div className="relative">
+      <div ref={searchWrapRef} className="absolute right-0 top-0 z-20">
+        <button
+          type="button"
+          onClick={() => setSearchOpen((open) => !open)}
+          className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors ${
+            searchOpen || queryActive
+              ? "text-herb"
+              : "text-bone/40 hover:text-bone"
+          }`}
+          aria-expanded={searchOpen}
+          aria-controls={searchId}
+          aria-label="Søg i kategorien"
+        >
+          <LoopIcon className="h-5 w-5" />
+        </button>
         {searchOpen ? (
-          <div className="flex w-full overflow-hidden rounded-2xl border-2 border-bone/25 bg-ash shadow-[3px_3px_0_0_rgba(255,92,57,0.55)]">
+          <div className="absolute right-0 top-full mt-1 w-[min(18rem,calc(100vw-2.5rem))] overflow-hidden rounded-xl border-2 border-bone/25 bg-ash shadow-lg shadow-black/30">
             <label htmlFor={searchId} className="sr-only">
               Søg i kategorien
             </label>
@@ -168,35 +200,17 @@ export function CategoryFilters({
               type="search"
               value={filters.q ?? ""}
               onChange={(e) => updateFilters({ q: e.target.value || undefined })}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") closeSearch();
-              }}
               placeholder="Søg i kategorien…"
-              className="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-bone outline-none placeholder:text-smoke"
+              className="w-full bg-transparent px-3 py-2.5 text-sm text-bone outline-none placeholder:text-smoke"
               autoComplete="off"
             />
-            <button
-              type="button"
-              onClick={closeSearch}
-              className="shrink-0 border-l-2 border-bone/25 px-4 text-[12px] font-bold uppercase tracking-[0.14em] text-bone/70 transition-colors hover:bg-wood hover:text-bone"
-            >
-              Luk
-            </button>
           </div>
-        ) : (
-          <button
-            type="button"
-            onClick={openSearch}
-            className="inline-flex items-center gap-2 rounded-lg border-2 border-bone/25 px-3.5 py-2 text-[12px] font-bold uppercase tracking-[0.14em] text-bone/55 transition-colors hover:border-herb hover:text-herb"
-            aria-expanded={false}
-            aria-controls={searchId}
-          >
-            <LoopIcon className="h-4 w-4" />
-            Loop
-          </button>
-        )}
+        ) : null}
       </div>
 
+      {children}
+
+      <div className="mt-10">
       {showFilters ? (
         <div className="flex flex-col items-center gap-4">
         <FilterGroup label="Tid">
@@ -315,6 +329,7 @@ export function CategoryFilters({
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }
