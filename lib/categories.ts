@@ -79,6 +79,13 @@ export const categories: Category[] = [
       "Dej, fars og salte klassikere i røremaskine — pizza, brød, pasta, smør og tærtedej med præcis æltning.",
     headline: "Røremaskine opskrifter",
   },
+  {
+    slug: "pizzaovn",
+    name: "Pizzaovn",
+    description:
+      "Høj varme i pizzaovnen — neapolitansk pizza, fladbrød, støbejernsstegning og after-bake med char og leopard-skorpe.",
+    headline: "Pizzaovn opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
