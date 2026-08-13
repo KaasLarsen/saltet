@@ -45,6 +45,13 @@ export const categories: Category[] = [
     headline: "Pande opskrifter",
   },
   {
+    slug: "ovn",
+    name: "Ovn",
+    description:
+      "Almindelig ovn og varmluft — bradepande, bageplade og hverdagsbagning uden pizzaovn.",
+    headline: "Ovn opskrifter",
+  },
+  {
     slug: "sylte",
     name: "Sylte",
     description:

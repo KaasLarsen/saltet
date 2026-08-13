@@ -7,6 +7,7 @@ export const CATEGORY_NAV = [
   { slug: "plancha", name: "Plancha" },
   { slug: "gryde", name: "Gryde" },
   { slug: "pande", name: "Pande" },
+  { slug: "ovn", name: "Ovn" },
   { slug: "sylte", name: "Sylte" },
   { slug: "dips", name: "Dips" },
   { slug: "sous-vide", name: "Sous Vide" },
