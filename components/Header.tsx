@@ -75,6 +75,7 @@ export function Header() {
   const pathname = usePathname();
   const menuId = useId();
   const desktopNavRef = useRef<HTMLElement>(null);
+  const menuScrollRef = useRef<HTMLDivElement>(null);
   const [openedPath, setOpenedPath] = useState<string | null>(null);
   const [desktopOpenHref, setDesktopOpenHref] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState<Record<string, boolean>>({
@@ -92,10 +93,48 @@ export function Header() {
   useEffect(() => {
     if (!open) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const html = document.documentElement;
+    const { body } = document;
+    const scrollY = window.scrollY;
+    const previous = {
+      htmlOverflow: html.style.overflow,
+      htmlOverscroll: html.style.overscrollBehavior,
+      bodyOverflow: body.style.overflow,
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyLeft: body.style.left,
+      bodyRight: body.style.right,
+      bodyWidth: body.style.width,
+    };
+
+    html.style.overflow = "hidden";
+    html.style.overscrollBehavior = "none";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+
+    function onTouchMove(e: TouchEvent) {
+      const panel = menuScrollRef.current;
+      if (panel && panel.contains(e.target as Node)) return;
+      e.preventDefault();
+    }
+
+    document.addEventListener("touchmove", onTouchMove, { passive: false });
+
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("touchmove", onTouchMove);
+      html.style.overflow = previous.htmlOverflow;
+      html.style.overscrollBehavior = previous.htmlOverscroll;
+      body.style.overflow = previous.bodyOverflow;
+      body.style.position = previous.bodyPosition;
+      body.style.top = previous.bodyTop;
+      body.style.left = previous.bodyLeft;
+      body.style.right = previous.bodyRight;
+      body.style.width = previous.bodyWidth;
+      window.scrollTo(0, scrollY);
     };
   }, [open]);
 
@@ -137,8 +176,10 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 flex flex-col border-b-2 border-bone/15 bg-iron/95 backdrop-blur-sm ${
-        open ? "max-h-dvh overflow-hidden" : ""
+      className={`z-50 flex flex-col border-b-2 border-bone/15 ${
+        open
+          ? "fixed inset-0 bg-iron md:sticky md:inset-auto md:top-0 md:bg-iron/95 md:backdrop-blur-sm"
+          : "sticky top-0 bg-iron/95 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto flex w-full max-w-5xl shrink-0 items-center justify-between px-5 py-3.5 md:px-8">
@@ -286,20 +327,17 @@ export function Header() {
 
       <div
         id={menuId}
-        className={`grid min-h-0 md:hidden ${
-          open ? "flex-1 grid-rows-[1fr]" : "grid-rows-[0fr]"
-        } transition-[grid-template-rows] duration-300 ease-out`}
+        className={`min-h-0 flex-col md:hidden ${
+          open ? "flex flex-1" : "hidden"
+        }`}
       >
         <div
-          className={
-            open
-              ? "min-h-0 overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]"
-              : "overflow-hidden"
-          }
+          ref={menuScrollRef}
+          className="min-h-0 flex-1 overflow-y-auto overscroll-contain touch-pan-y [-webkit-overflow-scrolling:touch]"
         >
           <nav
             aria-label="Mobilmenu"
-            className="border-t-2 border-bone/15 px-5 pb-8 pt-3"
+            className="border-t-2 border-bone/15 px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-3"
           >
             <ul className="flex flex-col gap-1">
               {navItems.map((item, index) => {
