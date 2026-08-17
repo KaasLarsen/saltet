@@ -6,7 +6,7 @@ import { absoluteUrl, siteConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Højtider",
-  description: `Juleopskrifter, nytår, påske og Mortensaften på ${siteConfig.name} — festmad på tværs af airfryer, grill, ovn og gryde.`,
+  description: `Juleopskrifter, nytår, påske, Sankt Hans og Mortensaften på ${siteConfig.name} — festmad på tværs af airfryer, grill, ovn og gryde.`,
   alternates: { canonical: absoluteUrl("/hoejtider") },
 };
 
@@ -23,8 +23,8 @@ export default function HolidaysIndexPage() {
         Opskrifter til højtider
       </h1>
       <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
-        Jul, nytår, påske og Mortensaften — samlet, så du ikke skal lede i
-        tags. Kategorierne er stadig tilberedningsmetode.
+        Jul, nytår, påske, Sankt Hans, Pinse og Mortensaften — samlet, så du
+        ikke skal lede i tags. Kategorierne er stadig tilberedningsmetode.
       </p>
       <div className="mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-2">
         {counts.map(({ holiday, count }) => {

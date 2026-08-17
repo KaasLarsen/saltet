@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 
-function LinkedText({ text }: { text: string }) {
+export function LinkedText({ text }: { text: string }) {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
   return (
     <>

@@ -66,12 +66,11 @@ Dit tip til læseren.
 
 Højtider er **ikke** kategorier. Kategorier er tilberedningsmetode (airfryer, grill …). Højtider er en tværgående facet:
 
-- Sider: `/hoejtider` og `/hoejtider/jul` (nytår, påske, Mortensaften)
-- Opskrifter vises på en højtid, når de har matchende tags (`jul`, `nytår`, `påske`, `Mortensaften`)
+- Sider: `/hoejtider` og `/hoejtider/jul` (nytår, påske, Sommerhøjtider, Mortensaften)
+- Opskrifter vises på en højtid, når de har matchende tags (`jul`, `nytår`, `påske`, `Sankt Hans`, `pinse`, `Mortensaften`)
 - Tagget `jul` på en opskrift linker til `/hoejtider/jul` (gamle `/tags/jul` omdirigeres)
-- Årstider (forår, sommer …) er ikke med endnu
 
-Tilføj `jul` / `nytår` / `påske` / `Mortensaften` i opskriftens `tags` for at få den med. Listen står i [`lib/holiday-nav.ts`](lib/holiday-nav.ts) og [`lib/holidays.ts`](lib/holidays.ts).
+Tilføj `jul` / `nytår` / `påske` / `Sankt Hans` / `pinse` / `Mortensaften` i opskriftens `tags` for at få den med. Listen står i [`lib/holiday-nav.ts`](lib/holiday-nav.ts) og [`lib/holidays.ts`](lib/holidays.ts).
 
 ## SEO
 
