@@ -39,8 +39,8 @@ difficulty: nem          # nem | mellem | svær
 tags: [tag1, tag2]
 image: /recipes/airfryer/min-opskrift.jpg
 imageAlt: "Beskrivende alt-tekst til billedet"
-publishedAt: 2026-08-05
-featured: false          # true = kandidat til "Udvalgte" på forsiden (nyeste først; skifter når kataloget ændrer sig)
+publishedAt: 2026-08-17   # brug udgivelsesdato — nyeste vises på forsiden
+featured: false          # valgfri; forsiden bruger de 3 seneste opskrifter per kategori
 ingredients:
   - "500 g ingrediens"
   - "1 spsk olie"

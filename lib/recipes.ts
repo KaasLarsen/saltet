@@ -1,9 +1,15 @@
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import type { Recipe, RecipeFrontmatter } from "./types";
 
 const contentDir = path.join(process.cwd(), "content/recipes");
+
+interface RecipeRecord {
+  recipe: Recipe;
+  filePath: string;
+}
 
 function parseRecipeFile(filePath: string): Recipe {
   const raw = fs.readFileSync(filePath, "utf-8");
@@ -35,64 +41,92 @@ function getRecipeFiles(): string[] {
   return files;
 }
 
-export function getAllRecipes(): Recipe[] {
-  return getRecipeFiles()
-    .map(parseRecipeFile)
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+function getAllRecipeRecords(): RecipeRecord[] {
+  return getRecipeFiles().map((filePath) => ({
+    filePath,
+    recipe: parseRecipeFile(filePath),
+  }));
+}
+
+let recipeCommitTimes: Map<string, number> | null = null;
+
+/** Seneste commit-dato per opskriftsfil (nyeste tilføjelse/ændring vinder ved samme publishedAt). */
+function getRecipeCommitTimes(): Map<string, number> {
+  if (recipeCommitTimes) return recipeCommitTimes;
+
+  const times = new Map<string, number>();
+
+  try {
+    const output = execSync(
+      'git log --format=COMMIT:%cI --name-only -- content/recipes/',
+      {
+        encoding: "utf-8",
+        cwd: process.cwd(),
+        maxBuffer: 10 * 1024 * 1024,
+      }
     );
+
+    let currentTime = 0;
+    for (const line of output.split("\n")) {
+      if (line.startsWith("COMMIT:")) {
+        currentTime = new Date(line.slice(7)).getTime();
+      } else if (line.endsWith(".mdx")) {
+        const filePath = path.join(process.cwd(), line.trim());
+        if (!times.has(filePath)) {
+          times.set(filePath, currentTime);
+        }
+      }
+    }
+  } catch {
+    // Git utilgængeligt — falder tilbage til filens mtime nedenfor.
+  }
+
+  recipeCommitTimes = times;
+  return times;
+}
+
+function getRecipeRecencyTime(filePath: string): number {
+  const commitTime = getRecipeCommitTimes().get(filePath);
+  if (commitTime !== undefined) return commitTime;
+
+  try {
+    return fs.statSync(filePath).mtimeMs;
+  } catch {
+    return 0;
+  }
+}
+
+function compareRecipesByRecency(a: RecipeRecord, b: RecipeRecord): number {
+  const byDate =
+    new Date(b.recipe.publishedAt).getTime() -
+    new Date(a.recipe.publishedAt).getTime();
+  if (byDate !== 0) return byDate;
+
+  return getRecipeRecencyTime(b.filePath) - getRecipeRecencyTime(a.filePath);
+}
+
+export function getAllRecipes(): Recipe[] {
+  return getAllRecipeRecords()
+    .sort(compareRecipesByRecency)
+    .map((record) => record.recipe);
 }
 
 export function getRecipesByCategory(category: string): Recipe[] {
   return getAllRecipes().filter((r) => r.category === category);
 }
 
-function hashString(value: string): number {
-  let hash = 2166136261;
-  for (let i = 0; i < value.length; i++) {
-    hash ^= value.charCodeAt(i);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
-}
-
-/** Fingerprint of the recipe catalog — changes when recipes are added/removed. */
-function catalogFingerprint(recipes: Recipe[]): number {
-  return hashString(
-    recipes
-      .map((r) => `${r.category}/${r.slug}`)
-      .sort()
-      .join("|")
-  );
-}
-
 /**
- * Opskrifter til forsiden.
- * Nyeste `publishedAt` først. Når mange deler samme dato, vælges et
- * deterministisk udsnit der skifter, når kataloget ændrer sig (nye opskrifter).
- * Valgfri `category` begrænser udvalget til én kategori (fx airfryer / grill).
+ * Seneste opskrifter til forsiden — sorteret efter publishedAt, derefter seneste commit.
  */
 export function getFeaturedRecipes(limit = 3, category?: string): Recipe[] {
-  const all = category ? getRecipesByCategory(category) : getAllRecipes();
-  if (all.length === 0) return [];
+  const records = category
+    ? getAllRecipeRecords().filter((r) => r.recipe.category === category)
+    : getAllRecipeRecords();
 
-  const featured = all.filter((r) => r.featured);
-  const pool = featured.length >= limit ? featured : all;
-  const fingerprint = catalogFingerprint(all);
-
-  return [...pool]
-    .sort((a, b) => {
-      const byDate =
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
-      if (byDate !== 0) return byDate;
-
-      return (
-        hashString(`${b.category}/${b.slug}:${fingerprint}`) -
-        hashString(`${a.category}/${a.slug}:${fingerprint}`)
-      );
-    })
-    .slice(0, limit);
+  return records
+    .sort(compareRecipesByRecency)
+    .slice(0, limit)
+    .map((record) => record.recipe);
 }
 
 export function getRecipe(category: string, slug: string): Recipe | undefined {
