@@ -62,18 +62,29 @@ Dit tip til læseren.
 2. Tilføj kategorien i `lib/categories.ts`
 3. Opskrifter i den nye mappe vises automatisk i navigation og sitemap
 
+### Højtider
+
+Højtider er **ikke** kategorier. Kategorier er tilberedningsmetode (airfryer, grill …). Højtider er en tværgående facet:
+
+- Sider: `/hoejtider` og `/hoejtider/jul` (nytår, påske, Mortensaften)
+- Opskrifter vises på en højtid, når de har matchende tags (`jul`, `nytår`, `påske`, `Mortensaften`)
+- Tagget `jul` på en opskrift linker til `/hoejtider/jul` (gamle `/tags/jul` omdirigeres)
+- Årstider (forår, sommer …) er ikke med endnu
+
+Tilføj `jul` / `nytår` / `påske` / `Mortensaften` i opskriftens `tags` for at få den med. Listen står i [`lib/holiday-nav.ts`](lib/holiday-nav.ts) og [`lib/holidays.ts`](lib/holidays.ts).
+
 ## SEO
 
 Sitet genererer automatisk:
 
-- `sitemap.xml` — **alle** offentlige sider: forside, om, opskrifter, kategorier, tags og enkeltopskrifter
+- `sitemap.xml` — **alle** offentlige sider: forside, om, opskrifter, kategorier, højtider, tags og enkeltopskrifter
 - `robots.txt`
 - JSON-LD Recipe + FAQ schema på hver opskriftsside
 - BreadcrumbList schema
 - Open Graph og Twitter cards
 - Canonical URLs
 
-Når du tilføjer en **ny fast side** (fx `/kontakt`), skal stien også tilføjes i `STATIC_ROUTES` i [`app/sitemap.ts`](app/sitemap.ts). Opskrifter, tags og kategorier opdateres automatisk.
+Når du tilføjer en **ny fast side** (fx `/kontakt`), skal stien også tilføjes i `STATIC_ROUTES` i [`app/sitemap.ts`](app/sitemap.ts). Opskrifter, tags, højtider og kategorier opdateres automatisk.
 
 Test rich results: [Google Rich Results Test](https://search.google.com/test/rich-results)
 

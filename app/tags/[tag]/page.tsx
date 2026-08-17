@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { RecipeCard } from "@/components/RecipeCard";
+import { holidayForTagSlug } from "@/lib/holiday-nav";
 import {
-  getAllTags,
+  getBrowseTags,
   getRecipesByTagSlug,
   getTagBySlug,
 } from "@/lib/tags";
@@ -14,13 +15,18 @@ interface TagPageProps {
 }
 
 export async function generateStaticParams() {
-  return getAllTags().map((t) => ({ tag: t.slug }));
+  return getBrowseTags().map((t) => ({ tag: t.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: TagPageProps): Promise<Metadata> {
   const { tag: tagSlug } = await params;
+  const holiday = holidayForTagSlug(tagSlug);
+  if (holiday) {
+    redirect(`/hoejtider/${holiday.slug}`);
+  }
+
   const tag = getTagBySlug(tagSlug);
   if (!tag) return {};
 
@@ -45,6 +51,9 @@ export async function generateMetadata({
 
 export default async function TagPage({ params }: TagPageProps) {
   const { tag: tagSlug } = await params;
+  const holiday = holidayForTagSlug(tagSlug);
+  if (holiday) redirect(`/hoejtider/${holiday.slug}`);
+
   const tag = getTagBySlug(tagSlug);
   if (!tag) notFound();
 

@@ -16,9 +16,11 @@ import {
   TIME_FILTERS,
   filterRecipes,
   getAvailableDifficulties,
+  getAvailableHolidays,
   getTopTagsForRecipes,
   hasActiveFilters,
   parseDifficultyFilter,
+  parseHolidayFilter,
   parseTimeFilter,
   type CategoryFilterValues,
   type TimeFilter,
@@ -62,6 +64,7 @@ function readFiltersFromLocation(): CategoryFilterValues {
     tid: parseTimeFilter(params.get("tid") ?? undefined),
     svar: parseDifficultyFilter(params.get("svar") ?? undefined),
     emne: params.get("emne") ?? undefined,
+    hoejtid: parseHolidayFilter(params.get("hoejtid") ?? undefined),
     q: params.get("q") ?? undefined,
   };
 }
@@ -132,6 +135,7 @@ export function CategoryFilters({
     () => getAvailableDifficulties(recipes),
     [recipes]
   );
+  const holidays = useMemo(() => getAvailableHolidays(recipes), [recipes]);
   const topTags = useMemo(() => getTopTagsForRecipes(recipes), [recipes]);
   const filtered = useMemo(
     () => filterRecipes(recipes, filters),
@@ -153,6 +157,7 @@ export function CategoryFilters({
         if (next.tid != null) params.set("tid", String(next.tid));
         if (next.svar) params.set("svar", next.svar);
         if (next.emne) params.set("emne", next.emne);
+        if (next.hoejtid) params.set("hoejtid", next.hoejtid);
         if (next.q?.trim()) params.set("q", next.q.trim());
 
         const qs = params.toString();
@@ -229,6 +234,37 @@ export function CategoryFilters({
                 aria-pressed={filters.svar === difficulty}
               >
                 {difficultyLabel(difficulty)}
+              </button>
+            ))}
+          </FilterGroup>
+        ) : null}
+
+        {holidays.length > 0 ? (
+          <FilterGroup label="Højtid">
+            <button
+              type="button"
+              className={chipClass(!filters.hoejtid)}
+              onClick={() => updateFilters({ hoejtid: undefined })}
+              aria-pressed={!filters.hoejtid}
+            >
+              Alle
+            </button>
+            {holidays.map((holiday) => (
+              <button
+                key={holiday.slug}
+                type="button"
+                className={chipClass(filters.hoejtid === holiday.slug)}
+                onClick={() =>
+                  updateFilters({
+                    hoejtid:
+                      filters.hoejtid === holiday.slug
+                        ? undefined
+                        : holiday.slug,
+                  })
+                }
+                aria-pressed={filters.hoejtid === holiday.slug}
+              >
+                {holiday.label}
               </button>
             ))}
           </FilterGroup>

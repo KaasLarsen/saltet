@@ -1,3 +1,5 @@
+import { HOLIDAY_NAV } from "./holiday-nav";
+import { slugifyTag } from "./slug";
 import type { Difficulty, RecipeFrontmatter } from "./types";
 
 export const MIN_RECIPES_FOR_FILTERS = 12;
@@ -10,6 +12,7 @@ export interface CategoryFilterValues {
   tid?: TimeFilter;
   svar?: Difficulty;
   emne?: string;
+  hoejtid?: string;
   q?: string;
 }
 
@@ -19,15 +22,10 @@ export interface TagFacet {
   count: number;
 }
 
-function slugifyTag(tag: string): string {
-  return tag
-    .toLowerCase()
-    .trim()
-    .replace(/æ/g, "ae")
-    .replace(/ø/g, "oe")
-    .replace(/å/g, "aa")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+export interface HolidayFacet {
+  label: string;
+  slug: string;
+  count: number;
 }
 
 /** Konverter ISO 8601-varighed (PT1H10M) til minutter. */
@@ -95,6 +93,15 @@ export function filterRecipes<T extends RecipeFrontmatter>(
       if (!hasTag) return false;
     }
 
+    if (filters.hoejtid) {
+      const holiday = HOLIDAY_NAV.find((h) => h.slug === filters.hoejtid);
+      if (!holiday) return false;
+      const matches = recipe.tags.some((tag) =>
+        holiday.matchTagSlugs.includes(slugifyTag(tag))
+      );
+      if (!matches) return false;
+    }
+
     return true;
   });
 }
@@ -134,11 +141,41 @@ export function getTopTagsForRecipes(
   // Skjul tags der dækker næsten hele kategorien (fx "grill" på grill-siden)
   const coverageCeiling = recipes.length * 0.75;
 
+  const holidayTagSlugs = new Set(
+    HOLIDAY_NAV.flatMap((h) => [h.slug, ...h.matchTagSlugs])
+  );
+
   return Array.from(counts.entries())
     .map(([slug, { label, count }]) => ({ slug, label, count }))
     .filter((tag) => tag.count < coverageCeiling)
+    .filter((tag) => !holidayTagSlugs.has(tag.slug))
     .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "da"))
     .slice(0, limit);
+}
+
+/** Højtider der faktisk findes blandt opskrifterne. */
+export function getAvailableHolidays(
+  recipes: RecipeFrontmatter[]
+): HolidayFacet[] {
+  if (recipes.length === 0) return [];
+
+  return HOLIDAY_NAV.flatMap((holiday) => {
+    const count = recipes.filter((recipe) =>
+      recipe.tags.some((tag) =>
+        holiday.matchTagSlugs.includes(slugifyTag(tag))
+      )
+    ).length;
+    const coverageCeiling = recipes.length * 0.75;
+    if (count === 0 || count >= coverageCeiling) return [];
+    return [{ slug: holiday.slug, label: holiday.name, count }];
+  });
+}
+
+export function parseHolidayFilter(
+  value: string | undefined
+): string | undefined {
+  if (!value) return undefined;
+  return HOLIDAY_NAV.some((h) => h.slug === value) ? value : undefined;
 }
 
 export function hasActiveFilters(filters: CategoryFilterValues): boolean {
@@ -146,6 +183,7 @@ export function hasActiveFilters(filters: CategoryFilterValues): boolean {
     filters.tid != null ||
     filters.svar != null ||
     Boolean(filters.emne) ||
+    Boolean(filters.hoejtid) ||
     Boolean(filters.q?.trim())
   );
 }

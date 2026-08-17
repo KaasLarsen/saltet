@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SaltShakerMark } from "@/components/SaltShakerMark";
 import { CATEGORY_NAV } from "@/lib/category-nav";
+import { HOLIDAY_NAV } from "@/lib/holiday-nav";
 
 type NavChild = { href: string; label: string };
 type NavItem = {
@@ -22,6 +23,17 @@ const navItems: NavItem[] = [
       ...CATEGORY_NAV.map((c) => ({
         href: `/opskrifter/${c.slug}`,
         label: c.name,
+      })),
+    ],
+  },
+  {
+    href: "/hoejtider",
+    label: "Højtider",
+    children: [
+      { href: "/hoejtider", label: "Alle højtider" },
+      ...HOLIDAY_NAV.map((h) => ({
+        href: `/hoejtider/${h.slug}`,
+        label: h.name,
       })),
     ],
   },
@@ -62,45 +74,47 @@ function Chevron({ open }: { open: boolean }) {
 export function Header() {
   const pathname = usePathname();
   const menuId = useId();
-  const dropdownId = useId();
-  const desktopDropdownRef = useRef<HTMLDivElement>(null);
+  const desktopNavRef = useRef<HTMLElement>(null);
   const [openedPath, setOpenedPath] = useState<string | null>(null);
-  const [desktopOpen, setDesktopOpen] = useState(false);
-  const [mobileSectionOpen, setMobileSectionOpen] = useState(true);
+  const [desktopOpenHref, setDesktopOpenHref] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState<Record<string, boolean>>({
+    "/opskrifter": true,
+    "/hoejtider": true,
+  });
   const open = openedPath === pathname;
 
   useEffect(() => {
-    setDesktopOpen(false);
+    setDesktopOpenHref(null);
     setOpenedPath(null);
   }, [pathname]);
 
   useEffect(() => {
-    if (!open && !desktopOpen) return;
+    if (!open && !desktopOpenHref) return;
 
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setOpenedPath(null);
-        setDesktopOpen(false);
+        setDesktopOpenHref(null);
       }
     }
 
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, desktopOpen]);
+  }, [open, desktopOpenHref]);
 
   useEffect(() => {
-    if (!desktopOpen) return;
+    if (!desktopOpenHref) return;
 
     function onPointerDown(e: MouseEvent) {
-      const el = desktopDropdownRef.current;
+      const el = desktopNavRef.current;
       if (el && !el.contains(e.target as Node)) {
-        setDesktopOpen(false);
+        setDesktopOpenHref(null);
       }
     }
 
     document.addEventListener("mousedown", onPointerDown);
     return () => document.removeEventListener("mousedown", onPointerDown);
-  }, [desktopOpen]);
+  }, [desktopOpenHref]);
 
   function closeMenu() {
     setOpenedPath(null);
@@ -122,11 +136,14 @@ export function Header() {
         </Link>
 
         <nav
+          ref={desktopNavRef}
           aria-label="Hovedmenu"
           className="hidden items-center gap-1 md:flex"
         >
           {navItems.map((item) => {
             const sectionActive = pathIsActive(pathname, item.href);
+            const dropdownOpen = desktopOpenHref === item.href;
+            const dropdownId = `${menuId}-desktop-${item.href.replace(/\W+/g, "-")}`;
 
             if (!item.children?.length) {
               return (
@@ -147,37 +164,42 @@ export function Header() {
             const allChild = item.children.find(
               (child) => child.href === item.href
             );
-            const methodChildren = item.children.filter(
+            const childItems = item.children.filter(
               (child) => child.href !== item.href
             );
+            const wide = childItems.length > 6;
 
             return (
-              <div
-                key={item.href}
-                ref={desktopDropdownRef}
-                className="relative"
-              >
+              <div key={item.href} className="relative">
                 <button
                   type="button"
                   className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
-                    sectionActive || desktopOpen
+                    sectionActive || dropdownOpen
                       ? "bg-herb text-iron"
                       : "text-bone/55 hover:bg-bone/10 hover:text-bone"
                   }`}
-                  aria-expanded={desktopOpen}
+                  aria-expanded={dropdownOpen}
                   aria-haspopup="menu"
                   aria-controls={dropdownId}
-                  onClick={() => setDesktopOpen((v) => !v)}
+                  onClick={() =>
+                    setDesktopOpenHref((current) =>
+                      current === item.href ? null : item.href
+                    )
+                  }
                 >
                   {item.label}
-                  <Chevron open={desktopOpen} />
+                  <Chevron open={dropdownOpen} />
                 </button>
 
-                {desktopOpen ? (
+                {dropdownOpen ? (
                   <div
                     id={dropdownId}
                     role="menu"
-                    className="absolute right-0 top-full z-50 mt-2 w-[min(28rem,calc(100vw-2.5rem))] max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain rounded-xl border-2 border-bone/15 bg-iron py-1.5 shadow-lg shadow-black/30"
+                    className={`absolute right-0 top-full z-50 mt-2 max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain rounded-xl border-2 border-bone/15 bg-iron py-1.5 shadow-lg shadow-black/30 ${
+                      wide
+                        ? "w-[min(28rem,calc(100vw-2.5rem))]"
+                        : "w-56"
+                    }`}
                   >
                     {allChild ? (
                       <Link
@@ -186,7 +208,7 @@ export function Header() {
                         className={dropdownItemClass(
                           pathname === allChild.href
                         )}
-                        onClick={() => setDesktopOpen(false)}
+                        onClick={() => setDesktopOpenHref(null)}
                       >
                         {allChild.label}
                       </Link>
@@ -197,8 +219,8 @@ export function Header() {
                       aria-hidden
                     />
 
-                    <div className="grid grid-cols-2">
-                      {methodChildren.map((child) => (
+                    <div className={wide ? "grid grid-cols-2" : ""}>
+                      {childItems.map((child) => (
                         <Link
                           key={`${child.href}-${child.label}`}
                           role="menuitem"
@@ -206,7 +228,7 @@ export function Header() {
                           className={dropdownItemClass(
                             pathIsActive(pathname, child.href)
                           )}
-                          onClick={() => setDesktopOpen(false)}
+                          onClick={() => setDesktopOpenHref(null)}
                         >
                           {child.label}
                         </Link>
@@ -284,6 +306,7 @@ export function Header() {
                 }
 
                 const sectionId = `${menuId}-section-${index}`;
+                const sectionOpen = mobileOpen[item.href] ?? false;
 
                 return (
                   <li key={item.href} className="flex flex-col gap-1">
@@ -292,7 +315,7 @@ export function Header() {
                       className={`flex w-full items-center justify-between rounded-xl border-2 px-4 py-3 text-left text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
                         open ? "animate-rise" : ""
                       } ${
-                        sectionActive || mobileSectionOpen
+                        sectionActive || sectionOpen
                           ? "border-herb bg-herb/15 text-herb"
                           : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
                       }`}
@@ -301,18 +324,23 @@ export function Header() {
                           ? { animationDelay: `${0.06 + index * 0.05}s` }
                           : undefined
                       }
-                      aria-expanded={mobileSectionOpen}
+                      aria-expanded={sectionOpen}
                       aria-controls={sectionId}
-                      onClick={() => setMobileSectionOpen((v) => !v)}
+                      onClick={() =>
+                        setMobileOpen((current) => ({
+                          ...current,
+                          [item.href]: !sectionOpen,
+                        }))
+                      }
                     >
                       {item.label}
-                      <Chevron open={mobileSectionOpen} />
+                      <Chevron open={sectionOpen} />
                     </button>
 
                     <div
                       id={sectionId}
                       className={`grid ${
-                        mobileSectionOpen
+                        sectionOpen
                           ? "grid-rows-[1fr]"
                           : "grid-rows-[0fr]"
                       } transition-[grid-template-rows] duration-300 ease-out`}
@@ -335,7 +363,7 @@ export function Header() {
                                     : "border-bone/10 bg-ash/40 text-bone/70 hover:border-herb hover:text-herb"
                                 }`}
                                 style={
-                                  open && mobileSectionOpen
+                                  open && sectionOpen
                                     ? {
                                         animationDelay: `${
                                           0.1 + childIndex * 0.04

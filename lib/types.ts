@@ -35,3 +35,10 @@ export interface Category {
   description: string;
   headline: string;
 }
+
+export interface Holiday {
+  slug: string;
+  name: string;
+  description: string;
+  headline: string;
+}

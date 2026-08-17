@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllTags } from "@/lib/tags";
+import { getBrowseTags } from "@/lib/tags";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function TagsIndexPage() {
-  const tags = getAllTags();
+  const tags = getBrowseTags();
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">

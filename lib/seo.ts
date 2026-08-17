@@ -74,6 +74,28 @@ export function buildCategoryMetadata(
   };
 }
 
+export function buildHolidayMetadata(
+  holidaySlug: string,
+  headline: string,
+  description: string
+): Metadata {
+  const url = absoluteUrl(`/hoejtider/${holidaySlug}`);
+
+  return {
+    title: `${headline} | Saltet`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${headline} | Saltet`,
+      description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "website",
+    },
+  };
+}
+
 export function buildBreadcrumbJsonLd(
   items: { name: string; url: string }[]
 ): object {

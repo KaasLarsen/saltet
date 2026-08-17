@@ -1,16 +1,9 @@
+import { holidayForTagSlug } from "./holiday-nav";
 import { getAllRecipes } from "./recipes";
+import { slugifyTag } from "./slug";
 import type { Recipe } from "./types";
 
-export function slugifyTag(tag: string): string {
-  return tag
-    .toLowerCase()
-    .trim()
-    .replace(/æ/g, "ae")
-    .replace(/ø/g, "oe")
-    .replace(/å/g, "aa")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
+export { slugifyTag };
 
 export interface TagInfo {
   label: string;
@@ -38,6 +31,10 @@ export function getAllTags(): TagInfo[] {
     .sort((a, b) => a.label.localeCompare(b.label, "da"));
 }
 
+export function getBrowseTags(): TagInfo[] {
+  return getAllTags().filter((tag) => !holidayForTagSlug(tag.slug));
+}
+
 export function getTagBySlug(slug: string): TagInfo | undefined {
   return getAllTags().find((t) => t.slug === slug);
 }
@@ -49,5 +46,7 @@ export function getRecipesByTagSlug(slug: string): Recipe[] {
 }
 
 export function tagHref(tag: string): string {
+  const holiday = holidayForTagSlug(slugifyTag(tag));
+  if (holiday) return `/hoejtider/${holiday.slug}`;
   return `/tags/${slugifyTag(tag)}`;
 }
