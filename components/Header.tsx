@@ -79,14 +79,25 @@ export function Header() {
   const [desktopOpenHref, setDesktopOpenHref] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState<Record<string, boolean>>({
     "/opskrifter": true,
-    "/hoejtider": true,
+    "/hoejtider": false,
   });
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (pathname !== menuPath) {
+    setMenuPath(pathname);
+    setOpenedPath(null);
+    setDesktopOpenHref(null);
+  }
   const open = openedPath === pathname;
 
   useEffect(() => {
-    setDesktopOpenHref(null);
-    setOpenedPath(null);
-  }, [pathname]);
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   useEffect(() => {
     if (!open && !desktopOpenHref) return;
@@ -125,8 +136,12 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-bone/15 bg-iron/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3.5 md:px-8">
+    <header
+      className={`sticky top-0 z-50 flex flex-col border-b-2 border-bone/15 bg-iron/95 backdrop-blur-sm ${
+        open ? "max-h-dvh overflow-hidden" : ""
+      }`}
+    >
+      <div className="mx-auto flex w-full max-w-5xl shrink-0 items-center justify-between px-5 py-3.5 md:px-8">
         <Link
           href="/"
           className="inline-flex items-center gap-1.5 font-serif text-2xl uppercase tracking-wide text-bone transition-colors hover:text-herb md:text-3xl"
@@ -271,14 +286,20 @@ export function Header() {
 
       <div
         id={menuId}
-        className={`grid md:hidden ${
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        className={`grid min-h-0 md:hidden ${
+          open ? "flex-1 grid-rows-[1fr]" : "grid-rows-[0fr]"
         } transition-[grid-template-rows] duration-300 ease-out`}
       >
-        <div className="overflow-hidden">
+        <div
+          className={
+            open
+              ? "min-h-0 overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]"
+              : "overflow-hidden"
+          }
+        >
           <nav
             aria-label="Mobilmenu"
-            className="border-t-2 border-bone/15 px-5 pb-5 pt-3"
+            className="border-t-2 border-bone/15 px-5 pb-8 pt-3"
           >
             <ul className="flex flex-col gap-1">
               {navItems.map((item, index) => {
@@ -346,18 +367,28 @@ export function Header() {
                       } transition-[grid-template-rows] duration-300 ease-out`}
                     >
                       <ul className="overflow-hidden">
-                        {item.children.map((child, childIndex) => {
-                          const isAll = child.href === item.href;
-                          const active = isAll
-                            ? pathname === child.href
-                            : pathIsActive(pathname, child.href);
-                          return (
-                            <li key={`${child.href}-${child.label}`}>
+                        {(() => {
+                          const allChild = item.children.find(
+                            (child) => child.href === item.href
+                          );
+                          const childItems = item.children.filter(
+                            (child) => child.href !== item.href
+                          );
+
+                          function childLink(
+                            child: NavChild,
+                            childIndex: number,
+                            isAll: boolean
+                          ) {
+                            const active = isAll
+                              ? pathname === child.href
+                              : pathIsActive(pathname, child.href);
+                            return (
                               <Link
                                 href={child.href}
-                                className={`mt-1 block rounded-xl border-2 px-4 py-2.5 pl-6 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                                  open ? "animate-rise" : ""
-                                } ${
+                                className={`mt-1 block rounded-xl border-2 px-3 py-2.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                                  isAll ? "pl-6" : "text-center"
+                                } ${open ? "animate-rise" : ""} ${
                                   active
                                     ? "border-herb bg-herb text-iron"
                                     : "border-bone/10 bg-ash/40 text-bone/70 hover:border-herb hover:text-herb"
@@ -366,7 +397,7 @@ export function Header() {
                                   open && sectionOpen
                                     ? {
                                         animationDelay: `${
-                                          0.1 + childIndex * 0.04
+                                          0.1 + childIndex * 0.03
                                         }s`,
                                       }
                                     : undefined
@@ -375,9 +406,30 @@ export function Header() {
                               >
                                 {child.label}
                               </Link>
-                            </li>
+                            );
+                          }
+
+                          return (
+                            <>
+                              {allChild ? (
+                                <li>
+                                  {childLink(allChild, 0, true)}
+                                </li>
+                              ) : null}
+                              <li>
+                                <ul className="grid grid-cols-2 gap-x-1">
+                                  {childItems.map((child, childIndex) => (
+                                    <li
+                                      key={`${child.href}-${child.label}`}
+                                    >
+                                      {childLink(child, childIndex + 1, false)}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </li>
+                            </>
                           );
-                        })}
+                        })()}
                       </ul>
                     </div>
                   </li>
