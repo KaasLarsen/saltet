@@ -17,6 +17,13 @@ export const categories: Category[] = [
     headline: "Grill opskrifter",
   },
   {
+    slug: "baalmad",
+    name: "Bålmad",
+    description:
+      "Mad over åben ild — gryderetter i Dutch Oven, kød på risten, fisk med røg og sødt til kaffen, når mørket falder på.",
+    headline: "Bålmad opskrifter",
+  },
+  {
     slug: "roeg",
     name: "Røg",
     description:
