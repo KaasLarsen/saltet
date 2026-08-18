@@ -162,8 +162,8 @@ export function Header() {
       }
     }
 
-    document.addEventListener("mousedown", onPointerDown);
-    return () => document.removeEventListener("mousedown", onPointerDown);
+    document.addEventListener("click", onPointerDown);
+    return () => document.removeEventListener("click", onPointerDown);
   }, [desktopOpenHref]);
 
   function closeMenu() {
@@ -174,21 +174,32 @@ export function Header() {
     setOpenedPath((current) => (current === pathname ? null : pathname));
   }
 
+  function handleLogoClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    setOpenedPath(null);
+    setDesktopOpenHref(null);
+    if (pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
   return (
     <header
-      className={`z-50 flex flex-col border-b-2 border-bone/15 ${
+      className={`relative isolate z-50 flex flex-col border-b-2 border-bone/15 ${
         open
           ? "fixed inset-0 bg-iron md:sticky md:inset-auto md:top-0 md:bg-iron/95 md:backdrop-blur-sm"
           : "sticky top-0 bg-iron/95 backdrop-blur-sm"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-5xl shrink-0 items-center justify-between px-5 py-3.5 md:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl shrink-0 items-center justify-between px-5 py-3.5 md:px-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 font-serif text-2xl uppercase tracking-wide text-bone transition-colors hover:text-herb md:text-3xl"
+          aria-label="Saltet — gå til forsiden"
+          onClick={handleLogoClick}
+          className="relative z-10 -my-1 inline-flex min-h-11 cursor-pointer items-center gap-1.5 py-1 font-serif text-2xl uppercase tracking-wide text-bone transition-colors hover:text-herb md:text-3xl"
         >
           Saltet
-          <SaltShakerMark className="mb-0.5 h-[0.85em] w-[0.85em] shrink-0 text-herb" />
+          <SaltShakerMark className="pointer-events-none mb-0.5 h-[0.85em] w-[0.85em] shrink-0 text-herb" />
         </Link>
 
         <nav
