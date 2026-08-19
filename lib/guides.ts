@@ -1,0 +1,70 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import type { Guide, GuideFrontmatter } from "./types";
+import { getRecipe } from "./recipes";
+import type { Recipe } from "./types";
+
+const contentDir = path.join(process.cwd(), "content/guides");
+
+function parseGuideFile(filePath: string): Guide {
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(raw);
+  const frontmatter = data as GuideFrontmatter;
+
+  return {
+    ...frontmatter,
+    relatedRecipes: frontmatter.relatedRecipes ?? [],
+    faq: frontmatter.faq ?? [],
+    content: content.trim(),
+  };
+}
+
+export function getAllGuides(): Guide[] {
+  if (!fs.existsSync(contentDir)) return [];
+
+  return fs
+    .readdirSync(contentDir)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => parseGuideFile(path.join(contentDir, file)))
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    );
+}
+
+export function getGuide(slug: string): Guide | undefined {
+  return getAllGuides().find((g) => g.slug === slug);
+}
+
+export function getAllGuideSlugs(): string[] {
+  return getAllGuides().map((g) => g.slug);
+}
+
+export function getRelatedGuideRecipes(guide: Guide): Recipe[] {
+  return guide.relatedRecipes
+    .map((ref) => {
+      const [category, slug] = ref.split("/");
+      if (!category || !slug) return undefined;
+      return getRecipe(category, slug);
+    })
+    .filter((r): r is Recipe => Boolean(r));
+}
+
+export function getGuidesForRecipe(category: string, slug: string): Guide[] {
+  const key = `${category}/${slug}`;
+  return getAllGuides().filter((g) => g.relatedRecipes.includes(key));
+}
+
+export function getRelatedGuides(guide: Guide, limit = 4): Guide[] {
+  const explicit = (guide.relatedGuides ?? [])
+    .map((slug) => getGuide(slug))
+    .filter((g): g is Guide => Boolean(g));
+
+  if (explicit.length >= limit) return explicit.slice(0, limit);
+
+  const rest = getAllGuides().filter(
+    (g) => g.slug !== guide.slug && !explicit.some((e) => e.slug === g.slug)
+  );
+  return [...explicit, ...rest].slice(0, limit);
+}

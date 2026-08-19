@@ -42,3 +42,26 @@ export interface Holiday {
   description: string;
   headline: string;
 }
+
+export interface GuideFaq {
+  question: string;
+  answer: string;
+}
+
+export interface GuideFrontmatter {
+  title: string;
+  slug: string;
+  description: string;
+  tags: string[];
+  image: string;
+  imageAlt: string;
+  publishedAt: string;
+  updatedAt?: string;
+  faq: GuideFaq[];
+  relatedRecipes: string[];
+  relatedGuides?: string[];
+}
+
+export interface Guide extends GuideFrontmatter {
+  content: string;
+}

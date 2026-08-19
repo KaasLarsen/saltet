@@ -2,6 +2,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/seo";
 
 const footerLinks = [
+  { href: "/guides", label: "Guides" },
   { href: "/hoejtider", label: "Højtider" },
   { href: "/om", label: "Om" },
   { href: "/kontakt", label: "Kontakt" },

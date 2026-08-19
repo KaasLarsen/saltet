@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SaltShakerMark } from "@/components/SaltShakerMark";
 import { CATEGORY_NAV } from "@/lib/category-nav";
+import { GUIDE_NAV } from "@/lib/guide-nav";
 import { HOLIDAY_NAV } from "@/lib/holiday-nav";
 
 type NavChild = { href: string; label: string };
@@ -23,6 +24,17 @@ const navItems: NavItem[] = [
       ...CATEGORY_NAV.map((c) => ({
         href: `/opskrifter/${c.slug}`,
         label: c.name,
+      })),
+    ],
+  },
+  {
+    href: "/guides",
+    label: "Guides",
+    children: [
+      { href: "/guides", label: "Alle guides" },
+      ...GUIDE_NAV.map((g) => ({
+        href: `/guides/${g.slug}`,
+        label: g.name,
       })),
     ],
   },

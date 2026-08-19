@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
@@ -15,6 +16,7 @@ import {
   formatDuration,
   difficultyLabel,
 } from "@/lib/format";
+import { getGuidesForRecipe } from "@/lib/guides";
 import {
   getAllRecipeParams,
   getRecipe,
@@ -51,6 +53,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
   if (!recipe) notFound();
 
   const related = getRelatedRecipes(recipe);
+  const mentionedInGuides = getGuidesForRecipe(recipe.category, recipe.slug);
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
 
@@ -180,6 +183,34 @@ export default async function RecipePage({ params }: RecipePageProps) {
             <RecipeTags tags={recipe.tags} className="mt-12" />
 
             <RecipeFaqSection items={recipe.faq} />
+
+            {mentionedInGuides.length > 0 && (
+              <section className="mt-14 text-left" aria-labelledby="guides-heading">
+                <h2
+                  id="guides-heading"
+                  className="mb-4 text-center font-serif text-2xl uppercase tracking-wide text-bone"
+                >
+                  Nævnt i guide
+                </h2>
+                <ul className="space-y-3">
+                  {mentionedInGuides.map((guide) => (
+                    <li key={guide.slug}>
+                      <Link
+                        href={`/guides/${guide.slug}`}
+                        className="block rounded-2xl border-2 border-bone/15 bg-ash/30 px-4 py-3 transition-colors hover:border-herb"
+                      >
+                        <span className="font-serif text-lg uppercase tracking-wide text-bone">
+                          {guide.title}
+                        </span>
+                        <span className="mt-1 block text-sm text-bone/55">
+                          {guide.description}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
         </div>
 

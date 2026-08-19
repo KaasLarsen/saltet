@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllCategorySlugs } from "@/lib/categories";
 import { getAllHolidaySlugs } from "@/lib/holidays";
+import { getAllGuides } from "@/lib/guides";
 import { getAllRecipes } from "@/lib/recipes";
 import { getBrowseTags } from "@/lib/tags";
 import { absoluteUrl } from "@/lib/seo";
@@ -9,6 +10,7 @@ import { absoluteUrl } from "@/lib/seo";
  * Alle offentlige sider skal med i sitemap.
  *
  * - Nye faste sider (fx /kontakt): tilføj i STATIC_ROUTES
+ * - Guides: auto fra content/guides/*.mdx
  * - Kategorier: auto fra lib/categories + content/recipes/*
  * - Højtider: auto fra lib/holidays
  * - Tags: auto fra opskrifters tags (højtids-tags omdirigeres til /hoejtider)
@@ -21,6 +23,7 @@ const STATIC_ROUTES: {
 }[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/opskrifter", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/guides", changeFrequency: "weekly", priority: 0.88 },
   { path: "/hoejtider", changeFrequency: "weekly", priority: 0.85 },
   { path: "/tags", changeFrequency: "weekly", priority: 0.7 },
   { path: "/om", changeFrequency: "monthly", priority: 0.5 },
@@ -31,6 +34,7 @@ const STATIC_ROUTES: {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const recipes = getAllRecipes();
+  const guides = getAllGuides();
   const tags = getBrowseTags();
   const categorySlugs = getAllCategorySlugs();
   const holidaySlugs = getAllHolidaySlugs();
@@ -71,11 +75,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
+    url: absoluteUrl(`/guides/${guide.slug}`),
+    lastModified: new Date(guide.updatedAt ?? guide.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticPages,
     ...categoryPages,
     ...holidayPages,
     ...tagPages,
     ...recipePages,
+    ...guidePages,
   ];
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Recipe } from "./types";
+import type { Guide, Recipe } from "./types";
 import { getCategoryName } from "./categories";
 
 const siteUrl =
@@ -146,7 +146,9 @@ export function buildRecipeJsonLd(recipe: Recipe): object {
   };
 }
 
-export function buildFaqJsonLd(faq: Recipe["faq"]): object | null {
+export function buildFaqJsonLd(
+  faq: { question: string; answer: string }[] | undefined
+): object | null {
   if (!faq?.length) return null;
 
   return {
@@ -160,6 +162,70 @@ export function buildFaqJsonLd(faq: Recipe["faq"]): object | null {
         text: item.answer,
       },
     })),
+  };
+}
+
+export function buildGuideMetadata(guide: Guide): Metadata {
+  const url = absoluteUrl(`/guides/${guide.slug}`);
+
+  return {
+    title: `${guide.title} | Saltet`,
+    description: guide.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: guide.title,
+      description: guide.description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "article",
+      publishedTime: guide.publishedAt,
+      modifiedTime: guide.updatedAt ?? guide.publishedAt,
+      images: [
+        {
+          url: absoluteUrl(guide.image),
+          alt: guide.imageAlt,
+          width: 1200,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: guide.title,
+      description: guide.description,
+      images: [absoluteUrl(guide.image)],
+    },
+  };
+}
+
+export function buildArticleJsonLd(guide: Guide): object {
+  const url = absoluteUrl(`/guides/${guide.slug}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    image: [absoluteUrl(guide.image)],
+    datePublished: guide.publishedAt,
+    dateModified: guide.updatedAt ?? guide.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    inLanguage: "da-DK",
+    keywords: guide.tags.join(", "),
   };
 }
 
