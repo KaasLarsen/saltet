@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
-import { RecipeContent } from "@/components/mdx/RecipeContent";
+import { GuideContent } from "@/components/mdx/GuideContent";
 import {
   getAllGuideSlugs,
   getGuide,
@@ -133,7 +133,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
             )}
 
             <div className="mt-10 text-left">
-              <RecipeContent source={guide.content} />
+              <GuideContent source={guide.content} />
             </div>
 
             {recipes.length > 0 && (

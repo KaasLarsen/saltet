@@ -7,6 +7,21 @@ import type { Recipe } from "./types";
 
 const contentDir = path.join(process.cwd(), "content/guides");
 
+function parseGuideMeta(filePath: string): Guide {
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const close = raw.indexOf("\n---", 4);
+  const yaml = close === -1 ? raw : raw.slice(0, close + 4);
+  const { data } = matter(`${yaml}\n`);
+  const frontmatter = data as GuideFrontmatter;
+
+  return {
+    ...frontmatter,
+    relatedRecipes: frontmatter.relatedRecipes ?? [],
+    faq: frontmatter.faq ?? [],
+    content: "",
+  };
+}
+
 function parseGuideFile(filePath: string): Guide {
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
@@ -33,7 +48,7 @@ export function getAllGuides(): Guide[] {
   guidesCache = fs
     .readdirSync(contentDir)
     .filter((file) => file.endsWith(".mdx"))
-    .map((file) => parseGuideFile(path.join(contentDir, file)))
+    .map((file) => parseGuideMeta(path.join(contentDir, file)))
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
@@ -55,7 +70,9 @@ function recipeGuideIndex(): Map<string, Guide[]> {
 }
 
 export function getGuide(slug: string): Guide | undefined {
-  return getAllGuides().find((g) => g.slug === slug);
+  const filePath = path.join(contentDir, `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) return undefined;
+  return parseGuideFile(filePath);
 }
 
 export function getAllGuideSlugs(): string[] {
@@ -78,7 +95,7 @@ export function getGuidesForRecipe(category: string, slug: string): Guide[] {
 
 export function getRelatedGuides(guide: Guide, limit = 4): Guide[] {
   const explicit = (guide.relatedGuides ?? [])
-    .map((slug) => getGuide(slug))
+    .map((relatedSlug) => getAllGuides().find((g) => g.slug === relatedSlug))
     .filter((g): g is Guide => Boolean(g));
 
   if (explicit.length >= limit) return explicit.slice(0, limit);

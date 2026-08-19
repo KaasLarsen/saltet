@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  staticPageGenerationTimeout: 180,
   async redirects() {
     return [
       { source: "/tags/jul", destination: "/hoejtider/jul", permanent: true },
