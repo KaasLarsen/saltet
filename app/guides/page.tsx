@@ -7,7 +7,7 @@ import { absoluteUrl } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Guides",
   description:
-    "Grundige madguides fra Saltet — airfryer, kernetemperatur, culotte, pizza, pulled pork, fermentering, syltning, røgning, grydebrød og smash burger. Metode først, opskrifter bagefter.",
+    "Grundige madguides fra Saltet — saltprocenter, kernetemperatur, sous vide, røgning, koji, confit, bål, trykkoger og stegeoverflader. Metode først, opskrifter bagefter.",
   alternates: { canonical: absoluteUrl("/guides") },
 };
 
