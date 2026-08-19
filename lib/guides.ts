@@ -20,10 +20,17 @@ function parseGuideFile(filePath: string): Guide {
   };
 }
 
-export function getAllGuides(): Guide[] {
-  if (!fs.existsSync(contentDir)) return [];
+let guidesCache: Guide[] | null = null;
+let guidesByRecipe: Map<string, Guide[]> | null = null;
 
-  return fs
+export function getAllGuides(): Guide[] {
+  if (guidesCache) return guidesCache;
+  if (!fs.existsSync(contentDir)) {
+    guidesCache = [];
+    return guidesCache;
+  }
+
+  guidesCache = fs
     .readdirSync(contentDir)
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => parseGuideFile(path.join(contentDir, file)))
@@ -31,6 +38,20 @@ export function getAllGuides(): Guide[] {
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     );
+  return guidesCache;
+}
+
+function recipeGuideIndex(): Map<string, Guide[]> {
+  if (guidesByRecipe) return guidesByRecipe;
+  guidesByRecipe = new Map();
+  for (const guide of getAllGuides()) {
+    for (const ref of guide.relatedRecipes) {
+      const list = guidesByRecipe.get(ref) ?? [];
+      list.push(guide);
+      guidesByRecipe.set(ref, list);
+    }
+  }
+  return guidesByRecipe;
 }
 
 export function getGuide(slug: string): Guide | undefined {
@@ -52,8 +73,7 @@ export function getRelatedGuideRecipes(guide: Guide): Recipe[] {
 }
 
 export function getGuidesForRecipe(category: string, slug: string): Guide[] {
-  const key = `${category}/${slug}`;
-  return getAllGuides().filter((g) => g.relatedRecipes.includes(key));
+  return recipeGuideIndex().get(`${category}/${slug}`) ?? [];
 }
 
 export function getRelatedGuides(guide: Guide, limit = 4): Guide[] {

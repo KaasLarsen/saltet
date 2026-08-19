@@ -42,8 +42,12 @@ function compareByPublishedAt(a: Recipe, b: Recipe): number {
   return a.slug.localeCompare(b.slug);
 }
 
+let recipesCache: Recipe[] | null = null;
+
 export function getAllRecipes(): Recipe[] {
-  return getRecipeFiles().map(parseRecipeFile).sort(compareByPublishedAt);
+  if (recipesCache) return recipesCache;
+  recipesCache = getRecipeFiles().map(parseRecipeFile).sort(compareByPublishedAt);
+  return recipesCache;
 }
 
 export function getRecipesByCategory(category: string): Recipe[] {
