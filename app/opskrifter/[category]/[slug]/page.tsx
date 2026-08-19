@@ -16,7 +16,7 @@ import {
   formatDuration,
   difficultyLabel,
 } from "@/lib/format";
-import { getGuidesForRecipe } from "@/lib/guides";
+import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
 import {
   getAllRecipeParams,
   getRecipe,
@@ -53,7 +53,10 @@ export default async function RecipePage({ params }: RecipePageProps) {
   if (!recipe) notFound();
 
   const related = getRelatedRecipes(recipe);
-  const mentionedInGuides = getGuidesForRecipe(recipe.category, recipe.slug);
+  const mentionedInGuides = getGuidesMentioningRecipe(
+    recipe.category,
+    recipe.slug
+  );
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
 
