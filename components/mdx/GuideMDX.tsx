@@ -94,7 +94,7 @@ export const guideMdxComponents = {
   ),
   table: ({ children }: { children?: ReactNode }) => (
     <div className="my-8 overflow-x-auto rounded-2xl border-2 border-bone/20">
-      <table className="w-full min-w-[32rem] text-left text-sm text-bone/75">
+      <table className="w-full min-w-[36rem] text-left text-sm text-bone/75">
         {children}
       </table>
     </div>

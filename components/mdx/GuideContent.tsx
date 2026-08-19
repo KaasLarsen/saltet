@@ -13,5 +13,5 @@ export async function GuideContent({ source }: GuideContentProps) {
     components: guideMdxComponents,
   });
 
-  return <div className="recipe-prose">{content}</div>;
+  return <div className="recipe-prose overflow-x-auto">{content}</div>;
 }

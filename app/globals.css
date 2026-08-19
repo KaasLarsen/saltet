@@ -140,6 +140,50 @@ body {
   border: 2px solid var(--bone);
 }
 
+.recipe-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--bone) 75%, transparent);
+}
+
+.recipe-prose thead {
+  background: color-mix(in srgb, var(--ash) 85%, #000);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--herb);
+}
+
+.recipe-prose th,
+.recipe-prose td {
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.recipe-prose tbody td {
+  border-top: 1px solid color-mix(in srgb, var(--bone) 12%, transparent);
+}
+
+.recipe-prose tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--ash) 55%, transparent);
+}
+
+.recipe-prose th:nth-child(2),
+.recipe-prose td:nth-child(2),
+.recipe-prose th:nth-child(3),
+.recipe-prose td:nth-child(3) {
+  white-space: nowrap;
+}
+
+.recipe-prose th:last-child,
+.recipe-prose td:last-child {
+  white-space: normal;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .salt-sprinkle,
   .animate-rise,
