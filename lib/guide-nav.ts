@@ -30,6 +30,16 @@ export const GUIDE_NAV = [
   { slug: "marinader-og-rubs", name: "Marinader og rubs" },
   { slug: "bageskole-gaer-og-haevning", name: "Bageskole" },
   { slug: "sikker-madlavning", name: "Sikker madlavning" },
+  { slug: "optoening-af-koed", name: "Optøning af kød" },
+  { slug: "tilberedning-fra-frost", name: "Fra frost" },
+  { slug: "flaeskesteg-i-airfryer", name: "Flæskesteg i airfryer" },
+  { slug: "pizzadej-fejlfinding", name: "Pizzadej fejlfinding" },
+  { slug: "holdbarhed-i-koeleskab", name: "Holdbarhed i køleskab" },
+  { slug: "genopvarmning-af-mad", name: "Genopvarmning" },
+  { slug: "koed-svind-og-portioner", name: "Kød svind og portioner" },
+  { slug: "roget-smag-uden-rygeovn", name: "Røgsmag uden ryger" },
+  { slug: "rensning-af-svampe", name: "Rensning af svampe" },
+  { slug: "traekul-vs-briketter", name: "Trækul vs. briketter" },
 ] as const;
 
 export type GuideNavSlug = (typeof GUIDE_NAV)[number]["slug"];
@@ -566,6 +576,147 @@ export const GUIDE_LINKS: {
       "pande/frikadeller-pande",
       "gryde/bolognese",
       "airfryer/haardkogte-aeg-meal-prep",
+    ],
+  },
+  {
+    slug: "optoening-af-koed",
+    title: "Den store optønings-guide: Sådan tør du kød hurtigt (og sikkert) op",
+    description:
+      "Koldt vand, mikroovn og køleskab — tider efter tykkelse, og hvorfor varmt vand er forbudt.",
+    recipes: [
+      "pande/gyoza-fra-frost-pande",
+      "airfryer/frosne-pomfritter",
+      "airfryer/frosne-rundstykker",
+      "grill/pulled-pork",
+      "pande/kyllingebryst-pande",
+      "gryde/bolognese",
+    ],
+  },
+  {
+    slug: "tilberedning-fra-frost",
+    title: "Kernetemperatur på frosset kød — kan man tilberede direkte fra frost?",
+    description:
+      "Frossen kyllingefilet, steak og hakket i airfryer, sous vide og pande. Tider og risici.",
+    recipes: [
+      "sous-vide/ribeye-sous-vide",
+      "airfryer/koteletter",
+      "pande/kyllingebryst-pande",
+      "airfryer/hel-kylling",
+      "grill/tomahawk-steak",
+      "pande/gyoza-fra-frost-pande",
+    ],
+  },
+  {
+    slug: "flaeskesteg-i-airfryer",
+    title: "Flæskesteg i airfryer: genvej til sprøde svær uden gætteri",
+    description:
+      "Riller, tør svær, liggende steg, 200 °C start og 160 °C finish. Skæv svær rettet.",
+    recipes: [
+      "airfryer/flaeskesteg",
+      "ovn/gammeldags-flaeskesteg-sproede-svaer",
+      "airfryer/flaeskestegssandwich",
+      "sous-vide/flaeskesteg-sous-vide",
+      "grill/flaeskesteg-rotisseri",
+      "airfryer/flaeskesvaer-sennepsstoev",
+    ],
+  },
+  {
+    slug: "pizzadej-fejlfinding",
+    title: "Fejlfinding på pizzadej: hvorfor hæver, klistrer eller trækker den sig sammen?",
+    description:
+      "Pizzadej som elastik, lim eller død klump. Hydrering, gluten, koldhæv og temperatur.",
+    recipes: [
+      "roeremaskine/neapolitansk-pizzadej-roeremaskine",
+      "roeremaskine/koldhaevet-pizzadej-roeremaskine",
+      "roeremaskine/hurtig-pizzadej-roeremaskine",
+      "grill/pizzadej-grill",
+      "pizzaovn/neapolitansk-pizza-pizzaovn",
+      "pizzaovn/pizza-margherita-pizzaovn",
+      "roeremaskine/detroit-pizzadej-roeremaskine",
+    ],
+  },
+  {
+    slug: "holdbarhed-i-koeleskab",
+    title: "Hvor længe kan mad holde sig i køleskabet? Oversigt og sandheden om datoen",
+    description:
+      "Tabel over hverdagsmad: kylling, pasta, ost og rester. Sidste anvendelse versus bedst før.",
+    recipes: [
+      "airfryer/haardkogte-aeg-meal-prep",
+      "gryde/bolognese",
+      "gryde/chili-con-carne",
+      "pande/frittata",
+      "grill/pulled-pork",
+      "dips/hummus",
+    ],
+  },
+  {
+    slug: "genopvarmning-af-mad",
+    title: "Genopvarmning af mad: sådan undgår du tørt kød og bløde pommes frites",
+    description:
+      "Pizza, flæskesteg, pomfritter og pulled pork i airfryer, ovn og pande med damp.",
+    recipes: [
+      "airfryer/frosne-pomfritter",
+      "airfryer/flaeskesteg",
+      "grill/pulled-pork",
+      "pizzaovn/pizza-margherita-pizzaovn",
+      "pande/biksemad-spejlaeg",
+      "gryde/bolognese",
+    ],
+  },
+  {
+    slug: "koed-svind-og-portioner",
+    title: "Hvor meget svinder kød ved tilberedning? Beregn til gæster",
+    description:
+      "Råvægt versus tilberedt vægt for pulled pork, culotte, kamsteg og hakket.",
+    recipes: [
+      "grill/pulled-pork",
+      "grill/culottesteg-paa-grill",
+      "sous-vide/pulled-pork-sous-vide",
+      "grill/tomahawk-steak",
+      "airfryer/rosa-culottesteg",
+      "grill/hjemmelavet-burger",
+    ],
+  },
+  {
+    slug: "roget-smag-uden-rygeovn",
+    title: "Den nemme guide til røget smag uden en rygeovn",
+    description:
+      "Røgsalt, røget paprika og liquid smoke. Dosering så det ikke smager af askebæger.",
+    recipes: [
+      "ovn/ovn-roget-pulled-chicken",
+      "roeg/roget-salt",
+      "dips/bbq-sauce",
+      "grill/pulled-pork",
+      "airfryer/beef-jerky",
+      "dips/hovmestersauce",
+    ],
+  },
+  {
+    slug: "rensning-af-svampe",
+    title: "Rensning af svampe: må man vaske svampe med vand?",
+    description:
+      "Hvornår du børster, hvornår en hurtig skylning er i orden, og hvordan du tørrer dem.",
+    recipes: [
+      "grill/grillede-portobellosvampe-hvidloegssmoer",
+      "stobejern/cremet-svampetoast",
+      "stobejern/svampe-risotto",
+      "airfryer/svampe-bites-timian",
+      "dehydrator/toerrede-svampe-dehydrator",
+      "pizzaovn/pizza-bianca-troffel-svampe-pizzaovn",
+    ],
+  },
+  {
+    slug: "traekul-vs-briketter",
+    title: "Trækul vs. briketter: hvad skal du vælge til din grill?",
+    description:
+      "Brændtid, high heat versus low & slow, aske og smag — lump eller briketter.",
+    recipes: [
+      "grill/pulled-pork",
+      "grill/tomahawk-steak",
+      "grill/hjemmelavet-burger",
+      "grill/hel-kylling-gasgrill-tid",
+      "grill/culottesteg-paa-grill",
+      "grill/kernetemperatur-grill",
     ],
   },
 ];
