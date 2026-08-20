@@ -28,7 +28,7 @@ export function SearchForm({
   return (
     <form onSubmit={onSubmit} className={`w-full ${className}`} role="search">
       <label htmlFor="recipe-search" className="sr-only">
-        Søg efter opskrift
+        Søg efter opskrift eller guide
       </label>
       <div
         className={`flex overflow-hidden rounded-2xl border-2 ${
@@ -43,7 +43,7 @@ export function SearchForm({
           name="q"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Søg efter en opskrift…"
+          placeholder="Søg efter opskrift eller guide…"
           className={`min-w-0 flex-1 bg-transparent px-4 py-3.5 text-bone outline-none placeholder:text-smoke ${
             isHero ? "text-base md:text-lg" : "text-sm"
           }`}
