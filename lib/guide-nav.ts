@@ -40,6 +40,16 @@ export const GUIDE_NAV = [
   { slug: "roget-smag-uden-rygeovn", name: "Røgsmag uden ryger" },
   { slug: "rensning-af-svampe", name: "Rensning af svampe" },
   { slug: "traekul-vs-briketter", name: "Trækul vs. briketter" },
+  { slug: "kan-man-fryse", name: "Kan man fryse …?" },
+  { slug: "ris-fejlfinding", name: "Ris der klistrer" },
+  { slug: "red-maden", name: "Red maden" },
+  { slug: "natron-og-bagepulver", name: "Natron og bagepulver" },
+  { slug: "stoebjern-seasoning", name: "Støbejern seasoning" },
+  { slug: "hakket-oksekoed-farve", name: "Hakket oksekød farve" },
+  { slug: "omregning-gram-ske-dl", name: "Gram, skeer og dl" },
+  { slug: "airfryer-ovn-omregning", name: "Airfryer vs. ovn" },
+  { slug: "stegning-olier-roegpunkt", name: "Olie og røgpunkt" },
+  { slug: "sproede-pomfritter", name: "Sprøde pomfritter" },
 ] as const;
 
 export type GuideNavSlug = (typeof GUIDE_NAV)[number]["slug"];
@@ -717,6 +727,146 @@ export const GUIDE_LINKS: {
       "grill/hel-kylling-gasgrill-tid",
       "grill/culottesteg-paa-grill",
       "grill/kernetemperatur-grill",
+    ],
+  },
+  {
+    slug: "kan-man-fryse",
+    title: "Kan man fryse …? Den ultimative liste over madvarer du er i tvivl om",
+    description:
+      "Alfabetisk ja/nej: hytteost, fløde, æg, ost og resten — plus hvad der sker med konsistensen.",
+    recipes: [
+      "stobejern/grydebroed-hytteost",
+      "gryde/bolognese",
+      "grill/pulled-pork",
+      "ovn/grove-proteinboller-kerner-hytteost",
+      "airfryer/frosne-rundstykker",
+      "pande/gyoza-fra-frost-pande",
+    ],
+  },
+  {
+    slug: "ris-fejlfinding",
+    title: "Hvorfor klistrer mine ris? Fejlfinding på løse, kogte ris",
+    description:
+      "Stivelse, skylning, vandforhold og hvile under låg — så risene ikke bliver grød.",
+    recipes: [
+      "pande/stegte-ris-aeg-rejer",
+      "trykkoger/ris-trykkoger",
+      "plancha/lynstegte-ris-og-nudler",
+      "gryde/kylling-i-karry",
+      "trykkoger/risengrod-trykkoger",
+      "stobejern/svampe-risotto",
+    ],
+  },
+  {
+    slug: "red-maden",
+    title: "Red maden: for salt, for stærk eller for syrlig",
+    description:
+      "Akut redning med fortynding, fedt, sukker og syre. Kartoffel-tricket uden myter.",
+    recipes: [
+      "gryde/kylling-i-karry",
+      "gryde/bolognese",
+      "gryde/chili-con-carne",
+      "dips/bbq-sauce",
+      "stobejern/okseskank-roedvin",
+      "dips/hovmestersauce",
+    ],
+  },
+  {
+    slug: "natron-og-bagepulver",
+    title: "Forskellen på natron og bagepulver (og hvad du kan erstatte med)",
+    description:
+      "Natron kræver syre. Omregning når du mangler den ene pose midt i dejen.",
+    recipes: [
+      "airfryer/guleroeds-muffins",
+      "ovn/flettet-hytteostbroed-pepperoni",
+      "plancha/plancha-flatbread-zaatar",
+      "roeremaskine/saltkringler-roeremaskine",
+      "ovn/grove-proteinboller-kerner-hytteost",
+      "stobejern/klassisk-grydebroed",
+    ],
+  },
+  {
+    slug: "stoebjern-seasoning",
+    title: "Krydring og pleje af støbejern: rusten eller brændt pande",
+    description:
+      "Seasoning i ovnen, rust-redning, og hvorfor en dråbe sæbe ikke ødelægger panden.",
+    recipes: [
+      "stobejern/cast-iron-ribeye",
+      "stobejern/smash-burgers-stobejern",
+      "stobejern/stegte-flaeskesider",
+      "stobejern/klassisk-grydebroed",
+      "pande/pandeskaft",
+      "stobejern/confiterede-andelaar",
+    ],
+  },
+  {
+    slug: "hakket-oksekoed-farve",
+    title: "Mørkt kød eller gråt kød? Er hakket oksekød for gammelt?",
+    description:
+      "Myoglobin og iltning versus råd. Brun midte i bakken er ofte luft, ikke lig.",
+    recipes: [
+      "pande/hakkeboef-loeg-spejlaeg",
+      "grill/hjemmelavet-burger",
+      "plancha/smash-burger-paa-plancha",
+      "pande/hakket-oksekoed-spidskaal",
+      "gryde/bolognese",
+      "gryde/chili-con-carne",
+    ],
+  },
+  {
+    slug: "omregning-gram-ske-dl",
+    title: "Hvor meget vejer en …? Omregner fra gram til spiseskeer og dl",
+    description:
+      "Smør, mel, æg og salt i skeer og dl når vægten ligger i skuffen.",
+    recipes: [
+      "airfryer/guleroeds-muffins",
+      "stobejern/klassisk-grydebroed",
+      "roeremaskine/neapolitansk-pizzadej-roeremaskine",
+      "ovn/koldhaevede-morgenboller-oelandshvede",
+      "dips/aioli",
+      "gryde/bolognese",
+    ],
+  },
+  {
+    slug: "airfryer-ovn-omregning",
+    title: "Airfryer vs. ovn: sådan omregner du tid og temperatur",
+    description:
+      "Minus 20 °C og 20 % tid — plus tabel og de tilfælde formlen ikke dækker.",
+    recipes: [
+      "airfryer/hjemmelavede-kyllingenuggets",
+      "airfryer/hel-kylling",
+      "airfryer/frosne-pomfritter",
+      "airfryer/guleroeds-muffins",
+      "ovn/koldhaevede-morgenboller-oelandshvede",
+      "airfryer/flaeskesteg",
+    ],
+  },
+  {
+    slug: "stegning-olier-roegpunkt",
+    title: "Hvilken olie skal jeg stege i? Røgpunkter for begyndere",
+    description:
+      "Olivenolie, smør, raps og sear. Tabel over røgpunkter til pande og wok.",
+    recipes: [
+      "stobejern/cast-iron-ribeye",
+      "pande/pandeskaft",
+      "plancha/smash-burger-paa-plancha",
+      "sous-vide/ribeye-sous-vide",
+      "grill/tomahawk-steak",
+      "pande/kyllingebryst-pande",
+    ],
+  },
+  {
+    slug: "sproede-pomfritter",
+    title: "Hvorfor bliver mine pomfritter bløde? Hemmeligheden bag sprøde frites",
+    description:
+      "Udvask stivelse, tør helt, to omgange i ovn, airfryer eller friture.",
+    recipes: [
+      "airfryer/pommes-frites-bagekartofler",
+      "airfryer/grovfritter-udbloedning",
+      "airfryer/frosne-pomfritter",
+      "fermentering/fermenterede-pommes-frites",
+      "airfryer/chili-cheese-pommes",
+      "airfryer/smashed-potato-salad",
     ],
   },
 ];
