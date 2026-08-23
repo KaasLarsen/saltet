@@ -1,11 +1,15 @@
 import { unstable_cache } from "next/cache";
-import { pricerunnerProductUrl } from "@/lib/pricerunner";
+import {
+  pricerunnerGotoStoreUrl,
+  pricerunnerProductUrl,
+} from "@/lib/pricerunner";
 
 export interface PriceRunnerOffer {
   merchant: string;
   price: string;
   shipping: string | null;
   inStock: boolean;
+  href: string;
 }
 
 export interface PriceRunnerComparison {
@@ -23,6 +27,7 @@ interface PayloadQuery {
 interface OffersPayload {
   images?: Array<{ path?: string }>;
   offers?: Array<{
+    url?: string;
     merchantId?: string;
     stockStatus?: string;
     price?: { amount?: string };
@@ -99,13 +104,14 @@ function extractComparison(
   const offers = (offersData?.offers ?? [])
     .map((offer) => {
       const price = offer.price?.amount;
-      if (!price) return null;
+      if (!price || !offer.url) return null;
       const merchant = merchants[offer.merchantId ?? ""]?.name;
       if (!merchant) return null;
       const shippingAmount = parseAmount(offer.shippingCost?.amount);
       return {
         merchant,
         price,
+        href: pricerunnerGotoStoreUrl(offer.url),
         shipping:
           shippingAmount === null
             ? null
@@ -159,7 +165,7 @@ export function getPriceRunnerComparison(
 ): Promise<PriceRunnerComparison | null> {
   return unstable_cache(
     () => loadComparison(categoryId, productId),
-    ["pricerunner-offers", categoryId, productId],
+    ["pricerunner-offers-v2", categoryId, productId],
     { revalidate: 21600 }
   )();
 }

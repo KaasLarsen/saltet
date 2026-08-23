@@ -19,3 +19,9 @@ export function pricerunnerProductUrl(
   });
   return `${PRICERUNNER_ORIGIN}/pl/${categoryId}-${productId}/?${params.toString()}`;
 }
+
+export function pricerunnerGotoStoreUrl(path: string): string {
+  const url = new URL(path, PRICERUNNER_ORIGIN);
+  url.searchParams.set("adrunnerId", PRICERUNNER_ADRUNNER_ID);
+  return url.toString();
+}
