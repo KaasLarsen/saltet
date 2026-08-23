@@ -9,6 +9,7 @@ interface PriceRunnerWidgetProps {
   label?: string;
   productId?: string;
   categoryId?: string;
+  sku?: string;
 }
 
 export function PriceRunnerWidget({
