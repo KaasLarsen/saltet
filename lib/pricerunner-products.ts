@@ -23,6 +23,11 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "1266",
     label: "Lodge støbejernspande 26 cm",
   },
+  "chainmail skruber støbejern": {
+    productId: "3405094937",
+    categoryId: "628",
+    label: "Chainmail-skrub til støbejern",
+  },
   "smedejernspande bål": {
     productId: "5308375",
     categoryId: "1266",

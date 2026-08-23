@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   staticPageGenerationTimeout: 180,
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "owp.klarna.com" },
+      { protocol: "https", hostname: "assets.klarnacdn.net" },
+    ],
+  },
   async redirects() {
     return [
       { source: "/tags/jul", destination: "/hoejtider/jul", permanent: true },
