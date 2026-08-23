@@ -118,7 +118,7 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "659",
     label: "Kosan lavtryksregulator 30 mbar",
   },
-  gasslange grill: {
+  "gasslange grill": {
     productId: "3452390857",
     categoryId: "659",
     label: "Ooni gasregulator og slange 30 mbar",
