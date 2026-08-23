@@ -1,22 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
+import { PRICERUNNER_PRODUCTS } from "@/lib/pricerunner-products";
 import {
   pricerunnerPublisherScriptSrc,
   pricerunnerSearchUrl,
   pricerunnerWidgetId,
   type PriceRunnerWidgetKind,
 } from "@/lib/pricerunner";
-
-const QUERY_RESOLVE: Record<
-  string,
-  { productId?: string; categoryId?: string }
-> = {
-  kødhakker: { categoryId: "10023" },
-  "kødhakker tilbehør røremaskine": { productId: "5167693" },
-  vakuumpakker: { categoryId: "10021" },
-  "Lodge støbejernspande": { productId: "3202827022" },
-};
 
 interface PriceRunnerWidgetProps {
   query: string;
@@ -32,27 +23,23 @@ export function PriceRunnerWidget({
   query,
   label,
   productId: productIdProp,
-  categoryId: categoryIdProp,
   kind: kindProp,
   offerLimit,
 }: PriceRunnerWidgetProps) {
-  const heading = label ?? query;
+  const mapped = PRICERUNNER_PRODUCTS[query];
+  const productId = productIdProp ?? mapped?.productId;
+  const heading = label ?? mapped?.label ?? query;
   const searchUrl = pricerunnerSearchUrl(query);
-  const resolved = QUERY_RESOLVE[query] ?? {};
-  const productId = productIdProp ?? resolved.productId;
-  const categoryId = categoryIdProp ?? resolved.categoryId;
   const kind: PriceRunnerWidgetKind | undefined =
-    kindProp ??
-    (categoryId ? "category" : productId ? "product" : undefined);
-  const key = categoryId ?? productId ?? "";
-  const widgetId = kind && key ? pricerunnerWidgetId(kind, key) : "";
+    kindProp ?? (productId ? "product" : undefined);
+  const widgetId =
+    kind && productId ? pricerunnerWidgetId(kind, productId) : "";
   const scriptSrc =
-    kind && widgetId
+    kind && widgetId && productId
       ? pricerunnerPublisherScriptSrc({
           kind,
           widgetId,
           productId,
-          categoryId,
           offerLimit,
         })
       : "";
