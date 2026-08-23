@@ -8,22 +8,59 @@ import type { Recipe } from "./types";
 const contentDir = path.join(process.cwd(), "content/grej");
 
 const CATEGORY_GREJ: Record<string, string[]> = {
-  airfryer: ["airfryer-vs-ovn-opgoer", "airfryer-tilbehoer"],
-  stobejern: ["stoebjern-rene-skole", "plancha-vs-stobejern"],
-  plancha: ["plancha-vs-stobejern", "stoebjern-rene-skole"],
-  pizzaovn: ["hvilken-pizzaovn", "bagestaal-vs-bagesten"],
+  airfryer: [
+    "airfryer-vs-ovn-opgoer",
+    "airfryer-tilbehoer",
+    "sukkertermometer",
+  ],
+  stobejern: [
+    "stoebjern-rene-skole",
+    "plancha-vs-stobejern",
+    "stoebjernsgryde-storrelsesguide",
+    "smedejern-vs-stobejern-baalpande",
+    "belaegning-teflon-keramik-staal",
+  ],
+  plancha: [
+    "plancha-vs-stobejern",
+    "stoebjern-rene-skole",
+    "gas-plancha-vs-kul-grill",
+  ],
+  pizzaovn: [
+    "hvilken-pizzaovn",
+    "bagestaal-vs-bagesten",
+    "infrared-termometer-pizza",
+    "pizzaspader",
+    "gasregulatorer-slanger-sikkerhed",
+  ],
   ovn: ["bagestaal-vs-bagesten"],
-  baalmad: ["baalgrej-til-baghaven"],
+  baalmad: [
+    "baalgrej-til-baghaven",
+    "stoebjernsgryde-storrelsesguide",
+    "smedejern-vs-stobejern-baalpande",
+  ],
   grill: [
     "traekul-og-briketter-i-indkoebskurven",
     "rotisseri-til-grillen",
     "rygesmuld-flis-og-chunks",
+    "tradlost-stegetermometer",
+    "gas-plancha-vs-kul-grill",
+    "gasregulatorer-slanger-sikkerhed",
+    "koldroegningsbakke",
   ],
-  roeg: ["rygesmuld-flis-og-chunks"],
-  "sous-vide": ["sous-vide-stave"],
+  roeg: ["rygesmuld-flis-og-chunks", "koldroegningsbakke"],
+  "sous-vide": [
+    "sous-vide-stave",
+    "vakuumpakkere",
+    "chiffonflaske-sifon",
+    "ismaskine-kompressor-vs-fryseelement",
+  ],
+  roeremaskine: ["koedhakkere"],
   trykkoger: ["trykkoger-vs-slowcooker"],
   dehydrator: ["dehydrator-koebsguide"],
   fermentering: ["fermenteringsglas"],
+  dips: ["stavblender", "chiffonflaske-sifon"],
+  pande: ["belaegning-teflon-keramik-staal", "kobbergryder"],
+  gryde: ["kobbergryder", "stoebjernsgryde-storrelsesguide"],
 };
 
 function parseGrejMeta(filePath: string): Grej {

@@ -78,6 +78,7 @@ export interface PriceRunnerWidgetConfig {
   label: string;
   query: string;
   productId?: string;
+  categoryId?: string;
   sku?: string;
 }
 

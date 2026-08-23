@@ -151,6 +151,7 @@ export default async function GrejPage({ params }: GrejPageProps) {
                     query={widget.query}
                     label={widget.label}
                     productId={widget.productId}
+                    categoryId={widget.categoryId}
                     sku={widget.sku}
                   />
                 ))}
