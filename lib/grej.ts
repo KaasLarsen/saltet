@@ -8,12 +8,22 @@ import type { Recipe } from "./types";
 const contentDir = path.join(process.cwd(), "content/grej");
 
 const CATEGORY_GREJ: Record<string, string[]> = {
-  airfryer: ["airfryer-vs-ovn-opgoer"],
-  stobejern: ["stoebjern-rene-skole"],
-  plancha: ["stoebjern-rene-skole"],
-  pizzaovn: ["hvilken-pizzaovn"],
+  airfryer: ["airfryer-vs-ovn-opgoer", "airfryer-tilbehoer"],
+  stobejern: ["stoebjern-rene-skole", "plancha-vs-stobejern"],
+  plancha: ["plancha-vs-stobejern", "stoebjern-rene-skole"],
+  pizzaovn: ["hvilken-pizzaovn", "bagestaal-vs-bagesten"],
+  ovn: ["bagestaal-vs-bagesten"],
   baalmad: ["baalgrej-til-baghaven"],
-  grill: ["traekul-og-briketter-i-indkoebskurven", "baalgrej-til-baghaven"],
+  grill: [
+    "traekul-og-briketter-i-indkoebskurven",
+    "rotisseri-til-grillen",
+    "rygesmuld-flis-og-chunks",
+  ],
+  roeg: ["rygesmuld-flis-og-chunks"],
+  "sous-vide": ["sous-vide-stave"],
+  trykkoger: ["trykkoger-vs-slowcooker"],
+  dehydrator: ["dehydrator-koebsguide"],
+  fermentering: ["fermenteringsglas"],
 };
 
 function parseGrejMeta(filePath: string): Grej {
