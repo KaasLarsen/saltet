@@ -199,4 +199,64 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "659",
     label: "Petromax Cabix Plus briketter",
   },
+  "Peugeot peberkværn": {
+    productId: "3987849",
+    categoryId: "461",
+    label: "Peugeot Paris peberkværn",
+  },
+  "Cole Mason peberkværn": {
+    productId: "3263872452",
+    categoryId: "461",
+    label: "Cole & Mason peberkværn",
+  },
+  "Microplane rivejern": {
+    productId: "3211044421",
+    categoryId: "461",
+    label: "Microplane Professional rivejern",
+  },
+  fjerkræsaks: {
+    productId: "3419741719",
+    categoryId: "461",
+    label: "Scanpan Classic fjerkræsaks",
+  },
+  "køkkenvægt digital": {
+    productId: "3201260126",
+    categoryId: "248",
+    label: "OXO Good Grips køkkenvægt",
+  },
+  "wok kulstofstål": {
+    productId: "5206209",
+    categoryId: "1266",
+    label: "Kulstofstål-wok",
+  },
+  "hævekasse pizzadej": {
+    productId: "3330852163",
+    categoryId: "461",
+    label: "Pizzadej-hævekasse",
+  },
+  kødnål: {
+    productId: "4139180",
+    categoryId: "461",
+    label: "Kødnål / snørenål",
+  },
+  grilltang: {
+    productId: "3200991292",
+    categoryId: "659",
+    label: "Weber grilltang",
+  },
+  grillbørste: {
+    productId: "3735274",
+    categoryId: "659",
+    label: "Weber trekantet grillbørste",
+  },
+  "nylon grillbørste": {
+    productId: "3513863715",
+    categoryId: "659",
+    label: "Nylon grillbørste",
+  },
+  køkkenpincet: {
+    productId: "3561921606",
+    categoryId: "461",
+    label: "Køkkenpincet",
+  },
 };

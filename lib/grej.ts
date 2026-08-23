@@ -12,6 +12,8 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "airfryer-vs-ovn-opgoer",
     "airfryer-tilbehoer",
     "sukkertermometer",
+    "tangsaet-pincet-grilltang",
+    "koekkenvaegt-vs-maalebaeger",
   ],
   stobejern: [
     "stoebjern-rene-skole",
@@ -19,6 +21,8 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "stoebjernsgryde-storrelsesguide",
     "smedejern-vs-stobejern-baalpande",
     "belaegning-teflon-keramik-staal",
+    "induktion-vs-gas",
+    "tangsaet-pincet-grilltang",
   ],
   plancha: [
     "plancha-vs-stobejern",
@@ -31,8 +35,15 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "infrared-termometer-pizza",
     "pizzaspader",
     "gasregulatorer-slanger-sikkerhed",
+    "haevekasser-pizzadej",
+    "koekkenvaegt-vs-maalebaeger",
   ],
-  ovn: ["bagestaal-vs-bagesten"],
+  ovn: [
+    "bagestaal-vs-bagesten",
+    "koekkenvaegt-vs-maalebaeger",
+    "haevekasser-pizzadej",
+    "koedsnore-og-koednaale",
+  ],
   baalmad: [
     "baalgrej-til-baghaven",
     "stoebjernsgryde-storrelsesguide",
@@ -46,6 +57,10 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "gas-plancha-vs-kul-grill",
     "gasregulatorer-slanger-sikkerhed",
     "koldroegningsbakke",
+    "grillboerster-sikkerhed",
+    "tangsaet-pincet-grilltang",
+    "induktion-vs-gas",
+    "koedsnore-og-koednaale",
   ],
   roeg: ["rygesmuld-flis-og-chunks", "koldroegningsbakke"],
   "sous-vide": [
@@ -59,8 +74,22 @@ const CATEGORY_GREJ: Record<string, string[]> = {
   dehydrator: ["dehydrator-koebsguide"],
   fermentering: ["fermenteringsglas"],
   dips: ["stavblender", "chiffonflaske-sifon"],
-  pande: ["belaegning-teflon-keramik-staal", "kobbergryder"],
-  gryde: ["kobbergryder", "stoebjernsgryde-storrelsesguide"],
+  pande: [
+    "belaegning-teflon-keramik-staal",
+    "kobbergryder",
+    "peberkvaern-keramik-vs-plastik",
+    "microplane-vs-kasserivejern",
+    "koekkensakse-fjerkrae-saks",
+    "induktion-vs-gas",
+    "tangsaet-pincet-grilltang",
+    "multihakker-loegsnitter",
+  ],
+  gryde: [
+    "kobbergryder",
+    "stoebjernsgryde-storrelsesguide",
+    "koekkensakse-fjerkrae-saks",
+    "multihakker-loegsnitter",
+  ],
 };
 
 function parseGrejMeta(filePath: string): Grej {
