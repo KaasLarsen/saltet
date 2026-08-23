@@ -14,6 +14,7 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "sukkertermometer",
     "tangsaet-pincet-grilltang",
     "koekkenvaegt-vs-maalebaeger",
+    "bagestaal-til-airfryer",
   ],
   stobejern: [
     "stoebjern-rene-skole",
@@ -23,6 +24,8 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "belaegning-teflon-keramik-staal",
     "induktion-vs-gas",
     "tangsaet-pincet-grilltang",
+    "opvaskeboerste-stoebjern",
+    "grillhandske-laeder-silikone-kevlar",
   ],
   plancha: [
     "plancha-vs-stobejern",
@@ -37,6 +40,8 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "gasregulatorer-slanger-sikkerhed",
     "haevekasser-pizzadej",
     "koekkenvaegt-vs-maalebaeger",
+    "spiral-vs-planetarisk-roeremaskine",
+    "grillhandske-laeder-silikone-kevlar",
   ],
   ovn: [
     "bagestaal-vs-bagesten",
@@ -48,6 +53,8 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "baalgrej-til-baghaven",
     "stoebjernsgryde-storrelsesguide",
     "smedejern-vs-stobejern-baalpande",
+    "grillhandske-laeder-silikone-kevlar",
+    "koeleboks-passiv-vs-kompressor",
   ],
   grill: [
     "traekul-og-briketter-i-indkoebskurven",
@@ -61,6 +68,9 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "tangsaet-pincet-grilltang",
     "induktion-vs-gas",
     "koedsnore-og-koednaale",
+    "taendblokke-opgoer",
+    "grillhandske-laeder-silikone-kevlar",
+    "koeleboks-passiv-vs-kompressor",
   ],
   roeg: ["rygesmuld-flis-og-chunks", "koldroegningsbakke"],
   "sous-vide": [
@@ -68,12 +78,19 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "vakuumpakkere",
     "chiffonflaske-sifon",
     "ismaskine-kompressor-vs-fryseelement",
+    "termokande-til-mad",
   ],
-  roeremaskine: ["koedhakkere"],
+  roeremaskine: ["koedhakkere", "spiral-vs-planetarisk-roeremaskine"],
   trykkoger: ["trykkoger-vs-slowcooker"],
   dehydrator: ["dehydrator-koebsguide"],
   fermentering: ["fermenteringsglas"],
-  dips: ["stavblender", "chiffonflaske-sifon"],
+  dips: [
+    "stavblender",
+    "chiffonflaske-sifon",
+    "espresso-vs-moccamaster",
+    "maelkeskummer-mikroskum",
+    "termokande-til-mad",
+  ],
   pande: [
     "belaegning-teflon-keramik-staal",
     "kobbergryder",
@@ -83,6 +100,8 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "induktion-vs-gas",
     "tangsaet-pincet-grilltang",
     "multihakker-loegsnitter",
+    "knivmagnet-vs-knivblok",
+    "opvaskeboerste-stoebjern",
   ],
   gryde: [
     "kobbergryder",

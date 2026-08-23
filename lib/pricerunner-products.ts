@@ -259,4 +259,89 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "461",
     label: "Køkkenpincet",
   },
+  "Moccamaster KBG Select": {
+    productId: "4090783",
+    categoryId: "82",
+    label: "Moccamaster Select KBG741",
+  },
+  "Sage Barista Express": {
+    productId: "3042458",
+    categoryId: "82",
+    label: "Sage The Barista Express",
+  },
+  "RIG-TIG Foodie mælkeskummer": {
+    productId: "3433754640",
+    categoryId: "82",
+    label: "RIG-TIG Foodie mælkeskummer",
+  },
+  "Yeti Tundra 45 køleboks": {
+    productId: "3414393129",
+    categoryId: "501",
+    label: "Yeti Tundra 45 køleboks",
+  },
+  "Dometic CFX3 35": {
+    productId: "5160561",
+    categoryId: "501",
+    label: "Dometic CFX3 35 kompressor-køler",
+  },
+  "Stanley Classic Food Jar 0.7L": {
+    productId: "4398785",
+    categoryId: "461",
+    label: "Stanley Classic Food Jar 0,7 L",
+  },
+  "KitchenAid Artisan 5KSM125": {
+    productId: "3388892721",
+    categoryId: "1244",
+    label: "KitchenAid Artisan 5KSM125",
+  },
+  "Aduro Easy Firelighter Bio-wool": {
+    productId: "3210316416",
+    categoryId: "659",
+    label: "Aduro træuld-optænding",
+  },
+  "Nature CO2 Neutral Firelighters": {
+    productId: "4070025",
+    categoryId: "659",
+    label: "Nature CO₂-neutrale tændblokke",
+  },
+  "Weber Premium grillhandsker": {
+    productId: "3746453",
+    categoryId: "684",
+    label: "Weber Premium grillhandsker",
+  },
+  "Dorre Mandy knivmagnet": {
+    productId: "3306307101",
+    categoryId: "243",
+    label: "Dorre Mandy knivmagnet 40 cm",
+  },
+  "Yeti Tundra 45 køleboks": {
+    productId: "3414393129",
+    categoryId: "501",
+    label: "Yeti Tundra 45 køleboks",
+  },
+  "Bodum Schiuma mælkeskummer": {
+    productId: "3262278317",
+    categoryId: "82",
+    label: "Bodum Schiuma mælkeskummer",
+  },
+  "Primus Food Vacuum 1.2L": {
+    productId: "4238885",
+    categoryId: "461",
+    label: "Primus mad-termokande 1,2 L",
+  },
+  "Philips Airfryer bagesæt": {
+    productId: "3207218902",
+    categoryId: "81",
+    label: "Philips Airfryer XXL bagesæt",
+  },
+  "Napoleon Pro grillhandske": {
+    productId: "3203226168",
+    categoryId: "684",
+    label: "Napoleon Pro grillhandske",
+  },
+  "Laguiole knivmagnet akacie": {
+    productId: "3333390397",
+    categoryId: "243",
+    label: "Laguiole by Hâws knivmagnet",
+  },
 };
