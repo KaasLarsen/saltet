@@ -38,6 +38,12 @@ export default function PrivacyPage() {
           (fx IP-adresse og tidspunkt) af hensyn til drift og sikkerhed.
         </p>
         <p>
+          På grej-sider vises prissammenligning fra PriceRunner. Hvis du
+          klikker videre til en butik, behandler PriceRunner og butikken data
+          efter deres egne politikker. Vi kan modtage provision på køb. Vi
+          sælger ikke din e-mail eller opretter profiler selv.
+        </p>
+        <p>
           Om cookies: se vores{" "}
           <Link
             href="/cookies"

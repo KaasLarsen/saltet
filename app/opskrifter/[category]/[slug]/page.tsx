@@ -16,6 +16,7 @@ import {
   formatDuration,
   difficultyLabel,
 } from "@/lib/format";
+import { getGrejForRecipe } from "@/lib/grej";
 import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
 import {
   getAllRecipeParams,
@@ -56,6 +57,11 @@ export default async function RecipePage({ params }: RecipePageProps) {
   const mentionedInGuides = getGuidesMentioningRecipe(
     recipe.category,
     recipe.slug
+  );
+  const relatedGrej = getGrejForRecipe(
+    recipe.category,
+    recipe.slug,
+    recipe.relatedGrej
   );
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
@@ -186,6 +192,35 @@ export default async function RecipePage({ params }: RecipePageProps) {
             <RecipeTags tags={recipe.tags} className="mt-12" />
 
             <RecipeFaqSection items={recipe.faq} />
+
+            {relatedGrej.length > 0 && (
+              <section className="mt-14 text-left" aria-labelledby="grej-heading">
+                <h2
+                  id="grej-heading"
+                  className="mb-4 text-center font-serif text-2xl uppercase tracking-wide text-bone"
+                >
+                  Grejet bag retten
+                </h2>
+                <ul className="space-y-3">
+                  {relatedGrej.map((item) => (
+                    <li key={item.slug}>
+                      <Link
+                        href={`/grej/${item.slug}`}
+                        className="block rounded-2xl border-2 border-bone/15 bg-ash/30 px-4 py-3 transition-colors hover:border-herb"
+                      >
+                        <span className="font-serif text-lg uppercase tracking-wide text-bone">
+                          {item.title}
+                        </span>
+                        <span className="mt-1 block text-sm text-bone/55">
+                          Vi har lavet denne opskrift med det grej — læs
+                          artiklen.
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             {mentionedInGuides.length > 0 && (
               <section className="mt-14 text-left" aria-labelledby="guides-heading">

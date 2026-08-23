@@ -19,12 +19,19 @@ export default function CookiesPage() {
       </h1>
       <div className="mt-8 space-y-5 text-left leading-relaxed text-bone/65 md:text-center">
         <p>
-          {siteConfig.name} bruger kun teknisk nødvendige cookies, der får
-          sitet til at virke — fx i forbindelse med hosting og sikkerhed.
+          {siteConfig.name} bruger teknisk nødvendige cookies, der får sitet
+          til at virke — fx i forbindelse med hosting og sikkerhed.
         </p>
         <p>
-          Vi sætter ikke cookies til markedsføring eller statistik, og vi
-          deler ikke cookie-data med tredjeparter til annoncering.
+          På grej-sider indlejrer vi PriceRunner-widgets, så du kan se aktuelle
+          priser. PriceRunner kan sætte egne cookies og måle klik, når du
+          interagerer med widgetten eller åbner deres site. Vi bruger
+          adrunner-id <span className="text-bone/80">adrunner_dk_online-opskrift</span>,
+          så provision kan tilskrives Saltet.
+        </p>
+        <p>
+          Vi sætter ikke egne cookies til markedsføring eller statistik. Google
+          AdSense kan indlæse tredjepartsscripts på sider, hvor annoncer vises.
         </p>
         <p>
           Du kan altid slette eller blokere cookies i din browsers

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Guide, Recipe } from "./types";
+import type { Grej, Guide, Recipe } from "./types";
 import { getCategoryName } from "./categories";
 
 const siteUrl =
@@ -226,6 +226,70 @@ export function buildArticleJsonLd(guide: Guide): object {
     },
     inLanguage: "da-DK",
     keywords: guide.tags.join(", "),
+  };
+}
+
+export function buildGrejMetadata(item: Grej): Metadata {
+  const url = absoluteUrl(`/grej/${item.slug}`);
+
+  return {
+    title: `${item.title} | Saltet`,
+    description: item.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: item.title,
+      description: item.description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "article",
+      publishedTime: item.publishedAt,
+      modifiedTime: item.updatedAt ?? item.publishedAt,
+      images: [
+        {
+          url: absoluteUrl(item.image),
+          alt: item.imageAlt,
+          width: 1200,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.description,
+      images: [absoluteUrl(item.image)],
+    },
+  };
+}
+
+export function buildGrejArticleJsonLd(item: Grej): object {
+  const url = absoluteUrl(`/grej/${item.slug}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item.title,
+    description: item.description,
+    image: [absoluteUrl(item.image)],
+    datePublished: item.publishedAt,
+    dateModified: item.updatedAt ?? item.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    inLanguage: "da-DK",
+    keywords: item.tags.join(", "),
   };
 }
 

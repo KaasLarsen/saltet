@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SaltShakerMark } from "@/components/SaltShakerMark";
 import { CATEGORY_NAV } from "@/lib/category-nav";
+import { GREJ_NAV } from "@/lib/grej-nav";
 import { GUIDE_NAV } from "@/lib/guide-nav";
 import { HOLIDAY_NAV } from "@/lib/holiday-nav";
 
@@ -34,6 +35,17 @@ const navItems: NavItem[] = [
       { href: "/guides", label: "Alle guides" },
       ...GUIDE_NAV.map((g) => ({
         href: `/guides/${g.slug}`,
+        label: g.name,
+      })),
+    ],
+  },
+  {
+    href: "/grej",
+    label: "Grej",
+    children: [
+      { href: "/grej", label: "Alt grej" },
+      ...GREJ_NAV.map((g) => ({
+        href: `/grej/${g.slug}`,
         label: g.name,
       })),
     ],

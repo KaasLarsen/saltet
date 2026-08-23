@@ -4,11 +4,12 @@ import type { GuideListItem } from "@/lib/guide-filters";
 
 interface GuideCardProps {
   guide: GuideListItem;
+  href?: string;
 }
 
-export function GuideCard({ guide }: GuideCardProps) {
+export function GuideCard({ guide, href }: GuideCardProps) {
   return (
-    <Link href={`/guides/${guide.slug}`} className="group block text-left">
+    <Link href={href ?? `/guides/${guide.slug}`} className="group block text-left">
       <article>
         <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border-2 border-bone/20 bg-ash shadow-[4px_4px_0_0_rgba(212,255,0,0.35)] transition-[transform,box-shadow,border-color] duration-300 group-hover:-translate-y-1 group-hover:border-herb group-hover:shadow-[6px_6px_0_0_rgba(212,255,0,0.7)]">
           <Image

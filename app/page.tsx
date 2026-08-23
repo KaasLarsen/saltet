@@ -3,6 +3,7 @@ import Link from "next/link";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
 import { categories } from "@/lib/categories";
+import { GREJ_NAV } from "@/lib/grej-nav";
 import { getHighlightedHoliday } from "@/lib/holiday-nav";
 import { holidays, getRecipesByHoliday } from "@/lib/holidays";
 import { getFeaturedRecipes } from "@/lib/recipes";
@@ -154,6 +155,35 @@ export default function HomePage() {
           </div>
 
           <h2 className="mb-8 mt-14 text-center font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl">
+            Grej
+          </h2>
+          <p className="mx-auto mb-6 max-w-lg text-center text-sm text-bone/50">
+            Airfryer, pizzaovn, støbejern og bål — tests og købsguider, ikke
+            bare opskrifter.
+          </p>
+          <div className="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {GREJ_NAV.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/grej/${item.slug}`}
+                className="group rounded-2xl border-2 border-bone/20 bg-stone px-3 py-5 text-center shadow-[3px_3px_0_0_rgba(212,255,0,0.35)] transition-[transform,border-color,box-shadow] hover:-rotate-1 hover:border-herb hover:shadow-[4px_4px_0_0_rgba(212,255,0,0.7)]"
+              >
+                <h3 className="font-serif text-sm uppercase tracking-wide text-bone transition-colors group-hover:text-herb sm:text-base">
+                  {item.name}
+                </h3>
+              </Link>
+            ))}
+          </div>
+          <div className="mb-14 flex justify-center">
+            <Link
+              href="/grej"
+              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
+            >
+              Se alt grej
+            </Link>
+          </div>
+
+          <h2 className="mb-8 text-center font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl">
             Kategorier
           </h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">

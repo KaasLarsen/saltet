@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllCategorySlugs } from "@/lib/categories";
 import { getAllHolidaySlugs } from "@/lib/holidays";
+import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { getAllRecipes } from "@/lib/recipes";
 import { getBrowseTags } from "@/lib/tags";
@@ -11,6 +12,7 @@ import { absoluteUrl } from "@/lib/seo";
  *
  * - Nye faste sider (fx /kontakt): tilføj i STATIC_ROUTES
  * - Guides: auto fra content/guides/*.mdx
+ * - Grej: auto fra content/grej/*.mdx
  * - Kategorier: auto fra lib/categories + content/recipes/*
  * - Højtider: auto fra lib/holidays
  * - Tags: auto fra opskrifters tags (højtids-tags omdirigeres til /hoejtider)
@@ -24,6 +26,7 @@ const STATIC_ROUTES: {
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/opskrifter", changeFrequency: "weekly", priority: 0.9 },
   { path: "/guides", changeFrequency: "weekly", priority: 0.88 },
+  { path: "/grej", changeFrequency: "weekly", priority: 0.88 },
   { path: "/hoejtider", changeFrequency: "weekly", priority: 0.85 },
   { path: "/tags", changeFrequency: "weekly", priority: 0.7 },
   { path: "/om", changeFrequency: "monthly", priority: 0.5 },
@@ -35,6 +38,7 @@ const STATIC_ROUTES: {
 export default function sitemap(): MetadataRoute.Sitemap {
   const recipes = getAllRecipes();
   const guides = getAllGuides();
+  const grej = getAllGrej();
   const tags = getBrowseTags();
   const categorySlugs = getAllCategorySlugs();
   const holidaySlugs = getAllHolidaySlugs();
@@ -82,6 +86,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const grejPages: MetadataRoute.Sitemap = grej.map((item) => ({
+    url: absoluteUrl(`/grej/${item.slug}`),
+    lastModified: new Date(item.updatedAt ?? item.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   return [
     ...staticPages,
     ...categoryPages,
@@ -89,5 +100,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tagPages,
     ...recipePages,
     ...guidePages,
+    ...grejPages,
   ];
 }

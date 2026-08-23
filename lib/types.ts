@@ -20,6 +20,7 @@ export interface RecipeFrontmatter {
   imageAlt: string;
   publishedAt: string;
   featured?: boolean;
+  relatedGrej?: string[];
   ingredients: string[];
   steps: string[];
   faq: RecipeFaq[];
@@ -63,5 +64,40 @@ export interface GuideFrontmatter {
 }
 
 export interface Guide extends GuideFrontmatter {
+  content: string;
+}
+
+export type GrejTrack = "test" | "koebsguide" | "vedligeholdelse";
+
+export interface GrejFaq {
+  question: string;
+  answer: string;
+}
+
+export interface PriceRunnerWidgetConfig {
+  label: string;
+  query: string;
+  productId?: string;
+  sku?: string;
+}
+
+export interface GrejFrontmatter {
+  title: string;
+  slug: string;
+  description: string;
+  track: GrejTrack;
+  tags: string[];
+  image: string;
+  imageAlt: string;
+  publishedAt: string;
+  updatedAt?: string;
+  faq: GrejFaq[];
+  relatedRecipes: string[];
+  relatedGuides?: string[];
+  relatedGrej?: string[];
+  widgets?: PriceRunnerWidgetConfig[];
+}
+
+export interface Grej extends GrejFrontmatter {
   content: string;
 }
