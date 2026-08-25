@@ -1,18 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GuideCard } from "@/components/GuideCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
 import { categories } from "@/lib/categories";
 import { GREJ_NAV } from "@/lib/grej-nav";
+import { getAllGrej } from "@/lib/grej";
+import { getAllGuides } from "@/lib/guides";
 import { getHighlightedHoliday } from "@/lib/holiday-nav";
 import { holidays, getRecipesByHoliday } from "@/lib/holidays";
 import { getFeaturedRecipes } from "@/lib/recipes";
 
 export default function HomePage() {
-  const featuredByCategory = categories.map((cat) => ({
-    category: cat,
-    recipes: getFeaturedRecipes(3, cat.slug),
-  }));
+  const latestRecipes = getFeaturedRecipes(6);
+  const latestGuides = getAllGuides()
+    .slice(0, 3)
+    .map((guide) => ({
+      title: guide.title,
+      slug: guide.slug,
+      description: guide.description,
+      tags: guide.tags,
+      image: guide.image,
+      imageAlt: guide.imageAlt,
+    }));
+  const latestGrej = getAllGrej()
+    .slice(0, 3)
+    .map((item) => ({
+      title: item.title,
+      slug: item.slug,
+      description: item.description,
+      tags: item.tags,
+      image: item.image,
+      imageAlt: item.imageAlt,
+    }));
   const highlighted = getHighlightedHoliday();
   const highlightedHoliday = holidays.find(
     (h) => h.slug === highlighted.holiday.slug
@@ -44,7 +64,7 @@ export default function HomePage() {
             Saltet
           </h1>
           <p className="animate-rise delay-2 mx-auto mt-5 max-w-md text-base leading-relaxed text-bone/75 md:text-lg">
-            Salt på maden. Opskrifter med kant — sprøde, enkle og klar til
+            Opskrifter, guides og grej med kant — sprødt, enkelt og klar til
             hverdagens session.
           </p>
           <div className="animate-rise delay-3 mt-8 w-full max-w-lg">
@@ -87,35 +107,95 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      {featuredByCategory.map(({ category, recipes }, sectionIndex) =>
-        recipes.length === 0 ? null : (
-          <section
-            key={category.slug}
-            className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20"
-          >
-            <div className="mb-10 flex flex-col items-center gap-3 text-center">
-              <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
-                Udvalgte {category.name.toLowerCase()}
-              </h2>
+      {latestRecipes.length > 0 ? (
+        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-10 flex flex-col items-center gap-3 text-center">
+            <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
+              Nyeste opskrifter
+            </h2>
+            <Link
+              href="/opskrifter"
+              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
+            >
+              Se alle
+            </Link>
+          </div>
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {latestRecipes.map((recipe, index) => (
+              <RecipeCard
+                key={`${recipe.category}/${recipe.slug}`}
+                recipe={recipe}
+                priority={index === 0}
+              />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {latestGuides.length > 0 ? (
+        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-10 flex flex-col items-center gap-3 text-center">
+            <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
+              Guides
+            </h2>
+            <p className="max-w-md text-sm text-bone/50">
+              Metode, teknik og fejlfinding — før du tænder for grejet.
+            </p>
+            <Link
+              href="/guides"
+              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
+            >
+              Se alle
+            </Link>
+          </div>
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {latestGuides.map((guide) => (
+              <GuideCard key={guide.slug} guide={guide} />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {latestGrej.length > 0 ? (
+        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-10 flex flex-col items-center gap-3 text-center">
+            <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
+              Grej
+            </h2>
+            <p className="max-w-md text-sm text-bone/50">
+              Tests og købsguider — airfryer, pizzaovn, støbejern og bål.
+            </p>
+            <Link
+              href="/grej"
+              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
+            >
+              Se alt grej
+            </Link>
+          </div>
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {latestGrej.map((item) => (
+              <GuideCard
+                key={item.slug}
+                guide={item}
+                href={`/grej/${item.slug}`}
+              />
+            ))}
+          </div>
+          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {GREJ_NAV.map((item) => (
               <Link
-                href={`/opskrifter/${category.slug}`}
-                className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
+                key={item.slug}
+                href={`/grej/${item.slug}`}
+                className="group rounded-2xl border-2 border-bone/20 bg-stone px-3 py-5 text-center shadow-[3px_3px_0_0_rgba(212,255,0,0.35)] transition-[transform,border-color,box-shadow] hover:-rotate-1 hover:border-herb hover:shadow-[4px_4px_0_0_rgba(212,255,0,0.7)]"
               >
-                Se alle
+                <h3 className="font-serif text-sm uppercase tracking-wide text-bone transition-colors group-hover:text-herb sm:text-base">
+                  {item.name}
+                </h3>
               </Link>
-            </div>
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {recipes.map((recipe, index) => (
-                <RecipeCard
-                  key={`${recipe.category}/${recipe.slug}`}
-                  recipe={recipe}
-                  priority={sectionIndex === 0 && index === 0}
-                />
-              ))}
-            </div>
-          </section>
-        )
-      )}
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="border-y-2 border-bone/15 bg-ash/60">
         <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-14">
@@ -155,35 +235,6 @@ export default function HomePage() {
           </div>
 
           <h2 className="mb-8 mt-14 text-center font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl">
-            Grej
-          </h2>
-          <p className="mx-auto mb-6 max-w-lg text-center text-sm text-bone/50">
-            Airfryer, pizzaovn, støbejern og bål — tests og købsguider, ikke
-            bare opskrifter.
-          </p>
-          <div className="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {GREJ_NAV.map((item) => (
-              <Link
-                key={item.slug}
-                href={`/grej/${item.slug}`}
-                className="group rounded-2xl border-2 border-bone/20 bg-stone px-3 py-5 text-center shadow-[3px_3px_0_0_rgba(212,255,0,0.35)] transition-[transform,border-color,box-shadow] hover:-rotate-1 hover:border-herb hover:shadow-[4px_4px_0_0_rgba(212,255,0,0.7)]"
-              >
-                <h3 className="font-serif text-sm uppercase tracking-wide text-bone transition-colors group-hover:text-herb sm:text-base">
-                  {item.name}
-                </h3>
-              </Link>
-            ))}
-          </div>
-          <div className="mb-14 flex justify-center">
-            <Link
-              href="/grej"
-              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
-            >
-              Se alt grej
-            </Link>
-          </div>
-
-          <h2 className="mb-8 text-center font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl">
             Kategorier
           </h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
