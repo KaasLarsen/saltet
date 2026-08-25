@@ -1,4 +1,5 @@
 import type { RecipeFaq } from "@/lib/types";
+import { LinkedText } from "@/components/mdx/RecipeMDX";
 
 interface RecipeFaqProps {
   items: RecipeFaq[];
@@ -29,7 +30,9 @@ export function RecipeFaqSection({ items }: RecipeFaqProps) {
                 </span>
               </span>
             </summary>
-            <p className="mt-3 leading-relaxed text-bone/65">{item.answer}</p>
+            <p className="mt-3 leading-relaxed text-bone/65">
+              <LinkedText text={item.answer} />
+            </p>
           </details>
         ))}
       </div>

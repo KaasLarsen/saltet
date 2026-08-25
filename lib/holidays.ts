@@ -12,14 +12,14 @@ export const holidays: Holiday[] = [
     name: "Jul",
     headline: "Juleopskrifter",
     description:
-      "Flæskesteg, and, gås, rødkål og risengrød — det danske julebord på tværs af airfryer, grill, ovn og gryde.",
+      "Flæskesteg, and, rødkål, brunede kartofler og risalamande — det danske julebord og julefrokosten.",
   },
   {
     slug: "nytaar",
     name: "Nytår",
     headline: "Nytårsopskrifter",
     description:
-      "Festmad til nytårsaften — hummer, oksemørbrad, tomahawk og de retter der hører champagne til.",
+      "Festmad til nytårsaften — oksemørbrad, torsk, hummerbisque og de desserter der hører champagne til.",
   },
   {
     slug: "paaske",
@@ -27,6 +27,13 @@ export const holidays: Holiday[] = [
     headline: "Påskeopskrifter",
     description:
       "Lam, sild og det salte påskebord — opskrifter til frokosten og den store middag.",
+  },
+  {
+    slug: "sommerhoejtider",
+    name: "Sommerhøjtider",
+    headline: "Sankt Hans og Pinse",
+    description:
+      "Grill, koldskål, nye kartofler og det lette sommerbord til Pinse og Sankt Hans.",
   },
   {
     slug: "mortensaften",

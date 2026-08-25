@@ -26,6 +26,21 @@ const nextConfig: NextConfig = {
         destination: "/hoejtider/mortensaften",
         permanent: true,
       },
+      {
+        source: "/tags/sommerhoejtider",
+        destination: "/hoejtider/sommerhoejtider",
+        permanent: true,
+      },
+      {
+        source: "/tags/sankt-hans",
+        destination: "/hoejtider/sommerhoejtider",
+        permanent: true,
+      },
+      {
+        source: "/tags/pinse",
+        destination: "/hoejtider/sommerhoejtider",
+        permanent: true,
+      },
     ];
   },
 };
