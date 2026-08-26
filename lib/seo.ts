@@ -10,7 +10,7 @@ export const siteConfig = {
   url: siteUrl,
   email: "info@saltet.dk",
   description:
-    "Salt på maden. Opskrifter med kant til airfryer, grill, bålmad, røg, plancha, gryde, pande, sylte, dips, sous vide, trykkoger, dehydrator, røremaskine, pizzaovn, støbejern og fermentering — enkelt, sprødt og med smag.",
+    "Salt på maden. Opskrifter med kant til airfryer, grill, bålmad, røg, plancha, gryde, pande, sylte, dips, sous vide, trykkoger, dehydrator, røremaskine, pizzaovn, støbejern, fermentering og pålæg — enkelt, sprødt og med smag.",
   locale: "da_DK",
   language: "da",
 };

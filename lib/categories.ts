@@ -121,6 +121,13 @@ export const categories: Category[] = [
       "Saltning, sprængning og mælkesyregæring — sauerkraut, kimchi, gravad laks, bacon, citroner og umami-nørderi med salt som motor.",
     headline: "Fermentering & saltning",
   },
+  {
+    slug: "palaeg",
+    name: "Pålæg",
+    description:
+      "Hjemmelavet pålæg, rørte salater og frokostklassikere til rugbrød og madpakke — med syltevarer fra Sylte og remoulade fra Dips som det naturlige tilbehør.",
+    headline: "Pålæg opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
