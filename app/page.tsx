@@ -7,7 +7,7 @@ import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
-import { partnerBanners } from "@/lib/partners";
+import { barsetBanner, oaterBanner } from "@/lib/partners";
 import { getFeaturedRecipes } from "@/lib/recipes";
 
 export default function HomePage() {
@@ -32,7 +32,6 @@ export default function HomePage() {
       image: item.image,
       imageAlt: item.imageAlt,
     }));
-  const homepageBanners = partnerBanners;
 
   return (
     <>
@@ -94,9 +93,7 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      {homepageBanners.length > 0 ? (
-        <PartnerBanner banners={homepageBanners} />
-      ) : null}
+      <PartnerBanner banner={oaterBanner} />
 
       {latestGuides.length > 0 ? (
         <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
@@ -123,6 +120,8 @@ export default function HomePage() {
           </CardCarousel>
         </section>
       ) : null}
+
+      <PartnerBanner banner={barsetBanner} />
 
       {latestGrej.length > 0 ? (
         <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
