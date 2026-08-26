@@ -314,11 +314,6 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "243",
     label: "Dorre Mandy knivmagnet 40 cm",
   },
-  "Yeti Tundra 45 køleboks": {
-    productId: "3414393129",
-    categoryId: "501",
-    label: "Yeti Tundra 45 køleboks",
-  },
   "Bodum Schiuma mælkeskummer": {
     productId: "3262278317",
     categoryId: "82",
