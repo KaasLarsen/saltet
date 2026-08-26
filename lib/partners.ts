@@ -11,6 +11,12 @@ export const partnerBanners: PartnerBannerConfig[] = [
       "https://www.partner-ads.com/dk/visbanner.php?partnerid=57393&bannerid=116078",
     alt: "Oater 2.0 — frisk havremælk på få minutter",
   },
+  {
+    href: "https://www.partner-ads.com/dk/klikbanner.php?partnerid=57393&bannerid=34571",
+    imgSrc:
+      "https://www.partner-ads.com/dk/visbanner.php?partnerid=57393&bannerid=34571",
+    alt: "Få dit eget barsæt",
+  },
 ];
 
 export function getActivePartnerBanner(
