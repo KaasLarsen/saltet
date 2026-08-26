@@ -1,20 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CardCarousel, CarouselSlide } from "@/components/CardCarousel";
 import { GuideCard } from "@/components/GuideCard";
+import { PartnerBanner } from "@/components/PartnerBanner";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
-import { categories } from "@/lib/categories";
-import { GREJ_NAV } from "@/lib/grej-nav";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
-import { getHighlightedHoliday } from "@/lib/holiday-nav";
-import { holidays, getRecipesByHoliday } from "@/lib/holidays";
+import { getActivePartnerBanner } from "@/lib/partners";
 import { getFeaturedRecipes } from "@/lib/recipes";
 
 export default function HomePage() {
-  const latestRecipes = getFeaturedRecipes(6);
+  const featuredRecipes = getFeaturedRecipes(12);
   const latestGuides = getAllGuides()
-    .slice(0, 3)
+    .slice(0, 8)
     .map((guide) => ({
       title: guide.title,
       slug: guide.slug,
@@ -24,7 +23,7 @@ export default function HomePage() {
       imageAlt: guide.imageAlt,
     }));
   const latestGrej = getAllGrej()
-    .slice(0, 3)
+    .slice(0, 8)
     .map((item) => ({
       title: item.title,
       slug: item.slug,
@@ -33,14 +32,7 @@ export default function HomePage() {
       image: item.image,
       imageAlt: item.imageAlt,
     }));
-  const highlighted = getHighlightedHoliday();
-  const highlightedHoliday = holidays.find(
-    (h) => h.slug === highlighted.holiday.slug
-  );
-  const seasonalRecipes =
-    highlighted.status === "now" && highlightedHoliday
-      ? getRecipesByHoliday(highlightedHoliday.slug).slice(0, 3)
-      : [];
+  const partnerBanner = getActivePartnerBanner();
 
   return (
     <>
@@ -79,39 +71,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {highlightedHoliday && seasonalRecipes.length > 0 ? (
-        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
-          <div className="mb-10 flex flex-col items-center gap-3 text-center">
-            <p className="inline-flex rotate-[-2deg] rounded-lg border-2 border-iron bg-herb px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-iron">
-              I sæson
-            </p>
-            <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
-              {highlightedHoliday.headline}
-            </h2>
-            <Link
-              href={`/hoejtider/${highlightedHoliday.slug}`}
-              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
-            >
-              Se alle
-            </Link>
-          </div>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {seasonalRecipes.map((recipe, index) => (
-              <RecipeCard
-                key={`${recipe.category}/${recipe.slug}`}
-                recipe={recipe}
-                priority={index === 0}
-              />
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {latestRecipes.length > 0 ? (
+      {featuredRecipes.length > 0 ? (
         <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
           <div className="mb-10 flex flex-col items-center gap-3 text-center">
             <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
-              Nyeste opskrifter
+              Udvalgte opskrifter
             </h2>
             <Link
               href="/opskrifter"
@@ -120,17 +84,17 @@ export default function HomePage() {
               Se alle
             </Link>
           </div>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {latestRecipes.map((recipe, index) => (
-              <RecipeCard
-                key={`${recipe.category}/${recipe.slug}`}
-                recipe={recipe}
-                priority={index === 0}
-              />
+          <CardCarousel label="Udvalgte opskrifter">
+            {featuredRecipes.map((recipe, index) => (
+              <CarouselSlide key={`${recipe.category}/${recipe.slug}`}>
+                <RecipeCard recipe={recipe} priority={index === 0} />
+              </CarouselSlide>
             ))}
-          </div>
+          </CardCarousel>
         </section>
       ) : null}
+
+      {partnerBanner ? <PartnerBanner banner={partnerBanner} /> : null}
 
       {latestGuides.length > 0 ? (
         <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
@@ -148,11 +112,13 @@ export default function HomePage() {
               Se alle
             </Link>
           </div>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <CardCarousel label="Guides">
             {latestGuides.map((guide) => (
-              <GuideCard key={guide.slug} guide={guide} />
+              <CarouselSlide key={guide.slug}>
+                <GuideCard guide={guide} />
+              </CarouselSlide>
             ))}
-          </div>
+          </CardCarousel>
         </section>
       ) : null}
 
@@ -172,91 +138,15 @@ export default function HomePage() {
               Se alt grej
             </Link>
           </div>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <CardCarousel label="Grej">
             {latestGrej.map((item) => (
-              <GuideCard
-                key={item.slug}
-                guide={item}
-                href={`/grej/${item.slug}`}
-              />
+              <CarouselSlide key={item.slug}>
+                <GuideCard href={`/grej/${item.slug}`} guide={item} />
+              </CarouselSlide>
             ))}
-          </div>
-          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {GREJ_NAV.map((item) => (
-              <Link
-                key={item.slug}
-                href={`/grej/${item.slug}`}
-                className="group rounded-2xl border-2 border-bone/20 bg-stone px-3 py-5 text-center shadow-[3px_3px_0_0_rgba(212,255,0,0.35)] transition-[transform,border-color,box-shadow] hover:-rotate-1 hover:border-herb hover:shadow-[4px_4px_0_0_rgba(212,255,0,0.7)]"
-              >
-                <h3 className="font-serif text-sm uppercase tracking-wide text-bone transition-colors group-hover:text-herb sm:text-base">
-                  {item.name}
-                </h3>
-              </Link>
-            ))}
-          </div>
+          </CardCarousel>
         </section>
       ) : null}
-
-      <section className="border-y-2 border-bone/15 bg-ash/60">
-        <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-14">
-          <div className="mb-8 flex flex-col items-center gap-3 text-center">
-            <h2 className="font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl">
-              Højtider
-            </h2>
-            <Link
-              href="/hoejtider"
-              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
-            >
-              Se alle
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {holidays.map((holiday) => {
-              const isHighlight = holiday.slug === highlighted.holiday.slug;
-              return (
-                <Link
-                  key={holiday.slug}
-                  href={`/hoejtider/${holiday.slug}`}
-                  className={`group rounded-2xl border-2 bg-stone px-3 py-5 text-center shadow-[3px_3px_0_0_rgba(212,255,0,0.35)] transition-[transform,border-color,box-shadow] hover:-rotate-1 hover:border-herb hover:shadow-[4px_4px_0_0_rgba(212,255,0,0.7)] ${
-                    isHighlight ? "border-herb" : "border-bone/20"
-                  }`}
-                >
-                  {isHighlight ? (
-                    <span className="mb-2 inline-flex rounded-md border-2 border-iron bg-herb px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-iron">
-                      {highlighted.status === "now" ? "Nu" : "Næste"}
-                    </span>
-                  ) : null}
-                  <h3 className="font-serif text-base uppercase tracking-wide text-bone transition-colors group-hover:text-herb sm:text-lg">
-                    {holiday.name}
-                  </h3>
-                </Link>
-              );
-            })}
-          </div>
-
-          <h2 className="mb-8 mt-14 text-center font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl">
-            Kategorier
-          </h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {categories.map((cat, i) => (
-              <Link
-                key={cat.slug}
-                href={`/opskrifter/${cat.slug}`}
-                className={`group rounded-2xl border-2 border-bone/20 bg-stone px-3 py-5 text-center shadow-[3px_3px_0_0_rgba(0,229,192,0.35)] transition-[transform,border-color,box-shadow] hover:-rotate-1 hover:border-pool hover:shadow-[4px_4px_0_0_rgba(0,229,192,0.7)] sm:px-4 sm:py-6 ${
-                  i % 2 === 1 ? "lg:translate-y-2" : ""
-                }`}
-              >
-                <h3 className="font-serif text-base uppercase tracking-wide text-bone transition-colors group-hover:text-pool sm:text-lg">
-                  {cat.name}
-                </h3>
-                <p className="mt-1.5 line-clamp-2 text-[11px] leading-snug text-bone/45 sm:text-xs">
-                  {cat.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
