@@ -84,11 +84,23 @@ export const KITCHENONE_PRODUCTS = {
     "https://www.kitchenone.dk/p/instant-duo-crisp-airfryer-trykkoger-11-i-1-5-7-liter_65815/",
 } as const;
 
-/** Boligcenter.dk — kogegrej (kategori-landinger indtil konkrete favorit-SKU’er) */
+/** Boligcenter.dk — kogegrej */
 export const BOLIGCENTER_PRODUCTS = {
   shop: "https://www.boligcenter.dk/",
   gryderOgStegepander:
     "https://www.boligcenter.dk/hjem-og-husholdning/kokken/gryder-og-stegepander/",
+  /** Rund støbejernspande — hverdagsstegepande til pande-retter */
+  stegepande30:
+    "https://www.boligcenter.dk/hjem-og-husholdning/kokken/gryder-og-stegepander/pander/grillpande/xl-bbq-grill-stegepande-i-stobejern-30-cm-rund",
+  /** Tre størrelser — godt start-sæt */
+  stegepandeSaet3:
+    "https://www.boligcenter.dk/hjem-og-husholdning/kokken/gryder-og-stegepander/pander/grillpande/bbq-stegepander-saet-af-3-stobejern",
+  /** Klassisk 5 l støbejernsgryde til simreretter */
+  stoebjernsgryde5l:
+    "https://www.boligcenter.dk/hjem-og-husholdning/kokken/gryder-og-stegepander/gryder/suppegryder/gryde-o265-cm-stobejern",
+  /** Hollandsk ovn med tilbehør — bål / udendørs */
+  hollandskOvn56:
+    "https://www.boligcenter.dk/hjem-og-husholdning/kokken/gryder-og-stegepander/pander/stegepander/stobejern/hollandsk-ovn-56-l-inklusiv-tilbehor",
   kokkenknive:
     "https://www.boligcenter.dk/hjem-og-husholdning/kokken/kokkenknive/",
   airfryer:

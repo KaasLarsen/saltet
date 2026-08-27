@@ -112,7 +112,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Se aktuel pris",
     variant: "grej",
     grejSlugs: ["stoebjernsgryde-storrelsesguide", "stoebjern-rene-skole"],
-    categories: ["stobejern", "gryde"],
+    categories: ["stobejern"],
   },
   "petromax-dutch-oven": {
     id: "petromax-dutch-oven",
@@ -160,6 +160,63 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     description:
       "To zoner, så sticky vinger og tilbehør lander samtidig — uden at fylde ovnen.",
     ctaLabel: "Se aktuel pris",
+    variant: "grej",
+  },
+  "kitchenone-instant-pot": {
+    id: "kitchenone-instant-pot",
+    href: partnerAdsProductUrl(
+      KITCHENONE_BANNER_ID,
+      KITCHENONE_PRODUCTS.instantPotDuoPlus
+    ),
+    label: "Instant Pot Duo Plus 5,7 L",
+    merchant: "KitchenOne",
+    description:
+      "Trykkoger til hverdags-simreretter — pulled pork, gullasch og supper på en brøkdel af tiden.",
+    ctaLabel: "Se hos KitchenOne",
+    variant: "grej",
+    grejSlugs: ["trykkoger-vs-slowcooker"],
+    categories: ["trykkoger"],
+  },
+  "boligcenter-stegepande": {
+    id: "boligcenter-stegepande",
+    href: partnerAdsProductUrl(
+      BOLIGCENTER_BANNER_ID,
+      BOLIGCENTER_PRODUCTS.stegepande30
+    ),
+    label: "Støbejernspande 30 cm",
+    merchant: "Boligcenter.dk",
+    description:
+      "Rund støbejernspande til skorpe på hakkebøf, frikadeller og one-pan-retter.",
+    ctaLabel: "Se hos Boligcenter",
+    variant: "grej",
+    categories: ["pande"],
+  },
+  "boligcenter-stoebjernsgryde": {
+    id: "boligcenter-stoebjernsgryde",
+    href: partnerAdsProductUrl(
+      BOLIGCENTER_BANNER_ID,
+      BOLIGCENTER_PRODUCTS.stoebjernsgryde5l
+    ),
+    label: "Støbejernsgryde 5 L (Ø26,5 cm)",
+    merchant: "Boligcenter.dk",
+    description:
+      "Klassisk størrelse til gullasch, bolognese og alt der skal simre under låg.",
+    ctaLabel: "Se hos Boligcenter",
+    variant: "grej",
+    categories: ["gryde"],
+  },
+  /** Alias — ældre id’er / eksplicit frontmatter */
+  "boligcenter-gryder": {
+    id: "boligcenter-gryder",
+    href: partnerAdsProductUrl(
+      BOLIGCENTER_BANNER_ID,
+      BOLIGCENTER_PRODUCTS.stoebjernsgryde5l
+    ),
+    label: "Støbejernsgryde 5 L (Ø26,5 cm)",
+    merchant: "Boligcenter.dk",
+    description:
+      "Klassisk størrelse til gullasch, bolognese og alt der skal simre under låg.",
+    ctaLabel: "Se hos Boligcenter",
     variant: "grej",
   },
   "ooni-infrared": {
@@ -432,6 +489,18 @@ export function homeshopTrackedUrl(
   productUrl: string = HOMESHOP_PRODUCTS.philipsDual
 ): string {
   return partnerAdsProductUrl(HOMESHOP_BANNER_ID, productUrl);
+}
+
+export function kitchenoneTrackedUrl(
+  productUrl: string = KITCHENONE_PRODUCTS.instantPotDuoPlus
+): string {
+  return partnerAdsProductUrl(KITCHENONE_BANNER_ID, productUrl);
+}
+
+export function boligcenterTrackedUrl(
+  productUrl: string = BOLIGCENTER_PRODUCTS.stegepande30
+): string {
+  return partnerAdsProductUrl(BOLIGCENTER_BANNER_ID, productUrl);
 }
 
 export function getAffiliateOffer(id: string): AffiliateOffer | undefined {
