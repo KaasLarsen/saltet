@@ -339,4 +339,49 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "243",
     label: "Laguiole by Hâws knivmagnet",
   },
+  "perforeret bagepapir airfryer": {
+    productId: "3209135542",
+    categoryId: "1268",
+    label: "Nordic Quality bagepapir til airfryer",
+  },
+  "silikoneform airfryer": {
+    productId: "3417817238",
+    categoryId: "81",
+    label: "AGK Nordic Airfryer-silikoneform",
+  },
+  "airfryer rist tilbehør": {
+    productId: "3207174913",
+    categoryId: "81",
+    label: "AGK Nordic Airfryer-rist",
+  },
+  "airfryer rist tilbehør dobbelt": {
+    productId: "3396445586",
+    categoryId: "81",
+    label: "Conzept Airfryer-rist stabelbar",
+  },
+  "oliesprayflaske glas olivenolie": {
+    productId: "3396367445",
+    categoryId: "461",
+    label: "Rosendahl Grand Cru oliespray",
+  },
+  "oliesprayer køkken rustfrit stål": {
+    productId: "3414592313",
+    categoryId: "461",
+    label: "Condor oliespray rustfrit/glas",
+  },
+  "Misto oliesprayer": {
+    productId: "3200191579",
+    categoryId: "461",
+    label: "KitchenCraft MasterClass oliesprayer",
+  },
+  "nylon børste opvask non-stick": {
+    productId: "3207363915",
+    categoryId: "628",
+    label: "Eva Solo opvaskebørste nylon",
+  },
+  "non-stick rengøring bagepulver": {
+    productId: "3505776733",
+    categoryId: "628",
+    label: "Leijma Mirakelsvamp 3-pak",
+  },
 };
