@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AffiliateCta } from "@/components/AffiliateCta";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -10,6 +11,11 @@ import { RecipeTags } from "@/components/RecipeTags";
 import { RecipeContent } from "@/components/mdx/RecipeContent";
 import { Ingredients } from "@/components/mdx/RecipeMDX";
 import { Steps } from "@/components/mdx/RecipeMDX";
+import {
+  getAffiliateOfferForRecipe,
+  getGroceryAffiliateOfferForRecipe,
+  getWineAffiliateOfferForRecipe,
+} from "@/lib/affiliate";
 import { getCategoryName } from "@/lib/categories";
 import {
   formatDate,
@@ -63,6 +69,12 @@ export default async function RecipePage({ params }: RecipePageProps) {
     recipe.slug,
     recipe.relatedGrej
   );
+  const affiliateOffer = getAffiliateOfferForRecipe(
+    recipe,
+    relatedGrej.map((g) => g.slug)
+  );
+  const wineOffer = getWineAffiliateOfferForRecipe(recipe);
+  const groceryOffer = getGroceryAffiliateOfferForRecipe(recipe);
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
 
@@ -179,6 +191,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
                   Ingredienser
                 </h2>
                 <Ingredients items={recipe.ingredients} />
+                {groceryOffer ? (
+                  <AffiliateCta offer={groceryOffer} className="mt-6 mb-0" />
+                ) : null}
               </section>
 
               <section>
@@ -189,11 +204,15 @@ export default async function RecipePage({ params }: RecipePageProps) {
               </section>
             </div>
 
+            {wineOffer ? (
+              <AffiliateCta offer={wineOffer} className="mt-10 mb-0" />
+            ) : null}
+
             <RecipeTags tags={recipe.tags} className="mt-12" />
 
             <RecipeFaqSection items={recipe.faq} />
 
-            {relatedGrej.length > 0 && (
+            {(affiliateOffer || relatedGrej.length > 0) && (
               <section className="mt-14 text-left" aria-labelledby="grej-heading">
                 <h2
                   id="grej-heading"
@@ -201,24 +220,29 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 >
                   Grejet bag retten
                 </h2>
-                <ul className="space-y-3">
-                  {relatedGrej.map((item) => (
-                    <li key={item.slug}>
-                      <Link
-                        href={`/grej/${item.slug}`}
-                        className="block rounded-2xl border-2 border-bone/15 bg-ash/30 px-4 py-3 transition-colors hover:border-herb"
-                      >
-                        <span className="font-serif text-lg uppercase tracking-wide text-bone">
-                          {item.title}
-                        </span>
-                        <span className="mt-1 block text-sm text-bone/55">
-                          Vi har lavet denne opskrift med det grej — læs
-                          artiklen.
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                {affiliateOffer ? (
+                  <AffiliateCta offer={affiliateOffer} className="mt-0 mb-6" />
+                ) : null}
+                {relatedGrej.length > 0 ? (
+                  <ul className="space-y-3">
+                    {relatedGrej.map((item) => (
+                      <li key={item.slug}>
+                        <Link
+                          href={`/grej/${item.slug}`}
+                          className="block rounded-2xl border-2 border-bone/15 bg-ash/30 px-4 py-3 transition-colors hover:border-herb"
+                        >
+                          <span className="font-serif text-lg uppercase tracking-wide text-bone">
+                            {item.title}
+                          </span>
+                          <span className="mt-1 block text-sm text-bone/55">
+                            Vi har lavet denne opskrift med det grej — læs
+                            artiklen.
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </section>
             )}
 

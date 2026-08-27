@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Children, isValidElement, type ReactNode } from "react";
+import { AffiliateCta } from "@/components/AffiliateCta";
 import { RecipeCard } from "@/components/RecipeCard";
 import { Tip } from "@/components/mdx/RecipeMDX";
+import { resolveAffiliateLink } from "@/lib/affiliate";
 import { getRecipe } from "@/lib/recipes";
 import { slugifyTag } from "@/lib/slug";
 
@@ -53,9 +55,40 @@ export function RecipeGrid({ items }: RecipeGridProps) {
 const linkClass =
   "font-semibold text-herb underline decoration-herb/40 underline-offset-2 hover:text-pool hover:decoration-pool";
 
+function AffiliateAwareLink({
+  href,
+  children,
+}: {
+  href?: string;
+  children?: ReactNode;
+}) {
+  const resolved = resolveAffiliateLink(href ?? "#");
+  if (!resolved) {
+    return <span className={linkClass}>{children}</span>;
+  }
+  if (resolved.external) {
+    return (
+      <a
+        href={resolved.href}
+        target="_blank"
+        rel={resolved.rel}
+        className={linkClass}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={resolved.href} className={linkClass}>
+      {children}
+    </Link>
+  );
+}
+
 export const guideMdxComponents = {
   Tip,
   RecipeGrid,
+  AffiliateCta,
   h2: ({ children }: { children?: ReactNode }) => (
     <h2
       id={headingId(children)}
@@ -76,9 +109,7 @@ export const guideMdxComponents = {
     <p className="mb-4 leading-relaxed text-bone/70">{children}</p>
   ),
   a: ({ href, children }: { href?: string; children?: ReactNode }) => (
-    <Link href={href ?? "#"} className={linkClass}>
-      {children}
-    </Link>
+    <AffiliateAwareLink href={href}>{children}</AffiliateAwareLink>
   ),
   ul: ({ children }: { children?: ReactNode }) => (
     <ul className="mb-6 list-disc space-y-2 pl-5 text-bone/70">{children}</ul>

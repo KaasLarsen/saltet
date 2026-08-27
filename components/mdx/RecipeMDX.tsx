@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
+import { AffiliateCta } from "@/components/AffiliateCta";
+import { resolveAffiliateLink } from "@/lib/affiliate";
 
-function LinkedText({ text }: { text: string }) {
+const linkClass =
+  "font-semibold text-herb underline decoration-herb/40 underline-offset-2 hover:text-pool hover:decoration-pool";
+
+export function LinkedText({ text }: { text: string }) {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
   return (
     <>
@@ -10,13 +15,31 @@ function LinkedText({ text }: { text: string }) {
         if (!match) {
           return <Fragment key={index}>{part}</Fragment>;
         }
+
+        const label = match[1];
+        const resolved = resolveAffiliateLink(match[2]);
+
+        if (!resolved) {
+          return <Fragment key={index}>{label}</Fragment>;
+        }
+
+        if (resolved.external) {
+          return (
+            <a
+              key={index}
+              href={resolved.href}
+              target="_blank"
+              rel={resolved.rel}
+              className={linkClass}
+            >
+              {label}
+            </a>
+          );
+        }
+
         return (
-          <Link
-            key={index}
-            href={match[2]}
-            className="font-semibold text-herb underline decoration-herb/40 underline-offset-2 hover:text-pool hover:decoration-pool"
-          >
-            {match[1]}
+          <Link key={index} href={resolved.href} className={linkClass}>
+            {label}
           </Link>
         );
       })}
@@ -84,4 +107,5 @@ export const mdxComponents = {
   Ingredients,
   Steps,
   Tip,
+  AffiliateCta,
 };

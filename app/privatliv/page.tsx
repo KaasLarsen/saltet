@@ -44,6 +44,14 @@ export default function PrivacyPage() {
           sælger ikke din e-mail eller opretter profiler selv.
         </p>
         <p>
+          Vi samarbejder også med Partner-ads og andre affiliate-partnere.
+          Produktanbefalinger og links på opskrifter og grej-sider kan være
+          betalte eller provisionsbaserede. Når du klikker videre, behandler
+          partneren og butikken data efter deres egne politikker; vi kan
+          modtage kommission. Anbefalingerne er redaktionelt udvalgt efter
+          relevans for indholdet.
+        </p>
+        <p>
           Om cookies: se vores{" "}
           <Link
             href="/cookies"

@@ -30,6 +30,14 @@ export default function CookiesPage() {
           så provision kan tilskrives Saltet.
         </p>
         <p>
+          Vi linker også til produkter via Partner-ads og andre
+          affiliate-partnere. Når du klikker på et mærket link eller en
+          produktanbefaling (fx under “Grejet bag retten”), kan partneren
+          registrere klikket med cookies eller tracking-parametre, så vi kan
+          få kommission ved køb. Links er mærket som annonce, hvor det er
+          relevant.
+        </p>
+        <p>
           Vi sætter ikke egne cookies til markedsføring eller statistik. Google
           AdSense kan indlæse tredjepartsscripts på sider, hvor annoncer vises.
         </p>

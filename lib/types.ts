@@ -21,6 +21,17 @@ export interface RecipeFrontmatter {
   publishedAt: string;
   featured?: boolean;
   relatedGrej?: string[];
+  /** Id fra lib/affiliate.ts — eksplicit grej/produkt-CTA på opskriften. */
+  affiliateProduct?: string;
+  /** Direkte dhwines.dk-produkt-URL — wrap'es i Partner-ads tracking. */
+  affiliateWineUrl?: string;
+  /**
+   * Grocery-CTA (Økologisk-Supermarked).
+   * true = tving frem, false = skjul, undefined = auto (pantry/featured/tags).
+   */
+  affiliateGrocery?: boolean;
+  /** Direkte produkt-URL på okologisk-supermarked.dk. */
+  affiliateGroceryUrl?: string;
   ingredients: string[];
   steps: string[];
   faq: RecipeFaq[];
