@@ -58,6 +58,21 @@ export const RITO_PRODUCTS = {
     "https://rito.dk/lysglas-skale-og-krukker-til-dekoration/28725-sylteglas-h-65-cm-diam-57-cm-transparent-12stk-100-ml-5712854072779.html",
 } as const;
 
+/** Homeshop.dk — airfryere, termometre, grilltilbehør */
+export const HOMESHOP_PRODUCTS = {
+  shop: "https://www.homeshop.dk/",
+  airfryerCategory: "https://www.homeshop.dk/airfryer/",
+  /** Dual basket — to zoner til hovedret + tilbehør */
+  philipsDual:
+    "https://www.homeshop.dk/airfryer/philips-na352-00-dual-basket-airfryer",
+  philipsXxl:
+    "https://www.homeshop.dk/airfryer/philips-hd9285-96-xxl-connected-airfryer",
+  meaterPlus:
+    "https://www.homeshop.dk/termometre/meater-plus-tasty-perk-tradlost-stege-termometer-til-iphoneandroid",
+  meaterPro:
+    "https://www.homeshop.dk/termometre/meater-2-plus-tradlost-stege-termometer",
+} as const;
+
 export type GroceryLandingKind =
   | "mel"
   | "olie"

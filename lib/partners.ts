@@ -23,6 +23,10 @@ export const OKO_SUPERMARKED_SHOP_URL =
 export const RITO_BANNER_ID = "30292";
 export const RITO_SHOP_URL = "https://rito.dk/";
 
+/** Homeshop — airfryere, termometre og køkkenudstyr */
+export const HOMESHOP_BANNER_ID = "74171";
+export const HOMESHOP_SHOP_URL = "https://www.homeshop.dk/";
+
 /**
  * Partner-ads produktlink:
  * klikbanner.php?partnerid=…&bannerid=…&htmlurl=PRODUKTLINK

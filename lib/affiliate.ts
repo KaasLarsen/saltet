@@ -1,6 +1,7 @@
 import {
   DH_WINES_PRODUCTS,
   FREDSTONE_PRODUCTS,
+  HOMESHOP_PRODUCTS,
   OKO_PRODUCTS,
   RITO_PRODUCTS,
   detectGroceryLanding,
@@ -15,6 +16,7 @@ import {
   DH_WINES_BANNER_ID,
   DH_WINES_SHOP_URL,
   FREDSTONE_BANNER_ID,
+  HOMESHOP_BANNER_ID,
   OKO_SUPERMARKED_BANNER_ID,
   RITO_BANNER_ID,
   barsetBanner,
@@ -56,12 +58,15 @@ function fromPriceRunner(queryKey: string): string {
 export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
   "meater-plus": {
     id: "meater-plus",
-    href: fromPriceRunner("trådløst stegetermometer"),
+    href: partnerAdsProductUrl(
+      HOMESHOP_BANNER_ID,
+      HOMESHOP_PRODUCTS.meaterPlus
+    ),
     label: "MEATER Plus",
-    merchant: "via PriceRunner",
+    merchant: "Homeshop",
     description:
       "Trådløs sonde med base uden for grillen — så du rammer kernen uden at åbne låget.",
-    ctaLabel: "Se aktuel pris",
+    ctaLabel: "Se hos Homeshop",
     variant: "grej",
     grejSlugs: [
       "tradlost-stegetermometer",
@@ -70,12 +75,15 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
   },
   "meater-pro": {
     id: "meater-pro",
-    href: fromPriceRunner("Meater termometer"),
+    href: partnerAdsProductUrl(
+      HOMESHOP_BANNER_ID,
+      HOMESHOP_PRODUCTS.meaterPro
+    ),
     label: "MEATER Pro",
-    merchant: "via PriceRunner",
+    merchant: "Homeshop",
     description:
-      "Flere sonder og stærkere rækkevidde, når du kører flere stege eller rotisseri.",
-    ctaLabel: "Se aktuel pris",
+      "Flere sonder og stærkere varme-tolerance — når du kører grill, rotisseri eller åben ild.",
+    ctaLabel: "Se hos Homeshop",
     variant: "grej",
     grejSlugs: ["tradlost-stegetermometer"],
   },
@@ -125,6 +133,21 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     variant: "grej",
     grejSlugs: ["stoebejern-vs-carbonstaal", "smashburger-grej"],
   },
+  "homeshop-airfryer": {
+    id: "homeshop-airfryer",
+    href: partnerAdsProductUrl(
+      HOMESHOP_BANNER_ID,
+      HOMESHOP_PRODUCTS.philipsDual
+    ),
+    label: "Philips Dual Basket Airfryer",
+    merchant: "Homeshop",
+    description:
+      "To kurve, så sticky vinger og tilbehør lander samtidig — uden at fylde ovnen.",
+    ctaLabel: "Se hos Homeshop",
+    variant: "grej",
+    grejSlugs: ["airfryer-vs-ovn-opgoer", "airfryer-tilbehoer"],
+    categories: ["airfryer"],
+  },
   "ninja-airfryer": {
     id: "ninja-airfryer",
     href: fromPriceRunner("Ninja airfryer"),
@@ -134,8 +157,6 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "To zoner, så sticky vinger og tilbehør lander samtidig — uden at fylde ovnen.",
     ctaLabel: "Se aktuel pris",
     variant: "grej",
-    grejSlugs: ["airfryer-vs-ovn-opgoer", "airfryer-tilbehoer"],
-    categories: ["airfryer"],
   },
   "ooni-infrared": {
     id: "ooni-infrared",
@@ -400,6 +421,13 @@ export function ritoTrackedUrl(
   productUrl: string = RITO_PRODUCTS.sylteglas370
 ): string {
   return partnerAdsProductUrl(RITO_BANNER_ID, productUrl);
+}
+
+/** Tracked Homeshop-link. */
+export function homeshopTrackedUrl(
+  productUrl: string = HOMESHOP_PRODUCTS.philipsDual
+): string {
+  return partnerAdsProductUrl(HOMESHOP_BANNER_ID, productUrl);
 }
 
 export function getAffiliateOffer(id: string): AffiliateOffer | undefined {
