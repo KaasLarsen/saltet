@@ -2,6 +2,8 @@ import {
   DH_WINES_PRODUCTS,
   FREDSTONE_PRODUCTS,
   HOMESHOP_PRODUCTS,
+  KITCHENONE_PRODUCTS,
+  BOLIGCENTER_PRODUCTS,
   OKO_PRODUCTS,
   RITO_PRODUCTS,
   detectGroceryLanding,
@@ -13,10 +15,12 @@ import {
 } from "@/lib/pricerunner";
 import type { Recipe } from "@/lib/types";
 import {
+  BOLIGCENTER_BANNER_ID,
   DH_WINES_BANNER_ID,
   DH_WINES_SHOP_URL,
   FREDSTONE_BANNER_ID,
   HOMESHOP_BANNER_ID,
+  KITCHENONE_BANNER_ID,
   OKO_SUPERMARKED_BANNER_ID,
   RITO_BANNER_ID,
   barsetBanner,

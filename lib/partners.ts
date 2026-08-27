@@ -27,6 +27,14 @@ export const RITO_SHOP_URL = "https://rito.dk/";
 export const HOMESHOP_BANNER_ID = "74171";
 export const HOMESHOP_SHOP_URL = "https://www.homeshop.dk/";
 
+/** KitchenOne — Instant Pot / trykkogere */
+export const KITCHENONE_BANNER_ID = "18776";
+export const KITCHENONE_SHOP_URL = "https://www.kitchenone.dk/";
+
+/** Boligcenter.dk — gryder, pander, køkkenudstyr */
+export const BOLIGCENTER_BANNER_ID = "106381";
+export const BOLIGCENTER_SHOP_URL = "https://www.boligcenter.dk/";
+
 /**
  * Partner-ads produktlink:
  * klikbanner.php?partnerid=…&bannerid=…&htmlurl=PRODUKTLINK

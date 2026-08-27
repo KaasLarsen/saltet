@@ -73,6 +73,28 @@ export const HOMESHOP_PRODUCTS = {
     "https://www.homeshop.dk/termometre/meater-2-plus-tradlost-stege-termometer",
 } as const;
 
+/** KitchenOne — Instant Pot / trykkogere */
+export const KITCHENONE_PRODUCTS = {
+  shop: "https://www.kitchenone.dk/",
+  trykkogerCategory:
+    "https://www.kitchenone.dk/c/madlavning/kogegrej-stegepander/trykkoger/",
+  instantPotDuoPlus:
+    "https://www.kitchenone.dk/p/instant-pot-duo-plus-trykkoger_65827/",
+  instantDuoCrisp:
+    "https://www.kitchenone.dk/p/instant-duo-crisp-airfryer-trykkoger-11-i-1-5-7-liter_65815/",
+} as const;
+
+/** Boligcenter.dk — kogegrej (kategori-landinger indtil konkrete favorit-SKU’er) */
+export const BOLIGCENTER_PRODUCTS = {
+  shop: "https://www.boligcenter.dk/",
+  gryderOgStegepander:
+    "https://www.boligcenter.dk/hjem-og-husholdning/kokken/gryder-og-stegepander/",
+  kokkenknive:
+    "https://www.boligcenter.dk/hjem-og-husholdning/kokken/kokkenknive/",
+  airfryer:
+    "https://www.boligcenter.dk/hjem-og-husholdning/kokken/kokkenapparater/airfryer/",
+} as const;
+
 export type GroceryLandingKind =
   | "mel"
   | "olie"
