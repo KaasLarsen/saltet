@@ -44,6 +44,20 @@ export const OKO_PRODUCTS = {
   olivenolie: `${OKO}/shop/ekstra-jomfru-olivenolie-6103p.html`,
 } as const;
 
+/** Rito.dk — kun sylteglas (ikke garn/hobby-resten af sortimentet). */
+export const RITO_PRODUCTS = {
+  shop: "https://rito.dk/",
+  /** 370 ml skruelåg — god standardstørrelse til asier og pickles */
+  sylteglas370:
+    "https://rito.dk/lysglas-skale-og-krukker-til-dekoration/28727-sylteglas-h-11-cm-diam-75-cm-370-ml-transparent-6-stk-1-pk-5712854072816.html",
+  /** 240 ml — til mindre portioner / gaver */
+  sylteglas240:
+    "https://rito.dk/lysglas-skale-og-krukker-til-dekoration/28726-sylteglas-h-91-cm-diam-68-cm-240-ml-transparent-12-stk-1-pk-5712854072793.html",
+  /** 100 ml — til smagsprøver og chili */
+  sylteglas100:
+    "https://rito.dk/lysglas-skale-og-krukker-til-dekoration/28725-sylteglas-h-65-cm-diam-57-cm-transparent-12stk-100-ml-5712854072779.html",
+} as const;
+
 export type GroceryLandingKind =
   | "mel"
   | "olie"

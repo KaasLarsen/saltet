@@ -19,6 +19,10 @@ export const OKO_SUPERMARKED_BANNER_ID = "100052";
 export const OKO_SUPERMARKED_SHOP_URL =
   "https://www.okologisk-supermarked.dk/";
 
+/** Rito.dk — kun sylteglas (butikken er ellers garn/hobby) */
+export const RITO_BANNER_ID = "30292";
+export const RITO_SHOP_URL = "https://rito.dk/";
+
 /**
  * Partner-ads produktlink:
  * klikbanner.php?partnerid=…&bannerid=…&htmlurl=PRODUKTLINK

@@ -2,6 +2,7 @@ import {
   DH_WINES_PRODUCTS,
   FREDSTONE_PRODUCTS,
   OKO_PRODUCTS,
+  RITO_PRODUCTS,
   detectGroceryLanding,
 } from "@/lib/affiliate-products";
 import { PRICERUNNER_PRODUCTS } from "@/lib/pricerunner-products";
@@ -15,6 +16,7 @@ import {
   DH_WINES_SHOP_URL,
   FREDSTONE_BANNER_ID,
   OKO_SUPERMARKED_BANNER_ID,
+  RITO_BANNER_ID,
   barsetBanner,
   oaterBanner,
   partnerAdsProductUrl,
@@ -248,6 +250,18 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Køb olien",
     variant: "grocery",
   },
+  "rito-sylteglas": {
+    id: "rito-sylteglas",
+    href: partnerAdsProductUrl(RITO_BANNER_ID, RITO_PRODUCTS.sylteglas370),
+    label: "Sylteglas 370 ml (6 stk.)",
+    merchant: "Rito.dk",
+    description:
+      "Klare henkogningsglas med skruelåg — til asier, pickles og det der skal på hylden.",
+    ctaLabel: "Se sylteglas",
+    variant: "grej",
+    grejSlugs: ["sildekrukker-patentglas"],
+    categories: ["sylte"],
+  },
   rullepoelsepresser: {
     id: "rullepoelsepresser",
     href: pricerunnerSearchUrl("rullepølsepresse"),
@@ -379,6 +393,13 @@ export function okoSupermarkedTrackedUrl(
   productUrl: string = OKO_PRODUCTS.madOgDrikke
 ): string {
   return partnerAdsProductUrl(OKO_SUPERMARKED_BANNER_ID, productUrl);
+}
+
+/** Tracked Rito-link (kun brug til sylteglas — ikke garn). */
+export function ritoTrackedUrl(
+  productUrl: string = RITO_PRODUCTS.sylteglas370
+): string {
+  return partnerAdsProductUrl(RITO_BANNER_ID, productUrl);
 }
 
 export function getAffiliateOffer(id: string): AffiliateOffer | undefined {
