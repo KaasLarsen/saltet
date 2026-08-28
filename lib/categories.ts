@@ -69,8 +69,8 @@ export const categories: Category[] = [
     slug: "dips",
     name: "Dips",
     description:
-      "Dips, dressinger og saucer — fra tzatziki og aioli til mormordressing, mayo-varianter og BBQ.",
-    headline: "Dips & dressinger",
+      "Dips, dressinger og saucer — bearnaise, ostesovs, vinreduktioner, chimichurri, mayo-varianter og BBQ.",
+    headline: "Dips & saucer",
   },
   {
     slug: "sous-vide",

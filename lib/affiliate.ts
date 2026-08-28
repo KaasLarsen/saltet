@@ -219,6 +219,20 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Se hos Boligcenter",
     variant: "grej",
   },
+  "boligcenter-saucegryde": {
+    id: "boligcenter-saucegryde",
+    href: partnerAdsProductUrl(
+      BOLIGCENTER_BANNER_ID,
+      BOLIGCENTER_PRODUCTS.gryderOgStegepander
+    ),
+    label: "Saucekasserolle / kogegrej",
+    merchant: "Boligcenter.dk",
+    description:
+      "Det rigtige grej sikrer, at sovsen ikke skiller — jævn varme i en god kasserolle slår billig tynd bund hver gang.",
+    ctaLabel: "Se kogegrej",
+    variant: "grej",
+    grejSlugs: ["kobbergryder"],
+  },
   "ooni-infrared": {
     id: "ooni-infrared",
     href: fromPriceRunner("infrarødt termometer"),
@@ -265,7 +279,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     label: "DH Wines",
     merchant: "DH Wines",
     description:
-      "Retten bruger vin — find en flaske der matcher hos DH Wines.",
+      "Du må aldrig koge sauce på en vin, du ikke vil drikke — find madlavnings- og drikkevin hos DH Wines.",
     ctaLabel: "Find vin til retten",
     variant: "wine",
   },
@@ -278,7 +292,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     label: "Simonsig Chenin Blanc",
     merchant: "DH Wines",
     description:
-      "Tør, frisk Chenin Blanc til madlavning og skaldyr — 119 kr hos DH Wines.",
+      "Tør hvidvin til sauce og glasset — aldrig den billigste «madlavningsvin», du ikke selv vil drikke.",
     ctaLabel: "Køb hvidvinen",
     variant: "wine",
   },
@@ -291,7 +305,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     label: "Rødvin til madlavning",
     merchant: "DH Wines",
     description:
-      "Hverdagsrødvin i 100–200 kr-klassen — til gryderetter, sauce og glasset ved siden af.",
+      "Du må aldrig koge rødvinssauce på en vin, du ikke vil drikke. Find den her i 100–200 kr-klassen.",
     ctaLabel: "Se rødvine",
     variant: "wine",
   },
