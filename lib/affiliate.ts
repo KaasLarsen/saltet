@@ -152,6 +152,20 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     grejSlugs: ["airfryer-vs-ovn-opgoer", "airfryer-tilbehoer"],
     categories: ["airfryer"],
   },
+  "homeshop-smash-burger-jern": {
+    id: "homeshop-smash-burger-jern",
+    href: partnerAdsProductUrl(
+      HOMESHOP_BANNER_ID,
+      HOMESHOP_PRODUCTS.broilKingSmashBurger
+    ),
+    label: "Broil King Smash Burger Jern",
+    merchant: "Homeshop",
+    description:
+      "Rustfrit stål med tresidet konstruktion — tryk bøfferne flade på plancha eller støbejern uden at brænde fingrene.",
+    ctaLabel: "Se hos Homeshop",
+    variant: "grej",
+    grejSlugs: ["smashburger-grej"],
+  },
   "ninja-airfryer": {
     id: "ninja-airfryer",
     href: fromPriceRunner("Ninja airfryer"),
@@ -189,6 +203,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "Rund støbejernspande til skorpe på hakkebøf, frikadeller og one-pan-retter.",
     ctaLabel: "Se hos Boligcenter",
     variant: "grej",
+    grejSlugs: ["smashburger-grej", "plancha-vs-stobejern"],
     categories: ["pande"],
   },
   "boligcenter-stoebjernsgryde": {

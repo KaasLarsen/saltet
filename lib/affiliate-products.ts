@@ -71,6 +71,9 @@ export const HOMESHOP_PRODUCTS = {
     "https://www.homeshop.dk/termometre/meater-plus-tasty-perk-tradlost-stege-termometer-til-iphoneandroid",
   meaterPro:
     "https://www.homeshop.dk/termometre/meater-2-plus-tradlost-stege-termometer",
+  /** Rustfrit smash-jern til plancha og stegeplade */
+  broilKingSmashBurger:
+    "https://www.homeshop.dk/broil-king-tilbehor/broil-king-smash-burger-jern",
 } as const;
 
 /** KitchenOne — Instant Pot / trykkogere */
