@@ -166,6 +166,34 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     variant: "grej",
     grejSlugs: ["smashburger-grej"],
   },
+  "homeshop-grillspartel-bred": {
+    id: "homeshop-grillspartel-bred",
+    href: partnerAdsProductUrl(
+      HOMESHOP_BANNER_ID,
+      HOMESHOP_PRODUCTS.broilKingGrillSpartelBred
+    ),
+    label: "Broil King Imperial Grillspartel Bred",
+    merchant: "Homeshop",
+    description:
+      "1,8 mm rustfrit stål med bred flade — flip smash-bøffer og skrab skorpen løs uden at bøje bladet.",
+    ctaLabel: "Se hos Homeshop",
+    variant: "grej",
+    grejSlugs: ["smashburger-grej"],
+  },
+  "homeshop-burger-palet": {
+    id: "homeshop-burger-palet",
+    href: partnerAdsProductUrl(
+      HOMESHOP_BANNER_ID,
+      HOMESHOP_PRODUCTS.napoleonBurgerPalet
+    ),
+    label: "Napoleon Plancha Burgerpalet",
+    merchant: "Homeshop",
+    description:
+      "Bred palet i rustfrit stål med skrå kanter — løft og vend smash-burgere på plancha uden at rive skorpen.",
+    ctaLabel: "Se hos Homeshop",
+    variant: "grej",
+    grejSlugs: ["smashburger-grej"],
+  },
   "ninja-airfryer": {
     id: "ninja-airfryer",
     href: fromPriceRunner("Ninja airfryer"),

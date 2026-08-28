@@ -74,6 +74,12 @@ export const HOMESHOP_PRODUCTS = {
   /** Rustfrit smash-jern til plancha og stegeplade */
   broilKingSmashBurger:
     "https://www.homeshop.dk/broil-king-tilbehor/broil-king-smash-burger-jern",
+  /** Bred rustfri spartel til flip og skrab på plancha */
+  broilKingGrillSpartelBred:
+    "https://www.homeshop.dk/broil-king-tilbehor/broil-king-imperial-grillspartel-bred---64011",
+  /** Vinklet burgerpalet til smash og flip på stegeplade */
+  napoleonBurgerPalet:
+    "https://www.homeshop.dk/napoleon-grill-tilbehor/napoleon-plancha-burgerpalet-gatl015",
 } as const;
 
 /** KitchenOne — Instant Pot / trykkogere */
