@@ -4,6 +4,7 @@ import { siteConfig } from "@/lib/seo";
 const footerLinks = [
   { href: "/guides", label: "Guides" },
   { href: "/grej", label: "Grej" },
+  { href: "/emner", label: "Emner" },
   { href: "/hoejtider", label: "Højtider" },
   { href: "/om", label: "Om" },
   { href: "/kontakt", label: "Kontakt" },

@@ -8,6 +8,7 @@ import { CATEGORY_NAV } from "@/lib/category-nav";
 import { GREJ_NAV } from "@/lib/grej-nav";
 import { GUIDE_NAV } from "@/lib/guide-nav";
 import { HOLIDAY_NAV } from "@/lib/holiday-nav";
+import { TOPIC_NAV } from "@/lib/topic-nav";
 
 type NavChild = { href: string; label: string };
 type NavItem = {
@@ -25,6 +26,17 @@ const navItems: NavItem[] = [
       ...CATEGORY_NAV.map((c) => ({
         href: `/opskrifter/${c.slug}`,
         label: c.name,
+      })),
+    ],
+  },
+  {
+    href: "/emner",
+    label: "Emner",
+    children: [
+      { href: "/emner", label: "Alle emner" },
+      ...TOPIC_NAV.map((t) => ({
+        href: `/emner/${t.slug}`,
+        label: t.name,
       })),
     ],
   },

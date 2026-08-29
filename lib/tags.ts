@@ -1,4 +1,5 @@
 import { holidayForTagSlug } from "./holiday-nav";
+import { isTopicTagSlug, topicForTagSlug } from "./topic-nav";
 import { getAllRecipes } from "./recipes";
 import { slugifyTag } from "./slug";
 import type { Recipe } from "./types";
@@ -32,7 +33,9 @@ export function getAllTags(): TagInfo[] {
 }
 
 export function getBrowseTags(): TagInfo[] {
-  return getAllTags().filter((tag) => !holidayForTagSlug(tag.slug));
+  return getAllTags().filter(
+    (tag) => !holidayForTagSlug(tag.slug) && !isTopicTagSlug(tag.slug)
+  );
 }
 
 export function getTagBySlug(slug: string): TagInfo | undefined {
@@ -46,7 +49,10 @@ export function getRecipesByTagSlug(slug: string): Recipe[] {
 }
 
 export function tagHref(tag: string): string {
-  const holiday = holidayForTagSlug(slugifyTag(tag));
+  const slug = slugifyTag(tag);
+  const holiday = holidayForTagSlug(slug);
   if (holiday) return `/hoejtider/${holiday.slug}`;
-  return `/tags/${slugifyTag(tag)}`;
+  const topic = topicForTagSlug(slug);
+  if (topic) return `/emner/${topic.slug}`;
+  return `/tags/${slug}`;
 }

@@ -96,6 +96,28 @@ export function buildHolidayMetadata(
   };
 }
 
+export function buildTopicMetadata(
+  topicSlug: string,
+  headline: string,
+  description: string
+): Metadata {
+  const url = absoluteUrl(`/emner/${topicSlug}`);
+
+  return {
+    title: `${headline} | Saltet`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${headline} | Saltet`,
+      description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "website",
+    },
+  };
+}
+
 export function buildBreadcrumbJsonLd(
   items: { name: string; url: string }[]
 ): object {

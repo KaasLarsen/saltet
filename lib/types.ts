@@ -55,6 +55,13 @@ export interface Holiday {
   headline: string;
 }
 
+export interface Topic {
+  slug: string;
+  name: string;
+  description: string;
+  headline: string;
+}
+
 export interface GuideFaq {
   question: string;
   answer: string;

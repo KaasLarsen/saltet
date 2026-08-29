@@ -73,18 +73,27 @@ Højtider er **ikke** kategorier. Kategorier er tilberedningsmetode (airfryer, g
 
 Tilføj `jul` / `nytår` / `påske` / `Mortensaften` i opskriftens `tags` for at få den med. Listen står i [`lib/holiday-nav.ts`](lib/holiday-nav.ts) og [`lib/holidays.ts`](lib/holidays.ts).
 
+### Emner
+
+Emner er **ikke** tilberedningsmetoder. De er madtyper på tværs af metoder:
+
+- Sider: `/emner` og `/emner/sovs` (kage, dessert, pasta, suppe, salat)
+- Opskrifter vises på et emne, når de har matchende tags (`sauce`, `kage`, `dessert` osv.)
+- Tagget `sauce` på en opskrift linker til `/emner/sovs` (gamle `/tags/sauce` omdirigeres)
+- Tilføj emne-tags i opskriftens `tags` for at få den med. Listen står i [`lib/topic-nav.ts`](lib/topic-nav.ts) og [`lib/topics.ts`](lib/topics.ts).
+
 ## SEO
 
 Sitet genererer automatisk:
 
-- `sitemap.xml` — **alle** offentlige sider: forside, om, opskrifter, kategorier, højtider, tags og enkeltopskrifter
+- `sitemap.xml` — **alle** offentlige sider: forside, om, opskrifter, kategorier, højtider, emner, tags og enkeltopskrifter
 - `robots.txt`
 - JSON-LD Recipe + FAQ schema på hver opskriftsside
 - BreadcrumbList schema
 - Open Graph og Twitter cards
 - Canonical URLs
 
-Når du tilføjer en **ny fast side** (fx `/kontakt`), skal stien også tilføjes i `STATIC_ROUTES` i [`app/sitemap.ts`](app/sitemap.ts). Opskrifter, tags, højtider og kategorier opdateres automatisk.
+Når du tilføjer en **ny fast side** (fx `/kontakt`), skal stien også tilføjes i `STATIC_ROUTES` i [`app/sitemap.ts`](app/sitemap.ts). Opskrifter, tags, højtider, emner og kategorier opdateres automatisk.
 
 Test rich results: [Google Rich Results Test](https://search.google.com/test/rich-results)
 
