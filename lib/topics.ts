@@ -46,6 +46,76 @@ export const topics: Topic[] = [
     description:
       "Salater til frokost og middag — friske, mættende og nemme at skalere op til flere.",
   },
+  {
+    slug: "kylling",
+    name: "Kylling",
+    headline: "Kyllingeopskrifter",
+    description:
+      "Hel kylling, bryst og lår — fra hurtig hverdagsmad til grill og ovn med sprødt skind.",
+  },
+  {
+    slug: "fisk",
+    name: "Fisk",
+    headline: "Fiskeopskrifter",
+    description:
+      "Laks, torsk, sild og aborre — fisk på pande, i ovn, på grill og som pålæg.",
+  },
+  {
+    slug: "vegetar",
+    name: "Vegetar",
+    headline: "Vegetaropskrifter",
+    description:
+      "Grønt, bælgfrugter og svampe — mættende vegetarmad uden at det bliver kedeligt.",
+  },
+  {
+    slug: "broed",
+    name: "Brød",
+    headline: "Brødopskrifter",
+    description:
+      "Hvedebrød, rugbrød, focaccia og fladbrød — bagt i ovn, Dutch Oven, pizzaovn og airfryer.",
+  },
+  {
+    slug: "snack",
+    name: "Snack",
+    headline: "Snackopskrifter",
+    description:
+      "Snacks, forretter og småretter — til madpakke, fest eller når sulten melder sig mellem måltiderne.",
+  },
+  {
+    slug: "palaeg",
+    name: "Pålæg",
+    headline: "Pålægsopskrifter",
+    description:
+      "Hjemmelavet pålæg til smørrebrød — sild, salater, fedt og det der gør frokosten bedre.",
+  },
+  {
+    slug: "kartofler",
+    name: "Kartofler",
+    headline: "Kartoffelopskrifter",
+    description:
+      "Kartofler, rösti, pommes og fritter — det klassiske tilbehør i alle afskygninger.",
+  },
+  {
+    slug: "ost",
+    name: "Ost",
+    headline: "Ostopskrifter",
+    description:
+      "Retter med ost i centrum — gratin, pizza, dips og det der smelter godt.",
+  },
+  {
+    slug: "tilbehoer",
+    name: "Tilbehør",
+    headline: "Tilbehørsopskrifter",
+    description:
+      "Grønt, kartofler og det ekstra til hovedretten — sides der holder hele måltidet sammen.",
+  },
+  {
+    slug: "oksekoed",
+    name: "Oksekød",
+    headline: "Oksekødsopskrifter",
+    description:
+      "Bøf, entrecôte og mørbrad — oksekød på grill, pande, ovn og støbejern.",
+  },
 ];
 
 export function getTopic(slug: string): Topic | undefined {

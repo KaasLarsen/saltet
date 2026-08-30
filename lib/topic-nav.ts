@@ -55,6 +55,81 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
     name: "Salat",
     matchTagSlugs: ["salat"],
   },
+  {
+    slug: "kylling",
+    name: "Kylling",
+    matchTagSlugs: [
+      "kylling",
+      "kyllingebryst",
+      "kyllingelaar",
+      "hel-kylling",
+      "kyllingespyd",
+    ],
+  },
+  {
+    slug: "fisk",
+    name: "Fisk",
+    matchTagSlugs: [
+      "fisk",
+      "laks",
+      "torsk",
+      "oerred",
+      "aborre",
+      "makrel",
+      "sild",
+      "fiskefilet",
+      "fiskefileter",
+    ],
+  },
+  {
+    slug: "vegetar",
+    name: "Vegetar",
+    matchTagSlugs: ["vegetar", "vegetarisk"],
+  },
+  {
+    slug: "broed",
+    name: "Brød",
+    matchTagSlugs: [
+      "broed",
+      "rugbroed",
+      "fladbroed",
+      "focaccia",
+      "boller",
+      "surdej",
+      "ciabatta",
+      "lepinja",
+    ],
+  },
+  {
+    slug: "snack",
+    name: "Snack",
+    matchTagSlugs: ["snack", "snacks", "forret"],
+  },
+  {
+    slug: "palaeg",
+    name: "Pålæg",
+    matchTagSlugs: ["paalaeg"],
+  },
+  {
+    slug: "kartofler",
+    name: "Kartofler",
+    matchTagSlugs: ["kartofler", "kartoffel", "roesti", "pommes", "fritter"],
+  },
+  {
+    slug: "ost",
+    name: "Ost",
+    matchTagSlugs: ["ost"],
+  },
+  {
+    slug: "tilbehoer",
+    name: "Tilbehør",
+    matchTagSlugs: ["tilbehoer"],
+  },
+  {
+    slug: "oksekoed",
+    name: "Oksekød",
+    matchTagSlugs: ["oksekoed", "bof", "entrecote", "moerkbrad"],
+  },
 ];
 
 export type TopicNavSlug = (typeof TOPIC_NAV)[number]["slug"];

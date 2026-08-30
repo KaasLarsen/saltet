@@ -5,7 +5,7 @@ import { absoluteUrl, siteConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Emner",
-  description: `Sovs, kage, dessert, pasta, suppe og salat på ${siteConfig.name} — opskrifter efter madtype på tværs af airfryer, grill, ovn og gryde.`,
+  description: `Sovs, kage, kylling, fisk, vegetar og mere på ${siteConfig.name} — opskrifter efter madtype på tværs af airfryer, grill, ovn og gryde.`,
   alternates: { canonical: absoluteUrl("/emner") },
 };
 
@@ -21,7 +21,7 @@ export default function TopicsIndexPage() {
         Opskrifter efter emne
       </h1>
       <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
-        Sovs, kage, dessert og mere — samlet efter madtype. Tilberedningsmetoder
+        Sovs, kylling, brød, snack og mere — samlet efter madtype. Tilberedningsmetoder
         finder du stadig under Opskrifter.
       </p>
       <div className="mx-auto mt-12 grid max-w-3xl gap-3 sm:grid-cols-2">
