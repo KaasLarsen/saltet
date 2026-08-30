@@ -211,32 +211,37 @@ export function getRecipesByTopic(slug: string): Recipe[] {
   );
 }
 
-export function getTopicCounts(): { topic: Topic; count: number }[] {
-  const recipes = getAllRecipes();
-  return topics.map((topic) => ({
-    topic,
-    count: recipes.filter((recipe) =>
-      recipeMatchesTopicSlug(recipe, topic.slug)
-    ).length,
-  }));
+function pickTopicCover(matching: Recipe[]): Recipe | undefined {
+  if (matching.length === 0) return undefined;
+  const featured = matching.filter((recipe) => recipe.featured);
+  const pool = featured.length > 0 ? featured : matching;
+  return [...pool].sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  )[0];
 }
 
-/** Alle opskrifter der matcher mindst ét kurateret emne (uden dubletter). */
-export function getAllTopicRecipes(): Recipe[] {
-  const seen = new Set<string>();
-  const result: Recipe[] = [];
-
-  for (const recipe of getAllRecipes()) {
-    const matchesAny = topics.some((topic) =>
+export function getTopicCounts(): {
+  topic: Topic;
+  count: number;
+  image: string;
+  imageAlt: string;
+}[] {
+  const recipes = getAllRecipes();
+  return topics.flatMap((topic) => {
+    const matching = recipes.filter((recipe) =>
       recipeMatchesTopicSlug(recipe, topic.slug)
     );
-    if (!matchesAny) continue;
+    if (matching.length === 0) return [];
 
-    const key = `${recipe.category}/${recipe.slug}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    result.push(recipe);
-  }
-
-  return result;
+    const cover = pickTopicCover(matching);
+    return [
+      {
+        topic,
+        count: matching.length,
+        image: topic.image ?? cover?.image ?? "",
+        imageAlt: topic.imageAlt ?? cover?.imageAlt ?? topic.name,
+      },
+    ];
+  });
 }

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { CategoryFilters } from "@/components/CategoryFilters";
-import { getAllTopicRecipes, getTopicCounts } from "@/lib/topics";
+import { TopicCard } from "@/components/TopicCard";
+import { getTopicCounts } from "@/lib/topics";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
-import type { Recipe, RecipeFrontmatter } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Emner",
@@ -11,14 +9,8 @@ export const metadata: Metadata = {
   alternates: { canonical: absoluteUrl("/emner") },
 };
 
-function toListItem(recipe: Recipe): RecipeFrontmatter {
-  const { content: _content, ...rest } = recipe;
-  return rest;
-}
-
 export default function TopicsIndexPage() {
   const counts = getTopicCounts();
-  const recipes = getAllTopicRecipes().map(toListItem);
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -29,35 +21,22 @@ export default function TopicsIndexPage() {
         Opskrifter efter emne
       </h1>
       <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
-        {recipes.length} opskrifter på tværs af {counts.length} emner — filtrér
-        efter madtype, metode, tid og mere. Tilberedningsmetoder finder du
-        stadig under Opskrifter.
+        {counts.length} emner — vælg et og se opskrifterne. Tilberedningsmetoder
+        finder du stadig under Opskrifter.
       </p>
 
-      <div className="mx-auto mt-10 grid max-w-4xl gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        {counts.map(({ topic, count }) => (
-          <Link
+      <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
+        {counts.map(({ topic, count, image, imageAlt }, index) => (
+          <TopicCard
             key={topic.slug}
-            href={`/emner/${topic.slug}`}
-            className="group rounded-xl border-2 border-bone/20 bg-ash/50 px-4 py-3 text-left shadow-[2px_2px_0_0_rgba(212,255,0,0.25)] transition-[transform,border-color,box-shadow] hover:-translate-y-0.5 hover:border-herb hover:shadow-[3px_3px_0_0_rgba(212,255,0,0.55)]"
-          >
-            <div className="flex items-baseline justify-between gap-2">
-              <h2 className="font-serif text-lg uppercase tracking-wide text-bone transition-colors group-hover:text-herb">
-                {topic.name}
-              </h2>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-smoke">
-                {count}
-              </span>
-            </div>
-          </Link>
+            topic={topic}
+            count={count}
+            image={image}
+            imageAlt={imageAlt}
+            priority={index < 3}
+          />
         ))}
       </div>
-
-      <CategoryFilters
-        recipes={recipes}
-        showTopicFilter
-        searchPlaceholder="Søg i emner…"
-      />
     </div>
   );
 }

@@ -18,14 +18,12 @@ import {
   getAvailableDifficulties,
   getAvailableHolidays,
   getAvailableMethods,
-  getAvailableTopics,
   getTopTagsForRecipes,
   hasActiveFilters,
   parseDifficultyFilter,
   parseHolidayFilter,
   parseMetodeFilter,
   parseTimeFilter,
-  parseTopicFilter,
   type CategoryFilterValues,
   type TimeFilter,
 } from "@/lib/recipe-filters";
@@ -34,8 +32,6 @@ import type { Difficulty, RecipeFrontmatter } from "@/lib/types";
 interface CategoryFiltersProps {
   recipes: RecipeFrontmatter[];
   showFilters?: boolean;
-  /** Vis kurateret emne-filter (til /emner-oversigten). */
-  showTopicFilter?: boolean;
   searchPlaceholder?: string;
 }
 
@@ -73,7 +69,6 @@ function readFiltersFromLocation(): CategoryFilterValues {
     emne: params.get("emne") ?? undefined,
     hoejtid: parseHolidayFilter(params.get("hoejtid") ?? undefined),
     metode: parseMetodeFilter(params.get("metode") ?? undefined),
-    topic: parseTopicFilter(params.get("topic") ?? undefined),
     q: params.get("q") ?? undefined,
   };
 }
@@ -99,7 +94,6 @@ function LoopIcon({ className }: { className?: string }) {
 export function CategoryFilters({
   recipes,
   showFilters = true,
-  showTopicFilter = false,
   searchPlaceholder = "Søg i kategorien…",
 }: CategoryFiltersProps) {
   const router = useRouter();
@@ -148,10 +142,6 @@ export function CategoryFilters({
   );
   const holidays = useMemo(() => getAvailableHolidays(recipes), [recipes]);
   const methods = useMemo(() => getAvailableMethods(recipes), [recipes]);
-  const topicFacets = useMemo(
-    () => (showTopicFilter ? getAvailableTopics(recipes) : []),
-    [recipes, showTopicFilter]
-  );
   const topTags = useMemo(() => getTopTagsForRecipes(recipes), [recipes]);
   const filtered = useMemo(
     () => filterRecipes(recipes, filters),
@@ -175,7 +165,6 @@ export function CategoryFilters({
         if (next.emne) params.set("emne", next.emne);
         if (next.hoejtid) params.set("hoejtid", next.hoejtid);
         if (next.metode) params.set("metode", next.metode);
-        if (next.topic) params.set("topic", next.topic);
         if (next.q?.trim()) params.set("q", next.q.trim());
 
         const qs = params.toString();
@@ -312,35 +301,6 @@ export function CategoryFilters({
                 aria-pressed={filters.metode === method.slug}
               >
                 {method.label}
-              </button>
-            ))}
-          </FilterGroup>
-        ) : null}
-
-        {topicFacets.length > 1 ? (
-          <FilterGroup label="Emne">
-            <button
-              type="button"
-              className={chipClass(!filters.topic)}
-              onClick={() => updateFilters({ topic: undefined })}
-              aria-pressed={!filters.topic}
-            >
-              Alle
-            </button>
-            {topicFacets.map((topic) => (
-              <button
-                key={topic.slug}
-                type="button"
-                className={chipClass(filters.topic === topic.slug)}
-                onClick={() =>
-                  updateFilters({
-                    topic:
-                      filters.topic === topic.slug ? undefined : topic.slug,
-                  })
-                }
-                aria-pressed={filters.topic === topic.slug}
-              >
-                {topic.label}
               </button>
             ))}
           </FilterGroup>

@@ -60,6 +60,9 @@ export interface Topic {
   name: string;
   description: string;
   headline: string;
+  /** Valgfrit cover — ellers tages et opskriftsbillede. */
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface GuideFaq {
