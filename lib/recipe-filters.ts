@@ -1,4 +1,11 @@
+import { CATEGORY_NAV_ORDER, categoryNavLabel } from "./category-nav";
 import { HOLIDAY_NAV } from "./holiday-nav";
+import {
+  TOPIC_NAV,
+  getTopicNav,
+  isTopicTagSlug,
+  recipeMatchesTopic,
+} from "./topic-nav";
 import { slugifyTag } from "./slug";
 import type { Difficulty, RecipeFrontmatter } from "./types";
 
@@ -13,6 +20,8 @@ export interface CategoryFilterValues {
   svar?: Difficulty;
   emne?: string;
   hoejtid?: string;
+  metode?: string;
+  topic?: string;
   q?: string;
 }
 
@@ -23,6 +32,18 @@ export interface TagFacet {
 }
 
 export interface HolidayFacet {
+  label: string;
+  slug: string;
+  count: number;
+}
+
+export interface MethodFacet {
+  label: string;
+  slug: string;
+  count: number;
+}
+
+export interface TopicFacet {
   label: string;
   slug: string;
   count: number;
@@ -102,6 +123,15 @@ export function filterRecipes<T extends RecipeFrontmatter>(
       if (!matches) return false;
     }
 
+    if (filters.metode && recipe.category !== filters.metode) return false;
+
+    if (filters.topic) {
+      const topic = getTopicNav(filters.topic);
+      if (!topic || !recipeMatchesTopic(recipe.tags, topic, slugifyTag)) {
+        return false;
+      }
+    }
+
     return true;
   });
 }
@@ -149,6 +179,7 @@ export function getTopTagsForRecipes(
     .map(([slug, { label, count }]) => ({ slug, label, count }))
     .filter((tag) => tag.count < coverageCeiling)
     .filter((tag) => !holidayTagSlugs.has(tag.slug))
+    .filter((tag) => !isTopicTagSlug(tag.slug))
     .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "da"))
     .slice(0, limit);
 }
@@ -178,12 +209,69 @@ export function parseHolidayFilter(
   return HOLIDAY_NAV.some((h) => h.slug === value) ? value : undefined;
 }
 
+export function parseMetodeFilter(
+  value: string | undefined
+): string | undefined {
+  if (!value) return undefined;
+  return CATEGORY_NAV_ORDER.includes(value as (typeof CATEGORY_NAV_ORDER)[number])
+    ? value
+    : undefined;
+}
+
+export function parseTopicFilter(
+  value: string | undefined
+): string | undefined {
+  if (!value) return undefined;
+  return TOPIC_NAV.some((t) => t.slug === value) ? value : undefined;
+}
+
+/** Tilberedningsmetoder der faktisk findes blandt opskrifterne. */
+export function getAvailableMethods(
+  recipes: RecipeFrontmatter[]
+): MethodFacet[] {
+  if (recipes.length === 0) return [];
+
+  const counts = new Map<string, number>();
+  for (const recipe of recipes) {
+    counts.set(recipe.category, (counts.get(recipe.category) ?? 0) + 1);
+  }
+
+  const knownOrder = CATEGORY_NAV_ORDER.filter((slug) => counts.has(slug));
+  const knownSet = new Set<string>(knownOrder);
+  const extras = Array.from(counts.keys())
+    .filter((slug) => !knownSet.has(slug))
+    .sort((a, b) => a.localeCompare(b, "da"));
+
+  return [...knownOrder, ...extras].map((slug) => ({
+    slug,
+    label: categoryNavLabel(slug),
+    count: counts.get(slug) ?? 0,
+  }));
+}
+
+/** Kuraterede emner der faktisk findes blandt opskrifterne. */
+export function getAvailableTopics(
+  recipes: RecipeFrontmatter[]
+): TopicFacet[] {
+  if (recipes.length === 0) return [];
+
+  return TOPIC_NAV.flatMap((topic) => {
+    const count = recipes.filter((recipe) =>
+      recipeMatchesTopic(recipe.tags, topic, slugifyTag)
+    ).length;
+    if (count === 0) return [];
+    return [{ slug: topic.slug, label: topic.name, count }];
+  });
+}
+
 export function hasActiveFilters(filters: CategoryFilterValues): boolean {
   return (
     filters.tid != null ||
     filters.svar != null ||
     Boolean(filters.emne) ||
     Boolean(filters.hoejtid) ||
+    Boolean(filters.metode) ||
+    Boolean(filters.topic) ||
     Boolean(filters.q?.trim())
   );
 }

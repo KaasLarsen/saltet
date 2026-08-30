@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CategoryFilters } from "@/components/CategoryFilters";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { MIN_RECIPES_FOR_FILTERS } from "@/lib/recipe-filters";
 import { buildTopicMetadata } from "@/lib/seo";
 import { getTopic, getAllTopicSlugs, getRecipesByTopic } from "@/lib/topics";
 import type { Recipe, RecipeFrontmatter } from "@/lib/types";
@@ -37,7 +36,6 @@ export default async function TopicPage({ params }: TopicPageProps) {
   if (!topic) notFound();
 
   const recipes = getRecipesByTopic(topicSlug).map(toListItem);
-  const showFilters = recipes.length >= MIN_RECIPES_FOR_FILTERS;
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -60,7 +58,10 @@ export default async function TopicPage({ params }: TopicPageProps) {
         {topic.description}
       </p>
 
-      <CategoryFilters recipes={recipes} showFilters={showFilters} />
+      <CategoryFilters
+        recipes={recipes}
+        searchPlaceholder={`Søg i ${topic.name.toLowerCase()}…`}
+      />
     </div>
   );
 }

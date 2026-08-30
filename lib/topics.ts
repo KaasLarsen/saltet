@@ -116,6 +116,76 @@ export const topics: Topic[] = [
     description:
       "Bøf, entrecôte og mørbrad — oksekød på grill, pande, ovn og støbejern.",
   },
+  {
+    slug: "svinekoed",
+    name: "Svinekød",
+    headline: "Svinekødsopskrifter",
+    description:
+      "Flæskesteg, ribben, medister og svin på tværs af ovn, grill, gryde og pande.",
+  },
+  {
+    slug: "frokost",
+    name: "Frokost",
+    headline: "Frokostopskrifter",
+    description:
+      "Retter til frokostbordet — smørrebrød, salater, pålæg og det der holder til en lang middagspause.",
+  },
+  {
+    slug: "smoerrebroed",
+    name: "Smørrebrød",
+    headline: "Smørrebrødsopskrifter",
+    description:
+      "Klassisk dansk frokost — hjemmelavet pålæg, sild og salater til det åbne ansigt.",
+  },
+  {
+    slug: "bacon",
+    name: "Bacon",
+    headline: "Baconopskrifter",
+    description:
+      "Sprødt bacon som hovedrolle — breakfast, topping, wrap og det der gør det hele bedre.",
+  },
+  {
+    slug: "pizza",
+    name: "Pizza",
+    headline: "Pizzaopskrifter",
+    description:
+      "Pizza og calzone — fra pizzaovn og grill til airfryer og støbejern.",
+  },
+  {
+    slug: "chili",
+    name: "Chili",
+    headline: "Chiliopskrifter",
+    description:
+      "Chili con carne, vegetar-chili og varme gryderetter med bid i.",
+  },
+  {
+    slug: "dansk-klassiker",
+    name: "Dansk klassiker",
+    headline: "Danske klassikere",
+    description:
+      "Mormor-mad og danske favoritter — frikadeller, brun sovs og det der smager af barndom.",
+  },
+  {
+    slug: "protein",
+    name: "Protein",
+    headline: "Proteinopskrifter",
+    description:
+      "Proteinrige retter til træning og hverdag — kød, fisk, æg og vegetar uden tomme kalorier.",
+  },
+  {
+    slug: "festmad",
+    name: "Festmad",
+    headline: "Festmad",
+    description:
+      "Retter til gæster og særlige lejligheder — imponerende uden at stå i køkkenet hele dagen.",
+  },
+  {
+    slug: "hvidloeg",
+    name: "Hvidløg",
+    headline: "Hvidløgsopskrifter",
+    description:
+      "Retter med hvidløg i centrum — rost, confiteret, marinader og alt det aromatiske.",
+  },
 ];
 
 export function getTopic(slug: string): Topic | undefined {
@@ -149,4 +219,24 @@ export function getTopicCounts(): { topic: Topic; count: number }[] {
       recipeMatchesTopicSlug(recipe, topic.slug)
     ).length,
   }));
+}
+
+/** Alle opskrifter der matcher mindst ét kurateret emne (uden dubletter). */
+export function getAllTopicRecipes(): Recipe[] {
+  const seen = new Set<string>();
+  const result: Recipe[] = [];
+
+  for (const recipe of getAllRecipes()) {
+    const matchesAny = topics.some((topic) =>
+      recipeMatchesTopicSlug(recipe, topic.slug)
+    );
+    if (!matchesAny) continue;
+
+    const key = `${recipe.category}/${recipe.slug}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(recipe);
+  }
+
+  return result;
 }

@@ -130,6 +130,56 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
     name: "Oksekød",
     matchTagSlugs: ["oksekoed", "bof", "entrecote", "moerkbrad"],
   },
+  {
+    slug: "svinekoed",
+    name: "Svinekød",
+    matchTagSlugs: ["svinekoed", "flaeskesteg", "ribben", "medister"],
+  },
+  {
+    slug: "frokost",
+    name: "Frokost",
+    matchTagSlugs: ["frokost"],
+  },
+  {
+    slug: "smoerrebroed",
+    name: "Smørrebrød",
+    matchTagSlugs: ["smoerrebroed"],
+  },
+  {
+    slug: "bacon",
+    name: "Bacon",
+    matchTagSlugs: ["bacon"],
+  },
+  {
+    slug: "pizza",
+    name: "Pizza",
+    matchTagSlugs: ["pizza", "calzone"],
+  },
+  {
+    slug: "chili",
+    name: "Chili",
+    matchTagSlugs: ["chili"],
+  },
+  {
+    slug: "dansk-klassiker",
+    name: "Dansk klassiker",
+    matchTagSlugs: ["dansk-klassiker", "mormormad", "hygge"],
+  },
+  {
+    slug: "protein",
+    name: "Protein",
+    matchTagSlugs: ["protein", "hojprotein", "proteinrig"],
+  },
+  {
+    slug: "festmad",
+    name: "Festmad",
+    matchTagSlugs: ["festmad", "gourmet", "gastromad"],
+  },
+  {
+    slug: "hvidloeg",
+    name: "Hvidløg",
+    matchTagSlugs: ["hvidloeg"],
+  },
 ];
 
 export type TopicNavSlug = (typeof TOPIC_NAV)[number]["slug"];

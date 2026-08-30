@@ -77,7 +77,8 @@ Tilføj `jul` / `nytår` / `påske` / `Mortensaften` i opskriftens `tags` for at
 
 Emner er **ikke** tilberedningsmetoder. De er madtyper på tværs af metoder:
 
-- Sider: `/emner` og `/emner/sovs` (kage, kylling, fisk, vegetar, brød, snack, pålæg, kartofler, ost, tilbehør, oksekød m.fl.)
+- Sider: `/emner` og `/emner/sovs` (kylling, fisk, bacon, pizza, festmad m.fl. — se [`lib/topic-nav.ts`](lib/topic-nav.ts))
+- `/emner` har filtre for emne, metode, tid, sværhed og søgning — som kategori-sider
 - Opskrifter vises på et emne, når de har matchende tags (`sauce`, `kage`, `dessert` osv.)
 - Tagget `sauce` på en opskrift linker til `/emner/sovs` (gamle `/tags/sauce` omdirigeres)
 - Tilføj emne-tags i opskriftens `tags` for at få den med. Listen står i [`lib/topic-nav.ts`](lib/topic-nav.ts) og [`lib/topics.ts`](lib/topics.ts).
