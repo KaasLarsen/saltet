@@ -9,9 +9,9 @@ PUBLISHED = "2026-08-31"
 
 IMG_MAP = {
     "klassisk-rodgroed": PUBLIC / "gryde" / "klassisk-risengrod.jpg",
-    "klassisk-aeblekage": PUBLIC / "ovn" / "aeblecrumble-i-dutch-oven.jpg",
-    "koldskal": PUBLIC / "gryde" / "klassisk-risengrod.jpg",
-    "karamelrand": PUBLIC / "ovn" / "klejner-ovn.jpg",
+    "klassisk-aeblekage": PUBLIC / "airfryer" / "bagte-aebler-bananer.jpg",
+    "koldskal": PUBLIC / "trykkoger" / "risengrod-trykkoger.jpg",
+    "karamelrand": PUBLIC / "ovn" / "saltkaramel-brownie-havsalt.jpg",
     "blodpoelse-pande": PUBLIC / "pande" / "medisterpoelse-pande.jpg",
     "hjemmelavet-leverpostej": PUBLIC / "palaeg" / "leverpostej.jpg",
     "boller-i-karry-trykkoger": PUBLIC / "gryde" / "boller-i-karry.jpg",
@@ -19,11 +19,11 @@ IMG_MAP = {
     "krebinetter-airfryer": PUBLIC / "pande" / "krebinetter.jpg",
     "hjerter-i-floedesovs-trykkoger": PUBLIC / "gryde" / "hjerter-i-floedesovs.jpg",
     "stegt-flaesk-grill": PUBLIC / "airfryer" / "stegt-flaesk.jpg",
-    "stegt-flaesk-ovn": PUBLIC / "airfryer" / "stegt-flaesk.jpg",
+    "stegt-flaesk-ovn": PUBLIC / "pande" / "stegt-flaesk-pande.jpg",
     "forloren-hare-stobejern": PUBLIC / "gryde" / "forloren-hare-gryde.jpg",
     "skipperlabskovs-stobejern": PUBLIC / "gryde" / "skipperlabskovs.jpg",
     "moerbradboeffer-airfryer": PUBLIC / "pande" / "tykke-moerbradboeffer-bloede-loeg.jpg",
-    "moerbradboeffer-grill": PUBLIC / "pande" / "tykke-moerbradboeffer-bloede-loeg.jpg",
+    "moerbradboeffer-grill": PUBLIC / "grill" / "moerbradspyd-sennep-timian.jpg",
     "aeggekage-ovn": PUBLIC / "airfryer" / "aeggekage.jpg",
     "tarteletter-ovn": PUBLIC / "airfryer" / "tarteletter-hoens-asparges.jpg",
 }

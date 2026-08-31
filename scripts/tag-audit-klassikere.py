@@ -32,6 +32,7 @@ UPDATES: dict[str, list[str]] = {
     "gryde/hjerter-i-floedesovs.mdx": ["dansk-klassiker"],
     "pande/biksemad-spejlaeg.mdx": ["dansk klassiker", "dansk-klassiker"],
     "airfryer/biksemad-spejlaeg.mdx": ["dansk-klassiker"],
+    "ovn/ovnstegte-frikadeller.mdx": ["dansk klassiker", "dansk-klassiker"],
 }
 
 
