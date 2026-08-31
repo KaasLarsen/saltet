@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Danske klassikere batch — long-tail SEO på tværs af metoder (aug 2026)."""
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 PUBLIC = Path(__file__).resolve().parent.parent / "public/recipes"
