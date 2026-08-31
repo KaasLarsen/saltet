@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Danske klassikere batch — long-tail SEO på tværs af metoder (aug 2026)."""
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 PUBLIC = Path(__file__).resolve().parent.parent / "public/recipes"
@@ -991,8 +990,7 @@ for cat, slug in written:
     dest.parent.mkdir(parents=True, exist_ok=True)
     src = IMG_MAP.get(slug, PUBLIC / "gryde" / "boller-i-karry.jpg")
     if not dest.exists() and src.exists():
-        shutil.copy2(src, dest)
-        print("image", dest.relative_to(PUBLIC.parent))
+        print("warn: mangler unikt billede — tilføj foto i stedet for kopi:", dest.relative_to(PUBLIC.parent))
     elif not src.exists():
         print("warn: no src image for", slug)
 
