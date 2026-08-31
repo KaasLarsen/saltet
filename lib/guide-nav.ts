@@ -67,6 +67,7 @@ export const GUIDE_NAV = [
   { slug: "andesteg-komplet-guide", name: "Andesteg komplet" },
   { slug: "mortensaften-tilbehoer", name: "Mortensaften-tilbehør" },
   { slug: "julemenu-sammensaetning", name: "Julemenu" },
+  { slug: "danske-klassikere-guide", name: "Danske klassikere" },
 ] as const;
 
 export type GuideNavSlug = (typeof GUIDE_NAV)[number]["slug"];
@@ -1018,6 +1019,31 @@ export const GUIDE_LINKS: {
       "ovn/klejner-ovn",
       "airfryer/aebleskiver-airfryer",
       "gryde/aebleflaesk-jul",
+    ],
+  },
+  {
+    slug: "danske-klassikere-guide",
+    title: "Danske klassikere — metoder, retter og hvad du laver hvor",
+    description:
+      "Boller i karry, stegt flæsk, forloren hare, rødgrød og 15+ retter på tværs af airfryer, grill, ovn, gryde og trykkoger.",
+    recipes: [
+      "gryde/boller-i-karry",
+      "trykkoger/boller-i-karry-trykkoger",
+      "airfryer/stegt-flaesk",
+      "grill/stegt-flaesk-grill",
+      "ovn/stegt-flaesk-ovn",
+      "pande/stegt-flaesk-pande",
+      "gryde/klassisk-rodgroed",
+      "ovn/klassisk-aeblekage",
+      "gryde/koldskal",
+      "gryde/forloren-hare-gryde",
+      "stobejern/forloren-hare-stobejern",
+      "pande/stjerneskud",
+      "airfryer/stjerneskud-airfryer",
+      "gryde/hjerter-i-floedesovs",
+      "gryde/skipperlabskovs",
+      "palaeg/leverpostej",
+      "ovn/hjemmelavet-leverpostej",
     ],
   },
   {
