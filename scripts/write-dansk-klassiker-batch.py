@@ -145,7 +145,6 @@ tags:
   - dessert
   - gryde
 imageAlt: Koldskål i skål med kammerjunkere
-featured: true
 ingredients:
   - 1 l kærnemælk eller tyk koldskål fra butik som base
   - 2 pasteuriserede æggeblommer
@@ -337,7 +336,6 @@ tags:
   - trykkoger
   - karry
 imageAlt: Boller i karry fra trykkoger med ris
-featured: true
 ingredients:
   - 500 g hakket kalv og flæsk
   - 1 æg, ½ dl mælk, ½ dl rasp, løg, salt, peber
@@ -386,7 +384,6 @@ tags:
   - airfryer
   - frokost
 imageAlt: Stjerneskud med stegt fisk fra airfryer
-featured: true
 ingredients:
   - 2 rødspættefileter til stegning
   - 2 fileter til dampning (samme eller torsk)
@@ -520,7 +517,6 @@ tags:
   - grill
   - persillesovs
 imageAlt: Stegt flæsk fra grill med sprøde kanter
-featured: true
 ingredients:
   - 600 g tykke flæskeskiver
   - Peber, evt. groft salt
@@ -563,7 +559,6 @@ tags:
   - ovn
   - persillesovs
 imageAlt: Stegt flæsk fra ovn på bageplade
-featured: true
 ingredients:
   - 600 g tykke flæskeskiver
   - Peber
