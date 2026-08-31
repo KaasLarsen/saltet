@@ -79,6 +79,35 @@ PATCHES: dict[str, dict[str, str | list[str]]] = {
     "ovn/aeggekage-ovn.mdx": {
         "relatedGrej": ["bagestaal-vs-bagesten"],
     },
+    # Basis-opskrifter (guide + emne)
+    "pande/stjerneskud.mdx": {
+        "affiliateProduct": "boligcenter-stegepande",
+        "relatedGrej": ["belaegning-teflon-keramik-staal", "tangsaet-pincet-grilltang"],
+    },
+    "pande/krebinetter.mdx": {
+        "affiliateProduct": "boligcenter-stegepande",
+        "relatedGrej": ["belaegning-teflon-keramik-staal"],
+    },
+    "pande/tykke-moerbradboeffer-bloede-loeg.mdx": {
+        "affiliateProduct": "boligcenter-stegepande",
+        "relatedGrej": ["instant-read-vs-bluetooth-termometer"],
+    },
+    "gryde/hjerter-i-floedesovs.mdx": {
+        "relatedGrej": ["kobbergryder", "koekkensakse-fjerkrae-saks"],
+    },
+    "gryde/forloren-hare-gryde.mdx": {
+        "relatedGrej": ["kobbergryder"],
+    },
+    "gryde/skipperlabskovs.mdx": {
+        "relatedGrej": ["kobbergryder", "stoebjernsgryde-storrelsesguide"],
+    },
+    "palaeg/leverpostej.mdx": {
+        "relatedGrej": ["palaegsmaskine-pro-vs-billig", "elektrisk-palaegskniv"],
+    },
+    "dips/persillesovs.mdx": {
+        "affiliateProduct": "boligcenter-saucegryde",
+        "relatedGrej": ["kobbergryder"],
+    },
 }
 
 GUIDE_GREJ = [
