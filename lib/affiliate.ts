@@ -75,6 +75,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     grejSlugs: [
       "tradlost-stegetermometer",
       "instant-read-vs-bluetooth-termometer",
+      "termometer-til-andesteg",
     ],
   },
   "meater-pro": {

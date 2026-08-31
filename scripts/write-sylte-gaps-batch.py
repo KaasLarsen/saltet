@@ -2,7 +2,7 @@
 """20 skarpe sylte-gaps — klassikere, modspil, frugt, pickles og sild."""
 from pathlib import Path
 
-ROOT = Path("/Users/dklarsen/Desktop/saltet/content/recipes")
+ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 
 RECIPES = r'''
 =====
@@ -1110,5 +1110,8 @@ for b in blocks:
     out = ROOT / d["category"]
     out.mkdir(parents=True, exist_ok=True)
     path = out / f"{d['slug']}.mdx"
+    if path.exists():
+        print("skip existing", d["category"] + "/" + path.name)
+        continue
     path.write_text(to_mdx(d), encoding="utf-8")
     print("wrote", d["category"] + "/" + path.name)

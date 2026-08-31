@@ -2,7 +2,7 @@
 """20 uundværlige sovse — gaps (aug 2026). Eksisterende: brun-sovs, bearnaisesovs, chimichurri, bearnaise-mayo, BBQ-whiskeysauce."""
 from pathlib import Path
 
-ROOT = Path("/Users/dklarsen/Desktop/saltet/content/recipes")
+ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 PUBLISHED = "2026-08-27"
 
 RECIPES = r'''

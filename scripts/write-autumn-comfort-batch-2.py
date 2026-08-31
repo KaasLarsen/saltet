@@ -2,7 +2,7 @@
 """Efterårs-comfort batch 2 — gryder, supper, grød og ben-mad (aug 2026)."""
 from pathlib import Path
 
-ROOT = Path("/Users/dklarsen/Desktop/saltet/content/recipes")
+ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 PUBLISHED = "2026-08-27"
 
 RECIPES = r'''

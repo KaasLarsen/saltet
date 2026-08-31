@@ -57,6 +57,7 @@ export const GREJ_NAV = [
   { slug: "chiffonflaske-sifon", name: "Sifonflaske" },
   { slug: "belaegning-teflon-keramik-staal", name: "Pande-belægning" },
   { slug: "kobbergryder", name: "Kobbergryder" },
+  { slug: "termometer-til-andesteg", name: "Termometer til andesteg" },
 ] as const;
 
 export type GrejNavSlug = (typeof GREJ_NAV)[number]["slug"];

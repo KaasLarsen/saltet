@@ -61,6 +61,7 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "koekkenvaegt-vs-maalebaeger",
     "haevekasser-pizzadej",
     "koedsnore-og-koednaale",
+    "termometer-til-andesteg",
   ],
   baalmad: [
     "baalgrej-til-baghaven",
@@ -76,6 +77,7 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "rygesmuld-flis-og-chunks",
     "tradlost-stegetermometer",
     "instant-read-vs-bluetooth-termometer",
+    "termometer-til-andesteg",
     "infrared-termometer-test",
     "gas-plancha-vs-kul-grill",
     "gasregulatorer-slanger-sikkerhed",

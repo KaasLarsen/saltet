@@ -64,6 +64,9 @@ export const GUIDE_NAV = [
   { slug: "airfryer-ovn-omregning", name: "Airfryer vs. ovn" },
   { slug: "stegning-olier-roegpunkt", name: "Olie og røgpunkt" },
   { slug: "sproede-pomfritter", name: "Sprøde pomfritter" },
+  { slug: "andesteg-komplet-guide", name: "Andesteg komplet" },
+  { slug: "mortensaften-tilbehoer", name: "Mortensaften-tilbehør" },
+  { slug: "julemenu-sammensaetning", name: "Julemenu" },
 ] as const;
 
 export type GuideNavSlug = (typeof GUIDE_NAV)[number]["slug"];
@@ -958,6 +961,63 @@ export const GUIDE_LINKS: {
       "fermentering/fermenterede-pommes-frites",
       "airfryer/chili-cheese-pommes",
       "airfryer/smashed-potato-salad",
+    ],
+  },
+  {
+    slug: "andesteg-komplet-guide",
+    title: "Andesteg komplet — sprødt skind, temperatur og metode",
+    description:
+      "Tørring, scoring, kernetemperatur og sammenligning af grill, ovn, airfryer, trykkoger og sous vide.",
+    recipes: [
+      "grill/andesteg-paa-grill",
+      "grill/and-rotisseri",
+      "ovn/sproedstegt-andesteg-aebler-svesker",
+      "airfryer/andesteg-airfryer",
+      "trykkoger/andesteg-trykkoger",
+      "sous-vide/hel-and-sous-vide",
+      "stobejern/andesteg-stobejern",
+      "airfryer/andelaar-airfryer",
+      "plancha/andesteg-plancha",
+      "pande/brunede-kartofler-and",
+      "gryde/aeble-kompot-and",
+      "sylte/klassisk-roedkaal-andefedt",
+      "dips/andesky",
+    ],
+  },
+  {
+    slug: "mortensaften-tilbehoer",
+    title: "Mortensaften-tilbehør — rødkål, kartofler og sauce til and",
+    description:
+      "Tilbehør til andesteg — rødkål, brunede kartofler, æblekompot, rødbeder og andesky.",
+    recipes: [
+      "sylte/klassisk-roedkaal-andefedt",
+      "trykkoger/roedkaal-trykkoger",
+      "pande/brunede-kartofler-and",
+      "gryde/aeble-kompot-and",
+      "gryde/rodbeder-til-and",
+      "gryde/kartoffelmos-andefedt",
+      "dips/andesky",
+      "grill/grillede-aebler-svesker",
+    ],
+  },
+  {
+    slug: "julemenu-sammensaetning",
+    title: "Julemenu — sammensæt julefrokost og juleaften",
+    description:
+      "Pålæg, flæskesteg, and, risengrod og desserter til det danske julebord.",
+    recipes: [
+      "palaeg/julefrokost-tallerken",
+      "palaeg/julesylte",
+      "palaeg/leverpostej",
+      "ovn/gammeldags-flaeskesteg-sproede-svaer",
+      "airfryer/flaeskesteg",
+      "trykkoger/flaeskesteg-trykkoger",
+      "grill/julegaas-rotisseri",
+      "gryde/klassisk-risengrod",
+      "airfryer/risengrod-airfryer",
+      "ovn/klejner-ovn",
+      "airfryer/aebleskiver-airfryer",
+      "gryde/aebleflaesk-jul",
     ],
   },
   {

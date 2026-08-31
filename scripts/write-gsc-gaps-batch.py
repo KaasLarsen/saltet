@@ -2,7 +2,7 @@
 """GSC content-gap batch — queries uden dedikeret side (aug 2026 export)."""
 from pathlib import Path
 
-ROOT = Path("/Users/dklarsen/Desktop/saltet/content/recipes")
+ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 
 RECIPES = r'''
 =====
