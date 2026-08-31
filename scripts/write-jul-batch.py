@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Jul batch — flæskesteg, grød, klejner og juleklassikere (aug 2026)."""
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 PUBLIC = Path(__file__).resolve().parent.parent / "public/recipes"
@@ -529,7 +528,6 @@ for cat, slug in written:
     dest.parent.mkdir(parents=True, exist_ok=True)
     src = IMG_MAP.get(slug, IMG_FLAEsk)
     if not dest.exists() and src.exists():
-        shutil.copy2(src, dest)
-        print("image", dest.relative_to(PUBLIC.parent))
+        print("warn: mangler unikt billede — tilføj foto i stedet for kopi:", dest.relative_to(PUBLIC.parent))
 
 print(f"done: {len(written)} recipes")

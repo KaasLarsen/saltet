@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:images": "node scripts/verify-unique-images.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

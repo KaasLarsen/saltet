@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """Mortensaften batch — and, tilbehør og restemad (aug 2026)."""
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parent.parent / "content/recipes"
 PUBLIC = Path(__file__).resolve().parent.parent / "public/recipes"
 PUBLISHED = "2026-08-31"
-IMG_SRC = PUBLIC / "grill" / "andesteg-paa-grill.jpg"
 
 RECIPES = r'''
 =====
@@ -834,8 +832,7 @@ for b in blocks:
 for cat, slug in written:
     dest = PUBLIC / cat / f"{slug}.jpg"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    if not dest.exists() and IMG_SRC.exists():
-        shutil.copy2(IMG_SRC, dest)
-        print("image", dest.relative_to(PUBLIC.parent))
+    if not dest.exists():
+        print("warn: mangler billede — tilføj unikt foto:", dest.relative_to(PUBLIC.parent))
 
 print(f"done: {len(written)} recipes")

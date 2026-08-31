@@ -991,8 +991,7 @@ for cat, slug in written:
     dest.parent.mkdir(parents=True, exist_ok=True)
     src = IMG_MAP.get(slug, PUBLIC / "gryde" / "boller-i-karry.jpg")
     if not dest.exists() and src.exists():
-        shutil.copy2(src, dest)
-        print("image", dest.relative_to(PUBLIC.parent))
+        print("warn: mangler unikt billede — tilføj foto i stedet for kopi:", dest.relative_to(PUBLIC.parent))
     elif not src.exists():
         print("warn: no src image for", slug)
 
