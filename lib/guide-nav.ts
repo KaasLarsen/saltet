@@ -1266,6 +1266,7 @@ export const GUIDE_LINKS: {
       "Saltdej i ovn, Dutch Oven og gløder. Smagen koncentreres — den koges ikke ud.",
     recipes: [
       "ovn/saltbagt-selleri-morkelsmoer",
+      "ovn/saltbagt-selleri-peberrodsmayo",
       "grill/saltbagt-knoldselleri-grill",
       "ovn/saltbagte-roedbeder",
       "airfryer/saltbagte-kartofler-aioli",
@@ -1296,6 +1297,7 @@ export const GUIDE_LINKS: {
     description:
       "Tørstegning først, fedtstof bagefter. Maillard, ikke damp.",
     recipes: [
+      "stobejern/toerstegte-svampe",
       "stobejern/cremet-svampetoast",
       "plancha/svampe-frikasse-plancha",
       "grill/grillede-portobellosvampe-hvidloegssmoer",
