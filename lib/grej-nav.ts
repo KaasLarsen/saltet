@@ -46,7 +46,7 @@ export const GREJ_NAV = [
   { slug: "pizzaspader", name: "Pizzaspader" },
   { slug: "pizzasten-rengoering", name: "Rengøring af pizzasten" },
   { slug: "mikroboelgeovnen", name: "Mikrobølgeovnen" },
-  { slug: "mandolinjern", name: "Mandolinjern" },
+  { slug: "mandolinjern", name: "Mandolinjern-typeguide" },
   { slug: "julienne-spiralshredder", name: "Julienne og spiralshredder" },
   { slug: "gasbraender-creme-brulee-torch", name: "Gasbrænder til grønt" },
   { slug: "koldroegningsbakke", name: "Koldrøgningsbakke" },
