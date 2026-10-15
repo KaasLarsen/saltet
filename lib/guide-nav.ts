@@ -11,6 +11,12 @@ export const GUIDE_NAV = [
   { slug: "smags-hacks-syre-salt-krydderier", name: "Smags-hacks" },
   { slug: "magre-proteinkilder-grill-airfryer", name: "Protein-omregner" },
   { slug: "groentsager-med-guldskorpe", name: "Grøntsager med guldskorpe" },
+  { slug: "plancha-vs-stobejern-groentsager", name: "Plancha vs. støbejern til grønt" },
+  { slug: "braendt-kaal", name: "Brændt kål" },
+  { slug: "toerstegning-af-svampe", name: "Tørstegning af svampe" },
+  { slug: "sproede-baelgfrugter", name: "Sprøde bælgfrugter" },
+  { slug: "roegning-af-groentsager", name: "Røgning af grøntsager" },
+  { slug: "saltbagning", name: "Saltbagning" },
   { slug: "syltning", name: "Syltning" },
   { slug: "roegning-hjemme", name: "Røgning hjemme" },
   { slug: "grydebroed-og-focaccia", name: "Grydebrød og focaccia" },
@@ -1222,6 +1228,89 @@ export const GUIDE_LINKS: {
       "pande/pande-fladbroed-hytteost",
       "grill/hjemmelavet-burger",
       "pande/amerikanske-pandekager",
+    ],
+  },
+  {
+    slug: "plancha-vs-stobejern-groentsager",
+    title: "Plancha vs. støbejern til grøntsager — Maillard der smager af kød",
+    description:
+      "Max Maillard på spidskål og svampe: tør overflade, kontaktvarme og plads.",
+    recipes: [
+      "plancha/spidskaal-smoer-parmesan-plancha",
+      "plancha/flanksteak-braendt-spidskaal",
+      "grill/grillede-portobellosvampe-hvidloegssmoer",
+      "stobejern/cremet-svampetoast",
+      "plancha/svampe-frikasse-plancha",
+      "airfryer/spidskaal",
+    ],
+  },
+  {
+    slug: "roegning-af-groentsager",
+    title: "Røgning af grøntsager hjemme — salt, tomater, hvidløg og chili",
+    description:
+      "Kold- og varmrøg plus røgpistol til salt, tomater, hvidløg og chili.",
+    recipes: [
+      "roeg/roget-salt",
+      "roeg/koldroget-hvidloeg",
+      "roeg/roget-chili-chipotle",
+      "roeg/rogede-tomater-sauce",
+      "grill/grillede-tomater",
+      "ovn/braendt-hvidloegssalt",
+    ],
+  },
+  {
+    slug: "saltbagning",
+    title: "Saltbagning — selleri og rødbeder i saltdej",
+    description:
+      "Saltdej i ovn, Dutch Oven og gløder. Smagen koncentreres — den koges ikke ud.",
+    recipes: [
+      "ovn/saltbagt-selleri-morkelsmoer",
+      "ovn/saltbagte-roedbeder",
+      "airfryer/saltbagte-kartofler-aioli",
+      "baalmad/saltbagt-roedspaette",
+      "gryde/rodbeder-til-and",
+    ],
+  },
+  {
+    slug: "braendt-kaal",
+    title: "Brændt kål — airfryer og pande uden råt pruttet kål",
+    description:
+      "Tørre kiler, hård varme, salt og syre. Gyldne kanter — ikke dampet skolekål.",
+    recipes: [
+      "airfryer/spidskaal",
+      "airfryer/karamelliseret-spidskaal-parmesan",
+      "plancha/spidskaal-smoer-parmesan-plancha",
+      "plancha/flanksteak-braendt-spidskaal",
+      "grill/grillet-spidskaal",
+      "pande/hakket-oksekoed-spidskaal",
+    ],
+  },
+  {
+    slug: "toerstegning-af-svampe",
+    title: "Tørstegning af svampe — støbejern uden kogning i eget vand",
+    description:
+      "Tørstegning først, fedtstof bagefter. Maillard, ikke damp.",
+    recipes: [
+      "stobejern/cremet-svampetoast",
+      "plancha/svampe-frikasse-plancha",
+      "grill/grillede-portobellosvampe-hvidloegssmoer",
+      "stobejern/svampe-risotto",
+      "airfryer/svampe-bites-timian",
+      "gryde/klassisk-svampesuppe",
+    ],
+  },
+  {
+    slug: "sproede-baelgfrugter",
+    title: "Sprøde bælgfrugter — airfryer-kikærter og edamame med kant",
+    description:
+      "Sprøde kikærter og edamame med chili/hvidløg som snack eller protein-crunch.",
+    recipes: [
+      "airfryer/kikaerter",
+      "airfryer/edamameboenner",
+      "airfryer/soede-kartofler-kikaerter",
+      "plancha/edamame-flagesalt-chili-plancha",
+      "stobejern/skillet-edamame-hvidloeg",
+      "dehydrator/sproede-kikaerter-dehydrator",
     ],
   },
 ];
