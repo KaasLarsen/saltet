@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Children, isValidElement, type ReactNode } from "react";
 import { AffiliateCta } from "@/components/AffiliateCta";
+import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
 import { Tip } from "@/components/mdx/RecipeMDX";
 import { resolveAffiliateLink } from "@/lib/affiliate";
@@ -89,6 +90,7 @@ export const guideMdxComponents = {
   Tip,
   RecipeGrid,
   AffiliateCta,
+  PriceRunnerWidget,
   h2: ({ children }: { children?: ReactNode }) => (
     <h2
       id={headingId(children)}

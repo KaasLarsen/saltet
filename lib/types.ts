@@ -82,6 +82,7 @@ export interface GuideFrontmatter {
   faq: GuideFaq[];
   relatedRecipes: string[];
   relatedGuides?: string[];
+  relatedGrej?: string[];
 }
 
 export interface Guide extends GuideFrontmatter {

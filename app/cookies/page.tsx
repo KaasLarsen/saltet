@@ -23,11 +23,12 @@ export default function CookiesPage() {
           til at virke — fx i forbindelse med hosting og sikkerhed.
         </p>
         <p>
-          På grej-sider indlejrer vi PriceRunner-widgets, så du kan se aktuelle
-          priser. PriceRunner kan sætte egne cookies og måle klik, når du
-          interagerer med widgetten eller åbner deres site. Vi bruger
-          adrunner-id <span className="text-bone/80">adrunner_dk_online-opskrift</span>,
-          så provision kan tilskrives Saltet.
+          På grej-, guide- og udvalgte opskriftssider indlejrer vi
+          PriceRunner-widgets, så du kan se aktuelle priser. PriceRunner kan
+          sætte egne cookies og måle klik, når du interagerer med widgetten
+          eller åbner deres site. Vi bruger adrunner-id{" "}
+          <span className="text-bone/80">adrunner_dk_online-opskrift</span>, så
+          provision kan tilskrives Saltet.
         </p>
         <p>
           Vi linker også til produkter via Partner-ads og andre
