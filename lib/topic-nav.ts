@@ -113,7 +113,16 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
   {
     slug: "kartofler",
     name: "Kartofler",
-    matchTagSlugs: ["kartofler", "kartoffel", "roesti", "pommes", "fritter"],
+    matchTagSlugs: [
+      "kartofler",
+      "kartoffel",
+      "roesti",
+      "pommes",
+      "fritter",
+      "grovfritter",
+      "pomfritter",
+      "pommes-frites",
+    ],
   },
   {
     slug: "ost",
