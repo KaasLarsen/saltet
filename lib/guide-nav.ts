@@ -1238,6 +1238,7 @@ export const GUIDE_LINKS: {
     recipes: [
       "plancha/spidskaal-smoer-parmesan-plancha",
       "plancha/flanksteak-braendt-spidskaal",
+      "stobejern/hvidkaals-bistek-brunet-smoer-kapers",
       "grill/grillede-portobellosvampe-hvidloegssmoer",
       "stobejern/cremet-svampetoast",
       "plancha/svampe-frikasse-plancha",
@@ -1265,6 +1266,7 @@ export const GUIDE_LINKS: {
       "Saltdej i ovn, Dutch Oven og gløder. Smagen koncentreres — den koges ikke ud.",
     recipes: [
       "ovn/saltbagt-selleri-morkelsmoer",
+      "grill/saltbagt-knoldselleri-grill",
       "ovn/saltbagte-roedbeder",
       "airfryer/saltbagte-kartofler-aioli",
       "baalmad/saltbagt-roedspaette",
@@ -1279,8 +1281,11 @@ export const GUIDE_LINKS: {
     recipes: [
       "airfryer/spidskaal",
       "airfryer/karamelliseret-spidskaal-parmesan",
+      "airfryer/groenkaalschips",
+      "airfryer/rosenkaal-baconfedt-parmesan",
       "plancha/spidskaal-smoer-parmesan-plancha",
       "plancha/flanksteak-braendt-spidskaal",
+      "stobejern/hvidkaals-bistek-brunet-smoer-kapers",
       "grill/grillet-spidskaal",
       "pande/hakket-oksekoed-spidskaal",
     ],
@@ -1310,6 +1315,7 @@ export const GUIDE_LINKS: {
       "airfryer/soede-kartofler-kikaerter",
       "plancha/edamame-flagesalt-chili-plancha",
       "stobejern/skillet-edamame-hvidloeg",
+      "ovn/ristede-graeskarkerner-roget-paprika",
       "dehydrator/sproede-kikaerter-dehydrator",
     ],
   },

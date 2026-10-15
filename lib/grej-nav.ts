@@ -48,6 +48,7 @@ export const GREJ_NAV = [
   { slug: "mikroboelgeovnen", name: "Mikrobølgeovnen" },
   { slug: "mandolinjern", name: "Mandolinjern" },
   { slug: "julienne-spiralshredder", name: "Julienne og spiralshredder" },
+  { slug: "gasbraender-creme-brulee-torch", name: "Gasbrænder til grønt" },
   { slug: "koldroegningsbakke", name: "Koldrøgningsbakke" },
   { slug: "smedejern-vs-stobejern-baalpande", name: "Smedejern vs. støbejern" },
   { slug: "skaerebraet-endetrae-vs-plastik", name: "Skærebræt" },
