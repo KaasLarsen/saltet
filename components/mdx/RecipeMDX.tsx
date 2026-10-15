@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
 import { AffiliateCta } from "@/components/AffiliateCta";
+import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { resolveAffiliateLink } from "@/lib/affiliate";
 
 const linkClass =
@@ -108,4 +109,5 @@ export const mdxComponents = {
   Steps,
   Tip,
   AffiliateCta,
+  PriceRunnerWidget,
 };
