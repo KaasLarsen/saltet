@@ -114,10 +114,7 @@ export function Header() {
   const menuScrollRef = useRef<HTMLDivElement>(null);
   const [openedPath, setOpenedPath] = useState<string | null>(null);
   const [desktopOpenHref, setDesktopOpenHref] = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen] = useState<Record<string, boolean>>({
-    "/opskrifter": true,
-    "/hoejtider": false,
-  });
+  const [mobileOpen, setMobileOpen] = useState<Record<string, boolean>>({});
   const [menuPath, setMenuPath] = useState(pathname);
   if (pathname !== menuPath) {
     setMenuPath(pathname);
