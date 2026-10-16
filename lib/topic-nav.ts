@@ -229,6 +229,32 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
       "keto-flu",
     ],
   },
+  {
+    slug: "carnivore-koekken",
+    name: "Carnivore-køkkenet",
+    matchTagSlugs: [
+      "carnivore",
+      "keto",
+      "chaffle",
+      "ribeye",
+      "toersaltning",
+    ],
+  },
+  {
+    slug: "low-carb-umami",
+    name: "Low-carb umami",
+    matchTagSlugs: ["low-carb", "uden-sukker", "saltcureret", "flaeskesvaer-panering"],
+  },
+  {
+    slug: "elektrolyt-koekken",
+    name: "Elektrolyt-køkkenet",
+    matchTagSlugs: [
+      "elektrolyt",
+      "bone-broth",
+      "keto-flu",
+      "mineralsalt",
+    ],
+  },
 ];
 
 export type TopicNavSlug = (typeof TOPIC_NAV)[number]["slug"];

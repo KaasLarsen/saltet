@@ -8,6 +8,9 @@ export const GUIDE_NAV = [
   { slug: "pulled-pork", name: "Pulled pork" },
   { slug: "fermentering-for-begyndere", name: "Fermentering" },
   { slug: "sunde-teknikker", name: "Sunde teknikker" },
+  { slug: "kulhydratfri-smag", name: "Kulhydratfri smag" },
+  { slug: "salt-paa-keto", name: "Salt på keto" },
+  { slug: "flagesalt-vs-himalayasalt", name: "Flagesalt vs. Himalaya" },
   { slug: "smags-hacks-syre-salt-krydderier", name: "Smags-hacks" },
   { slug: "magre-proteinkilder-grill-airfryer", name: "Protein-omregner" },
   { slug: "groentsager-med-guldskorpe", name: "Grøntsager med guldskorpe" },
@@ -232,6 +235,49 @@ export const GUIDE_LINKS: {
       "fermentering/klassisk-sauerkraut",
       "fermentering/autentisk-koreansk-kimchi",
       "pande/shakshuka",
+    ],
+  },
+  {
+    slug: "kulhydratfri-smag",
+    title: "Kulhydratfri smag — salt, støbejern og fermentering",
+    description:
+      "Keto, carnivore og low-carb uden kedelig mad: tørsaltning, røg, fermentering og elektrolytter.",
+    recipes: [
+      "plancha/keto-boef-toersaltning-ribeye",
+      "roeg/baconfedt-flaeskesvaer-roegsalt",
+      "stobejern/carnivore-chaffle",
+      "fermentering/fermenteret-chilisauce-uden-sukker",
+      "fermentering/saltcurerede-aeggeblommer",
+      "airfryer/low-carb-panering-flaeskesvaer",
+      "trykkoger/keto-bone-broth-marvben",
+      "airfryer/keto-madbrod",
+      "airfryer/flaeskesvaer-kyllingetenders",
+    ],
+  },
+  {
+    slug: "salt-paa-keto",
+    title: "Salt på keto — hvorfor du skal skrue OP",
+    description:
+      "Keto-flu, natrium og kvalitetssalt når kulhydraterne ryger — uden slankesprog.",
+    recipes: [
+      "trykkoger/keto-bone-broth-marvben",
+      "trykkoger/fond-trykkoger",
+      "plancha/keto-boef-toersaltning-ribeye",
+      "roeg/roget-salt",
+      "fermentering/gourmetsaltning-oksekoed",
+    ],
+  },
+  {
+    slug: "flagesalt-vs-himalayasalt",
+    title: "Flagesalt vs. Himalayasalt — elektrolyt-shoppen",
+    description:
+      "Finish eller morgen-blanding? Flager vs. mineralrigt rosa salt til keto-køkkenet.",
+    recipes: [
+      "trykkoger/keto-bone-broth-marvben",
+      "roeg/roget-salt",
+      "roeg/baconfedt-flaeskesvaer-roegsalt",
+      "plancha/keto-boef-toersaltning-ribeye",
+      "dehydrator/urtesalt-dehydrator",
     ],
   },
   {
