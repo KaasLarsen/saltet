@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import type { Guide, GuideFrontmatter } from "./types";
+import type { Grej, Guide, GuideFrontmatter, Recipe } from "./types";
+import { getAllGrej } from "./grej";
 import { getRecipe } from "./recipes";
-import type { Recipe } from "./types";
 
 const contentDir = path.join(process.cwd(), "content/guides");
 
@@ -17,6 +17,7 @@ function parseGuideMeta(filePath: string): Guide {
   return {
     ...frontmatter,
     relatedRecipes: frontmatter.relatedRecipes ?? [],
+    relatedGrej: frontmatter.relatedGrej ?? [],
     faq: frontmatter.faq ?? [],
     content: "",
   };
@@ -30,6 +31,7 @@ function parseGuideFile(filePath: string): Guide {
   return {
     ...frontmatter,
     relatedRecipes: frontmatter.relatedRecipes ?? [],
+    relatedGrej: frontmatter.relatedGrej ?? [],
     faq: frontmatter.faq ?? [],
     content: content.trim(),
   };
@@ -87,6 +89,12 @@ export function getRelatedGuideRecipes(guide: Guide): Recipe[] {
       return getRecipe(category, slug);
     })
     .filter((r): r is Recipe => Boolean(r));
+}
+
+export function getRelatedGuideGrej(guide: Guide): Grej[] {
+  return (guide.relatedGrej ?? [])
+    .map((slug) => getAllGrej().find((g) => g.slug === slug))
+    .filter((g): g is Grej => Boolean(g));
 }
 
 export function getGuidesForRecipe(category: string, slug: string): Guide[] {

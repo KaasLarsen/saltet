@@ -10,6 +10,7 @@ import { GuideContent } from "@/components/mdx/GuideContent";
 import {
   getAllGuideSlugs,
   getGuide,
+  getRelatedGuideGrej,
   getRelatedGuideRecipes,
   getRelatedGuides,
 } from "@/lib/guides";
@@ -46,6 +47,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
   if (!guide) notFound();
 
   const recipes = getRelatedGuideRecipes(guide);
+  const relatedGrej = getRelatedGuideGrej(guide);
   const relatedGuides = getRelatedGuides(guide);
   const guideUrl = absoluteUrl(`/guides/${guide.slug}`);
 
@@ -135,6 +137,37 @@ export default async function GuidePage({ params }: GuidePageProps) {
             <div className="mt-10 text-left">
               <GuideContent source={guide.content} />
             </div>
+
+            {relatedGrej.length > 0 && (
+              <section
+                className="mt-14 text-left"
+                aria-labelledby="guide-grej-heading"
+              >
+                <h2
+                  id="guide-grej-heading"
+                  className="mb-4 text-center font-serif text-2xl uppercase tracking-wide text-bone"
+                >
+                  Grej til guiden
+                </h2>
+                <ul className="space-y-3">
+                  {relatedGrej.map((item) => (
+                    <li key={item.slug}>
+                      <Link
+                        href={`/grej/${item.slug}`}
+                        className="block rounded-2xl border-2 border-bone/15 bg-ash/30 px-4 py-3 transition-colors hover:border-herb"
+                      >
+                        <span className="font-serif text-lg uppercase tracking-wide text-bone">
+                          {item.title}
+                        </span>
+                        <span className="mt-1 block text-sm text-bone/55">
+                          Læs testen eller købsguiden — så du ved hvad du køber.
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             {recipes.length > 0 && (
               <section className="mt-14 text-left">

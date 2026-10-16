@@ -128,6 +128,10 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "roegpistol-smoking-gun",
     "laksekniv-fleksibel",
   ],
+  sylte: [
+    "sildekrukker-patentglas",
+    "fermenteringsglas",
+  ],
   dips: [
     "stavblender",
     "chiffonflaske-sifon",
