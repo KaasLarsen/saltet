@@ -22,6 +22,8 @@ export const GUIDE_NAV = [
   { slug: "grydebroed-og-focaccia", name: "Grydebrød og focaccia" },
   { slug: "smash-burger", name: "Smash burger" },
   { slug: "saltguide", name: "Saltguide" },
+  { slug: "toersaltning", name: "Tørsaltning" },
+  { slug: "spraengning", name: "Sprængning" },
   { slug: "saltlage-beregner", name: "Saltlage-beregner" },
   { slug: "saltlage-til-mandler", name: "Saltlage til mandler" },
   { slug: "airfryer-vs-ovn-noedder", name: "Airfryer vs. ovn til nødder" },
@@ -324,6 +326,7 @@ export const GUIDE_LINKS: {
       "stobejern/grydebroed-oel-kerner",
       "stobejern/grydebroed-hytteost",
       "stobejern/rugbroeds-grydebroed",
+      "ovn/focaccia-flagesalt-guldskorpe",
       "stobejern/hvidloegs-krydderurte-focaccia",
       "roeremaskine/focaccia-havsalt-roeremaskine",
       "roeremaskine/grydebroad-roeremaskine",
@@ -371,6 +374,33 @@ export const GUIDE_LINKS: {
       "dehydrator/urtesalt-dehydrator",
       "dehydrator/ramslogssalt-dehydrator",
       "ovn/braendt-hvidloegssalt",
+    ],
+  },
+  {
+    slug: "toersaltning",
+    title: "Tørsaltning (dry-brining) — vejen til guldskorpe",
+    description:
+      "Salt kød 12–24 timer bart i køl. Osmose, myosin og tør overflade til Maillard på plancha og støbejern.",
+    recipes: [
+      "fermentering/gourmetsaltning-oksekoed",
+      "fermentering/gourmetsaltede-kyllingelaar",
+      "stobejern/cast-iron-ribeye",
+      "stobejern/ribeye-hvidloegs-marvsmoer",
+      "plancha/smash-burger-paa-plancha",
+    ],
+  },
+  {
+    slug: "spraengning",
+    title: "Sprængning (wet-brining) — ligevægt vs. hurtig saltlage",
+    description:
+      "Equilibrium vs. hurtig-sprængning. 6 % til rullepølse-slag, 3 % til juleand — koblet til saltlage-beregneren.",
+    recipes: [
+      "fermentering/spraengt-svinemoerbrad",
+      "gryde/spraengt-svineskank-sennep",
+      "palaeg/rullepoelse",
+      "palaeg/spraengt-oksebryst",
+      "ovn/spraengt-andebryst-roedkaal",
+      "grill/andesteg-paa-grill",
     ],
   },
   {
