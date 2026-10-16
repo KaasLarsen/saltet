@@ -69,8 +69,8 @@ export const categories: Category[] = [
     slug: "dips",
     name: "Dips",
     description:
-      "Dips, dressinger og saucer — fra tzatziki og aioli til mormordressing, mayo-varianter og BBQ.",
-    headline: "Dips & dressinger",
+      "Dips, dressinger og saucer — bearnaise, ostesovs, vinreduktioner, chimichurri, mayo-varianter og BBQ.",
+    headline: "Dips & saucer",
   },
   {
     slug: "sous-vide",
@@ -120,6 +120,13 @@ export const categories: Category[] = [
     description:
       "Saltning, sprængning og mælkesyregæring — sauerkraut, kimchi, gravad laks, bacon, citroner og umami-nørderi med salt som motor.",
     headline: "Fermentering & saltning",
+  },
+  {
+    slug: "palaeg",
+    name: "Pålæg",
+    description:
+      "Hjemmelavet pålæg, rørte salater og frokostklassikere til rugbrød og madpakke — med syltevarer fra Sylte og remoulade fra Dips som det naturlige tilbehør.",
+    headline: "Pålæg opskrifter",
   },
 ];
 

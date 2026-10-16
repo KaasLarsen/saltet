@@ -30,7 +30,9 @@ export function formatDate(dateStr: string): string {
 export function difficultyLabel(difficulty: string): string {
   const labels: Record<string, string> = {
     nem: "Nem",
+    em: "Nem",
     mellem: "Mellem",
+    ellem: "Mellem",
     svær: "Svær",
   };
   return labels[difficulty] ?? difficulty;

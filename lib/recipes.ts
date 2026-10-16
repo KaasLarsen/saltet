@@ -42,18 +42,22 @@ function compareByPublishedAt(a: Recipe, b: Recipe): number {
   return a.slug.localeCompare(b.slug);
 }
 
+let recipesCache: Recipe[] | null = null;
+
 export function getAllRecipes(): Recipe[] {
-  return getRecipeFiles().map(parseRecipeFile).sort(compareByPublishedAt);
+  if (recipesCache) return recipesCache;
+  recipesCache = getRecipeFiles().map(parseRecipeFile).sort(compareByPublishedAt);
+  return recipesCache;
 }
 
 export function getRecipesByCategory(category: string): Recipe[] {
   return getAllRecipes().filter((r) => r.category === category);
 }
 
-/** Seneste opskrifter til forsiden — sorteret efter `publishedAt`. */
-export function getFeaturedRecipes(limit = 3, category?: string): Recipe[] {
+/** Udvalgte opskrifter til forsiden (`featured: true`), nyeste først. */
+export function getFeaturedRecipes(limit = 12, category?: string): Recipe[] {
   const pool = category ? getRecipesByCategory(category) : getAllRecipes();
-  return pool.slice(0, limit);
+  return pool.filter((r) => r.featured).slice(0, limit);
 }
 
 export function getRecipe(category: string, slug: string): Recipe | undefined {
