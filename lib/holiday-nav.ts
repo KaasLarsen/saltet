@@ -39,6 +39,12 @@ export const HOLIDAY_NAV: readonly HolidayNavItem[] = [
     windows: [],
   },
   {
+    slug: "sommerhoejtider",
+    name: "Sommerhøjtider",
+    matchTagSlugs: ["sankt-hans", "pinse"],
+    windows: [{ startMonth: 6, startDay: 15, endMonth: 6, endDay: 24 }],
+  },
+  {
     slug: "mortensaften",
     name: "Mortensaften",
     matchTagSlugs: ["mortensaften"],
@@ -125,8 +131,27 @@ function paaskeWindow(year: number): HolidayWindow {
   };
 }
 
+function pinseWindow(year: number): HolidayWindow {
+  const easter = easterSunday(year);
+  const pinse = new Date(easter);
+  pinse.setDate(easter.getDate() + 49);
+  const start = new Date(pinse);
+  start.setDate(pinse.getDate() - 10);
+  const end = new Date(pinse);
+  end.setDate(pinse.getDate() + 2);
+  return {
+    startMonth: start.getMonth() + 1,
+    startDay: start.getDate(),
+    endMonth: end.getMonth() + 1,
+    endDay: end.getDate(),
+  };
+}
+
 function windowsForHoliday(holiday: HolidayNavItem, year: number): HolidayWindow[] {
   if (holiday.slug === "paaske") return [paaskeWindow(year)];
+  if (holiday.slug === "sommerhoejtider") {
+    return [pinseWindow(year), ...holiday.windows];
+  }
   return [...holiday.windows];
 }
 
