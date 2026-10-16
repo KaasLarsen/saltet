@@ -106,6 +106,21 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
     matchTagSlugs: ["snack", "snacks", "forret"],
   },
   {
+    slug: "noedder",
+    name: "Nødder",
+    matchTagSlugs: [
+      "noedder",
+      "mandler",
+      "cashew",
+      "valnoedder",
+      "jordnoedder",
+      "peanuts",
+      "pistacie",
+      "pekan",
+      "hasselnoedder",
+    ],
+  },
+  {
     slug: "palaeg",
     name: "Pålæg",
     matchTagSlugs: ["paalaeg"],
