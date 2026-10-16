@@ -193,6 +193,13 @@ export const topics: Topic[] = [
     description:
       "Retter med hvidløg i centrum — rost, confiteret, marinader og alt det aromatiske.",
   },
+  {
+    slug: "keto",
+    name: "Low-Carb & Keto",
+    headline: "Low-Carb & Keto",
+    description:
+      "Carnivore, keto og elektrolytter — maksimal skorpe, umami og salt, når kulhydraterne er skåret væk.",
+  },
 ];
 
 export function getTopic(slug: string): Topic | undefined {
