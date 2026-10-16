@@ -16,6 +16,8 @@ export const GUIDE_NAV = [
   { slug: "grydebroed-og-focaccia", name: "Grydebrød og focaccia" },
   { slug: "smash-burger", name: "Smash burger" },
   { slug: "saltguide", name: "Saltguide" },
+  { slug: "saltlage-til-mandler", name: "Saltlage til mandler" },
+  { slug: "airfryer-vs-ovn-noedder", name: "Airfryer vs. ovn til nødder" },
   { slug: "dehydrering-for-noerder", name: "Dehydrering" },
   { slug: "sous-vide-grill", name: "Sous vide + sear" },
   { slug: "baalmad", name: "Bålmad" },
@@ -362,6 +364,34 @@ export const GUIDE_LINKS: {
       "dehydrator/urtesalt-dehydrator",
       "dehydrator/ramslogssalt-dehydrator",
       "ovn/braendt-hvidloegssalt",
+    ],
+  },
+  {
+    slug: "saltlage-til-mandler",
+    title: "Den videnskabelige saltlage til mandler (vægt-omregner)",
+    description:
+      "Gram salt pr. dl, trækketid og mættet lage — så saltet når ind i nøddekernerne.",
+    recipes: [
+      "airfryer/klassiske-saltmandler-skyllemekanisme",
+      "ovn/saltbagte-valnoedder-timian",
+      "pande/saltede-ristede-mandler",
+      "airfryer/braendte-mandler-noedder",
+      "grill/rogede-mandler-rygesmuld",
+      "roeg/smoking-gun-mandler",
+    ],
+  },
+  {
+    slug: "airfryer-vs-ovn-noedder",
+    title: "Airfryer vs. ovn til nødder: temperatur-fælden",
+    description:
+      "Hvorfor 140–150 °C er sweet spot for nødder — og hvorfor høj airfryer-varme brænder kernen.",
+    recipes: [
+      "airfryer/klassiske-saltmandler-skyllemekanisme",
+      "airfryer/cashew-lime-chili",
+      "airfryer/braendte-mandler-noedder",
+      "ovn/oel-mandler-flagesalt",
+      "ovn/saltbagte-valnoedder-timian",
+      "pande/saltede-ristede-mandler",
     ],
   },
   {
