@@ -20,7 +20,11 @@ export default function CookiesPage() {
       <div className="mt-8 space-y-5 text-left leading-relaxed text-bone/65 md:text-center">
         <p>
           {siteConfig.name} bruger teknisk nødvendige cookies, der får sitet
-          til at virke — fx i forbindelse med hosting og sikkerhed.
+          til at virke — fx i forbindelse med hosting og sikkerhed. Når du
+          giver en opskrift stjerner, sætter vi cookien{" "}
+          <span className="text-bone/80">sl_voter</span>, så den samme browser
+          kun tæller én gang og kan ændre sin stemme. Den kræver ikke login og
+          bruges ikke til annoncer eller statistik.
         </p>
         <p>
           På grej-, guide- og udvalgte opskriftssider indlejrer vi

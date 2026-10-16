@@ -82,6 +82,13 @@ export const topics: Topic[] = [
       "Snacks, forretter og småretter — til madpakke, fest eller når sulten melder sig mellem måltiderne.",
   },
   {
+    slug: "noedder",
+    name: "Nødder",
+    headline: "Nøddeopskrifter",
+    description:
+      "Mandler, cashew, valnødder, peanuts, pistacier — plus græskarkerner, solsikkekerner, edamame og kikærter som snack.",
+  },
+  {
     slug: "palaeg",
     name: "Pålæg",
     headline: "Pålægsopskrifter",

@@ -133,10 +133,13 @@ export function buildBreadcrumbJsonLd(
   };
 }
 
-export function buildRecipeJsonLd(recipe: Recipe): object {
+export function buildRecipeJsonLd(
+  recipe: Recipe,
+  aggregateRating?: { ratingValue: number; ratingCount: number }
+): object {
   const url = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
 
-  return {
+  const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Recipe",
     name: recipe.title,
@@ -166,6 +169,22 @@ export function buildRecipeJsonLd(recipe: Recipe): object {
       "@id": url,
     },
   };
+
+  if (
+    aggregateRating &&
+    aggregateRating.ratingCount > 0 &&
+    Number.isFinite(aggregateRating.ratingValue)
+  ) {
+    data.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: aggregateRating.ratingValue,
+      ratingCount: aggregateRating.ratingCount,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
+
+  return data;
 }
 
 export function buildFaqJsonLd(

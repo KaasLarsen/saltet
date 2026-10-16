@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
+import { RecipeRating } from "@/components/RecipeRating";
 import { RecipeTags } from "@/components/RecipeTags";
 import { RecipeContent } from "@/components/mdx/RecipeContent";
 import { Ingredients } from "@/components/mdx/RecipeMDX";
@@ -24,6 +25,8 @@ import {
 } from "@/lib/format";
 import { getGrejForRecipe } from "@/lib/grej";
 import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
+import { recipeRatingKey } from "@/lib/recipe-ratings/format";
+import { getCachedRecipeRatingSummary } from "@/lib/recipe-ratings/store";
 import {
   getAllRecipeParams,
   getRecipe,
@@ -77,6 +80,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
   const groceryOffer = getGroceryAffiliateOfferForRecipe(recipe);
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
+  const ratingKey = recipeRatingKey(recipe.category, recipe.slug);
+  const rating = await getCachedRecipeRatingSummary("recipe", ratingKey);
 
   const breadcrumbItems = [
     { name: "Forside", url: absoluteUrl("/") },
@@ -89,8 +94,12 @@ export default async function RecipePage({ params }: RecipePageProps) {
   ];
 
   const faqJsonLd = buildFaqJsonLd(recipe.faq);
+  const aggregateRating =
+    rating.count > 0 && rating.average != null
+      ? { ratingValue: rating.average, ratingCount: rating.count }
+      : undefined;
   const jsonLd = [
-    buildRecipeJsonLd(recipe),
+    buildRecipeJsonLd(recipe, aggregateRating),
     buildBreadcrumbJsonLd(breadcrumbItems),
     ...(faqJsonLd ? [faqJsonLd] : []),
   ];
@@ -179,6 +188,13 @@ export default async function RecipePage({ params }: RecipePageProps) {
                   </dd>
                 </div>
               </dl>
+
+              <RecipeRating
+                kind="recipe"
+                slug={ratingKey}
+                initialAverage={rating.average}
+                initialCount={rating.count}
+              />
             </header>
 
             <div className="mt-10 text-left">
