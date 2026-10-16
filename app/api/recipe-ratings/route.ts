@@ -7,6 +7,7 @@ import {
 } from "@/lib/recipe-ratings/format";
 import {
   getCachedRecipeRatingSummary,
+  isRecipeRatingsStoreConfigured,
   readVoterRating,
   saveRecipeRating,
 } from "@/lib/recipe-ratings/store";
@@ -17,7 +18,6 @@ import {
   voterCookieOptions,
 } from "@/lib/recipe-ratings/voter";
 import { getRecipe } from "@/lib/recipes";
-import { isSupabaseConfigured } from "@/lib/supabase/env";
 
 export const dynamic = "force-dynamic";
 
@@ -70,7 +70,7 @@ export async function GET(req: NextRequest) {
   const summary = await getCachedRecipeRatingSummary(kindRaw, slug);
   let myRating: number | null = null;
   const voter = readOrCreateVoterId(req.cookies.get(VOTER_COOKIE)?.value);
-  if (!voter.isNew && isSupabaseConfigured()) {
+  if (!voter.isNew && isRecipeRatingsStoreConfigured()) {
     myRating = await readVoterRating(kindRaw, slug, hashVoterId(voter.id));
   }
 
