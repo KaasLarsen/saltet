@@ -217,6 +217,18 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
     name: "Hvidløg",
     matchTagSlugs: ["hvidloeg"],
   },
+  {
+    slug: "keto",
+    name: "Low-Carb & Keto",
+    matchTagSlugs: [
+      "keto",
+      "low-carb",
+      "carnivore",
+      "elektrolyt",
+      "pemmican",
+      "keto-flu",
+    ],
+  },
 ];
 
 export type TopicNavSlug = (typeof TOPIC_NAV)[number]["slug"];

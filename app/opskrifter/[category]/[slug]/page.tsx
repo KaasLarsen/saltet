@@ -5,6 +5,10 @@ import { notFound } from "next/navigation";
 import { AffiliateCta } from "@/components/AffiliateCta";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import {
+  KetoDietCta,
+  recipeMatchesKetoDiet,
+} from "@/components/KetoDietCta";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { RecipeRating } from "@/components/RecipeRating";
@@ -225,6 +229,10 @@ export default async function RecipePage({ params }: RecipePageProps) {
             ) : null}
 
             <RecipeTags tags={recipe.tags} className="mt-12" />
+
+            {recipeMatchesKetoDiet(recipe.tags) ? (
+              <KetoDietCta className="mt-10 mb-0" />
+            ) : null}
 
             <RecipeFaqSection items={recipe.faq} />
 

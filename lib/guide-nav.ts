@@ -25,6 +25,13 @@ export const GUIDE_NAV = [
   { slug: "toersaltning", name: "Tørsaltning" },
   { slug: "spraengning", name: "Sprængning" },
   { slug: "saltlage-beregner", name: "Saltlage-beregner" },
+  { slug: "keto-flu-og-flagesalt", name: "Keto-flu & flagesalt" },
+  { slug: "bedste-salte-elektrolyt-vand", name: "Salte til elektrolyt-vand" },
+  { slug: "maillard-low-carb-groentsager", name: "Maillard på low-carb grønt" },
+  {
+    slug: "carnivore-boeuf-stoebjern-vs-carbonstaal",
+    name: "Carnivore-pande: jern vs. stål",
+  },
   { slug: "saltlage-til-mandler", name: "Saltlage til mandler" },
   { slug: "airfryer-vs-ovn-noedder", name: "Airfryer vs. ovn til nødder" },
   { slug: "dehydrering-for-noerder", name: "Dehydrering" },
@@ -374,6 +381,62 @@ export const GUIDE_LINKS: {
       "dehydrator/urtesalt-dehydrator",
       "dehydrator/ramslogssalt-dehydrator",
       "ovn/braendt-hvidloegssalt",
+      "gryde/sukkerfri-elektrolyt-shots",
+    ],
+  },
+  {
+    slug: "keto-flu-og-flagesalt",
+    title: "Keto-flu — hvorfor flagesalt er kuren",
+    description:
+      "Når insulin falder, udskiller nyrerne salt. Sådan doserer du flagesalt og elektrolytter.",
+    recipes: [
+      "gryde/sukkerfri-elektrolyt-shots",
+      "trykkoger/gourmet-bone-broth-marvben",
+      "stobejern/baconfedt-mandler",
+      "airfryer/keto-madbrod",
+      "airfryer/bacon",
+      "ovn/carnivore-taco",
+      "dehydrator/pemmican",
+    ],
+  },
+  {
+    slug: "bedste-salte-elektrolyt-vand",
+    title: "Testen: bedste salte til elektrolyt-vand",
+    description:
+      "Maldon vs. keltisk havsalt vs. Himalayasalt — smag, mineraler og opløselighed i koldt vand.",
+    recipes: [
+      "gryde/sukkerfri-elektrolyt-shots",
+      "trykkoger/gourmet-bone-broth-marvben",
+      "roeg/roget-salt",
+      "ovn/braendt-hvidloegssalt",
+    ],
+  },
+  {
+    slug: "maillard-low-carb-groentsager",
+    title: "Maillard på low-carb grøntsager",
+    description:
+      "Hård kontaktvarme og salt, så rosenkål og broccoli smager af kød — uden kartoffelstivelse.",
+    recipes: [
+      "airfryer/rosenkaal-baconfedt-parmesan",
+      "plancha/spidskaal-smoer-parmesan-plancha",
+      "airfryer/spidskaal",
+      "airfryer/bacon-twists",
+      "fermentering/fermenteret-sennep-uden-sukker",
+      "roeg/roget-low-carb-chilisauce",
+    ],
+  },
+  {
+    slug: "carnivore-boeuf-stoebjern-vs-carbonstaal",
+    title: "Støbejern vs. carbonstål til carnivore-bøffen",
+    description:
+      "Når der kun er kød og salt, skal panden være fejlfri — hvilken stegeoverflade vinder?",
+    recipes: [
+      "stobejern/cast-iron-ribeye",
+      "stobejern/carnivore-aeggekage-svinekaebe",
+      "ovn/carnivore-taco",
+      "pande/hakkeboef-loeg-spejlaeg",
+      "stobejern/smash-burgers-stobejern",
+      "stobejern/baconfedt-mandler",
     ],
   },
   {
