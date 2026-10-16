@@ -22,6 +22,7 @@ export const GUIDE_NAV = [
   { slug: "grydebroed-og-focaccia", name: "Grydebrød og focaccia" },
   { slug: "smash-burger", name: "Smash burger" },
   { slug: "saltguide", name: "Saltguide" },
+  { slug: "saltlage-beregner", name: "Saltlage-beregner" },
   { slug: "saltlage-til-mandler", name: "Saltlage til mandler" },
   { slug: "airfryer-vs-ovn-noedder", name: "Airfryer vs. ovn til nødder" },
   { slug: "dehydrering-for-noerder", name: "Dehydrering" },
@@ -355,9 +356,9 @@ export const GUIDE_LINKS: {
   },
   {
     slug: "saltguide",
-    title: "Den ultimative saltguide — typer, procenter og funktion",
+    title: "Den ultimative saltguide — forskellen på salt",
     description:
-      "Flagesalt, dæmningssalt, nitritsalt og koldrøget salt. Tørsaltning versus saltlage.",
+      "Forskellen på salt: flagesalt, Maldon, Kala Namak, nitritsalt. Tørsaltning versus saltlage.",
     recipes: [
       "fermentering/gourmetsaltning-oksekoed",
       "fermentering/hjemmelavet-bacon-saltning",
@@ -370,6 +371,20 @@ export const GUIDE_LINKS: {
       "dehydrator/urtesalt-dehydrator",
       "dehydrator/ramslogssalt-dehydrator",
       "ovn/braendt-hvidloegssalt",
+    ],
+  },
+  {
+    slug: "saltlage-beregner",
+    title: "Saltlage-beregner — gram salt fra liter og procent",
+    description:
+      "Indtast liter vand og vælg procent (3 %, 5–8 %, 10 %). Få gram fint salt til sprængning, ferment og sild.",
+    recipes: [
+      "fermentering/spraengt-svinemoerbrad",
+      "gryde/spraengt-svineskank-sennep",
+      "sylte/syltede-sild",
+      "fermentering/klassisk-sauerkraut",
+      "fermentering/autentisk-koreansk-kimchi",
+      "fermentering/fermenterede-asparges",
     ],
   },
   {
