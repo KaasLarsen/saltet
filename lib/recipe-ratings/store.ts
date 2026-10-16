@@ -8,9 +8,19 @@ import {
   type RecipeRatingKind,
   type RecipeRatingSummary,
 } from "@/lib/recipe-ratings/format";
+import {
+  isMantleRatingsConfigured,
+  mantleCastRating,
+  mantleReadSummary,
+  mantleReadVoterRating,
+} from "@/lib/recipe-ratings/mantle";
 import { hashIp } from "@/lib/recipe-ratings/voter";
 import { createSupabaseAnonClient } from "@/lib/supabase/anon";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
+
+export function isRecipeRatingsStoreConfigured(): boolean {
+  return isSupabaseConfigured() || isMantleRatingsConfigured();
+}
 
 export function getCachedRecipeRatingSummary(
   kind: RecipeRatingKind,
@@ -37,18 +47,25 @@ export async function readRecipeRatingSummary(
   kind: RecipeRatingKind,
   slug: string
 ): Promise<RecipeRatingSummary> {
-  if (!isSupabaseConfigured()) return EMPTY_RECIPE_RATING;
-  try {
-    const supabase = createSupabaseAnonClient();
-    const { data, error } = await supabase.rpc("recipe_rating_summary", {
-      p_kind: kind,
-      p_slug: slug,
-    });
-    if (error) return EMPTY_RECIPE_RATING;
-    return parseSummary(data);
-  } catch {
-    return EMPTY_RECIPE_RATING;
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createSupabaseAnonClient();
+      const { data, error } = await supabase.rpc("recipe_rating_summary", {
+        p_kind: kind,
+        p_slug: slug,
+      });
+      if (error) return EMPTY_RECIPE_RATING;
+      return parseSummary(data);
+    } catch {
+      return EMPTY_RECIPE_RATING;
+    }
   }
+
+  if (isMantleRatingsConfigured()) {
+    return mantleReadSummary(kind, slug);
+  }
+
+  return EMPTY_RECIPE_RATING;
 }
 
 export async function readVoterRating(
@@ -56,16 +73,23 @@ export async function readVoterRating(
   slug: string,
   voterHash: string
 ): Promise<number | null> {
-  if (!isSupabaseConfigured()) return null;
-  const supabase = createSupabaseAnonClient();
-  const { data, error } = await supabase.rpc("recipe_rating_mine", {
-    p_kind: kind,
-    p_slug: slug,
-    p_voter_hash: voterHash,
-  });
-  if (error || data == null) return null;
-  const rating = Number(data);
-  return Number.isInteger(rating) ? rating : null;
+  if (isSupabaseConfigured()) {
+    const supabase = createSupabaseAnonClient();
+    const { data, error } = await supabase.rpc("recipe_rating_mine", {
+      p_kind: kind,
+      p_slug: slug,
+      p_voter_hash: voterHash,
+    });
+    if (error || data == null) return null;
+    const rating = Number(data);
+    return Number.isInteger(rating) ? rating : null;
+  }
+
+  if (isMantleRatingsConfigured()) {
+    return mantleReadVoterRating(kind, slug, voterHash);
+  }
+
+  return null;
 }
 
 export type SaveRecipeRatingResult =
@@ -79,45 +103,71 @@ export async function saveRecipeRating(input: {
   voterHash: string;
   ip: string;
 }): Promise<SaveRecipeRatingResult> {
-  if (!isSupabaseConfigured()) {
-    return {
-      ok: false,
-      status: 503,
-      message: "Stemmer er ikke tilgængelige lige nu.",
-    };
-  }
+  if (isSupabaseConfigured()) {
+    const supabase = createSupabaseAnonClient();
+    const { data, error } = await supabase.rpc("recipe_rating_cast", {
+      p_kind: input.kind,
+      p_slug: input.slug,
+      p_voter_hash: input.voterHash,
+      p_ip_hash: hashIp(input.ip),
+      p_rating: input.rating,
+    });
 
-  const supabase = createSupabaseAnonClient();
-  const { data, error } = await supabase.rpc("recipe_rating_cast", {
-    p_kind: input.kind,
-    p_slug: input.slug,
-    p_voter_hash: input.voterHash,
-    p_ip_hash: hashIp(input.ip),
-    p_rating: input.rating,
-  });
-
-  if (error) {
-    console.error("recipe_rating_cast:", error.message);
-    const message = error.message || "";
-    if (message.includes("rate_limited")) {
+    if (error) {
+      console.error("recipe_rating_cast:", error.message);
+      const message = error.message || "";
+      if (message.includes("rate_limited")) {
+        return {
+          ok: false,
+          status: 429,
+          message: "For mange stemmer lige nu. Prøv igen om et øjeblik.",
+        };
+      }
       return {
         ok: false,
-        status: 429,
-        message: "For mange stemmer lige nu. Prøv igen om et øjeblik.",
+        status: 500,
+        message: "Kunne ikke gemme din stemme. Prøv igen.",
       };
     }
-    return {
-      ok: false,
-      status: 500,
-      message: "Kunne ikke gemme din stemme. Prøv igen.",
-    };
+
+    const summary = parseSummary(data);
+    revalidateTag(recipeRatingCacheTag(input.kind, input.slug), {
+      expire: 0,
+    });
+    revalidatePath(recipeRatingPath(input.kind, input.slug));
+
+    return { ok: true, summary, myRating: input.rating };
   }
 
-  const summary = parseSummary(data);
-  revalidateTag(recipeRatingCacheTag(input.kind, input.slug), {
-    expire: 0,
-  });
-  revalidatePath(recipeRatingPath(input.kind, input.slug));
+  if (isMantleRatingsConfigured()) {
+    try {
+      const summary = await mantleCastRating({
+        kind: input.kind,
+        slug: input.slug,
+        rating: input.rating,
+        voterHash: input.voterHash,
+      });
+      revalidateTag(recipeRatingCacheTag(input.kind, input.slug), {
+        expire: 0,
+      });
+      revalidatePath(recipeRatingPath(input.kind, input.slug));
+      return { ok: true, summary, myRating: input.rating };
+    } catch (err) {
+      console.error(
+        "mantle_cast:",
+        err instanceof Error ? err.message : "unknown"
+      );
+      return {
+        ok: false,
+        status: 500,
+        message: "Kunne ikke gemme din stemme. Prøv igen.",
+      };
+    }
+  }
 
-  return { ok: true, summary, myRating: input.rating };
+  return {
+    ok: false,
+    status: 503,
+    message: "Stemmer er ikke tilgængelige lige nu.",
+  };
 }
