@@ -1,20 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AffiliateCta } from "@/components/AffiliateCta";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
+import { RecipeRating } from "@/components/RecipeRating";
 import { RecipeTags } from "@/components/RecipeTags";
 import { RecipeContent } from "@/components/mdx/RecipeContent";
 import { Ingredients } from "@/components/mdx/RecipeMDX";
 import { Steps } from "@/components/mdx/RecipeMDX";
+import {
+  getAffiliateOfferForRecipe,
+  getGroceryAffiliateOfferForRecipe,
+  getWineAffiliateOfferForRecipe,
+} from "@/lib/affiliate";
 import { getCategoryName } from "@/lib/categories";
 import {
   formatDate,
   formatDuration,
   difficultyLabel,
 } from "@/lib/format";
+import { getGrejForRecipe } from "@/lib/grej";
+import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
+import { recipeRatingKey } from "@/lib/recipe-ratings/format";
+import { getCachedRecipeRatingSummary } from "@/lib/recipe-ratings/store";
 import {
   getAllRecipeParams,
   getRecipe,
@@ -51,8 +63,25 @@ export default async function RecipePage({ params }: RecipePageProps) {
   if (!recipe) notFound();
 
   const related = getRelatedRecipes(recipe);
+  const mentionedInGuides = getGuidesMentioningRecipe(
+    recipe.category,
+    recipe.slug
+  );
+  const relatedGrej = getGrejForRecipe(
+    recipe.category,
+    recipe.slug,
+    recipe.relatedGrej
+  );
+  const affiliateOffer = getAffiliateOfferForRecipe(
+    recipe,
+    relatedGrej.map((g) => g.slug)
+  );
+  const wineOffer = getWineAffiliateOfferForRecipe(recipe);
+  const groceryOffer = getGroceryAffiliateOfferForRecipe(recipe);
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
+  const ratingKey = recipeRatingKey(recipe.category, recipe.slug);
+  const rating = await getCachedRecipeRatingSummary("recipe", ratingKey);
 
   const breadcrumbItems = [
     { name: "Forside", url: absoluteUrl("/") },
@@ -65,8 +94,12 @@ export default async function RecipePage({ params }: RecipePageProps) {
   ];
 
   const faqJsonLd = buildFaqJsonLd(recipe.faq);
+  const aggregateRating =
+    rating.count > 0 && rating.average != null
+      ? { ratingValue: rating.average, ratingCount: rating.count }
+      : undefined;
   const jsonLd = [
-    buildRecipeJsonLd(recipe),
+    buildRecipeJsonLd(recipe, aggregateRating),
     buildBreadcrumbJsonLd(breadcrumbItems),
     ...(faqJsonLd ? [faqJsonLd] : []),
   ];
@@ -155,6 +188,13 @@ export default async function RecipePage({ params }: RecipePageProps) {
                   </dd>
                 </div>
               </dl>
+
+              <RecipeRating
+                kind="recipe"
+                slug={ratingKey}
+                initialAverage={rating.average}
+                initialCount={rating.count}
+              />
             </header>
 
             <div className="mt-10 text-left">
@@ -167,6 +207,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
                   Ingredienser
                 </h2>
                 <Ingredients items={recipe.ingredients} />
+                {groceryOffer ? (
+                  <AffiliateCta offer={groceryOffer} className="mt-6 mb-0" />
+                ) : null}
               </section>
 
               <section>
@@ -177,9 +220,75 @@ export default async function RecipePage({ params }: RecipePageProps) {
               </section>
             </div>
 
+            {wineOffer ? (
+              <AffiliateCta offer={wineOffer} className="mt-10 mb-0" />
+            ) : null}
+
             <RecipeTags tags={recipe.tags} className="mt-12" />
 
             <RecipeFaqSection items={recipe.faq} />
+
+            {(affiliateOffer || relatedGrej.length > 0) && (
+              <section className="mt-14 text-left" aria-labelledby="grej-heading">
+                <h2
+                  id="grej-heading"
+                  className="mb-4 text-center font-serif text-2xl uppercase tracking-wide text-bone"
+                >
+                  Grejet bag retten
+                </h2>
+                {affiliateOffer ? (
+                  <AffiliateCta offer={affiliateOffer} className="mt-0 mb-6" />
+                ) : null}
+                {relatedGrej.length > 0 ? (
+                  <ul className="space-y-3">
+                    {relatedGrej.map((item) => (
+                      <li key={item.slug}>
+                        <Link
+                          href={`/grej/${item.slug}`}
+                          className="block rounded-2xl border-2 border-bone/15 bg-ash/30 px-4 py-3 transition-colors hover:border-herb"
+                        >
+                          <span className="font-serif text-lg uppercase tracking-wide text-bone">
+                            {item.title}
+                          </span>
+                          <span className="mt-1 block text-sm text-bone/55">
+                            Vi har lavet denne opskrift med det grej — læs
+                            artiklen.
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </section>
+            )}
+
+            {mentionedInGuides.length > 0 && (
+              <section className="mt-14 text-left" aria-labelledby="guides-heading">
+                <h2
+                  id="guides-heading"
+                  className="mb-4 text-center font-serif text-2xl uppercase tracking-wide text-bone"
+                >
+                  Nævnt i guide
+                </h2>
+                <ul className="space-y-3">
+                  {mentionedInGuides.map((guide) => (
+                    <li key={guide.slug}>
+                      <Link
+                        href={`/guides/${guide.slug}`}
+                        className="block rounded-2xl border-2 border-bone/15 bg-ash/30 px-4 py-3 transition-colors hover:border-herb"
+                      >
+                        <span className="font-serif text-lg uppercase tracking-wide text-bone">
+                          {guide.title}
+                        </span>
+                        <span className="mt-1 block text-sm text-bone/55">
+                          {guide.description}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
         </div>
 

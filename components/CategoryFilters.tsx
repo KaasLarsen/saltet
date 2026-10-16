@@ -17,10 +17,12 @@ import {
   filterRecipes,
   getAvailableDifficulties,
   getAvailableHolidays,
+  getAvailableMethods,
   getTopTagsForRecipes,
   hasActiveFilters,
   parseDifficultyFilter,
   parseHolidayFilter,
+  parseMetodeFilter,
   parseTimeFilter,
   type CategoryFilterValues,
   type TimeFilter,
@@ -30,6 +32,7 @@ import type { Difficulty, RecipeFrontmatter } from "@/lib/types";
 interface CategoryFiltersProps {
   recipes: RecipeFrontmatter[];
   showFilters?: boolean;
+  searchPlaceholder?: string;
 }
 
 function chipClass(active: boolean): string {
@@ -65,6 +68,7 @@ function readFiltersFromLocation(): CategoryFilterValues {
     svar: parseDifficultyFilter(params.get("svar") ?? undefined),
     emne: params.get("emne") ?? undefined,
     hoejtid: parseHolidayFilter(params.get("hoejtid") ?? undefined),
+    metode: parseMetodeFilter(params.get("metode") ?? undefined),
     q: params.get("q") ?? undefined,
   };
 }
@@ -90,6 +94,7 @@ function LoopIcon({ className }: { className?: string }) {
 export function CategoryFilters({
   recipes,
   showFilters = true,
+  searchPlaceholder = "Søg i kategorien…",
 }: CategoryFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -136,6 +141,7 @@ export function CategoryFilters({
     [recipes]
   );
   const holidays = useMemo(() => getAvailableHolidays(recipes), [recipes]);
+  const methods = useMemo(() => getAvailableMethods(recipes), [recipes]);
   const topTags = useMemo(() => getTopTagsForRecipes(recipes), [recipes]);
   const filtered = useMemo(
     () => filterRecipes(recipes, filters),
@@ -158,6 +164,7 @@ export function CategoryFilters({
         if (next.svar) params.set("svar", next.svar);
         if (next.emne) params.set("emne", next.emne);
         if (next.hoejtid) params.set("hoejtid", next.hoejtid);
+        if (next.metode) params.set("metode", next.metode);
         if (next.q?.trim()) params.set("q", next.q.trim());
 
         const qs = params.toString();
@@ -270,8 +277,37 @@ export function CategoryFilters({
           </FilterGroup>
         ) : null}
 
+        {methods.length > 1 ? (
+          <FilterGroup label="Metode">
+            <button
+              type="button"
+              className={chipClass(!filters.metode)}
+              onClick={() => updateFilters({ metode: undefined })}
+              aria-pressed={!filters.metode}
+            >
+              Alle
+            </button>
+            {methods.map((method) => (
+              <button
+                key={method.slug}
+                type="button"
+                className={chipClass(filters.metode === method.slug)}
+                onClick={() =>
+                  updateFilters({
+                    metode:
+                      filters.metode === method.slug ? undefined : method.slug,
+                  })
+                }
+                aria-pressed={filters.metode === method.slug}
+              >
+                {method.label}
+              </button>
+            ))}
+          </FilterGroup>
+        ) : null}
+
         {topTags.length > 0 ? (
-          <FilterGroup label="Emne">
+          <FilterGroup label="Tag">
             <button
               type="button"
               className={chipClass(!filters.emne)}
@@ -317,14 +353,14 @@ export function CategoryFilters({
             }`}
             aria-expanded={searchOpen}
             aria-controls={searchId}
-            aria-label="Søg i kategorien"
+            aria-label="Søg i listen"
           >
             <LoopIcon className="h-4 w-4" />
           </button>
           {searchOpen ? (
             <div className="absolute left-1/2 top-full z-20 mt-1 w-[min(18rem,calc(100vw-2.5rem))] -translate-x-1/2 overflow-hidden rounded-xl border-2 border-bone/25 bg-ash shadow-lg shadow-black/30">
               <label htmlFor={searchId} className="sr-only">
-                Søg i kategorien
+                Søg i listen
               </label>
               <input
                 ref={searchRef}
@@ -334,7 +370,7 @@ export function CategoryFilters({
                 onChange={(e) =>
                   updateFilters({ q: e.target.value || undefined })
                 }
-                placeholder="Søg i kategorien…"
+                placeholder={searchPlaceholder}
                 className="w-full bg-transparent px-3 py-2.5 text-sm text-bone outline-none placeholder:text-smoke"
                 autoComplete="off"
               />

@@ -17,6 +17,13 @@ export const categories: Category[] = [
     headline: "Grill opskrifter",
   },
   {
+    slug: "baalmad",
+    name: "Bålmad",
+    description:
+      "Mad over åben ild — gryderetter i Dutch Oven, kød på risten, fisk med røg og sødt til kaffen, når mørket falder på.",
+    headline: "Bålmad opskrifter",
+  },
+  {
     slug: "roeg",
     name: "Røg",
     description:
@@ -62,8 +69,8 @@ export const categories: Category[] = [
     slug: "dips",
     name: "Dips",
     description:
-      "Dips, dressinger og saucer — fra tzatziki og aioli til mormordressing, mayo-varianter og BBQ.",
-    headline: "Dips & dressinger",
+      "Dips, dressinger og saucer — bearnaise, ostesovs, vinreduktioner, chimichurri, mayo-varianter og BBQ.",
+    headline: "Dips & saucer",
   },
   {
     slug: "sous-vide",
@@ -113,6 +120,13 @@ export const categories: Category[] = [
     description:
       "Saltning, sprængning og mælkesyregæring — sauerkraut, kimchi, gravad laks, bacon, citroner og umami-nørderi med salt som motor.",
     headline: "Fermentering & saltning",
+  },
+  {
+    slug: "palaeg",
+    name: "Pålæg",
+    description:
+      "Hjemmelavet pålæg, rørte salater og frokostklassikere til rugbrød og madpakke — med syltevarer fra Sylte og remoulade fra Dips som det naturlige tilbehør.",
+    headline: "Pålæg opskrifter",
   },
 ];
 

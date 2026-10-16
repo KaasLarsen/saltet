@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Recipe } from "./types";
+import type { Grej, Guide, Recipe } from "./types";
 import { getCategoryName } from "./categories";
 
 const siteUrl =
@@ -10,7 +10,7 @@ export const siteConfig = {
   url: siteUrl,
   email: "info@saltet.dk",
   description:
-    "Salt på maden. Opskrifter med kant til airfryer, grill, røg, plancha, gryde, pande, sylte, dips, sous vide, trykkoger, dehydrator, røremaskine, pizzaovn, støbejern og fermentering — enkelt, sprødt og med smag.",
+    "Salt på maden. Opskrifter med kant til airfryer, grill, bålmad, røg, plancha, gryde, pande, sylte, dips, sous vide, trykkoger, dehydrator, røremaskine, pizzaovn, støbejern, fermentering og pålæg — enkelt, sprødt og med smag.",
   locale: "da_DK",
   language: "da",
 };
@@ -96,6 +96,28 @@ export function buildHolidayMetadata(
   };
 }
 
+export function buildTopicMetadata(
+  topicSlug: string,
+  headline: string,
+  description: string
+): Metadata {
+  const url = absoluteUrl(`/emner/${topicSlug}`);
+
+  return {
+    title: `${headline} | Saltet`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${headline} | Saltet`,
+      description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "website",
+    },
+  };
+}
+
 export function buildBreadcrumbJsonLd(
   items: { name: string; url: string }[]
 ): object {
@@ -111,10 +133,13 @@ export function buildBreadcrumbJsonLd(
   };
 }
 
-export function buildRecipeJsonLd(recipe: Recipe): object {
+export function buildRecipeJsonLd(
+  recipe: Recipe,
+  aggregateRating?: { ratingValue: number; ratingCount: number }
+): object {
   const url = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
 
-  return {
+  const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Recipe",
     name: recipe.title,
@@ -144,9 +169,27 @@ export function buildRecipeJsonLd(recipe: Recipe): object {
       "@id": url,
     },
   };
+
+  if (
+    aggregateRating &&
+    aggregateRating.ratingCount > 0 &&
+    Number.isFinite(aggregateRating.ratingValue)
+  ) {
+    data.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: aggregateRating.ratingValue,
+      ratingCount: aggregateRating.ratingCount,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
+
+  return data;
 }
 
-export function buildFaqJsonLd(faq: Recipe["faq"]): object | null {
+export function buildFaqJsonLd(
+  faq: { question: string; answer: string }[] | undefined
+): object | null {
   if (!faq?.length) return null;
 
   return {
@@ -160,6 +203,134 @@ export function buildFaqJsonLd(faq: Recipe["faq"]): object | null {
         text: item.answer,
       },
     })),
+  };
+}
+
+export function buildGuideMetadata(guide: Guide): Metadata {
+  const url = absoluteUrl(`/guides/${guide.slug}`);
+
+  return {
+    title: `${guide.title} | Saltet`,
+    description: guide.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: guide.title,
+      description: guide.description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "article",
+      publishedTime: guide.publishedAt,
+      modifiedTime: guide.updatedAt ?? guide.publishedAt,
+      images: [
+        {
+          url: absoluteUrl(guide.image),
+          alt: guide.imageAlt,
+          width: 1200,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: guide.title,
+      description: guide.description,
+      images: [absoluteUrl(guide.image)],
+    },
+  };
+}
+
+export function buildArticleJsonLd(guide: Guide): object {
+  const url = absoluteUrl(`/guides/${guide.slug}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    image: [absoluteUrl(guide.image)],
+    datePublished: guide.publishedAt,
+    dateModified: guide.updatedAt ?? guide.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    inLanguage: "da-DK",
+    keywords: guide.tags.join(", "),
+  };
+}
+
+export function buildGrejMetadata(item: Grej): Metadata {
+  const url = absoluteUrl(`/grej/${item.slug}`);
+
+  return {
+    title: `${item.title} | Saltet`,
+    description: item.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: item.title,
+      description: item.description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "article",
+      publishedTime: item.publishedAt,
+      modifiedTime: item.updatedAt ?? item.publishedAt,
+      images: [
+        {
+          url: absoluteUrl(item.image),
+          alt: item.imageAlt,
+          width: 1200,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.description,
+      images: [absoluteUrl(item.image)],
+    },
+  };
+}
+
+export function buildGrejArticleJsonLd(item: Grej): object {
+  const url = absoluteUrl(`/grej/${item.slug}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item.title,
+    description: item.description,
+    image: [absoluteUrl(item.image)],
+    datePublished: item.publishedAt,
+    dateModified: item.updatedAt ?? item.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    inLanguage: "da-DK",
+    keywords: item.tags.join(", "),
   };
 }
 

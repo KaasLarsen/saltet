@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { RecipeCard } from "@/components/RecipeCard";
 import { holidayForTagSlug } from "@/lib/holiday-nav";
+import { topicForTagSlug } from "@/lib/topic-nav";
 import {
   getBrowseTags,
   getRecipesByTagSlug,
@@ -25,6 +26,11 @@ export async function generateMetadata({
   const holiday = holidayForTagSlug(tagSlug);
   if (holiday) {
     redirect(`/hoejtider/${holiday.slug}`);
+  }
+
+  const topic = topicForTagSlug(tagSlug);
+  if (topic) {
+    redirect(`/emner/${topic.slug}`);
   }
 
   const tag = getTagBySlug(tagSlug);
@@ -53,6 +59,9 @@ export default async function TagPage({ params }: TagPageProps) {
   const { tag: tagSlug } = await params;
   const holiday = holidayForTagSlug(tagSlug);
   if (holiday) redirect(`/hoejtider/${holiday.slug}`);
+
+  const topic = topicForTagSlug(tagSlug);
+  if (topic) redirect(`/emner/${topic.slug}`);
 
   const tag = getTagBySlug(tagSlug);
   if (!tag) notFound();

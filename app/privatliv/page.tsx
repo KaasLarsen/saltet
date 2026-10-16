@@ -38,6 +38,27 @@ export default function PrivacyPage() {
           (fx IP-adresse og tidspunkt) af hensyn til drift og sikkerhed.
         </p>
         <p>
+          Når du stemmer på en opskrift, gemmer vi en anonym stemme (stjerne
+          1–5) sammen med en hash af en browser-cookie og en hash af din IP —
+          kun for at undgå misbrug og sikre én stemme pr. browser pr.
+          opskrift. Vi kan ikke identificere dig ud fra det. Data gemmes hos
+          Supabase (EU, når projektet er sat op der).
+        </p>
+        <p>
+          På grej-sider vises prissammenligning fra PriceRunner. Hvis du
+          klikker videre til en butik, behandler PriceRunner og butikken data
+          efter deres egne politikker. Vi kan modtage provision på køb. Vi
+          sælger ikke din e-mail eller opretter profiler selv.
+        </p>
+        <p>
+          Vi samarbejder også med Partner-ads og andre affiliate-partnere.
+          Produktanbefalinger og links på opskrifter og grej-sider kan være
+          betalte eller provisionsbaserede. Når du klikker videre, behandler
+          partneren og butikken data efter deres egne politikker; vi kan
+          modtage kommission. Anbefalingerne er redaktionelt udvalgt efter
+          relevans for indholdet.
+        </p>
+        <p>
           Om cookies: se vores{" "}
           <Link
             href="/cookies"
