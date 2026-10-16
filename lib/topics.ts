@@ -193,6 +193,27 @@ export const topics: Topic[] = [
     description:
       "Retter med hvidløg i centrum — rost, confiteret, marinader og alt det aromatiske.",
   },
+  {
+    slug: "carnivore-koekken",
+    name: "Carnivore-køkkenet",
+    headline: "Carnivore & keto i køkkenet",
+    description:
+      "Kød, æg og fedt med maksimal smag — tørsaltning, støbejern og skorpe, når kulhydraterne er valgt fra. Ikke en kur. Teknik.",
+  },
+  {
+    slug: "low-carb-umami",
+    name: "Low-carb umami",
+    headline: "Low-carb umami",
+    description:
+      "Erstat sukker med salt, fermentering og dehydrering — dyb umami uden krydderisaucer fulde af stivelse.",
+  },
+  {
+    slug: "elektrolyt-koekken",
+    name: "Elektrolyt-køkkenet",
+    headline: "Elektrolyt-køkkenet",
+    description:
+      "Salt, mineraler og bone broth når kulhydraterne ryger — hvorfor kvalitetssalt holder energien, uden slankesprog.",
+  },
 ];
 
 export function getTopic(slug: string): Topic | undefined {
