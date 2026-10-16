@@ -3,6 +3,7 @@ import { Children, isValidElement, type ReactNode } from "react";
 import { AffiliateCta } from "@/components/AffiliateCta";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
+import { SaltlageBeregner } from "@/components/SaltlageBeregner";
 import { Tip } from "@/components/mdx/RecipeMDX";
 import { resolveAffiliateLink } from "@/lib/affiliate";
 import { getRecipe } from "@/lib/recipes";
@@ -91,6 +92,7 @@ export const guideMdxComponents = {
   RecipeGrid,
   AffiliateCta,
   PriceRunnerWidget,
+  SaltlageBeregner,
   h2: ({ children }: { children?: ReactNode }) => (
     <h2
       id={headingId(children)}

@@ -22,6 +22,9 @@ export const GUIDE_NAV = [
   { slug: "grydebroed-og-focaccia", name: "Grydebrød og focaccia" },
   { slug: "smash-burger", name: "Smash burger" },
   { slug: "saltguide", name: "Saltguide" },
+  { slug: "toersaltning", name: "Tørsaltning" },
+  { slug: "spraengning", name: "Sprængning" },
+  { slug: "saltlage-beregner", name: "Saltlage-beregner" },
   { slug: "saltlage-til-mandler", name: "Saltlage til mandler" },
   { slug: "airfryer-vs-ovn-noedder", name: "Airfryer vs. ovn til nødder" },
   { slug: "dehydrering-for-noerder", name: "Dehydrering" },
@@ -323,6 +326,7 @@ export const GUIDE_LINKS: {
       "stobejern/grydebroed-oel-kerner",
       "stobejern/grydebroed-hytteost",
       "stobejern/rugbroeds-grydebroed",
+      "ovn/focaccia-flagesalt-guldskorpe",
       "stobejern/hvidloegs-krydderurte-focaccia",
       "roeremaskine/focaccia-havsalt-roeremaskine",
       "roeremaskine/grydebroad-roeremaskine",
@@ -355,9 +359,9 @@ export const GUIDE_LINKS: {
   },
   {
     slug: "saltguide",
-    title: "Den ultimative saltguide — typer, procenter og funktion",
+    title: "Den ultimative saltguide — forskellen på salt",
     description:
-      "Flagesalt, dæmningssalt, nitritsalt og koldrøget salt. Tørsaltning versus saltlage.",
+      "Forskellen på salt: flagesalt, Maldon, Kala Namak, nitritsalt. Tørsaltning versus saltlage.",
     recipes: [
       "fermentering/gourmetsaltning-oksekoed",
       "fermentering/hjemmelavet-bacon-saltning",
@@ -370,6 +374,47 @@ export const GUIDE_LINKS: {
       "dehydrator/urtesalt-dehydrator",
       "dehydrator/ramslogssalt-dehydrator",
       "ovn/braendt-hvidloegssalt",
+    ],
+  },
+  {
+    slug: "toersaltning",
+    title: "Tørsaltning (dry-brining) — vejen til guldskorpe",
+    description:
+      "Salt kød 12–24 timer bart i køl. Osmose, myosin og tør overflade til Maillard på plancha og støbejern.",
+    recipes: [
+      "fermentering/gourmetsaltning-oksekoed",
+      "fermentering/gourmetsaltede-kyllingelaar",
+      "stobejern/cast-iron-ribeye",
+      "stobejern/ribeye-hvidloegs-marvsmoer",
+      "plancha/smash-burger-paa-plancha",
+    ],
+  },
+  {
+    slug: "spraengning",
+    title: "Sprængning (wet-brining) — ligevægt vs. hurtig saltlage",
+    description:
+      "Equilibrium vs. hurtig-sprængning. 6 % til rullepølse-slag, 3 % til juleand — koblet til saltlage-beregneren.",
+    recipes: [
+      "fermentering/spraengt-svinemoerbrad",
+      "gryde/spraengt-svineskank-sennep",
+      "palaeg/rullepoelse",
+      "palaeg/spraengt-oksebryst",
+      "ovn/spraengt-andebryst-roedkaal",
+      "grill/andesteg-paa-grill",
+    ],
+  },
+  {
+    slug: "saltlage-beregner",
+    title: "Saltlage-beregner — gram salt fra liter og procent",
+    description:
+      "Indtast liter vand og vælg procent (3 %, 5–8 %, 10 %). Få gram fint salt til sprængning, ferment og sild.",
+    recipes: [
+      "fermentering/spraengt-svinemoerbrad",
+      "gryde/spraengt-svineskank-sennep",
+      "sylte/syltede-sild",
+      "fermentering/klassisk-sauerkraut",
+      "fermentering/autentisk-koreansk-kimchi",
+      "fermentering/fermenterede-asparges",
     ],
   },
   {
