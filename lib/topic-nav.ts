@@ -118,6 +118,13 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
       "pistacie",
       "pekan",
       "hasselnoedder",
+      "kerner",
+      "graeskarkerner",
+      "solsikkekerner",
+      "edamame",
+      "favaboenner",
+      "hesteboenner",
+      "kikaerter",
     ],
   },
   {

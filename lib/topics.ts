@@ -86,7 +86,7 @@ export const topics: Topic[] = [
     name: "Nødder",
     headline: "Nøddeopskrifter",
     description:
-      "Mandler, cashew, valnødder, peanuts og pistacier — saltede, røgede, glaserede og ristede snacks.",
+      "Mandler, cashew, valnødder, peanuts, pistacier — plus græskarkerner, solsikkekerner, edamame og kikærter som snack.",
   },
   {
     slug: "palaeg",
