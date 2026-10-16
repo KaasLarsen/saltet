@@ -6,6 +6,7 @@ import {
 } from "@/lib/recipe-ratings/format";
 
 /**
+ * Production: MantleDB fallback when Supabase env is unset.
  * Zero-config durable store used when Supabase env is missing on Vercel.
  * Namespace is claimed; writes require the key (server-only). Reads are public.
  */
