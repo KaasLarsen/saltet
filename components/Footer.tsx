@@ -8,6 +8,7 @@ const footerLinks = [
   { href: "/hoejtider", label: "Højtider" },
   { href: "/om", label: "Om" },
   { href: "/kontakt", label: "Kontakt" },
+  { href: "/vilkaar", label: "Vilkår" },
   { href: "/cookies", label: "Cookies" },
   { href: "/privatliv", label: "Privatliv" },
 ];

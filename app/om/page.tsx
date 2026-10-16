@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Om Saltet",
   description:
-    "Saltet er en dansk opskriftsside med kant — enkle retter til airfryer, grill og mere.",
+    "Saltet er en dansk opskriftsside med kant — enkle retter til airfryer, grill og mere. Vi bruger AI som hjælp til indhold og billeder.",
   alternates: { canonical: absoluteUrl("/om") },
 };
 
@@ -25,11 +26,21 @@ export default function AboutPage() {
         </p>
         <p>
           Vi starter med airfryer-opskrifter, fordi airfryeren er genial til
-          hverdagen: hurtig, sprød og uden for meget rod.
+          hverdagen: hurtig, sprød og uden for meget rod. Flere kategorier
+          kommer.
         </p>
         <p>
-          Flere kategorier kommer. Alle opskrifter skrives fra bunden med unikt
-          indhold og egne billeder.
+          Vi bruger kunstig intelligens (AI) som hjælp til at producere
+          indhold — tekster til opskrifter og guides samt billeder. Det er et
+          værktøj, vi beriger og tilpasser, så materialet passer til Saltets
+          tone og er klar til køkkenet. Læs mere i vores{" "}
+          <Link
+            href="/vilkaar"
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
+          >
+            vilkår
+          </Link>
+          .
         </p>
       </div>
     </div>
