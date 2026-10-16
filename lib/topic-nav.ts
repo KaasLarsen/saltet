@@ -125,6 +125,12 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
       "favaboenner",
       "hesteboenner",
       "kikaerter",
+      "hoerfroe",
+      "sesam",
+      "hampefroe",
+      "linser",
+      "majskorn",
+      "aerter",
     ],
   },
   {
