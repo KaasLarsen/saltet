@@ -384,4 +384,311 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "628",
     label: "Leijma Mirakelsvamp 3-pak",
   },
+
+  // --- Concrete models for previously search-only widgets ---
+  "crème brûlée brænder": {
+    productId: "3209134827",
+    categoryId: "10027",
+    label: "Rubicson crème brûlée-brænder",
+  },
+  "gaspatron køkkenbrænder": {
+    productId: "3204517508",
+    categoryId: "501",
+    label: "Express butan-gasdåse 190 g",
+  },
+  "Thermapen termometer": {
+    productId: "3200550373",
+    categoryId: "461",
+    label: "ETI Thermapen One",
+  },
+  "instant read termometer kød": {
+    productId: "3200550373",
+    categoryId: "461",
+    label: "ETI Thermapen One",
+  },
+  "infrarødt termometer 500 grader": {
+    productId: "3204648819",
+    categoryId: "461",
+    label: "Witt Pizza Infrared Temperature Gun",
+  },
+  "De Buyer Mineral B pande": {
+    productId: "5127972",
+    categoryId: "1266",
+    label: "De Buyer Mineral B 28 cm",
+  },
+  "rustfri stål pande 3-ply": {
+    productId: "3260322",
+    categoryId: "1266",
+    label: "Scanpan CTX 28 cm",
+  },
+  "nonstick pande": {
+    productId: "3466147",
+    categoryId: "1266",
+    label: "Scanpan Classic 24 cm",
+  },
+  "kobbergryde stålindlæg": {
+    productId: "3140775",
+    categoryId: "1266",
+    label: "De Buyer Prima Matera 28 cm",
+  },
+  "3-ply gryde rustfri": {
+    productId: "3158108",
+    categoryId: "1266",
+    label: "Scanpan Impact gryde 20 cm",
+  },
+  "bagestål pizza 6 mm": {
+    productId: "3200724539",
+    categoryId: "1268",
+    label: "Kockums bagestål / pizzastål 35 cm",
+  },
+  "sifonflaske N2O": {
+    productId: "3217092",
+    categoryId: "461",
+    label: "iSi Gourmet sifon",
+  },
+  "elektrisk kniv": {
+    productId: "3200021040",
+    categoryId: "243",
+    label: "Fritel EK 3180 elektrisk kniv",
+  },
+  "elektrisk brødkniv": {
+    productId: "3200021040",
+    categoryId: "243",
+    label: "Fritel EK 3180 elektrisk kniv",
+  },
+  "gærlås fermentering glas": {
+    productId: "3208759199",
+    categoryId: "461",
+    label: "GEFU Nativo fermenteringssæt",
+  },
+  "ismaskine kompressor": {
+    productId: "3057180",
+    categoryId: "250",
+    label: "Wilfa ICM-C15 ismaskine",
+  },
+  "ismaskine fryseelement": {
+    productId: "4678457",
+    categoryId: "250",
+    label: "Emerio ICM-110286 (fryse-skål)",
+  },
+  "mandolin julienne": {
+    productId: "3417780640",
+    categoryId: "461",
+    label: "Benriner Super mandolinjern",
+  },
+  "OXO mandolin": {
+    productId: "4580572",
+    categoryId: "461",
+    label: "OXO Good Grips Chef's Mandolin 2.0",
+  },
+  "Börner mandolin": {
+    productId: "5010654",
+    categoryId: "461",
+    label: "Börner V5 Powerline",
+  },
+  "spiralizer grøntsager": {
+    productId: "4407694",
+    categoryId: "10024",
+    label: "GEFU Spirelli XL",
+  },
+  "skærehandske køkken": {
+    productId: "3219271389",
+    categoryId: "734",
+    label: "Portwest skærehandske CT65",
+  },
+  "koldrøgningsgenerator grill": {
+    productId: "3200010321",
+    categoryId: "659",
+    label: "Mustang røggenerator til koldrøgning",
+  },
+  "rygesmuld bøg fint": {
+    productId: "3739954",
+    categoryId: "659",
+    label: "Weber røgsmuld bøg 17614",
+  },
+  "rygesmuld bøg": {
+    productId: "3739954",
+    categoryId: "659",
+    label: "Weber røgsmuld bøg 17614",
+  },
+  "rygesmuld fint": {
+    productId: "3739954",
+    categoryId: "659",
+    label: "Weber røgsmuld bøg 17614",
+  },
+  "røg chunks æble grill": {
+    productId: "3760779",
+    categoryId: "659",
+    label: "Weber Apple Smoking Wood Chunks",
+  },
+  "marineringssprøjte": {
+    productId: "3214359007",
+    categoryId: "461",
+    label: "Napoleon Pro marinadesprøjte",
+  },
+  laksekniv: {
+    productId: "3210639028",
+    categoryId: "243",
+    label: "Arcos lakse-/skinkekniv 24 cm",
+  },
+  "fleksibel skærelkniv fisk": {
+    productId: "4396981",
+    categoryId: "344",
+    label: "Rapala filetkniv BP709SH1",
+  },
+  mikrobølgeovn: {
+    productId: "3207678208",
+    categoryId: "3",
+    label: "Samsung MS23K3523AS",
+  },
+  pålægsmaskine: {
+    productId: "3393191818",
+    categoryId: "10026",
+    label: "Graef Style Twin S12022",
+  },
+  "pålægsmaskine professionel": {
+    productId: "3250758",
+    categoryId: "10026",
+    label: "Graef Master M90",
+  },
+  "messingbørste pizza sten": {
+    productId: "3389589742",
+    categoryId: "659",
+    label: "Witt Pizza Brush",
+  },
+  "pizzasten rengøring børste": {
+    productId: "3200140078",
+    categoryId: "659",
+    label: "Ooni Pizza Oven Brush",
+  },
+  pølsestopper: {
+    productId: "3209906830",
+    categoryId: "1617",
+    label: "Royal Catering pølsestopper 3 L",
+  },
+  "pølsetilbehør røremaskine": {
+    productId: "4743767",
+    categoryId: "1244",
+    label: "KitchenAid 5KSMMGA kødhakker/pølse",
+  },
+  røgpistol: {
+    productId: "4709131",
+    categoryId: "1617",
+    label: "PolyScience Smoking Gun Pro",
+  },
+  rullepølsepresse: {
+    productId: "4744399",
+    categoryId: "461",
+    label: "Rullepølsepresse i bøg",
+  },
+  kødsnor: {
+    productId: "3203847145",
+    categoryId: "456",
+    label: "Royal kødsnor bomuld 45 m",
+  },
+  patentglas: {
+    productId: "5125855",
+    categoryId: "461",
+    label: "Weck patentglas 0,85 L",
+  },
+  sildekrukke: {
+    productId: "3332190160",
+    categoryId: "461",
+    label: "Weck cylinder-patentglas 1,59 L",
+  },
+  "endetræ skærebræt": {
+    productId: "3640505902",
+    categoryId: "461",
+    label: "Skærebræt i akacie (endetræ)",
+  },
+  "plastik skærebræt": {
+    productId: "5133344",
+    categoryId: "461",
+    label: "Joseph Joseph Folio Large",
+  },
+  "strygestål kniv": {
+    productId: "3202878041",
+    categoryId: "243",
+    label: "Wüsthof diamantstrygestål 26 cm",
+  },
+  "burger smasher støbejern": {
+    productId: "3453383867",
+    categoryId: "461",
+    label: "Broil King Smash Burger jern",
+  },
+  "smash burger presse rustfrit": {
+    productId: "3558389228",
+    categoryId: "461",
+    label: "GEFU burgerpresse rustfrit stål",
+  },
+  "konditorspartel rustfrit stål": {
+    productId: "3993877",
+    categoryId: "1268",
+    label: "Blomsterbergs paletkniv 26 cm",
+  },
+  "offset spatel grill burger": {
+    productId: "3201613788",
+    categoryId: "461",
+    label: "Napoleon PRO barbecue-paletkniv",
+  },
+  "sukkertermometer glas": {
+    productId: "3313981257",
+    categoryId: "461",
+    label: "Glas-sukkertermometer",
+  },
+  "digitalt sliktermometer": {
+    productId: "3200114125",
+    categoryId: "461",
+    label: "Digitalt stege-/sliktermometer",
+  },
+  tarteletjern: {
+    productId: "4015396",
+    categoryId: "1268",
+    label: "Silikomart Tartelletta-form",
+  },
+  tarteletskaller: {
+    productId: "3402185145",
+    categoryId: "1268",
+    label: "Tarteletskaller Ø7 cm",
+  },
+  "trækul lump grill": {
+    productId: "5168750",
+    categoryId: "659",
+    label: "Weber Premium Lumpwood Charcoal 5 kg",
+  },
+  "trefod bål gryde": {
+    productId: "3200696918",
+    categoryId: "501",
+    label: "Petromax Tripod Lashing",
+  },
+  "bålhandsker varmebestandige": {
+    productId: "3435074886",
+    categoryId: "659",
+    label: "Nexgrill varmeresistente grillhandsker",
+  },
+  "svejsehandsker læder": {
+    productId: "4769585",
+    categoryId: "734",
+    label: "Ejendals Tegera 8 svejsehandsker",
+  },
+  "aramid grillhandsker": {
+    productId: "3746453",
+    categoryId: "684",
+    label: "Weber Premium grillhandsker",
+  },
+  "log lifter bål tænger": {
+    productId: "3201763060",
+    categoryId: "459",
+    label: "Esschert Design båltang",
+  },
+  "båltænger læng": {
+    productId: "3201763060",
+    categoryId: "459",
+    label: "Esschert Design båltang",
+  },
+  "Lodge seasoning spray": {
+    productId: "3396367445",
+    categoryId: "461",
+    label: "Rosendahl Grand Cru oliespray",
+  },
 };
