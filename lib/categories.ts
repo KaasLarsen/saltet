@@ -128,6 +128,13 @@ export const categories: Category[] = [
       "Hjemmelavet pålæg, rørte salater og frokostklassikere til rugbrød og madpakke — med syltevarer fra Sylte og remoulade fra Dips som det naturlige tilbehør.",
     headline: "Pålæg opskrifter",
   },
+  {
+    slug: "antipasti",
+    name: "Antipasti",
+    description:
+      "Italiensk delebord — marinerede grøntsager, bruschetta, oste, charcuteri og skaldyr til det perfekte antipasti-bord.",
+    headline: "Antipasti opskrifter",
+  },
 ];
 
 export function getCategory(slug: string): Category | undefined {
