@@ -19,7 +19,8 @@ export function PriceRunnerWidget({
   const mapped = PRICERUNNER_PRODUCTS[query];
   const productId = productIdProp ?? mapped?.productId;
   const categoryId = categoryIdProp ?? mapped?.categoryId;
-  const heading = label ?? mapped?.label ?? query;
+  // Prefer curated model name when we have a concrete product mapping.
+  const heading = mapped?.label ?? label ?? query;
   const fallbackHref =
     productId && categoryId
       ? pricerunnerProductUrl(categoryId, productId)
