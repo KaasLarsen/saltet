@@ -12,6 +12,13 @@ export const topics: Topic[] = [
       "Bearnaise, brun sovs, aioli, remoulade og dips — saucer og tilbehør på tværs af pande, grill, ovn og airfryer.",
   },
   {
+    slug: "olier",
+    name: "Olier",
+    headline: "Olieopskrifter",
+    description:
+      "Chiliolie, urteolier og smagsolier — hjemmelavede olier til pasta, grill, salat og dumplings.",
+  },
+  {
     slug: "kage",
     name: "Kage",
     headline: "Kageopskrifter",
