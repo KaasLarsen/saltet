@@ -33,6 +33,12 @@
   --radius-sticker: var(--radius-sticker);
 }
 
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   background-color: var(--background);
   background-image:
