@@ -23,6 +23,11 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
     ],
   },
   {
+    slug: "olier",
+    name: "Olier",
+    matchTagSlugs: ["olie", "chiliolie", "urtesolie", "smagsolie"],
+  },
+  {
     slug: "kage",
     name: "Kage",
     matchTagSlugs: [
