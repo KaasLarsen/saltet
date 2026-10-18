@@ -39,10 +39,10 @@ faq:
     answer: "Samme formel (salt i vand), anden kontekst. Mandel-guiden er snack-træk og gram pr. dl. Denne beregner er generel: liter × procent til sprængning, ferment og sild."
   - question: "Skal vandet være kogende?"
     answer: "Opløs saltet nemmest i varmt vand, køl lagen før kød eller ferment der skal forblive levende. Kogende lage til rå ferment er en fejl."
-  - question: "Tæller is i lagen med i literne?"
-    answer: "Ja, når isen er smeltet. Start med koldt vand + is, vej eller mål den færdige væske, så regn salt af den. Ellers rammer du for lavt."
-  - question: "Salt i procent af kød + vand?"
-    answer: "Det er equilibrium-brining — anden matematik. De fleste danske opskrifter mener salt i vand alene. Se sprængnings-guiden."
+  - question: "Tæller kødet med i procenten?"
+    answer: "Nej. Procenten er salt i vand — ikke salt i (kød + vand). Ellers rammer du for lavt."
+  - question: "Hvor længe kan lagen stå?"
+    answer: "Ren saltlage i køl: flere dage. Med kød i: følg opskriften. Ferment: til bobler og smag siger stop — se fermenteringsguiden."
 ---
 
 Liter vand. En procent. Gram fint salt. Det er hele lagen.
@@ -50,6 +50,8 @@ Liter vand. En procent. Gram fint salt. Det er hele lagen.
 [Saltguiden](/guides/saltguide) forklarer forskellen på salt. [Sprængnings-guiden](/guides/spraengning) forklarer hvornår du vælger 3 %, 6 % eller 10 %. Her regner du. Op til jul, [Mortensaften](/guides/mortensaften-tilbehoer) og [syltede sild](/opskrifter/sylte/syltede-sild) er det den beregning, folk søger.
 
 ## Beregner
+
+Brug komponenten herunder — den regner gram fint salt fra liter og procent, så du slipper for hovedregning midt i preppen.
 
 <SaltlageBeregner />
 
@@ -59,24 +61,13 @@ Liter vand. En procent. Gram fint salt. Det er hele lagen.
 
 1 liter vand ≈ 1000 g. Så: **gram salt = liter × 1000 × procent / 100**.
 
-Eksempel: 2 liter ved 5 % → 100 g fint salt. Ved 10 % → 200 g. Ved 3 % → 60 g.
+Eksempel: 2 liter ved 5 % → 100 g fint salt. Ved 10 % → 200 g.
 
 Vej **fint salt**. Ikke Maldon. Ikke flager. Volumen lyver — se [saltguiden](/guides/saltguide).
 
-<table>
-  <thead>
-    <tr><th>Liter vand</th><th>3 %</th><th>5 %</th><th>6 %</th><th>8 %</th><th>10 %</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>0,5 L</td><td>15 g</td><td>25 g</td><td>30 g</td><td>40 g</td><td>50 g</td></tr>
-    <tr><td>1 L</td><td>30 g</td><td>50 g</td><td>60 g</td><td>80 g</td><td>100 g</td></tr>
-    <tr><td>2 L</td><td>60 g</td><td>100 g</td><td>120 g</td><td>160 g</td><td>200 g</td></tr>
-    <tr><td>3 L</td><td>90 g</td><td>150 g</td><td>180 g</td><td>240 g</td><td>300 g</td></tr>
-    <tr><td>5 L</td><td>150 g</td><td>250 g</td><td>300 g</td><td>400 g</td><td>500 g</td></tr>
-  </tbody>
-</table>
-
 <PriceRunnerWidget query="køkkenvægt digital" label="OXO Good Grips køkkenvægt" />
+
+Uden vægt gætter du. Med vægt rammer du samme sprængning hver jul.
 
 ## Presets: hvad procenten betyder
 
@@ -86,119 +77,124 @@ Vej **fint salt**. Ikke Maldon. Ikke flager. Volumen lyver — se [saltguiden](/
   </thead>
   <tbody>
     <tr><td>Ferment-lage</td><td>2–3,5 %</td><td>Agurk, gulerod, stave — [fermentering](/guides/fermentering-for-begyndere)</td></tr>
-    <tr><td>Let sprængning / grønt</td><td>~3 %</td><td>Mild lage, kort tid, juleand</td></tr>
+    <tr><td>Let sprængning / grønt</td><td>~3 %</td><td>Mild lage, kort tid</td></tr>
     <tr><td>Klassisk kødsprængning</td><td>5–8 %</td><td>[Sprængt svinemørbrad](/opskrifter/fermentering/spraengt-svinemoerbrad), skank</td></tr>
-    <tr><td>Rullepølse-slag</td><td>~6 %</td><td>Flere døgn — se [sprængning](/guides/spraengning)</td></tr>
-    <tr><td>Hård lage / sild-agtig</td><td>~10 %</td><td>Konservering, ofte udblødning — [syltede sild](/opskrifter/sylte/syltede-sild)</td></tr>
+    <tr><td>Hård lage / sild-agtig</td><td>~10 %</td><td>Konservering, ofte udblødning bagefter — [syltede sild](/opskrifter/sylte/syltede-sild)</td></tr>
   </tbody>
 </table>
 
 Opskriften vinder, hvis den skriver andre tal. Beregneren er værktøjet. Opskriften er dommeren.
 
-Sauerkraut og kimchi bruger ofte **vægtprocent salt af grøntsagen**, ikke en spand lage. Det er en anden formel — følg ferment-opskriften. Lagen her er til det, der flyder i vand.
-
 ## Arbejdsgang
 
 1. Vælg procent (eller følg opskriften).
-2. Mål vand i liter. Brug en kande med markering, eller vej: 1 L ≈ 1000 g.
-3. Vej det gram, beregneren giver. Fint salt.
-4. Rør til saltet er væk. Varmt vand opløser hurtigere; køl hvis kødet eller fermenten skal i koldt.
-5. Læg råvaren i. Den skal være dækket. Tyng med en tallerken hvis den flyder.
+2. Mål vand i liter.
+3. Vej det gram, beregneren giver.
+4. Rør til saltet er væk. Køl hvis kødet eller fermenten skal i koldt.
+5. Læg råvaren i. Den skal være dækket.
 
-Mandler og nødder har egen tabel: [saltlage til mandler](/guides/saltlage-til-mandler). Tørt salt på kød uden vand: [tørsaltning](/guides/toersaltning).
+Mandler og nødder har egen tabel: [saltlage til mandler](/guides/saltlage-til-mandler).
 
-## Equilibrium vs. «% i vand»
+## Eksempler du kan huske
 
-De fleste hjemmeopskrifter siger «5 % lage» og mener **salt divideret med vand**. Du putter kødet i. Overfladen saltes hårdt først; tiden styrer hvor langt ind det går.
+<table>
+  <thead>
+    <tr><th>Vand</th><th>%</th><th>Fint salt</th><th>Brug</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1 L</td><td>3 %</td><td>30 g</td><td>Let ferment / grønt</td></tr>
+    <tr><td>1 L</td><td>5 %</td><td>50 g</td><td>Mild kødsprængning</td></tr>
+    <tr><td>1 L</td><td>7 %</td><td>70 g</td><td>Klassisk spræng</td></tr>
+    <tr><td>1 L</td><td>10 %</td><td>100 g</td><td>Hård / sild-agtig</td></tr>
+    <tr><td>3 L</td><td>6 %</td><td>180 g</td><td>Større stege / skank</td></tr>
+  </tbody>
+</table>
 
-**Equilibrium** regner salt så den *færdige* koncentration i kød+lage rammer fx 1 %. Du vejer kød, vejer vand, regner total. Længere tid er okay. Mere matematik, mindre panik for oversalt.
+[Sprængt svineskank](/opskrifter/gryde/spraengt-svineskank-sennep) kræver nok lage til at dække — hellere 3 L korrekt end 1 L der efterlader en skulder i luften.
 
-Hvis opskriften ikke nævner equilibrium: brug tabellen og tiden. Se [sprængning](/guides/spraengning) for strategierne.
+## Ferment vs. sprængning
+
+Ferment vil have levende kultur. Lagen er mildere. For meget salt bremser. For lidt risikerer forkert flora. Start i [fermentering for begyndere](/guides/fermentering-for-begyndere). [Sauerkraut](/opskrifter/fermentering/klassisk-sauerkraut) og [kimchi](/opskrifter/fermentering/autentisk-koreansk-kimchi) bruger ofte salt *på* grøntet mere end en spand lage — læs opskriften.
+
+Sprængning er salt + tid til kød. Ikke det samme som [tørsaltning](/guides/toersaltning) (salt på kødet uden vand). Wet når stykket er stort, og du vil have jævn saltning. Dry når du vil have tør skorpe til panden.
 
 ## Fejl
 
 **Flager i lagen.** Under-saltet. Brug fint.
 
-**Procent af kød + vand, når opskriften mente vand alene.** Du rammer for lavt.
+**Procent af kød + vand.** Du rammer for lavt. Salt i *vand*.
 
 **10 % uden plan for udblødning.** Skinke-hård. Smag, skyl, eller følg opskriften.
 
 **Kogende lage i levende ferment.** Dræber det, du vil have til at arbejde.
 
-**For lidt lage.** Råvaren stikker op. Den øverste del forbliver usaltet og tørrer.
+**Ske i stedet for vægt.** 50 g fint salt er ikke «to spiseskefulde» på tværs af mærker.
 
-**Sukker og krydderier «tæller med» i procenten.** Nej. Salt er salt. Sukker er smag og farve — vej det separat.
+**For lidt lage.** Toppen af kødet tørrer og salter ujævnt. Dæk. Brug tallerken som vægt.
 
-**Genbrug af gammel kødlage til ferment.** Nej. Frisk lage. Hygiejne.
+## Opløsning og temperatur
 
-## Eksempler midt i juletravlhed
+Varmt vand: saltet forsvinder hurtigt. Køl til køleskabskoldt før rå kød — bakterier elsker lunkent. Ferment: følg opskriften; mange vil have stuetemperatur *efter* lagen er blandet, ikke kogende start.
 
-**Andesteg, 3 % i 24 timer:** 2 L vand → 60 g fint salt. Køl lagen. Anden i. Tag op, tør skindet i køl før stegning — [andesteg-guide](/guides/andesteg-komplet-guide).
+Rør til der ikke ligger krystaller i bunden. Uopløst salt = ujævn procent.
 
-**Sprængt svinemørbrad, 6 % i et døgn:** 1,5 L → 90 g. Se opskriften for tid og urter.
+## Sild og jul
 
-**Hurtig sild-lage, 10 %:** 1 L → 100 g. Udblød efter behov. [Syltede sild](/opskrifter/sylte/syltede-sild).
+Hård lage, tid, udblødning, så eddike og krydderier. [Syltede sild](/opskrifter/sylte/syltede-sild). [Syltning](/guides/syltning) for eddike-sporet. Saltlage-beregneren er kun salt-i-vand-delen — sukker og krydderier kommer efter opskriften.
 
-Skriv grammet på et stykke tape på skålen. Du glemmer det næste år ellers.
+## Asparges og snack-grønt
 
+[Fermenterede asparges](/opskrifter/fermentering/fermenterede-asparges): mild lage, knas, syre over tid. Beregn 2–3,5 %. Smag efter en uge. For salt? Lidt mere vand næste gang — eller kortere tid.
 
-## Det der faktisk afgør resultatet
+## Tørsaltning i stedet?
 
-Saltlage-beregner — gram salt fra liter og procent handler mindre om «hemmelige tricks» og mere om at styre få variable: varme, vand, salt, tid og rækkefølge. Når én variabel glider, skyder folk skylden på opskriften. Ret variablen i stedet.
+Når målet er Maillard på steak: [tørsaltning](/guides/toersaltning), ca. 1 % af kødets vægt, bart i køl. Ingen liter. Ingen beregner. Andet værktøj.
 
-| Variabel | Typisk fejl | Tegn | Fix |
-|----------|-------------|------|-----|
-| Varme | For lav / ujævn | Gråt, vådt, ingen skorpe | Forvarm længere, færre portioner |
-| Vand | Overfladen er våd | Damp i stedet for steg | Tør, salt i tide, undgå låg unødigt |
-| Salt | For sent eller for lidt | Flad smag | Vej når det gælder, smag til sidst |
-| Tid | Starter for sent | Stress og kompromis | Regn baglæns fra servering |
-| Portion | For meget i panden/kurven | Ujævnt | Hold / ét lag |
+## Opbevaring af færdig lage
 
-## Metode i praksis
+Ren lage i flaske i køl: praktisk til gentagne små fermenter. Etikettér procent og dato. Med kød i: ikke «gem til næste måned» uden opskriftens velsignelse.
 
-1. **Forbered** — mål, skær, tør, salt efter teknikken kræver det.
-2. **Forvarm** — pande, ovn, airfryer eller grill skal være klar før maden lander.
-3. **Udfør** — følg den kritiske fase uden at pille for tidligt.
-4. **Tjek** — temperatur, farve, tekstur. Ikke kun ur.
-5. **Hvile / finish** — salt, syre, fedt, urter når de hører til sidst.
-6. **Notér** — hvad virkede? Så næste gang er kortere.
+## Checkliste før kødet går i
+
+1. Procent valgt.  
+2. Liter målt.  
+3. Gram vejet (fint salt).  
+4. Opløst.  
+5. Kølet hvis nødvendigt.  
+6. Råvare dækket.
 
 <Tip>
-Én ny teknik ad gangen. Når den sidder i hånden, må du lagge den næste ovenpå.
+Skriv procenten på tapen på spanden. Om tre dage husker du ikke om det var 5 eller 7 — og smagen lyver først når det er for sent.
 </Tip>
 
-## Fejlfinding
+## Hvor meget lage til hvilket stykke
 
-| Problem | Sandsynlig årsag | Fix |
-|---------|------------------|------|
-| Smager fladt | Undersaltet / mangler syre | Salt + citron/eddike til sidst |
-| Blød når det skulle knase | Fugt eller for lav slutvarme | Tør bedre, skru op til sidst |
-| Tørt / sejt | For høj kerne eller for lang tid | Termometer, træk tidligere |
-| Brændt ude, rå inde | For høj start / for tykt stykke | Lavere varme, længere tid, tyndere snit |
-| Ujævnt | Overfyldt / kold zone | Mindre hold, vend, forvarm |
+Tumlingen er ikke liter for literens skyld. Det er **dækning**. En mørbrad i 1 L kan være fin. En skank eller flere lår kræver 2–4 L, ellers stikker knogler og kanter op i luften og salter ujævnt.
 
-## Timing og hverdag
+Tommelfinger: mål vand *efter* råvaren ligger i spanden — fyld til den er dækket, hæld vandet fra til kanden, aflæs liter, regn salt, bland, hæld tilbage. Så gætter du ikke.
 
-Regn baglæns fra det øjeblik tallerkenen skal stå klar. Læg den længste proces først (lage, hævning, ovn), og gem panden/airfryer-knas til sidst. Rester er ikke nederlag — de er næste dags frokost, hvis du køler hurtigt og genopvarmer rigtigt.
+<table>
+  <thead>
+    <tr><th>Råvare</th><th>Typisk lage</th><th>%</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Svinemørbrad</td><td>1–1,5 L</td><td>5–7 %</td></tr>
+    <tr><td>Svineskank</td><td>2–3 L</td><td>6–8 %</td></tr>
+    <tr><td>Kyllingelår (flere)</td><td>1,5–2 L</td><td>5–6 %</td></tr>
+    <tr><td>Snack-grønt i glas</td><td>0,5–1 L</td><td>2–3,5 %</td></tr>
+  </tbody>
+</table>
 
-| Situation | Prioritet |
-|-----------|-----------|
-| Hverdag 30 min | Én teknik, få ingredienser |
-| Gæster | Prep dagen før, én show-detalje |
-| Meal prep | Stabil base + frisk finish |
-| Rester | Genopvarm knas og kød hver for sig |
+## Sukker og krydderier i lagen
 
-## Variationer der stadig er samme teknik
+Beregneren tæller **kun salt**. Sukker, peberkorn, laurbær, nelliker og løg er opskriftens ansvar. Tilsæt dem efter saltet er opløst, så du ikke forveksler gram sukker med gram salt på vægten.
 
-Når grundteknikken sidder, kan du skifte protein, fedtstof eller krydderi uden at starte forfra. Hold rækkefølgen. Skift kun én ting ad gangen, så du ved, hvad der ændrede smagen. Interne links i guiden peger på opskrifter, der bruger samme greb i konkrete retter — brug dem som træning, ikke som erstatning for at forstå teknikken.
+Til sild og klassisk sprængning følger du den konkrete opskrift for sukker. Til ren ferment-lage er salt + vand ofte nok — smag og tid gør resten.
 
-## Huskeregler du kan huske i butikken
+## Genbrug af lage?
 
-- Tørt før brun. Vådt før damp.
-- Salt er både smag og fysik — vægt når procent og elektrolytter gælder.
-- Termometer slår gætteri på kød og store stege.
-- Plads i panden er en ingrediens.
-- Syre til sidst redder flade tallerkener.
-- Notér tider for *dit* grej — maskiner lyver forskelligt.
+Ren saltlage uden kød: ja, kort tid, hvis den er klar og lugter rent. Lage der har haft råt kød i: nej til næste projekt uden at koge og forstå risikoen — og selv da er frisk lage billigere end ballade. Ferment-lage genbruges sjældent som «starter» uden erfaring.
 
-Det er guiden til **saltlage-beregner** i praksis: færre gætterier, flere gentagelige resultater i et dansk hverdagskøkken.
+## Kort facit
+
+Beregneren + vægt + fint salt. Opskriften vælger procenten. Du vælger ikke flager til lagen. Resten er tid og køl.
