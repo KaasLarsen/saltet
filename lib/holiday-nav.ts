@@ -45,6 +45,12 @@ export const HOLIDAY_NAV: readonly HolidayNavItem[] = [
     windows: [{ startMonth: 6, startDay: 15, endMonth: 6, endDay: 24 }],
   },
   {
+    slug: "halloween",
+    name: "Halloween",
+    matchTagSlugs: ["halloween"],
+    windows: [{ startMonth: 10, startDay: 1, endMonth: 10, endDay: 31 }],
+  },
+  {
     slug: "mortensaften",
     name: "Mortensaften",
     matchTagSlugs: ["mortensaften"],

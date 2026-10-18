@@ -32,6 +32,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/tags/halloween",
+        destination: "/hoejtider/halloween",
+        permanent: true,
+      },
+      {
         source: "/tags/mortensaften",
         destination: "/hoejtider/mortensaften",
         permanent: true,

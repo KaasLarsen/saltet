@@ -36,6 +36,13 @@ export const holidays: Holiday[] = [
       "Grill, koldskål, nye kartofler og det lette sommerbord til Pinse og Sankt Hans.",
   },
   {
+    slug: "halloween",
+    name: "Halloween",
+    headline: "Halloween-opskrifter",
+    description:
+      "Græskar, snacks og festmad til 31. oktober — orange, stærkt og saltet, uden børneslik.",
+  },
+  {
     slug: "mortensaften",
     name: "Mortensaften",
     headline: "Mortensaften opskrifter",
