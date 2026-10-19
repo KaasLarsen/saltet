@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   affiliateVariantLabel,
   getAffiliateOffer,
@@ -25,6 +26,7 @@ const variantShadow: Record<AffiliateVariant, string> = {
 /**
  * Native produkt-/CPA-anbefaling i Saltet-designsprog.
  * Understøtter grej nu; grocery / meal_kit / wine når partnere lander.
+ * Produktbillede kommer fra Partner-ads feed (`billedurl`) når sat.
  */
 export function AffiliateCta({
   id,
@@ -36,6 +38,7 @@ export function AffiliateCta({
   if (!offer) return null;
 
   const label = eyebrow ?? affiliateVariantLabel(offer.variant);
+  const imageAlt = offer.imageAlt ?? offer.label;
 
   return (
     <aside
@@ -49,24 +52,48 @@ export function AffiliateCta({
           Annonce
         </p>
       </div>
-      <div className="px-5 py-5">
-        <p className="font-serif text-xl uppercase tracking-wide text-bone">
-          {offer.label}
-        </p>
-        <p className="mt-2 text-sm leading-relaxed text-bone/65">
-          {offer.description}
-        </p>
-        <a
-          href={offer.href}
-          target="_blank"
-          rel="nofollow noopener sponsored"
-          className="mt-4 inline-flex items-center gap-2 rounded-xl border-2 border-herb bg-herb/15 px-4 py-2.5 text-sm font-semibold text-herb transition-colors hover:bg-herb hover:text-iron"
-        >
-          {offer.ctaLabel}
-          <span className="text-xs text-bone/50" aria-hidden>
-            · {offer.merchant}
-          </span>
-        </a>
+      <div
+        className={
+          offer.image
+            ? "grid gap-0 sm:grid-cols-[minmax(0,11rem)_1fr]"
+            : undefined
+        }
+      >
+        {offer.image ? (
+          <a
+            href={offer.href}
+            target="_blank"
+            rel="nofollow noopener sponsored"
+            className="relative block aspect-square h-full min-h-[11rem] bg-iron/80 sm:aspect-auto"
+          >
+            <Image
+              src={offer.image}
+              alt={imageAlt}
+              fill
+              className="object-contain p-4"
+              sizes="(max-width: 640px) 100vw, 11rem"
+            />
+          </a>
+        ) : null}
+        <div className="px-5 py-5">
+          <p className="font-serif text-xl uppercase tracking-wide text-bone">
+            {offer.label}
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-bone/65">
+            {offer.description}
+          </p>
+          <a
+            href={offer.href}
+            target="_blank"
+            rel="nofollow noopener sponsored"
+            className="mt-4 inline-flex items-center gap-2 rounded-xl border-2 border-herb bg-herb/15 px-4 py-2.5 text-sm font-semibold text-herb transition-colors hover:bg-herb hover:text-iron"
+          >
+            {offer.ctaLabel}
+            <span className="text-xs text-bone/50" aria-hidden>
+              · {offer.merchant}
+            </span>
+          </a>
+        </div>
       </div>
     </aside>
   );

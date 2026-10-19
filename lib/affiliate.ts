@@ -1,3 +1,4 @@
+import { AFFILIATE_FEED_IMAGES } from "@/lib/affiliate-images";
 import {
   DH_WINES_PRODUCTS,
   FREDSTONE_PRODUCTS,
@@ -41,12 +42,26 @@ export interface AffiliateOffer {
   description: string;
   ctaLabel: string;
   variant: AffiliateVariant;
+  /**
+   * Produktbillede (typisk Partner-ads feed `billedurl`).
+   * Udfyldt via AFFILIATE_FEED_IMAGES når feltet mangler.
+   */
+  image?: string;
+  /** Alt-tekst — default: offer.label */
+  imageAlt?: string;
   /** Grej-slugs der auto-matcher denne anbefaling på opskrifter. */
   grejSlugs?: string[];
   /** Kategorier hvor tilbuddet er relevant (fallback). */
   categories?: string[];
   /** Sat til false for stub-partnere der endnu ikke er live. */
   enabled?: boolean;
+}
+
+function withFeedImage(offer: AffiliateOffer): AffiliateOffer {
+  if (offer.image) return offer;
+  const image = AFFILIATE_FEED_IMAGES[offer.id];
+  if (!image) return offer;
+  return { ...offer, image, imageAlt: offer.imageAlt ?? offer.label };
 }
 
 function fromPriceRunner(queryKey: string): string {
@@ -564,15 +579,15 @@ export function boligcenterTrackedUrl(
 export function getAffiliateOffer(id: string): AffiliateOffer | undefined {
   const offer = AFFILIATE_OFFERS[id];
   if (!offer || offer.enabled === false) return undefined;
-  return offer;
+  return withFeedImage(offer);
 }
 
 export function getAffiliateOffersByVariant(
   variant: AffiliateVariant
 ): AffiliateOffer[] {
-  return Object.values(AFFILIATE_OFFERS).filter(
-    (o) => o.variant === variant && o.enabled !== false
-  );
+  return Object.values(AFFILIATE_OFFERS)
+    .filter((o) => o.variant === variant && o.enabled !== false)
+    .map(withFeedImage);
 }
 
 /** Eyebrow-tekst til native CTA efter variant. */
@@ -644,7 +659,7 @@ export function getAffiliateOfferForRecipe(
         o.variant === "grej" &&
         o.grejSlugs?.includes(slug)
     );
-    if (match) return match;
+    if (match) return withFeedImage(match);
   }
 
   const byCategory = Object.values(AFFILIATE_OFFERS).find(
@@ -653,7 +668,7 @@ export function getAffiliateOfferForRecipe(
       o.variant === "grej" &&
       o.categories?.includes(recipe.category)
   );
-  return byCategory;
+  return byCategory ? withFeedImage(byCategory) : undefined;
 }
 
 /**
