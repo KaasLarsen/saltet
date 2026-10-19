@@ -6,15 +6,21 @@ import {
 } from "@/lib/recipe-ratings/format";
 
 /**
- * Production: MantleDB fallback when Supabase env is unset.
- * Zero-config durable store used when Supabase env is missing on Vercel.
- * Namespace is claimed; writes require the key (server-only). Reads are public.
+ * Local/dev MantleDB fallback when Supabase env is unset.
+ * Not used on Vercel/production — free-tier Mantle hits rate limits under traffic.
+ * Opt in locally with MANTLE_RECIPE_RATINGS_ENABLED=1.
  */
 const MANTLE_NAMESPACE = "saltet-dk-recipe-ratings";
 const MANTLE_PATH = "all";
 /** Claim key for saltet-dk-recipe-ratings — server-only, not NEXT_PUBLIC. */
 const MANTLE_WRITE_KEY =
   "475794ced8e9883547b03966df497045bf862d0d8362f7fc372eea090f245cb2";
+
+function isProductionRuntime(): boolean {
+  return (
+    process.env.VERCEL === "1" || process.env.NODE_ENV === "production"
+  );
+}
 
 const MANTLE_BASE = `https://mantledb.sh/v2/${MANTLE_NAMESPACE}/${MANTLE_PATH}`;
 
@@ -86,6 +92,8 @@ async function writeDoc(doc: MantleDoc): Promise<void> {
 }
 
 export function isMantleRatingsConfigured(): boolean {
+  if (isProductionRuntime()) return false;
+  if (process.env.MANTLE_RECIPE_RATINGS_ENABLED?.trim() !== "1") return false;
   return Boolean(MANTLE_NAMESPACE && MANTLE_WRITE_KEY);
 }
 

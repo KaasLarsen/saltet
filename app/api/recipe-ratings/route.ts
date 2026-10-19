@@ -117,6 +117,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Ukendt opskrift." }, { status: 404 });
   }
 
+  if (!isRecipeRatingsStoreConfigured()) {
+    return NextResponse.json(
+      {
+        error:
+          "Stemmer er ikke tilgængelige lige nu. Supabase-miljøvariabler mangler.",
+      },
+      { status: 503 }
+    );
+  }
+
   const voter = readOrCreateVoterId(req.cookies.get(VOTER_COOKIE)?.value);
   const result = await saveRecipeRating({
     kind: body.kind,

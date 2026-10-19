@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --experimental-strip-types --test lib/recipe-ratings/format.test.ts",
-    "verify:images": "node scripts/verify-unique-images.mjs"
+    "verify:images": "node scripts/verify-unique-images.mjs",
+    "verify:ratings": "node --env-file=.env.local scripts/verify-recipe-ratings.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",

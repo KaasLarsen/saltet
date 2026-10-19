@@ -15,7 +15,18 @@ Kopiér `.env.example` til `.env.local` og sæt:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://saltet.dk
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=din-anon-key
 ```
+
+### Stjerne-ratings (Supabase)
+
+Produktion kræver Supabase — uden URL/anon-key er stemmer utilgængelige.
+
+1. Opret et projekt i [Supabase](https://supabase.com/dashboard)
+2. Kør [`supabase/recipe-ratings.sql`](supabase/recipe-ratings.sql) i SQL Editor
+3. Kopiér Project URL + `anon` `public` key til `.env.local` og til Vercel (Production + Preview)
+4. Redeploy Vercel
 
 ## Tilføj en ny opskrift
 
@@ -109,8 +120,12 @@ Repoet pushes til GitHub. Ved push til `main` deployer Vercel automatisk.
 
 1. Gå til [vercel.com/new](https://vercel.com/new) og importér GitHub-repoet
 2. Framework: **Next.js** (auto-detekteret)
-3. Environment variable: `NEXT_PUBLIC_SITE_URL` = `https://saltet.dk`
-4. Deploy
+3. Environment variables:
+   - `NEXT_PUBLIC_SITE_URL` = `https://saltet.dk`
+   - `NEXT_PUBLIC_SUPABASE_URL` = dit Supabase-projekt
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = anon/public key
+4. Kør `supabase/recipe-ratings.sql` i Supabase SQL Editor
+5. Deploy
 
 ### DNS (saltet.dk)
 

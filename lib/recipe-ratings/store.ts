@@ -168,6 +168,7 @@ export async function saveRecipeRating(input: {
   return {
     ok: false,
     status: 503,
-    message: "Stemmer er ikke tilgængelige lige nu.",
+    message:
+      "Stemmer er ikke tilgængelige lige nu. Supabase-miljøvariabler mangler.",
   };
 }
