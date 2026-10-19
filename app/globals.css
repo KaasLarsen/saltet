@@ -184,6 +184,46 @@ body {
   white-space: normal;
 }
 
+/* PriceRunner official widget: keep "Til butik" visible on narrow viewports.
+   Their injected CSS sets .offer-logo { min-width: max(185px, 35%) }, which
+   overflows our max-w-2xl + padded column and gets clipped by overflow-hidden.
+   !important is required because the widget injects its <style> after ours. */
+@media (max-width: 599px) {
+  .pr-widget-app .base-layout {
+    min-width: 0 !important;
+    padding: 8px !important;
+  }
+
+  .pr-widget-app .offer-logo {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    max-width: 42% !important;
+    margin-right: 6px !important;
+  }
+
+  .pr-widget-app .offer-price {
+    flex: 0 0 auto !important;
+    margin-right: 6px !important;
+    font-size: 14px !important;
+  }
+
+  .pr-widget-app .clickout-button {
+    flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  .pr-widget-app .clickout-button .button-link > span {
+    padding: 0 10px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  .pr-widget-app .list-item {
+    padding: 10px 8px !important;
+    gap: 4px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .salt-sprinkle,
   .animate-rise,
