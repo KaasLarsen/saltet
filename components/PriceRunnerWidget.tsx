@@ -48,7 +48,7 @@ export function PriceRunnerWidget({
       <p className="border-b border-bone/10 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-herb">
         Se priser — {heading}
       </p>
-      <div className="bg-bone p-3">
+      <div className="bg-bone p-2 sm:p-3">
         <PriceRunnerOfficialWidget
           productId={productId}
           fallbackHref={fallbackHref}
