@@ -10,6 +10,7 @@ import {
 } from "@/lib/recipe-ratings/format";
 import {
   isMantleRatingsConfigured,
+  MantleRateLimitError,
   mantleCastRating,
   mantleReadSummary,
   mantleReadVoterRating,
@@ -157,6 +158,13 @@ export async function saveRecipeRating(input: {
         "mantle_cast:",
         err instanceof Error ? err.message : "unknown"
       );
+      if (err instanceof MantleRateLimitError) {
+        return {
+          ok: false,
+          status: 429,
+          message: "Stemmer er midlertidigt begrænset. Prøv igen senere.",
+        };
+      }
       return {
         ok: false,
         status: 500,
@@ -168,7 +176,6 @@ export async function saveRecipeRating(input: {
   return {
     ok: false,
     status: 503,
-    message:
-      "Stemmer er ikke tilgængelige lige nu. Supabase-miljøvariabler mangler.",
+    message: "Stemmer er ikke tilgængelige lige nu.",
   };
 }

@@ -119,10 +119,7 @@ export async function POST(req: NextRequest) {
 
   if (!isRecipeRatingsStoreConfigured()) {
     return NextResponse.json(
-      {
-        error:
-          "Stemmer er ikke tilgængelige lige nu. Supabase-miljøvariabler mangler.",
-      },
+      { error: "Stemmer er ikke tilgængelige lige nu." },
       { status: 503 }
     );
   }

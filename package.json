@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test lib/recipe-ratings/format.test.ts",
+    "test": "node --experimental-strip-types --import ./scripts/at-alias-register.mjs --test lib/recipe-ratings/*.test.ts",
     "verify:images": "node scripts/verify-unique-images.mjs",
     "verify:ratings": "node --env-file=.env.local scripts/verify-recipe-ratings.mjs"
   },
