@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import { PartnerBanner } from "@/components/PartnerBanner";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
@@ -16,6 +17,7 @@ import {
 } from "@/lib/grej";
 import { GREJ_TRACKS } from "@/lib/grej-filters";
 import { formatDate } from "@/lib/format";
+import { isSousVideContent, sousVideBanner } from "@/lib/partners";
 import {
   absoluteUrl,
   buildBreadcrumbJsonLd,
@@ -49,6 +51,7 @@ export default async function GrejPage({ params }: GrejPageProps) {
 
   const recipes = getRelatedGrejRecipes(item);
   const related = getRelatedGrej(item);
+  const showSousVideBanner = isSousVideContent({ tags: item.tags });
   const grejUrl = absoluteUrl(`/grej/${item.slug}`);
   const trackLabel =
     GREJ_TRACKS.find((track) => track.slug === item.track)?.label ?? item.track;
@@ -177,6 +180,8 @@ export default async function GrejPage({ params }: GrejPageProps) {
             <RecipeFaqSection items={item.faq} />
           </div>
         </div>
+
+        {showSousVideBanner ? <PartnerBanner banner={sousVideBanner} /> : null}
 
         {related.length > 0 && (
           <section className="border-t-2 border-bone/15 bg-ash/40 py-14">
