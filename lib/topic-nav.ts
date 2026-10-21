@@ -210,7 +210,7 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
   {
     slug: "protein",
     name: "Protein",
-    matchTagSlugs: ["protein", "hojprotein", "proteinrig"],
+    matchTagSlugs: ["protein", "hojprotein", "hoejprotein", "proteinrig"],
   },
   {
     slug: "festmad",
