@@ -68,5 +68,13 @@ export const barsetBanner: PartnerBannerConfig = {
   alt: "Få dit eget barsæt",
 };
 
+/** Nederst på opskriftssider — før relaterede opskrifter */
+export const kitchoBanner: PartnerBannerConfig = {
+  href: "https://www.partner-ads.com/dk/klikbanner.php?partnerid=57393&bannerid=114989",
+  imgSrc:
+    "https://www.partner-ads.com/dk/visbanner.php?partnerid=57393&bannerid=114989",
+  alt: "KITCHO — alt til køkken og servering",
+};
+
 /** Kuraterede produkt-URL’er: se lib/affiliate-products.ts */
 /** Produkt-CTA’er og affiliate:id-links: se lib/affiliate.ts */
