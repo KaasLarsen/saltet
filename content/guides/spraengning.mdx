@@ -11,6 +11,7 @@ tags:
 image: /guides/spraengning.jpg
 imageAlt: "Kød i klar saltlage klar til sprængning"
 publishedAt: 2026-10-16
+updatedAt: 2026-10-18
 relatedRecipes:
   - fermentering/spraengt-svinemoerbrad
   - gryde/spraengt-svineskank-sennep
@@ -24,6 +25,7 @@ relatedGuides:
   - toersaltning
   - andesteg-komplet-guide
   - fermentering-for-begyndere
+  - kernetemperatur
 faq:
   - question: "Hvad er forskel på dry-brining og sprængning?"
     answer: "Dry-brining er salt på kødet, bart i køl. Sprængning er salt opløst i vand. Procent i lage = gram salt / gram vand × 100. Se tørsaltnings-guiden og saltlage-beregneren."
@@ -37,11 +39,15 @@ faq:
     answer: "Brug saltlage-beregneren: liter vand × procent. 2 liter ved 6 % = 120 g fint salt."
   - question: "Flagesalt i lagen?"
     answer: "Nej. Vej fint salt. Flager er finish. Se saltguiden."
+  - question: "Skal lagen være kølig?"
+    answer: "Ja. Køl lagen før kødet går i — især and og store stykker. Varm lage starter bakterie-race."
+  - question: "Kan jeg genbruge lagen?"
+    answer: "Nej til nyt kød. Den har været i kontakt med råt kød. Smid ud efter brug."
 ---
 
 Sprængning er salt i vand. Ikke gætværk med en håndfuld.
 
-[Saltlage-beregneren](/guides/saltlage-beregner) spytter gram ud. [Saltguiden](/guides/saltguide) er typer. [Tørsaltning](/guides/toersaltning) er det tørre spor. Her er **wet-brining**.
+[Saltlage-beregneren](/guides/saltlage-beregner) spytter gram ud. [Saltguiden](/guides/saltguide) er typer. [Tørsaltning](/guides/toersaltning) er det tørre spor. Her er **wet-brining**. And: [andesteg-guiden](/guides/andesteg-komplet-guide).
 
 ## To strategier
 
@@ -50,6 +56,12 @@ Sprængning er salt i vand. Ikke gætværk med en håndfuld.
 **Ligevægtssaltning (equilibrium).** Du dimensionerer saltet efter kød *plus* vand, så den endelige koncentration i kødet lander blidt (typisk omkring 1 %). Længere tid er okay — systemet balancerer. Mindre panik, mere matematik.
 
 Tommelfinger til hjemmekøkkenet, når opskriften siger «X % lage»: det er næsten altid **salt i vand**, ikke equilibrium. Brug beregneren. Følg tiden i opskriften.
+
+| Strategi | Typisk % i vand | Tid | Risiko |
+| --- | --- | --- | --- |
+| Hurtig | 5–10 % | Timer–få døgn | Oversalt hvis glemt |
+| Mild (and) | 2–3 % | ~24 t | For mild hvis for kort |
+| Equilibrium | Regnet til ~1 % i kød | Længere OK | Kræver vejning af kød+vand |
 
 ## Presets der virker
 
@@ -62,6 +74,7 @@ Tommelfinger til hjemmekøkkenet, når opskriften siger «X % lage»: det er næ
     <tr><td>Let kødsprængning</td><td>3–5 %</td><td>timer–døgn</td><td>Mildere end klassisk</td></tr>
     <tr><td>Klassisk sprængt svin</td><td>5–8 %</td><td>timer–døgn</td><td>[Sprængt svinemørbrad](/opskrifter/fermentering/spraengt-svinemoerbrad)</td></tr>
     <tr><td>Svineslag til rullepølse</td><td>~6 %</td><td>2–3 døgn</td><td>Klassisk spor — [rullepølse](/opskrifter/palaeg/rullepoelse)</td></tr>
+    <tr><td>Oksebryst</td><td>følg opskrift</td><td>døgn</td><td>[Sprængt oksebryst](/opskrifter/palaeg/spraengt-oksebryst)</td></tr>
     <tr><td>Hård konservering</td><td>~10 %+</td><td>kort / med udblødning</td><td>Sild-agtig styrke</td></tr>
   </tbody>
 </table>
@@ -70,13 +83,22 @@ Regn gram: [saltlage-beregneren](/guides/saltlage-beregner).
 
 <SaltlageBeregner />
 
+Eksempel: 2 liter vand × 6 % = 120 g **fint** salt. Ikke flager. Ikke «en håndfuld».
+
+<PriceRunnerWidget query="køkkenvægt digital" label="OXO Good Grips køkkenvægt" />
+
 ## Arbejdsgang
 
 1. Vælg procent (eller følg opskriften).
-2. Mål vand. Vej **fint salt**. Opløs.
+2. Mål vand. Vej **fint salt**. Opløs helt.
 3. Køl lagen, før kødet går i (især and og store stykker).
 4. Kød under lagen. Køl. Tid efter opskrift.
 5. Tag op. Dup tør. Til and: lufttør skindet i køl før stegning.
+6. Steg. Mål kerne — [kernetemperatur](/guides/kernetemperatur).
+
+<Tip>
+And efter lage: skindet skal være knastørt i køleskabet (gerne natten over på rist). Vådt skind = damp, ikke knas.
+</Tip>
 
 ## Fejl
 
@@ -88,4 +110,58 @@ Regn gram: [saltlage-beregneren](/guides/saltlage-beregner).
 
 **Stegning med vådt skind efter lage.** Damp, ikke knas. Tør.
 
-Næste skridt på panden: [tørsaltning](/guides/toersaltning), når du vil have skorpe uden spand.
+**Varm lage på råt kød.** Bakterier. Køl først.
+
+**Genbrugt lage.** Nej.
+
+| Problem | Årsag | Fix |
+| --- | --- | --- |
+| Smager af skinke (and) | For høj % eller for lang tid | 2–3 %, ~24 t |
+| Kedeligt, tørt kød | Ingen lage / for kort | Mild lage, hold tid |
+| For salt | Glemt i 6 % | Udblød i koldt vand, smag |
+| Blødt skind | Ikke tørret | Lufttør i køl |
+
+## Opskrifter der bruger lagen
+
+- [Sprængt svinemørbrad](/opskrifter/fermentering/spraengt-svinemoerbrad)
+- [Sprængt svineskank med sennep](/opskrifter/gryde/spraengt-svineskank-sennep)
+- [Rullepølse](/opskrifter/palaeg/rullepoelse)
+- [Sprængt oksebryst](/opskrifter/palaeg/spraengt-oksebryst)
+- [Sprængt andebryst med rødkål](/opskrifter/ovn/spraengt-andebryst-roedkaal)
+- [Andesteg på grill](/opskrifter/grill/andesteg-paa-grill)
+
+Efter stegning: flagesalt som finish — ikke i lagen. [Saltguiden](/guides/saltguide).
+
+## Equilibrium i praksis (uden panik)
+
+Du vejer kødet. Du vejer vandet. Du vælger mål-procent i det færdige kød (ofte 1,0–1,5 %). Saltmængde = mål-% × (kød + vand). Eksempel: 1000 g kød + 1000 g vand, mål 1,2 % → 24 g salt i det samlede system. Længere tid er OK — saltet fordeler sig. Du behøver ikke stopure som ved 8 % hurtig-lage.
+
+De fleste danske opskrifter er **ikke** equilibrium. De siger «6 % lage» = salt i vand. Bland ikke de to formler. Læs opskriften. Brug [beregneren](/guides/saltlage-beregner) til vand-procenten.
+
+## Beholder, vægt og plads i køleskabet
+
+Kød skal være **under** lagen. Brug en tung tallerken som vægt, eller en pose med lage ovenpå. Luftlommer = ujævn saltning. Spand eller gastronorm-kasse med låg. Mærk dato og procent med tape.
+
+Køl hele tiden. Stuetemperatur-sprængning er ikke «gammeldags charme» — det er risiko. Store stykker: sørg for at lagen er iskold før kødet går i.
+
+## Efter lagen: tørhed og skorpe
+
+Sprængning giver saft. Skorpe kræver tør overflade. Dup. Til and og fjerkræ: lufttør i køl på rist. Til svinemørbrad: dup og steg — se opskriften. Tørsaltning efter mild lage er muligt, men pas på dobbelt-salt: smag dig frem, eller skip flager indtil udskæring.
+
+| Efter lage | Gør | Undgå |
+| --- | --- | --- |
+| And / andebryst | Lufttør skind | Steg våd |
+| Svineslag | Dup, evt. udblød hvis opskrift siger det | Flager i lagen |
+| Mørbrad | Dup, pandesteg | Ekstra 2 % tørsalt oveni uden smag |
+
+## Sprængning vs. tørsaltning — hvornår hvad
+
+**Sprængning:** hele fugle, store stykker, klassisk pålæg, når du vil have saft dybt ind. **Tørsaltning:** steaks, bark, når du vil undgå spand — [tørsaltning](/guides/toersaltning). Samme natrium, anden vej ind.
+
+Fermentering er en tredje saltverden (levende kultur, andre procenter): [fermentering for begyndere](/guides/fermentering-for-begyndere).
+
+## Udblødning når det gik galt
+
+For salt: koldt vand 30–60 minutter, smag, gentag hvis nødvendigt. Du vasker salt ud fra yderzonen — midten kan stadig være salt. Skær en prøve. Steg en lille bid. Gæt ikke ud fra lagen alene.
+
+Sprængning er procent, vægt og tid. Tre tal. Gæt dem ikke.
