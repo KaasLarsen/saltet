@@ -16,6 +16,14 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "owp.klarna.com" },
       { protocol: "https", hostname: "assets.klarnacdn.net" },
+      // Partner-ads feed billedurl CDN’er
+      { protocol: "https", hostname: "cdn.homeshop.dk" },
+      { protocol: "https", hostname: "media.enad.io" },
+      { protocol: "https", hostname: "cdn.ecdn.dk" },
+      { protocol: "https", hostname: "shop91320.sfstatic.io" },
+      { protocol: "https", hostname: "assets1.rito.link" },
+      { protocol: "https", hostname: "cdn.shopify.com" },
+      { protocol: "https", hostname: "www.okologisk-supermarked.dk" },
     ],
   },
   async redirects() {
