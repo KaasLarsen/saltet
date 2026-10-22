@@ -60,9 +60,12 @@ export function SearchResults({ recipes, query }: SearchResultsProps) {
     (next: string | undefined) => {
       setMetode(next);
 
-      const params = new URLSearchParams();
+      const params = new URLSearchParams(window.location.search);
       if (query) params.set("q", query);
+      else params.delete("q");
+
       if (next) params.set("metode", next);
+      else params.delete("metode");
 
       const qs = params.toString();
       router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });

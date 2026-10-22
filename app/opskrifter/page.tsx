@@ -3,6 +3,11 @@ import { GuideCard } from "@/components/GuideCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
 import { SearchResults } from "@/components/SearchResults";
+import {
+  isSearchType,
+  SearchTypeFilters,
+  type SearchType,
+} from "@/components/SearchTypeFilters";
 import { grejMatchesQuery } from "@/lib/grej-filters";
 import { getAllGrej } from "@/lib/grej";
 import { guideMatchesQuery } from "@/lib/guide-filters";
@@ -18,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 interface AllRecipesPageProps {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; type?: string; metode?: string }>;
 }
 
 function toListItem(recipe: Recipe): RecipeFrontmatter {
@@ -26,10 +31,23 @@ function toListItem(recipe: Recipe): RecipeFrontmatter {
   return rest;
 }
 
+function summaryForType(
+  type: SearchType | undefined,
+  recipeLabel: string,
+  guideLabel: string,
+  grejLabel: string,
+  query: string
+): string {
+  if (type === "opskrifter") return `${recipeLabel} for “${query}”`;
+  if (type === "guides") return `${guideLabel} for “${query}”`;
+  if (type === "grej") return `${grejLabel} for “${query}”`;
+  return `${recipeLabel}, ${guideLabel} og ${grejLabel} for “${query}”`;
+}
+
 export default async function AllRecipesPage({
   searchParams,
 }: AllRecipesPageProps) {
-  const { q } = await searchParams;
+  const { q, type: typeParam } = await searchParams;
   const query = q?.trim() ?? "";
   const recipes = (query ? searchRecipes(query) : getAllRecipes()).map(
     toListItem
@@ -60,11 +78,31 @@ export default async function AllRecipesPage({
         }))
     : [];
 
+  const availableTypes: SearchType[] = [];
+  if (recipes.length > 0) availableTypes.push("opskrifter");
+  if (guides.length > 0) availableTypes.push("guides");
+  if (grej.length > 0) availableTypes.push("grej");
+
+  const activeType: SearchType | undefined =
+    isSearchType(typeParam) && availableTypes.includes(typeParam)
+      ? typeParam
+      : undefined;
+
+  const showRecipes =
+    !activeType || activeType === "opskrifter" ? recipes.length > 0 : false;
+  const showGuides =
+    !activeType || activeType === "guides" ? guides.length > 0 : false;
+  const showGrej =
+    !activeType || activeType === "grej" ? grej.length > 0 : false;
+
   const recipeLabel =
     recipes.length === 1 ? "1 opskrift" : `${recipes.length} opskrifter`;
   const guideLabel =
     guides.length === 1 ? "1 guide" : `${guides.length} guides`;
   const grejLabel = grej.length === 1 ? "1 grej" : `${grej.length} grej`;
+
+  const hasAnyResults =
+    recipes.length > 0 || guides.length > 0 || grej.length > 0;
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -73,7 +111,13 @@ export default async function AllRecipesPage({
       </h1>
       <p className="mx-auto mt-4 max-w-xl text-bone/55 leading-relaxed">
         {query
-          ? `${recipeLabel}, ${guideLabel} og ${grejLabel} for “${query}”`
+          ? summaryForType(
+              activeType,
+              recipeLabel,
+              guideLabel,
+              grejLabel,
+              query
+            )
           : `${recipes.length} opskrifter — og flere på vej.`}
       </p>
 
@@ -81,22 +125,27 @@ export default async function AllRecipesPage({
         <SearchForm variant="page" initialQuery={query} />
       </div>
 
-      {query &&
-      recipes.length === 0 &&
-      guides.length === 0 &&
-      grej.length === 0 ? (
+      {query && hasAnyResults ? (
+        <SearchTypeFilters
+          query={query}
+          available={availableTypes}
+          initialType={activeType}
+        />
+      ) : null}
+
+      {query && !hasAnyResults ? (
         <p className="mt-12 text-bone/50">
           Ingen opskrifter, guides eller grej matchede din søgning. Prøv et
           andet ord.
         </p>
       ) : query ? (
         <>
-          {recipes.length > 0 ? (
+          {showRecipes ? (
             <SearchResults recipes={recipes} query={query} />
           ) : null}
-          {guides.length > 0 ? (
+          {showGuides ? (
             <section
-              className={recipes.length > 0 ? "mt-16" : "mt-10"}
+              className={showRecipes ? "mt-16" : "mt-10"}
               aria-labelledby="search-guides-heading"
             >
               <h2
@@ -112,11 +161,9 @@ export default async function AllRecipesPage({
               </div>
             </section>
           ) : null}
-          {grej.length > 0 ? (
+          {showGrej ? (
             <section
-              className={
-                recipes.length > 0 || guides.length > 0 ? "mt-16" : "mt-10"
-              }
+              className={showRecipes || showGuides ? "mt-16" : "mt-10"}
               aria-labelledby="search-grej-heading"
             >
               <h2
