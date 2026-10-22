@@ -15,7 +15,12 @@ function formatGrams(grams: number): string {
   return String(Math.round(grams));
 }
 
-export function SaltlageBeregner() {
+interface SaltlageBeregnerProps {
+  /** Drop default vertical margin when wrapped in a homepage section. */
+  className?: string;
+}
+
+export function SaltlageBeregner({ className }: SaltlageBeregnerProps) {
   const litersId = useId();
   const percentId = useId();
   const [liters, setLiters] = useState(1);
@@ -26,7 +31,7 @@ export function SaltlageBeregner() {
 
   return (
     <aside
-      className="my-10 overflow-hidden rounded-2xl border-2 border-bone/20 bg-ash/40"
+      className={`overflow-hidden rounded-2xl border-2 border-bone/20 bg-ash/40 ${className ?? "my-10"}`}
       aria-label="Saltlage-beregner"
     >
       <div className="border-b border-bone/10 bg-ash/80 px-5 py-3">

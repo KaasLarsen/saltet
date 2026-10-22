@@ -1,9 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { CardCarousel, CarouselSlide } from "@/components/CardCarousel";
+import { FeaturedRecipeSpotlight } from "@/components/FeaturedRecipeSpotlight";
 import { GuideCard } from "@/components/GuideCard";
+import { HomeShortcuts } from "@/components/HomeShortcuts";
 import { PartnerBanner } from "@/components/PartnerBanner";
-import { RecipeCard } from "@/components/RecipeCard";
+import { SaltlageBeregner } from "@/components/SaltlageBeregner";
 import { SearchForm } from "@/components/SearchForm";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
@@ -11,7 +13,7 @@ import { barsetBanner, oaterBanner } from "@/lib/partners";
 import { getFeaturedRecipes } from "@/lib/recipes";
 
 export default function HomePage() {
-  const featuredRecipes = getFeaturedRecipes(12);
+  const featuredRecipes = getFeaturedRecipes(8);
   const latestGuides = getAllGuides()
     .slice(0, 8)
     .map((guide) => ({
@@ -61,39 +63,58 @@ export default function HomePage() {
           <div className="animate-rise delay-3 mt-8 w-full max-w-lg">
             <SearchForm variant="hero" />
           </div>
-          <Link
-            href="/opskrifter/airfryer"
-            className="animate-rise delay-3 mt-5 inline-flex rounded-lg border-2 border-bone/30 bg-bone/5 px-4 py-2 text-[12px] font-bold uppercase tracking-[0.14em] text-bone/80 transition-colors hover:border-herb hover:bg-herb hover:text-iron"
-          >
-            Drop ind i airfryer →
-          </Link>
         </div>
       </section>
 
+      <HomeShortcuts />
+
       {featuredRecipes.length > 0 ? (
-        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+        <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
           <div className="mb-10 flex flex-col items-center gap-3 text-center">
             <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
-              Udvalgte opskrifter
+              Ugens ret
             </h2>
+            <p className="max-w-md text-sm text-bone/50">
+              Én session i fokus — plus de stærkeste udvalgte lige nu.
+            </p>
             <Link
               href="/opskrifter"
               className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
             >
-              Se alle
+              Se alle opskrifter
             </Link>
           </div>
-          <CardCarousel label="Udvalgte opskrifter">
-            {featuredRecipes.map((recipe, index) => (
-              <CarouselSlide key={`${recipe.category}/${recipe.slug}`}>
-                <RecipeCard recipe={recipe} priority={index === 0} />
-              </CarouselSlide>
-            ))}
-          </CardCarousel>
+          <FeaturedRecipeSpotlight recipes={featuredRecipes} />
         </section>
       ) : null}
 
       <PartnerBanner banner={oaterBanner} />
+
+      <section className="border-y-2 border-wood/40 bg-stone">
+        <div className="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-8 text-center">
+            <p className="mb-3 inline-flex rotate-[-1.5deg] rounded-lg border-2 border-iron bg-wood px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-bone shadow-[3px_3px_0_0_rgba(212,255,0,0.75)]">
+              Hurtigt værktøj
+            </p>
+            <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
+              Saltlage på 5 sekunder
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-sm text-bone/55">
+              Liter vand × procent = gram fint salt. Klar til sprængning,
+              fermentering og sild.
+            </p>
+          </div>
+          <SaltlageBeregner className="my-0" />
+          <p className="mt-6 text-center">
+            <Link
+              href="/guides/saltguide"
+              className="text-[12px] font-bold uppercase tracking-[0.14em] text-pool transition-colors hover:text-herb"
+            >
+              Læs saltguiden →
+            </Link>
+          </p>
+        </div>
+      </section>
 
       {latestGuides.length > 0 ? (
         <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
@@ -124,28 +145,41 @@ export default function HomePage() {
       <PartnerBanner banner={barsetBanner} />
 
       {latestGrej.length > 0 ? (
-        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
-          <div className="mb-10 flex flex-col items-center gap-3 text-center">
-            <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
-              Grej
-            </h2>
-            <p className="max-w-md text-sm text-bone/50">
-              Tests og købsguider — airfryer, pizzaovn, støbejern og bål.
-            </p>
-            <Link
-              href="/grej"
-              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
-            >
-              Se alt grej
-            </Link>
+        <section className="relative overflow-hidden border-t-2 border-herb/30 bg-iron">
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            aria-hidden
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,92,57,0.18),transparent_55%)]" />
+            <div className="absolute inset-0 bg-[repeating-linear-gradient(-18deg,transparent,transparent_12px,rgba(212,255,0,0.04)_12px,rgba(212,255,0,0.04)_13px)]" />
           </div>
-          <CardCarousel label="Grej">
-            {latestGrej.map((item) => (
-              <CarouselSlide key={item.slug}>
-                <GuideCard href={`/grej/${item.slug}`} guide={item} />
-              </CarouselSlide>
-            ))}
-          </CardCarousel>
+          <div className="relative mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-24">
+            <div className="mb-10 flex flex-col items-center gap-3 text-center">
+              <p className="inline-flex rounded-lg border-2 border-herb bg-iron px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-herb">
+                Grej & værktøj
+              </p>
+              <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
+                Det vi tester og torturerer
+              </h2>
+              <p className="max-w-md text-sm text-bone/55">
+                Pålægsmaskiner, knive, støbejern og airfryere — rå tests uden
+                brochure-sprog.
+              </p>
+              <Link
+                href="/grej"
+                className="rounded-lg border-2 border-herb/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-herb transition-colors hover:bg-herb hover:text-iron"
+              >
+                Se alt grej
+              </Link>
+            </div>
+            <CardCarousel label="Grej">
+              {latestGrej.map((item) => (
+                <CarouselSlide key={item.slug}>
+                  <GuideCard href={`/grej/${item.slug}`} guide={item} />
+                </CarouselSlide>
+              ))}
+            </CardCarousel>
+          </div>
         </section>
       ) : null}
     </>
