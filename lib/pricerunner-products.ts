@@ -384,4 +384,326 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "628",
     label: "Leijma Mirakelsvamp 3-pak",
   },
+
+  // Tidligere CTA-only widgets (manglende productId)
+  "trefod bål gryde": {
+    productId: "3434435155",
+    categoryId: "659",
+    label: "Gastrotools Bålstativ",
+  },
+  "bålhandsker varmebestandige": {
+    productId: "3435074886",
+    categoryId: "659",
+    label: "Nexgrill Grillhandsker Varmeresistente",
+  },
+  "svejsehandsker læder": {
+    productId: "4769585",
+    categoryId: "734",
+    label: "Ejendals Tegera 8 Svejsehandsker",
+  },
+  "aramid grillhandsker": {
+    productId: "3388326572",
+    categoryId: "659",
+    label: "Petromax BBQ Gloves",
+  },
+  "log lifter bål tænger": {
+    productId: "3200240904",
+    categoryId: "659",
+    label: "Petromax Grill and Coal Tong 41cm",
+  },
+  "båltænger læng": {
+    productId: "3776540",
+    categoryId: "461",
+    label: "Rösle Coal Tongs 50cm",
+  },
+  "bagestål pizza 6 mm": {
+    productId: "3545024512",
+    categoryId: "1268",
+    label: "Gastrotools Bagestål",
+  },
+  "rustfri stål pande 3-ply": {
+    productId: "3202746139",
+    categoryId: "1266",
+    label: "Fiskars All Steel 28cm",
+  },
+  "nonstick pande": {
+    productId: "3203155361",
+    categoryId: "1266",
+    label: "Tefal Ultimate 25cm",
+  },
+  "sifonflaske N2O": {
+    productId: "3217133",
+    categoryId: "461",
+    label: "iSi Gourmet Whip",
+  },
+  "N2O patroner sifon": {
+    productId: "4017879",
+    categoryId: "461",
+    label: "iSi Pro Sifonpatroner 10stk",
+  },
+  "elektrisk kniv": {
+    productId: "3200021040",
+    categoryId: "243",
+    label: "Fritel EK 3180",
+  },
+  "elektrisk brødkniv": {
+    productId: "5305972",
+    categoryId: "243",
+    label: "Rommelsbacher EM 150",
+  },
+  "gærlås fermentering glas": {
+    productId: "3300689252",
+    categoryId: "461",
+    label: "Kilner Fermenteringssæt 1 L",
+  },
+  "crème brûlée brænder": {
+    productId: "3216395853",
+    categoryId: "1617",
+    label: "Hendi Créme Brulée Burner",
+  },
+  "gaspatron køkkenbrænder": {
+    productId: "5050504",
+    categoryId: "501",
+    label: "Butangaspatron 227g",
+  },
+  "infrarødt termometer 500 grader": {
+    productId: "3325325210",
+    categoryId: "461",
+    label: "Ooni infrarødt termometer",
+  },
+  "Thermapen termometer": {
+    productId: "3200550373",
+    categoryId: "461",
+    label: "ETI Thermapen ONE",
+  },
+  "instant read termometer kød": {
+    productId: "3200550373",
+    categoryId: "461",
+    label: "ETI Thermapen ONE",
+  },
+  "ismaskine kompressor": {
+    productId: "4572505",
+    categoryId: "250",
+    label: "Magimix Gelato Expert",
+  },
+  "ismaskine fryseelement": {
+    productId: "3057180",
+    categoryId: "250",
+    label: "Wilfa ICM-C15",
+  },
+  "mandolin julienne": {
+    productId: "4580572",
+    categoryId: "461",
+    label: "OXO Good Grips Mandolinjern",
+  },
+  "spiralizer grøntsager": {
+    productId: "3134680",
+    categoryId: "10024",
+    label: "Tefal spiralizer",
+  },
+  "skærehandske køkken": {
+    productId: "3401935719",
+    categoryId: "734",
+    label: "GEFU Securo Beskyttelseshandske",
+  },
+  "kobbergryde stålindlæg": {
+    productId: "3748962",
+    categoryId: "1266",
+    label: "Mauviel M'150b",
+  },
+  "3-ply gryde rustfri": {
+    productId: "3202860821",
+    categoryId: "1266",
+    label: "Fiskars All Steel gryde 20cm",
+  },
+  "koldrøgningsgenerator grill": {
+    productId: "3200009226",
+    categoryId: "659",
+    label: "Mustang Cold Smoke Generator",
+  },
+  "rygesmuld bøg fint": {
+    productId: "3739954",
+    categoryId: "659",
+    label: "Weber Røgsmuld Bøg",
+  },
+  "marineringssprøjte": {
+    productId: "3201877285",
+    categoryId: "461",
+    label: "Westmark Marinade Syringe",
+  },
+  laksekniv: {
+    productId: "3202877107",
+    categoryId: "243",
+    label: "Wüsthof Classic laksekniv",
+  },
+  "fleksibel skærelkniv fisk": {
+    productId: "3380135",
+    categoryId: "243",
+    label: "Global G-21",
+  },
+  "OXO mandolin": {
+    productId: "4580572",
+    categoryId: "461",
+    label: "OXO Good Grips Mandolinjern",
+  },
+  "Börner mandolin": {
+    productId: "3419179725",
+    categoryId: "461",
+    label: "Börner V3 Mandolin",
+  },
+  mikrobølgeovn: {
+    productId: "3207678208",
+    categoryId: "3",
+    label: "Samsung MS23K3523AS",
+  },
+  pålægsmaskine: {
+    productId: "3203591082",
+    categoryId: "10026",
+    label: "TriStar EM-2099",
+  },
+  "pålægsmaskine professionel": {
+    productId: "3250758",
+    categoryId: "10026",
+    label: "Graef Master M90",
+  },
+  "messingbørste pizza sten": {
+    productId: "3530216462",
+    categoryId: "659",
+    label: "Ooni Pizzaovnsbørste",
+  },
+  "pizzasten rengøring børste": {
+    productId: "3389589742",
+    categoryId: "659",
+    label: "Witt Pizza Brush",
+  },
+  pølsestopper: {
+    productId: "3491067034",
+    categoryId: "1617",
+    label: "Pølsestopper 3L",
+  },
+  "pølsetilbehør røremaskine": {
+    productId: "5169882",
+    categoryId: "1244",
+    label: "KitchenAid 5KSMSSA",
+  },
+  røgpistol: {
+    productId: "4341703",
+    categoryId: "1617",
+    label: "Steba Smoking Box Smoke Gun",
+  },
+  "rygesmuld fint": {
+    productId: "3207717778",
+    categoryId: "659",
+    label: "Zebco Røgsmuld fint bøg",
+  },
+  rullepølsepresse: {
+    productId: "5082975",
+    categoryId: "1617",
+    label: "Holm rullepølsepresse",
+  },
+  kødsnor: {
+    productId: "3203847145",
+    categoryId: "456",
+    label: "Royal Kødsnor Bomuld 45 m",
+  },
+  "rygesmuld bøg": {
+    productId: "3739954",
+    categoryId: "659",
+    label: "Weber Røgsmuld Bøg",
+  },
+  "røg chunks æble grill": {
+    productId: "3209898118",
+    categoryId: "659",
+    label: "Big Green Egg Apple Chunks",
+  },
+  patentglas: {
+    productId: "5125855",
+    categoryId: "461",
+    label: "Weck patentglas 0,85 L",
+  },
+  sildekrukke: {
+    productId: "3564384906",
+    categoryId: "461",
+    label: "Weck Konisk Sylteglas 500 ml",
+  },
+  "endetræ skærebræt": {
+    productId: "3400326955",
+    categoryId: "461",
+    label: "Pepper Eg Endetræ 60×45 cm",
+  },
+  "plastik skærebræt": {
+    productId: "3205101197",
+    categoryId: "461",
+    label: "Rosti Choptima",
+  },
+  "strygestål kniv": {
+    productId: "3826316",
+    categoryId: "243",
+    label: "Zwilling strygestål 26 cm",
+  },
+  "burger smasher støbejern": {
+    productId: "3206296949",
+    categoryId: "461",
+    label: "Lodge Cast Iron Burgerpresser 16cm",
+  },
+  "smash burger presse rustfrit": {
+    productId: "3434674600",
+    categoryId: "461",
+    label: "Satake Smash Burger Set",
+  },
+  "konditorspartel rustfrit stål": {
+    productId: "3231122",
+    categoryId: "1268",
+    label: "KitchenCraft Paletkniv 38 cm",
+  },
+  "offset spatel grill burger": {
+    productId: "3413972375",
+    categoryId: "461",
+    label: "Dorre Smash Burger Spatula",
+  },
+  "Lodge seasoning spray": {
+    productId: "3609815790",
+    categoryId: "659",
+    label: "Lodge Indbrændingsspray",
+  },
+  "De Buyer Mineral B pande": {
+    productId: "3246517",
+    categoryId: "1266",
+    label: "De Buyer Mineral B Element 28cm",
+  },
+  "sukkertermometer glas": {
+    productId: "3454253632",
+    categoryId: "461",
+    label: "Sukkertermometer 20–200 °C",
+  },
+  "digitalt sliktermometer": {
+    productId: "5117796",
+    categoryId: "461",
+    label: "ETI ChefAlarm Professional",
+  },
+  tarteletjern: {
+    productId: "4015396",
+    categoryId: "1268",
+    label: "Silikomart Tartelletta Form",
+  },
+  tarteletskaller: {
+    productId: "3403878018",
+    categoryId: "1268",
+    label: "Pidy Tartelet Stor",
+  },
+  "tørrepose charcuteri": {
+    productId: "3658780209",
+    categoryId: "461",
+    label: "UMAi Dry Artisan Meat Dry-Age Bags",
+  },
+  "UMI bag": {
+    productId: "3658780209",
+    categoryId: "461",
+    label: "UMAi Dry Artisan Meat Dry-Age Bags",
+  },
+  "trækul lump grill": {
+    productId: "5168750",
+    categoryId: "659",
+    label: "Weber Premium Lumpwood Charcoal 5kg",
+  },
 };
