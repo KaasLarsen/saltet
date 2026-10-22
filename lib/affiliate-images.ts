@@ -59,4 +59,20 @@ export const AFFILIATE_FEED_IMAGES: Record<string, string> = {
     "https://www.okologisk-supermarked.dk/images/produkter/10603.jpg",
   "okologisk-supermarked":
     "https://www.okologisk-supermarked.dk/images/produkter/1467.jpg",
+  "oko-plantforce":
+    "https://www.okologisk-supermarked.dk/images/produkter/12063.jpg",
+  "oko-hamp-protein":
+    "https://www.okologisk-supermarked.dk/images/produkter/12226.jpg",
+
+  // Med24 — feed 42807/522
+  "med24-whey":
+    "https://www.med24.dk/imgsrv/2025-01-28/22103722/1/bodylab-whey-100-vanilla-milkshake-400-g-85849.jpg?c=IOCAei",
+  "med24-elektrolytter":
+    "https://www.med24.dk/imgsrv/2026-02-26/26010462/1/natur-drogeriet-elektrolytter-100-ml-4161.jpg?c=Irw6rL",
+
+  // Helsebixen — feed 28715/181
+  "helsebixen-mct":
+    "https://cdn.helsebixen.dk/cdn-cgi/image/width=1600,format=auto/public/media/8c/45/af/1779364677/123321_p.png",
+  "helsebixen-elektrolyt":
+    "https://cdn.helsebixen.dk/cdn-cgi/image/width=1600,format=auto/public/media/b8/1b/15/1780519711/124731_p.png",
 };

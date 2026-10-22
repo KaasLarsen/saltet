@@ -2,12 +2,15 @@ import { AFFILIATE_FEED_IMAGES } from "@/lib/affiliate-images";
 import {
   DH_WINES_PRODUCTS,
   FREDSTONE_PRODUCTS,
+  HELSEBIXEN_PRODUCTS,
   HOMESHOP_PRODUCTS,
   KITCHENONE_PRODUCTS,
   BOLIGCENTER_PRODUCTS,
+  MED24_PRODUCTS,
   OKO_PRODUCTS,
   RITO_PRODUCTS,
   detectGroceryLanding,
+  detectSupplementLanding,
 } from "@/lib/affiliate-products";
 import { PRICERUNNER_PRODUCTS } from "@/lib/pricerunner-products";
 import {
@@ -20,8 +23,10 @@ import {
   DH_WINES_BANNER_ID,
   DH_WINES_SHOP_URL,
   FREDSTONE_BANNER_ID,
+  HELSEBIXEN_BANNER_ID,
   HOMESHOP_BANNER_ID,
   KITCHENONE_BANNER_ID,
+  MED24_BANNER_ID,
   OKO_SUPERMARKED_BANNER_ID,
   RITO_BANNER_ID,
   barsetBanner,
@@ -405,6 +410,81 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Køb olien",
     variant: "grocery",
   },
+  "oko-plantforce": {
+    id: "oko-plantforce",
+    href: partnerAdsProductUrl(
+      OKO_SUPERMARKED_BANNER_ID,
+      OKO_PRODUCTS.plantforceSynergyVanilje
+    ),
+    label: "Plantforce Synergy vanilje",
+    merchant: "Økologisk-Supermarked",
+    description:
+      "Planteprotein til proats, budding og brød — uden mælk, med god smag.",
+    ctaLabel: "Køb proteinpulver",
+    variant: "grocery",
+  },
+  "oko-hamp-protein": {
+    id: "oko-hamp-protein",
+    href: partnerAdsProductUrl(
+      OKO_SUPERMARKED_BANNER_ID,
+      OKO_PRODUCTS.hampProtein
+    ),
+    label: "Hamp protein pulver",
+    merchant: "Økologisk-Supermarked",
+    description: "Hampprotein til smoothies, grød og bagning.",
+    ctaLabel: "Køb hampprotein",
+    variant: "grocery",
+  },
+  "med24-whey": {
+    id: "med24-whey",
+    href: partnerAdsProductUrl(
+      MED24_BANNER_ID,
+      MED24_PRODUCTS.bodylabWheyVanilla
+    ),
+    label: "Bodylab Whey 100 vanilje",
+    merchant: "Med24",
+    description:
+      "Klassisk whey til proats, baked oats og proteinbudding — rør i uden for blusset.",
+    ctaLabel: "Køb proteinpulver",
+    variant: "grocery",
+  },
+  "med24-elektrolytter": {
+    id: "med24-elektrolytter",
+    href: partnerAdsProductUrl(
+      MED24_BANNER_ID,
+      MED24_PRODUCTS.elektrolytter
+    ),
+    label: "Natur-Drogeriet Elektrolytter",
+    merchant: "Med24",
+    description:
+      "Elektrolytter til keto-flu og salttab — når kulhydraterne er væk.",
+    ctaLabel: "Køb elektrolytter",
+    variant: "grocery",
+  },
+  "helsebixen-mct": {
+    id: "helsebixen-mct",
+    href: partnerAdsProductUrl(
+      HELSEBIXEN_BANNER_ID,
+      HELSEBIXEN_PRODUCTS.mctOlie
+    ),
+    label: "Livets Olie MCT Ø",
+    merchant: "Helsebixen",
+    description: "MCT-olie til kaffe, dressing og keto-madlavning.",
+    ctaLabel: "Køb MCT-olie",
+    variant: "grocery",
+  },
+  "helsebixen-elektrolyt": {
+    id: "helsebixen-elektrolyt",
+    href: partnerAdsProductUrl(
+      HELSEBIXEN_BANNER_ID,
+      HELSEBIXEN_PRODUCTS.elektrolytFix
+    ),
+    label: "Viridian Elektrolyt Fix",
+    merchant: "Helsebixen",
+    description: "Flydende elektrolytter — praktisk dryp til vandflasken.",
+    ctaLabel: "Køb elektrolytter",
+    variant: "grocery",
+  },
   "rito-sylteglas": {
     id: "rito-sylteglas",
     href: partnerAdsProductUrl(RITO_BANNER_ID, RITO_PRODUCTS.sylteglas370),
@@ -576,6 +656,20 @@ export function boligcenterTrackedUrl(
   return partnerAdsProductUrl(BOLIGCENTER_BANNER_ID, productUrl);
 }
 
+/** Tracked Med24-link (proteinpulver, elektrolytter). */
+export function med24TrackedUrl(
+  productUrl: string = MED24_PRODUCTS.bodylabWheyVanilla
+): string {
+  return partnerAdsProductUrl(MED24_BANNER_ID, productUrl);
+}
+
+/** Tracked Helsebixen-link (MCT, elektrolytter). */
+export function helsebixenTrackedUrl(
+  productUrl: string = HELSEBIXEN_PRODUCTS.mctOlie
+): string {
+  return partnerAdsProductUrl(HELSEBIXEN_BANNER_ID, productUrl);
+}
+
 export function getAffiliateOffer(id: string): AffiliateOffer | undefined {
   const offer = AFFILIATE_OFFERS[id];
   if (!offer || offer.enabled === false) return undefined;
@@ -696,8 +790,8 @@ export function getWineAffiliateOfferForRecipe(
 }
 
 /**
- * Grocery-CTA under ingredienser (Økologisk-Supermarked).
- * Vælger konkret vare/kategori (mel, olie, krydderier…) ud fra opskriften.
+ * Grocery-CTA under ingredienser.
+ * Proteinpulver / MCT / elektrolyt vinder over generisk pantry (Øko mel/olie).
  */
 export function getGroceryAffiliateOfferForRecipe(
   recipe: Pick<
@@ -711,10 +805,9 @@ export function getGroceryAffiliateOfferForRecipe(
 ): AffiliateOffer | undefined {
   if (recipe.affiliateGrocery === false) return undefined;
 
-  const base = getAffiliateOffer("okologisk-supermarked");
-  if (!base) return undefined;
-
   if (recipe.affiliateGroceryUrl) {
+    const base = getAffiliateOffer("okologisk-supermarked");
+    if (!base) return undefined;
     return {
       ...base,
       href: okoSupermarkedTrackedUrl(recipe.affiliateGroceryUrl),
@@ -722,6 +815,18 @@ export function getGroceryAffiliateOfferForRecipe(
         "Find den økologiske vare til retten hos Økologisk-Supermarked.",
     };
   }
+
+  const supplement = detectSupplementLanding(
+    recipe.ingredients,
+    recipe.tags ?? []
+  );
+  if (supplement) {
+    const offer = getAffiliateOffer(supplement.offerId);
+    if (offer) return { ...offer, description: supplement.hint };
+  }
+
+  const base = getAffiliateOffer("okologisk-supermarked");
+  if (!base) return undefined;
 
   const forceOn = recipe.affiliateGrocery === true;
   const hasPantry = recipeHasPantryIngredients(recipe.ingredients);

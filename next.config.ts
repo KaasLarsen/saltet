@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "assets1.rito.link" },
       { protocol: "https", hostname: "cdn.shopify.com" },
       { protocol: "https", hostname: "www.okologisk-supermarked.dk" },
+      { protocol: "https", hostname: "cdn.helsebixen.dk" },
+      { protocol: "https", hostname: "www.med24.dk" },
     ],
   },
   async redirects() {

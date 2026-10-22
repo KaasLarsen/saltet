@@ -61,6 +61,18 @@ export const PARTNER_ADS_FEEDS: readonly PartnerAdsFeed[] = [
     feedId: "2863",
     merchant: "Økologisk-Supermarked",
   },
+  {
+    id: "helsebixen",
+    bannerId: "28715",
+    feedId: "181",
+    merchant: "Helsebixen.dk",
+  },
+  {
+    id: "med24",
+    bannerId: "42807",
+    feedId: "522",
+    merchant: "Med24",
+  },
 ] as const;
 
 export function partnerAdsFeedUrl(

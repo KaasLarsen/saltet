@@ -42,6 +42,30 @@ export const OKO_PRODUCTS = {
   /** Konkrete favoritter */
   fintHvedemel: `${OKO}/shop/fint-hvede-mel-5417p.html`,
   olivenolie: `${OKO}/shop/ekstra-jomfru-olivenolie-6103p.html`,
+  /** Planteprotein til proats, budding og brød */
+  plantforceSynergyVanilje: `${OKO}/shop/protein-vanilje-400-22159p.html`,
+  plantforceSynergyNeutral: `${OKO}/shop/protein-80%25-neutral-22160p.html`,
+  hampProtein: `${OKO}/shop/hamp-protein-pulver-8625p.html`,
+} as const;
+
+/** Med24 — whey og elektrolytter */
+export const MED24_PRODUCTS = {
+  shop: "https://www.med24.dk/",
+  proteinpulverCategory:
+    "https://www.med24.dk/slank-og-fitness/sportsernaering/proteinpulver",
+  bodylabWheyVanilla:
+    "https://www.med24.dk/slank-og-fitness/sportsernaering/proteinpulver/bodylab-whey-100-vanilla-milkshake-400-g",
+  elektrolytter:
+    "https://www.med24.dk/kosttilskud/mineraler/sammensatte-mineraler/natur-drogeriet-elektrolytter-100-ml",
+} as const;
+
+/** Helsebixen — MCT og elektrolytter til keto */
+export const HELSEBIXEN_PRODUCTS = {
+  shop: "https://www.helsebixen.dk/",
+  mctOlie:
+    "https://www.helsebixen.dk/shop/livets-olie-mct-olie-o-500-ml.html",
+  elektrolytFix:
+    "https://www.helsebixen.dk/shop/viridian-elektrolyt-fix-flydende-100-ml.html",
 } as const;
 
 /** Rito.dk — kun sylteglas (ikke garn/hobby-resten af sortimentet). */
@@ -123,6 +147,66 @@ export type GroceryLandingKind =
   | "sennep"
   | "salt"
   | "general";
+
+export type SupplementLandingKind =
+  | "whey"
+  | "plant"
+  | "mct"
+  | "electrolyte";
+
+/**
+ * Proteinpulver / MCT / elektrolyt — prioritet over generisk pantry.
+ * Returnerer null når opskriften ikke signalerer supplement.
+ */
+export function detectSupplementLanding(
+  ingredients: string[],
+  tags: string[] = []
+): { kind: SupplementLandingKind; offerId: string; hint: string } | null {
+  const text = ingredients.join(" ").toLowerCase();
+  const tagText = tags.join(" ").toLowerCase();
+
+  const plantPowder =
+    /ærteprotein|aerteprotein|risprotein|hamp.?protein|planteprotein|vegansk.?protein|ærte.?protein/.test(
+      text
+    );
+  const dairyPowder =
+    /proteinpulver|whey|vallepulver|valle.?protein|isolate|kasein/.test(text);
+  const mct = /\bmct\b/.test(text);
+  const electrolyteIngredient = /elektrolyt/.test(text);
+  /** Kun keto-flu-tag — ikke bare “elektrolyt” (bone broth m.m.). */
+  const ketoFluTag = /\bketo-flu\b|keto.?flu/.test(tagText);
+
+  if (plantPowder) {
+    return {
+      kind: "plant",
+      offerId: "oko-plantforce",
+      hint: "Planteprotein til retten — Plantforce hos Økologisk-Supermarked.",
+    };
+  }
+  if (dairyPowder) {
+    return {
+      kind: "whey",
+      offerId: "med24-whey",
+      hint: "Proteinpulver til retten — Bodylab Whey hos Med24.",
+    };
+  }
+  if (mct) {
+    return {
+      kind: "mct",
+      offerId: "helsebixen-mct",
+      hint: "MCT-olie til keto-køkkenet — find den hos Helsebixen.",
+    };
+  }
+  if (electrolyteIngredient || ketoFluTag) {
+    return {
+      kind: "electrolyte",
+      offerId: "med24-elektrolytter",
+      hint: "Elektrolytter til keto — Natur-Drogeriet hos Med24.",
+    };
+  }
+
+  return null;
+}
 
 /** Vælg den mest relevante Øko-kategori ud fra ingredienslisten. */
 export function detectGroceryLanding(

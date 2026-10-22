@@ -35,6 +35,14 @@ export const KITCHENONE_SHOP_URL = "https://www.kitchenone.dk/";
 export const BOLIGCENTER_BANNER_ID = "106381";
 export const BOLIGCENTER_SHOP_URL = "https://www.boligcenter.dk/";
 
+/** Helsebixen — MCT, elektrolytter, kosttilskud */
+export const HELSEBIXEN_BANNER_ID = "28715";
+export const HELSEBIXEN_SHOP_URL = "https://www.helsebixen.dk/";
+
+/** Med24 — proteinpulver, elektrolytter, sportsernæring */
+export const MED24_BANNER_ID = "42807";
+export const MED24_SHOP_URL = "https://www.med24.dk/";
+
 /**
  * Partner-ads produktlink:
  * klikbanner.php?partnerid=…&bannerid=…&htmlurl=PRODUKTLINK
