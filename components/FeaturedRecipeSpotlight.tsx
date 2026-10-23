@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { RecipeCard } from "@/components/RecipeCard";
 import { formatDuration, difficultyLabel } from "@/lib/format";
-import type { RecipeFrontmatter } from "@/lib/types";
+import type { RecipeListItem } from "@/lib/types";
 
 interface FeaturedRecipeSpotlightProps {
-  recipes: RecipeFrontmatter[];
+  recipes: RecipeListItem[];
 }
 
-function CompactRecipeRow({ recipe }: { recipe: RecipeFrontmatter }) {
+function CompactRecipeRow({ recipe }: { recipe: RecipeListItem }) {
   const href = `/opskrifter/${recipe.category}/${recipe.slug}`;
 
   return (

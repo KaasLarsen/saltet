@@ -7,7 +7,7 @@ import {
   recipeMatchesTopic,
 } from "./topic-nav";
 import { slugifyTag } from "./slug";
-import type { Difficulty, RecipeFrontmatter } from "./types";
+import type { Difficulty, RecipeListItem } from "./types";
 
 export const MIN_RECIPES_FOR_FILTERS = 12;
 export const TOP_TAG_LIMIT = 6;
@@ -74,7 +74,7 @@ export function parseDifficultyFilter(
 }
 
 export function recipeMatchesQuery(
-  recipe: RecipeFrontmatter,
+  recipe: RecipeListItem & { ingredients?: string[] },
   query: string
 ): boolean {
   const q = query.trim().toLowerCase();
@@ -85,7 +85,7 @@ export function recipeMatchesQuery(
     recipe.description,
     recipe.category,
     ...recipe.tags,
-    ...recipe.ingredients,
+    ...(recipe.ingredients ?? []),
   ]
     .join(" ")
     .toLowerCase();
@@ -93,7 +93,7 @@ export function recipeMatchesQuery(
   return haystack.includes(q);
 }
 
-export function filterRecipes<T extends RecipeFrontmatter>(
+export function filterRecipes<T extends RecipeListItem>(
   recipes: T[],
   filters: CategoryFilterValues
 ): T[] {
@@ -138,7 +138,7 @@ export function filterRecipes<T extends RecipeFrontmatter>(
 
 /** Sværhedsgrader der faktisk findes i listen, i fast rækkefølge. */
 export function getAvailableDifficulties(
-  recipes: RecipeFrontmatter[]
+  recipes: RecipeListItem[]
 ): Difficulty[] {
   const present = new Set(recipes.map((r) => r.difficulty));
   return (["nem", "mellem", "svær"] as const).filter((d) => present.has(d));
@@ -149,7 +149,7 @@ export function getAvailableDifficulties(
  * Springer tags over der dækker næsten hele listen (fx "grill" på grill-siden).
  */
 export function getTopTagsForRecipes(
-  recipes: RecipeFrontmatter[],
+  recipes: RecipeListItem[],
   limit = TOP_TAG_LIMIT
 ): TagFacet[] {
   if (recipes.length === 0) return [];
@@ -186,7 +186,7 @@ export function getTopTagsForRecipes(
 
 /** Højtider der faktisk findes blandt opskrifterne. */
 export function getAvailableHolidays(
-  recipes: RecipeFrontmatter[]
+  recipes: RecipeListItem[]
 ): HolidayFacet[] {
   if (recipes.length === 0) return [];
 
@@ -227,7 +227,7 @@ export function parseTopicFilter(
 
 /** Tilberedningsmetoder der faktisk findes blandt opskrifterne. */
 export function getAvailableMethods(
-  recipes: RecipeFrontmatter[]
+  recipes: RecipeListItem[]
 ): MethodFacet[] {
   if (recipes.length === 0) return [];
 
@@ -251,7 +251,7 @@ export function getAvailableMethods(
 
 /** Kuraterede emner der faktisk findes blandt opskrifterne. */
 export function getAvailableTopics(
-  recipes: RecipeFrontmatter[]
+  recipes: RecipeListItem[]
 ): TopicFacet[] {
   if (recipes.length === 0) return [];
 

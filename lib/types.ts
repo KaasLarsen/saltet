@@ -5,7 +5,8 @@ export interface RecipeFaq {
   answer: string;
 }
 
-export interface RecipeFrontmatter {
+/** Felter der skal med på opskriftskort / lister — uden tung body-data. */
+export interface RecipeListItem {
   title: string;
   slug: string;
   category: string;
@@ -20,6 +21,9 @@ export interface RecipeFrontmatter {
   imageAlt: string;
   publishedAt: string;
   featured?: boolean;
+}
+
+export interface RecipeFrontmatter extends RecipeListItem {
   relatedGrej?: string[];
   /** Id fra lib/affiliate.ts — eksplicit grej/produkt-CTA på opskriften. */
   affiliateProduct?: string;

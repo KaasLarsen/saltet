@@ -10,7 +10,7 @@ import { SearchForm } from "@/components/SearchForm";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { barsetBanner, oaterBanner } from "@/lib/partners";
-import { getFeaturedRecipes } from "@/lib/recipes";
+import { getFeaturedRecipes, toRecipeListItem } from "@/lib/recipes";
 
 export default function HomePage() {
   const featuredRecipes = getFeaturedRecipes(8);

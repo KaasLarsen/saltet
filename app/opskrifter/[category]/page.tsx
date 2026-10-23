@@ -4,9 +4,8 @@ import { CategoryFilters } from "@/components/CategoryFilters";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { getCategory } from "@/lib/categories";
 import { MIN_RECIPES_FOR_FILTERS } from "@/lib/recipe-filters";
-import { getRecipesByCategory } from "@/lib/recipes";
+import { getRecipesByCategory, toRecipeListItem } from "@/lib/recipes";
 import { buildCategoryMetadata } from "@/lib/seo";
-import type { RecipeFrontmatter } from "@/lib/types";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -31,19 +30,12 @@ export async function generateMetadata({
   );
 }
 
-function toListItem(
-  recipe: { content: string } & RecipeFrontmatter
-): RecipeFrontmatter {
-  const { content: _content, ...rest } = recipe;
-  return rest;
-}
-
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category: categorySlug } = await params;
   const category = getCategory(categorySlug);
   if (!category) notFound();
 
-  const recipes = getRecipesByCategory(categorySlug).map(toListItem);
+  const recipes = getRecipesByCategory(categorySlug).map(toRecipeListItem);
   const showFilters = recipes.length >= MIN_RECIPES_FOR_FILTERS;
 
   return (

@@ -4,8 +4,8 @@ import { CategoryFilters } from "@/components/CategoryFilters";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { getHoliday, getAllHolidaySlugs, getRecipesByHoliday } from "@/lib/holidays";
 import { MIN_RECIPES_FOR_FILTERS } from "@/lib/recipe-filters";
+import { toRecipeListItem } from "@/lib/recipes";
 import { buildHolidayMetadata } from "@/lib/seo";
-import type { Recipe, RecipeFrontmatter } from "@/lib/types";
 
 interface HolidayPageProps {
   params: Promise<{ holiday: string }>;
@@ -29,18 +29,12 @@ export async function generateMetadata({
   );
 }
 
-function toListItem(recipe: Recipe): RecipeFrontmatter {
-  const copy: RecipeFrontmatter & { content?: string } = { ...recipe };
-  delete copy.content;
-  return copy;
-}
-
 export default async function HolidayPage({ params }: HolidayPageProps) {
   const { holiday: holidaySlug } = await params;
   const holiday = getHoliday(holidaySlug);
   if (!holiday) notFound();
 
-  const recipes = getRecipesByHoliday(holidaySlug).map(toListItem);
+  const recipes = getRecipesByHoliday(holidaySlug).map(toRecipeListItem);
   const showFilters = recipes.length >= MIN_RECIPES_FOR_FILTERS;
 
   return (

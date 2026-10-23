@@ -27,10 +27,10 @@ import {
   type CategoryFilterValues,
   type TimeFilter,
 } from "@/lib/recipe-filters";
-import type { Difficulty, RecipeFrontmatter } from "@/lib/types";
+import type { Difficulty, RecipeListItem } from "@/lib/types";
 
 interface CategoryFiltersProps {
-  recipes: RecipeFrontmatter[];
+  recipes: RecipeListItem[];
   showFilters?: boolean;
   searchPlaceholder?: string;
 }

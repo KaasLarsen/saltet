@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { CategoryFilters } from "@/components/CategoryFilters";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { buildTopicMetadata } from "@/lib/seo";
+import { toRecipeListItem } from "@/lib/recipes";
 import { getTopic, getAllTopicSlugs, getRecipesByTopic } from "@/lib/topics";
-import type { Recipe, RecipeFrontmatter } from "@/lib/types";
 
 interface TopicPageProps {
   params: Promise<{ topic: string }>;
@@ -24,18 +24,12 @@ export async function generateMetadata({
   return buildTopicMetadata(topic.slug, topic.headline, topic.description);
 }
 
-function toListItem(recipe: Recipe): RecipeFrontmatter {
-  const copy: RecipeFrontmatter & { content?: string } = { ...recipe };
-  delete copy.content;
-  return copy;
-}
-
 export default async function TopicPage({ params }: TopicPageProps) {
   const { topic: topicSlug } = await params;
   const topic = getTopic(topicSlug);
   if (!topic) notFound();
 
-  const recipes = getRecipesByTopic(topicSlug).map(toListItem);
+  const recipes = getRecipesByTopic(topicSlug).map(toRecipeListItem);
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">

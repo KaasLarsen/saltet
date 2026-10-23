@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GuideCard } from "@/components/GuideCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
-import { SearchResults } from "@/components/SearchResults";
+import { SearchMethodFilters } from "@/components/SearchMethodFilters";
 import {
   isSearchType,
   SearchTypeFilters,
@@ -10,13 +10,21 @@ import {
 } from "@/components/SearchTypeFilters";
 import { anmeldelseMatchesQuery } from "@/lib/anmeldelse-filters";
 import { getAllAnmeldelser } from "@/lib/anmeldelser";
+import {
+  CATEGORY_NAV_ORDER,
+} from "@/lib/category-nav";
 import { grejMatchesQuery } from "@/lib/grej-filters";
 import { getAllGrej } from "@/lib/grej";
 import { guideMatchesQuery } from "@/lib/guide-filters";
 import { getAllGuides } from "@/lib/guides";
-import { getAllRecipes, searchRecipes } from "@/lib/recipes";
+import {
+  getAllRecipes,
+  searchRecipes,
+  SEARCH_RECIPE_LIMIT,
+  toRecipeListItem,
+} from "@/lib/recipes";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
-import type { Recipe, RecipeFrontmatter } from "@/lib/types";
+import type { RecipeListItem } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Alle opskrifter",
@@ -26,11 +34,6 @@ export const metadata: Metadata = {
 
 interface AllRecipesPageProps {
   searchParams: Promise<{ q?: string; type?: string; metode?: string }>;
-}
-
-function toListItem(recipe: Recipe): RecipeFrontmatter {
-  const { content: _content, ...rest } = recipe;
-  return rest;
 }
 
 function summaryForType(
@@ -48,14 +51,25 @@ function summaryForType(
   return `${recipeLabel}, ${guideLabel}, ${grejLabel} og ${anmeldelseLabel} for “${query}”`;
 }
 
+function methodsInResults(recipes: RecipeListItem[]): string[] {
+  const present = new Set(recipes.map((r) => r.category));
+  const knownOrder = CATEGORY_NAV_ORDER.filter((slug) => present.has(slug));
+  const knownSet = new Set<string>(knownOrder);
+  const extras = Array.from(present)
+    .filter((slug) => !knownSet.has(slug))
+    .sort((a, b) => a.localeCompare(b, "da"));
+  return [...knownOrder, ...extras];
+}
+
 export default async function AllRecipesPage({
   searchParams,
 }: AllRecipesPageProps) {
-  const { q, type: typeParam } = await searchParams;
+  const { q, type: typeParam, metode: metodeParam } = await searchParams;
   const query = q?.trim() ?? "";
-  const recipes = (query ? searchRecipes(query) : getAllRecipes()).map(
-    toListItem
-  );
+  const matchedRecipes = (
+    query ? searchRecipes(query) : getAllRecipes()
+  ).map(toRecipeListItem);
+
   const guides = query
     ? getAllGuides()
         .filter((guide) => guideMatchesQuery(guide, query))
@@ -98,7 +112,7 @@ export default async function AllRecipesPage({
     : [];
 
   const availableTypes: SearchType[] = [];
-  if (recipes.length > 0) availableTypes.push("opskrifter");
+  if (matchedRecipes.length > 0) availableTypes.push("opskrifter");
   if (guides.length > 0) availableTypes.push("guides");
   if (grej.length > 0) availableTypes.push("grej");
   if (anmeldelser.length > 0) availableTypes.push("anmeldelser");
@@ -109,7 +123,9 @@ export default async function AllRecipesPage({
       : undefined;
 
   const showRecipes =
-    !activeType || activeType === "opskrifter" ? recipes.length > 0 : false;
+    !activeType || activeType === "opskrifter"
+      ? matchedRecipes.length > 0
+      : false;
   const showGuides =
     !activeType || activeType === "guides" ? guides.length > 0 : false;
   const showGrej =
@@ -119,8 +135,24 @@ export default async function AllRecipesPage({
       ? anmeldelser.length > 0
       : false;
 
+  const methods = methodsInResults(matchedRecipes);
+  const activeMetode =
+    showRecipes && metodeParam && methods.includes(metodeParam)
+      ? metodeParam
+      : undefined;
+  const recipesForMetode = activeMetode
+    ? matchedRecipes.filter((r) => r.category === activeMetode)
+    : matchedRecipes;
+  const recipesTruncated =
+    Boolean(query) && recipesForMetode.length > SEARCH_RECIPE_LIMIT;
+  const recipes = query
+    ? recipesForMetode.slice(0, SEARCH_RECIPE_LIMIT)
+    : matchedRecipes;
+
   const recipeLabel =
-    recipes.length === 1 ? "1 opskrift" : `${recipes.length} opskrifter`;
+    matchedRecipes.length === 1
+      ? "1 opskrift"
+      : `${matchedRecipes.length} opskrifter`;
   const guideLabel =
     guides.length === 1 ? "1 guide" : `${guides.length} guides`;
   const grejLabel = grej.length === 1 ? "1 grej" : `${grej.length} grej`;
@@ -130,7 +162,7 @@ export default async function AllRecipesPage({
       : `${anmeldelser.length} anmeldelser`;
 
   const hasAnyResults =
-    recipes.length > 0 ||
+    matchedRecipes.length > 0 ||
     guides.length > 0 ||
     grej.length > 0 ||
     anmeldelser.length > 0;
@@ -150,7 +182,7 @@ export default async function AllRecipesPage({
               anmeldelseLabel,
               query
             )
-          : `${recipes.length} opskrifter — og flere på vej.`}
+          : `${matchedRecipes.length} opskrifter — og flere på vej.`}
       </p>
 
       <div className="mx-auto mt-8 max-w-lg text-left">
@@ -173,7 +205,42 @@ export default async function AllRecipesPage({
       ) : query ? (
         <>
           {showRecipes ? (
-            <SearchResults recipes={recipes} query={query} />
+            <section aria-labelledby="search-recipes-heading">
+              <h2 id="search-recipes-heading" className="sr-only">
+                Opskrifter
+              </h2>
+              <SearchMethodFilters
+                query={query}
+                methods={methods}
+                initialMetode={activeMetode}
+              />
+              {activeMetode || recipesTruncated ? (
+                <p className="mt-8 text-[12px] uppercase tracking-[0.14em] text-bone/40">
+                  {activeMetode
+                    ? `Viser ${recipes.length} af ${matchedRecipes.length}`
+                    : `Viser de første ${SEARCH_RECIPE_LIMIT}`}
+                  {recipesTruncated
+                    ? " — prøv et mere præcist søgeord."
+                    : null}
+                </p>
+              ) : null}
+              <div
+                className={`grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3 ${
+                  methods.length > 1
+                    ? activeMetode || recipesTruncated
+                      ? "mt-8"
+                      : "mt-12"
+                    : "mt-10"
+                }`}
+              >
+                {recipes.map((recipe) => (
+                  <RecipeCard
+                    key={`${recipe.category}-${recipe.slug}`}
+                    recipe={recipe}
+                  />
+                ))}
+              </div>
+            </section>
           ) : null}
           {showGuides ? (
             <section

@@ -1,9 +1,32 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import type { Recipe, RecipeFrontmatter } from "./types";
+import type { Recipe, RecipeFrontmatter, RecipeListItem } from "./types";
 
 const contentDir = path.join(process.cwd(), "content/recipes");
+
+/** Max opskrifter vist i søgeresultater (holder RSC-payload lille). */
+export const SEARCH_RECIPE_LIMIT = 96;
+
+/** Stripper ingredients/steps/faq m.m. — kun felter til kort/lister. */
+export function toRecipeListItem(recipe: Recipe | RecipeFrontmatter): RecipeListItem {
+  return {
+    title: recipe.title,
+    slug: recipe.slug,
+    category: recipe.category,
+    description: recipe.description,
+    prepTime: recipe.prepTime,
+    cookTime: recipe.cookTime,
+    totalTime: recipe.totalTime,
+    servings: recipe.servings,
+    difficulty: recipe.difficulty,
+    tags: recipe.tags,
+    image: recipe.image,
+    imageAlt: recipe.imageAlt,
+    publishedAt: recipe.publishedAt,
+    ...(recipe.featured !== undefined ? { featured: recipe.featured } : {}),
+  };
+}
 
 function parseRecipeFile(filePath: string): Recipe {
   const raw = fs.readFileSync(filePath, "utf-8");
