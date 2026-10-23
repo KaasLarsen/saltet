@@ -34,8 +34,9 @@ function chipClass(active: boolean): string {
 
 function readTypeFromLocation(): SearchType | undefined {
   if (typeof window === "undefined") return undefined;
-  const value = new URLSearchParams(window.location.search).get("type");
-  return isSearchType(value ?? undefined) ? value : undefined;
+  const value =
+    new URLSearchParams(window.location.search).get("type") ?? undefined;
+  return isSearchType(value) ? value : undefined;
 }
 
 export function SearchTypeFilters({
