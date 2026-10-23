@@ -9,6 +9,7 @@ import {
   KetoDietCta,
   recipeMatchesKetoDiet,
 } from "@/components/KetoDietCta";
+import { PartnerBanner } from "@/components/PartnerBanner";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { RecipeRating } from "@/components/RecipeRating";
@@ -29,6 +30,7 @@ import {
 } from "@/lib/format";
 import { getGrejForRecipe } from "@/lib/grej";
 import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
+import { isSousVideContent, sousVideBanner } from "@/lib/partners";
 import { recipeRatingKey } from "@/lib/recipe-ratings/format";
 import { getCachedRecipeRatingSummary } from "@/lib/recipe-ratings/store";
 import {
@@ -82,6 +84,10 @@ export default async function RecipePage({ params }: RecipePageProps) {
   );
   const wineOffer = getWineAffiliateOfferForRecipe(recipe);
   const groceryOffer = getGroceryAffiliateOfferForRecipe(recipe);
+  const showSousVideBanner = isSousVideContent({
+    category: recipe.category,
+    tags: recipe.tags,
+  });
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
   const ratingKey = recipeRatingKey(recipe.category, recipe.slug);
@@ -299,6 +305,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
             )}
           </div>
         </div>
+
+        {showSousVideBanner ? <PartnerBanner banner={sousVideBanner} /> : null}
 
         {related.length > 0 && (
           <section className="border-t-2 border-bone/15 bg-ash/40 py-14">
