@@ -89,6 +89,7 @@ export const GUIDE_NAV = [
   { slug: "mortensaften-tilbehoer", name: "Mortensaften-tilbehør" },
   { slug: "julemenu-sammensaetning", name: "Julemenu" },
   { slug: "danske-klassikere-guide", name: "Danske klassikere" },
+  { slug: "groen-groed", name: "Grøn grød" },
 ] as const;
 
 export type GuideNavSlug = (typeof GUIDE_NAV)[number]["slug"];
@@ -1503,6 +1504,21 @@ export const GUIDE_LINKS: {
       "stobejern/skillet-edamame-hvidloeg",
       "ovn/ristede-graeskarkerner-roget-paprika",
       "dehydrator/sproede-kikaerter-dehydrator",
+    ],
+  },
+  {
+    slug: "groen-groed",
+    title: "Grøn grød — saltet og sød",
+    description:
+      "Spinat, grønkål og matcha i havregrød: saltet frokostgrød og sød Instagram-morgenmad.",
+    recipes: [
+      "gryde/groen-havregroed-spinat-aeg",
+      "gryde/groenkaalsgroed-feta-bacon",
+      "gryde/soed-groen-groed-spinat-banan",
+      "gryde/overnight-groen-oats",
+      "ovn/bagt-groen-havregrod-baer",
+      "gryde/saltet-havregroed-spejlaeg-bacon",
+      "ovn/baked-feta-oats",
     ],
   },
 ];
