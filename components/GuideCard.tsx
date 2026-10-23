@@ -16,10 +16,11 @@ export function GuideCard({ guide, href }: GuideCardProps) {
             src={guide.image}
             alt={guide.imageAlt}
             fill
+            quality={90}
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-iron/55 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-iron/40 via-transparent to-transparent" />
         </div>
         <h2 className="mt-4 font-serif text-xl uppercase leading-snug tracking-wide text-bone transition-colors group-hover:text-herb sm:text-2xl">
           {guide.title}

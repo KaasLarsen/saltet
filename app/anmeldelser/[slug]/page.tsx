@@ -80,11 +80,12 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
             src={item.image}
             alt={item.imageAlt}
             fill
-            className="object-cover"
+            quality={90}
+            className="object-cover object-center"
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone via-transparent to-iron/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone/90 via-transparent to-iron/25" />
         </div>
 
         <div className="mx-auto max-w-5xl px-5 md:px-8">
