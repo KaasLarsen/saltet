@@ -91,12 +91,12 @@ export const PRICERUNNER_PRODUCTS: Record<
   "Ninja CRISPi 4-i-1": {
     productId: "3418187538",
     categoryId: "81",
-    label: "Ninja CRISPi 4-i-1 FN101",
+    label: "Ninja CRISPi 4-i-1 FN101EU",
   },
   "Ninja CRISPi PRO": {
     productId: "3470174519",
     categoryId: "81",
-    label: "Ninja CRISPi PRO AS101",
+    label: "Ninja CRISPi PRO AS101EU",
   },
   "airfryer 5 liter": {
     productId: "3231353404",

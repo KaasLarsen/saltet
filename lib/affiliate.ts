@@ -228,30 +228,30 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
   "ninja-crispi-4-i-1": {
     id: "ninja-crispi-4-i-1",
     href: fromPriceRunner("Ninja CRISPi 4-i-1"),
-    label: "Ninja CRISPi 4-i-1",
+    label: "Ninja CRISPi 4-i-1 (FN101EU)",
     merchant: "via PriceRunner",
     description:
-      "Bærbar glas-airfryer med PowerPod — 1,4 + 3,8 L TempWare-glas til to personer og snacks.",
+      "Kompakt PowerPod + PFAS-fri glas 1,4 + 3,8 L — Air Fry, Roast, Keep Warm, Recrisp.",
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
   "ninja-crispi-pro": {
     id: "ninja-crispi-pro",
     href: fromPriceRunner("Ninja CRISPi PRO"),
-    label: "Ninja CRISPi PRO 7-i-1",
+    label: "Ninja CRISPi PRO 7-i-1 (AS101EU)",
     merchant: "via PriceRunner",
     description:
-      "XL CleanCrisp-glas (5,7 + 2,3 L) med Max Crisp — familiemiddage uden DualZone-prisen.",
+      "XL CleanCrisp-glas 2,3 + 5,7 L med Max Crisp, Bake, Dehydrate og hævning.",
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
   "ninja-crispi-dualzone": {
     id: "ninja-crispi-dualzone",
     href: pricerunnerSearchUrl("Ninja CRISPi DualZone"),
-    label: "Ninja CRISPi DualZone 8-i-1",
+    label: "Ninja CRISPi DualZone 8-i-1 (DD102EU)",
     merchant: "via PriceRunner",
     description:
-      "To 3,8 L glas-zoner med Smart Finish — hovedret og tilbehør færdige samtidigt.",
+      "To uafhængige PFAS-fri glaszoner — kød og kartofler samtidigt med Smart Finish.",
     ctaLabel: "Find forhandlere",
     variant: "grej",
   },

@@ -34,7 +34,8 @@ export default function AnmeldelserIndexPage() {
         </h1>
         <p className="mx-auto mt-4 max-w-xl leading-relaxed text-bone/55">
           {items.length} dybdegående anmeldelser — én side per model, med
-          PriceRunner-priser og forhandler-links.
+          PriceRunner-priser og forhandler-links. Ninja CRISPi: PFAS-fri
+          glasbeholdere + PowerPod — ikke metalskuffe-Foodi.
         </p>
       </div>
 
