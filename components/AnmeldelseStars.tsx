@@ -31,13 +31,10 @@ function formatDa(value: number): string {
   return value.toFixed(1).replace(".", ",");
 }
 
-/**
- * Read-only stjerner til produktanmeldelser (typisk PriceRunner-rating).
- */
+/** Read-only stjerner til produktanmeldelser. */
 export function AnmeldelseStars({
   rating,
   count,
-  sourceLabel = "via PriceRunner",
   size = "md",
   align = "center",
   className = "",
@@ -66,9 +63,11 @@ export function AnmeldelseStars({
           {formatDa(rating)}
         </span>
       </div>
-      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-bone/40">
-        {votes ? `${votes} · ${sourceLabel}` : sourceLabel}
-      </p>
+      {votes ? (
+        <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-bone/40">
+          {votes}
+        </p>
+      ) : null}
     </div>
   );
 }
