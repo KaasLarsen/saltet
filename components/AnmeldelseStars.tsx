@@ -1,8 +1,6 @@
 interface AnmeldelseStarsProps {
   rating: number;
   count?: number;
-  /** Vis “via PriceRunner” under stjernerne. */
-  sourceLabel?: string;
   size?: "sm" | "md";
   align?: "center" | "start";
   className?: string;
