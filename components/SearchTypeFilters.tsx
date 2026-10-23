@@ -2,14 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-
-export const SEARCH_TYPES = [
-  "opskrifter",
-  "guides",
-  "grej",
-  "anmeldelser",
-] as const;
-export type SearchType = (typeof SEARCH_TYPES)[number];
+import { isSearchType, type SearchType } from "@/lib/search-types";
 
 const TYPE_LABELS: Record<SearchType, string> = {
   opskrifter: "Opskrifter",
@@ -17,15 +10,6 @@ const TYPE_LABELS: Record<SearchType, string> = {
   grej: "Grej",
   anmeldelser: "Anmeldelser",
 };
-
-export function isSearchType(value: string | undefined): value is SearchType {
-  return (
-    value === "opskrifter" ||
-    value === "guides" ||
-    value === "grej" ||
-    value === "anmeldelser"
-  );
-}
 
 interface SearchTypeFiltersProps {
   query: string;

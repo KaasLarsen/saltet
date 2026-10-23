@@ -3,11 +3,8 @@ import { GuideCard } from "@/components/GuideCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
 import { SearchMethodFilters } from "@/components/SearchMethodFilters";
-import {
-  isSearchType,
-  SearchTypeFilters,
-  type SearchType,
-} from "@/components/SearchTypeFilters";
+import { SearchTypeFilters } from "@/components/SearchTypeFilters";
+import { isSearchType, type SearchType } from "@/lib/search-types";
 import { anmeldelseMatchesQuery } from "@/lib/anmeldelse-filters";
 import { getAllAnmeldelser } from "@/lib/anmeldelser";
 import {
