@@ -247,12 +247,12 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
   },
   "ninja-crispi-dualzone": {
     id: "ninja-crispi-dualzone",
-    href: pricerunnerSearchUrl("Ninja CRISPi DualZone"),
+    href: fromPriceRunner("Ninja CRISPi DualZone"),
     label: "Ninja CRISPi DualZone 8-i-1 (DD102EU)",
     merchant: "via PriceRunner",
     description:
       "To uafhængige PFAS-fri glaszoner — kød og kartofler samtidigt med Smart Finish.",
-    ctaLabel: "Find forhandlere",
+    ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
   "homeshop-airfryer-kategori": {

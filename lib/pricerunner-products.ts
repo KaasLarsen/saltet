@@ -98,6 +98,11 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "81",
     label: "Ninja CRISPi PRO AS101EU",
   },
+  "Ninja CRISPi DualZone": {
+    productId: "3610010840",
+    categoryId: "81",
+    label: "Ninja CRISPi DualZone DD102EU",
+  },
   "airfryer 5 liter": {
     productId: "3231353404",
     categoryId: "81",
