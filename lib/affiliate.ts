@@ -225,6 +225,62 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Se aktuel pris",
     variant: "grej",
   },
+  "ninja-crispi-4-i-1": {
+    id: "ninja-crispi-4-i-1",
+    href: fromPriceRunner("Ninja CRISPi 4-i-1"),
+    label: "Ninja CRISPi 4-i-1",
+    merchant: "via PriceRunner",
+    description:
+      "Bærbar glas-airfryer med PowerPod — 1,4 + 3,8 L TempWare-glas til to personer og snacks.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-crispi-pro": {
+    id: "ninja-crispi-pro",
+    href: fromPriceRunner("Ninja CRISPi PRO"),
+    label: "Ninja CRISPi PRO 7-i-1",
+    merchant: "via PriceRunner",
+    description:
+      "XL CleanCrisp-glas (5,7 + 2,3 L) med Max Crisp — familiemiddage uden DualZone-prisen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-crispi-dualzone": {
+    id: "ninja-crispi-dualzone",
+    href: pricerunnerSearchUrl("Ninja CRISPi DualZone"),
+    label: "Ninja CRISPi DualZone 8-i-1",
+    merchant: "via PriceRunner",
+    description:
+      "To 3,8 L glas-zoner med Smart Finish — hovedret og tilbehør færdige samtidigt.",
+    ctaLabel: "Find forhandlere",
+    variant: "grej",
+  },
+  "homeshop-airfryer-kategori": {
+    id: "homeshop-airfryer-kategori",
+    href: partnerAdsProductUrl(
+      HOMESHOP_BANNER_ID,
+      HOMESHOP_PRODUCTS.airfryerCategory
+    ),
+    label: "Airfryere hos Homeshop",
+    merchant: "Homeshop",
+    description:
+      "Se aktuelle Ninja- og øvrige airfryere hos Homeshop — tjek lager og fragt.",
+    ctaLabel: "Se hos Homeshop",
+    variant: "grej",
+  },
+  "boligcenter-airfryer-kategori": {
+    id: "boligcenter-airfryer-kategori",
+    href: partnerAdsProductUrl(
+      BOLIGCENTER_BANNER_ID,
+      BOLIGCENTER_PRODUCTS.airfryer
+    ),
+    label: "Airfryere hos Boligcenter",
+    merchant: "Boligcenter.dk",
+    description:
+      "Gennemse airfryere og køkkenapparater hos Boligcenter — sammenlign med PriceRunner.",
+    ctaLabel: "Se hos Boligcenter",
+    variant: "grej",
+  },
   "kitchenone-instant-pot": {
     id: "kitchenone-instant-pot",
     href: partnerAdsProductUrl(

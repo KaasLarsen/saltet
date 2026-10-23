@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { SaltShakerMark } from "@/components/SaltShakerMark";
+import { ANMELDELSE_NAV } from "@/lib/anmeldelse-nav";
 import { CATEGORY_NAV } from "@/lib/category-nav";
 import { GREJ_NAV } from "@/lib/grej-nav";
 import { GUIDE_NAV } from "@/lib/guide-nav";
@@ -59,6 +60,17 @@ const navItems: NavItem[] = [
       ...GREJ_NAV.map((g) => ({
         href: `/grej/${g.slug}`,
         label: g.name,
+      })),
+    ],
+  },
+  {
+    href: "/anmeldelser",
+    label: "Anmeldelser",
+    children: [
+      { href: "/anmeldelser", label: "Alle anmeldelser" },
+      ...ANMELDELSE_NAV.map((a) => ({
+        href: `/anmeldelser/${a.slug}`,
+        label: a.name,
       })),
     ],
   },

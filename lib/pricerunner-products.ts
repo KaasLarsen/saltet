@@ -88,6 +88,16 @@ export const PRICERUNNER_PRODUCTS: Record<
     categoryId: "81",
     label: "Ninja Foodi Max Dual Zone AF400",
   },
+  "Ninja CRISPi 4-i-1": {
+    productId: "3418187538",
+    categoryId: "81",
+    label: "Ninja CRISPi 4-i-1 FN101",
+  },
+  "Ninja CRISPi PRO": {
+    productId: "3470174519",
+    categoryId: "81",
+    label: "Ninja CRISPi PRO AS101",
+  },
   "airfryer 5 liter": {
     productId: "3231353404",
     categoryId: "81",

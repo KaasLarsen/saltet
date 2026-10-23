@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Grej, Guide, Recipe } from "./types";
+import type { Anmeldelse, Grej, Guide, Recipe } from "./types";
 import { getCategoryName } from "./categories";
 
 const siteUrl =
@@ -332,6 +332,93 @@ export function buildGrejArticleJsonLd(item: Grej): object {
     inLanguage: "da-DK",
     keywords: item.tags.join(", "),
   };
+}
+
+export function buildAnmeldelseMetadata(item: Anmeldelse): Metadata {
+  const url = absoluteUrl(`/anmeldelser/${item.slug}`);
+
+  return {
+    title: `${item.title} | Saltet`,
+    description: item.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: item.title,
+      description: item.description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "article",
+      publishedTime: item.publishedAt,
+      modifiedTime: item.updatedAt ?? item.publishedAt,
+      images: [
+        {
+          url: absoluteUrl(item.image),
+          alt: item.imageAlt,
+          width: 1200,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.description,
+      images: [absoluteUrl(item.image)],
+    },
+  };
+}
+
+export function buildAnmeldelseArticleJsonLd(item: Anmeldelse): object {
+  const url = absoluteUrl(`/anmeldelser/${item.slug}`);
+
+  const article: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item.title,
+    description: item.description,
+    image: [absoluteUrl(item.image)],
+    datePublished: item.publishedAt,
+    dateModified: item.updatedAt ?? item.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    inLanguage: "da-DK",
+    keywords: item.tags.join(", "),
+  };
+
+  if (item.rating != null) {
+    article.review = {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: item.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      author: {
+        "@type": "Organization",
+        name: siteConfig.name,
+      },
+      itemReviewed: {
+        "@type": "Product",
+        name: item.productName,
+        ...(item.modelNumber ? { model: item.modelNumber } : {}),
+      },
+    };
+  }
+
+  return article;
 }
 
 export function buildWebsiteJsonLd(): object {

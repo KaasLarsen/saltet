@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllCategorySlugs } from "@/lib/categories";
 import { getAllHolidaySlugs } from "@/lib/holidays";
 import { getAllTopicSlugs } from "@/lib/topics";
+import { getAllAnmeldelser } from "@/lib/anmeldelser";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { getAllRecipes } from "@/lib/recipes";
@@ -14,6 +15,7 @@ import { absoluteUrl } from "@/lib/seo";
  * - Nye faste sider (fx /kontakt): tilføj i STATIC_ROUTES
  * - Guides: auto fra content/guides/*.mdx
  * - Grej: auto fra content/grej/*.mdx
+ * - Anmeldelser: auto fra content/anmeldelser/*.mdx
  * - Kategorier: auto fra lib/categories + content/recipes/*
  * - Højtider: auto fra lib/holidays
  * - Emner: auto fra lib/topics
@@ -29,6 +31,7 @@ const STATIC_ROUTES: {
   { path: "/opskrifter", changeFrequency: "weekly", priority: 0.9 },
   { path: "/guides", changeFrequency: "weekly", priority: 0.88 },
   { path: "/grej", changeFrequency: "weekly", priority: 0.88 },
+  { path: "/anmeldelser", changeFrequency: "weekly", priority: 0.88 },
   { path: "/hoejtider", changeFrequency: "weekly", priority: 0.85 },
   { path: "/emner", changeFrequency: "weekly", priority: 0.85 },
   { path: "/tags", changeFrequency: "weekly", priority: 0.7 },
@@ -43,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const recipes = getAllRecipes();
   const guides = getAllGuides();
   const grej = getAllGrej();
+  const anmeldelser = getAllAnmeldelser();
   const tags = getBrowseTags();
   const categorySlugs = getAllCategorySlugs();
   const holidaySlugs = getAllHolidaySlugs();
@@ -105,6 +109,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const anmeldelsePages: MetadataRoute.Sitemap = anmeldelser.map((item) => ({
+    url: absoluteUrl(`/anmeldelser/${item.slug}`),
+    lastModified: new Date(item.updatedAt ?? item.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.82,
+  }));
+
   return [
     ...staticPages,
     ...categoryPages,
@@ -114,5 +125,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...recipePages,
     ...guidePages,
     ...grejPages,
+    ...anmeldelsePages,
   ];
 }

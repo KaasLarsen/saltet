@@ -124,3 +124,37 @@ export interface GrejFrontmatter {
 export interface Grej extends GrejFrontmatter {
   content: string;
 }
+
+export interface AnmeldelseFaq {
+  question: string;
+  answer: string;
+}
+
+export interface AnmeldelseFrontmatter {
+  title: string;
+  slug: string;
+  description: string;
+  /** Produktlinje / brand-gruppe til filtre (fx ninja-crispi). */
+  series: string;
+  productName: string;
+  modelNumber?: string;
+  tags: string[];
+  image: string;
+  imageAlt: string;
+  publishedAt: string;
+  updatedAt?: string;
+  faq: AnmeldelseFaq[];
+  relatedRecipes: string[];
+  relatedGuides?: string[];
+  relatedGrej?: string[];
+  relatedAnmeldelser?: string[];
+  widgets?: PriceRunnerWidgetConfig[];
+  /** Affiliate-offer ids vist som forhandler-CTA’er. */
+  affiliateOffers?: string[];
+  verdict?: string;
+  rating?: number;
+}
+
+export interface Anmeldelse extends AnmeldelseFrontmatter {
+  content: string;
+}

@@ -3,18 +3,27 @@
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-export const SEARCH_TYPES = ["opskrifter", "guides", "grej"] as const;
+export const SEARCH_TYPES = [
+  "opskrifter",
+  "guides",
+  "grej",
+  "anmeldelser",
+] as const;
 export type SearchType = (typeof SEARCH_TYPES)[number];
 
 const TYPE_LABELS: Record<SearchType, string> = {
   opskrifter: "Opskrifter",
   guides: "Guides",
   grej: "Grej",
+  anmeldelser: "Anmeldelser",
 };
 
 export function isSearchType(value: string | undefined): value is SearchType {
   return (
-    value === "opskrifter" || value === "guides" || value === "grej"
+    value === "opskrifter" ||
+    value === "guides" ||
+    value === "grej" ||
+    value === "anmeldelser"
   );
 }
 
@@ -34,8 +43,9 @@ function chipClass(active: boolean): string {
 
 function readTypeFromLocation(): SearchType | undefined {
   if (typeof window === "undefined") return undefined;
-  const value = new URLSearchParams(window.location.search).get("type");
-  return isSearchType(value ?? undefined) ? value : undefined;
+  const value =
+    new URLSearchParams(window.location.search).get("type") ?? undefined;
+  return isSearchType(value) ? value : undefined;
 }
 
 export function SearchTypeFilters({

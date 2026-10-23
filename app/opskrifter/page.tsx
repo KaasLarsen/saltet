@@ -8,6 +8,8 @@ import {
   SearchTypeFilters,
   type SearchType,
 } from "@/components/SearchTypeFilters";
+import { anmeldelseMatchesQuery } from "@/lib/anmeldelse-filters";
+import { getAllAnmeldelser } from "@/lib/anmeldelser";
 import { grejMatchesQuery } from "@/lib/grej-filters";
 import { getAllGrej } from "@/lib/grej";
 import { guideMatchesQuery } from "@/lib/guide-filters";
@@ -36,12 +38,14 @@ function summaryForType(
   recipeLabel: string,
   guideLabel: string,
   grejLabel: string,
+  anmeldelseLabel: string,
   query: string
 ): string {
   if (type === "opskrifter") return `${recipeLabel} for “${query}”`;
   if (type === "guides") return `${guideLabel} for “${query}”`;
   if (type === "grej") return `${grejLabel} for “${query}”`;
-  return `${recipeLabel}, ${guideLabel} og ${grejLabel} for “${query}”`;
+  if (type === "anmeldelser") return `${anmeldelseLabel} for “${query}”`;
+  return `${recipeLabel}, ${guideLabel}, ${grejLabel} og ${anmeldelseLabel} for “${query}”`;
 }
 
 export default async function AllRecipesPage({
@@ -77,11 +81,27 @@ export default async function AllRecipesPage({
           imageAlt: item.imageAlt,
         }))
     : [];
+  const anmeldelser = query
+    ? getAllAnmeldelser()
+        .filter((item) => anmeldelseMatchesQuery(item, query))
+        .map((item) => ({
+          title: item.title,
+          slug: item.slug,
+          description: item.description,
+          series: item.series,
+          productName: item.productName,
+          tags: item.tags,
+          image: item.image,
+          imageAlt: item.imageAlt,
+          rating: item.rating,
+        }))
+    : [];
 
   const availableTypes: SearchType[] = [];
   if (recipes.length > 0) availableTypes.push("opskrifter");
   if (guides.length > 0) availableTypes.push("guides");
   if (grej.length > 0) availableTypes.push("grej");
+  if (anmeldelser.length > 0) availableTypes.push("anmeldelser");
 
   const activeType: SearchType | undefined =
     isSearchType(typeParam) && availableTypes.includes(typeParam)
@@ -94,15 +114,26 @@ export default async function AllRecipesPage({
     !activeType || activeType === "guides" ? guides.length > 0 : false;
   const showGrej =
     !activeType || activeType === "grej" ? grej.length > 0 : false;
+  const showAnmeldelser =
+    !activeType || activeType === "anmeldelser"
+      ? anmeldelser.length > 0
+      : false;
 
   const recipeLabel =
     recipes.length === 1 ? "1 opskrift" : `${recipes.length} opskrifter`;
   const guideLabel =
     guides.length === 1 ? "1 guide" : `${guides.length} guides`;
   const grejLabel = grej.length === 1 ? "1 grej" : `${grej.length} grej`;
+  const anmeldelseLabel =
+    anmeldelser.length === 1
+      ? "1 anmeldelse"
+      : `${anmeldelser.length} anmeldelser`;
 
   const hasAnyResults =
-    recipes.length > 0 || guides.length > 0 || grej.length > 0;
+    recipes.length > 0 ||
+    guides.length > 0 ||
+    grej.length > 0 ||
+    anmeldelser.length > 0;
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -116,6 +147,7 @@ export default async function AllRecipesPage({
               recipeLabel,
               guideLabel,
               grejLabel,
+              anmeldelseLabel,
               query
             )
           : `${recipes.length} opskrifter — og flere på vej.`}
@@ -135,8 +167,8 @@ export default async function AllRecipesPage({
 
       {query && !hasAnyResults ? (
         <p className="mt-12 text-bone/50">
-          Ingen opskrifter, guides eller grej matchede din søgning. Prøv et
-          andet ord.
+          Ingen opskrifter, guides, grej eller anmeldelser matchede din
+          søgning. Prøv et andet ord.
         </p>
       ) : query ? (
         <>
@@ -177,6 +209,30 @@ export default async function AllRecipesPage({
                   <GuideCard
                     key={item.slug}
                     href={`/grej/${item.slug}`}
+                    guide={item}
+                  />
+                ))}
+              </div>
+            </section>
+          ) : null}
+          {showAnmeldelser ? (
+            <section
+              className={
+                showRecipes || showGuides || showGrej ? "mt-16" : "mt-10"
+              }
+              aria-labelledby="search-anmeldelser-heading"
+            >
+              <h2
+                id="search-anmeldelser-heading"
+                className="font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl"
+              >
+                Anmeldelser
+              </h2>
+              <div className="mt-10 grid gap-10 text-left sm:grid-cols-2">
+                {anmeldelser.map((item) => (
+                  <GuideCard
+                    key={item.slug}
+                    href={`/anmeldelser/${item.slug}`}
                     guide={item}
                   />
                 ))}
