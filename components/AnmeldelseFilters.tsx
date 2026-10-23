@@ -217,6 +217,7 @@ export function AnmeldelseFilters({ items }: AnmeldelseFiltersProps) {
             guide={item}
             rating={item.rating}
             ratingCount={item.ratingCount}
+            productShot
           />
         ))}
       </div>

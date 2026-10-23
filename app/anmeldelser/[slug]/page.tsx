@@ -98,17 +98,16 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
       <JsonLd data={jsonLd} />
 
       <article>
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-iron md:aspect-[21/9] md:max-h-[520px]">
+        <div className="relative aspect-[16/10] w-full overflow-hidden border-b-2 border-bone/15 bg-white md:aspect-[21/9] md:max-h-[520px]">
           <Image
             src={item.image}
             alt={item.imageAlt}
             fill
             quality={90}
-            className="object-cover object-center"
+            className="object-contain object-center"
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-stone/90 via-transparent to-iron/25" />
         </div>
 
         <div className="mx-auto max-w-5xl px-5 md:px-8">
