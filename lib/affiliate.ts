@@ -72,7 +72,11 @@ function withFeedImage(offer: AffiliateOffer): AffiliateOffer {
 function fromPriceRunner(queryKey: string): string {
   const mapped = PRICERUNNER_PRODUCTS[queryKey];
   if (!mapped) return pricerunnerSearchUrl(queryKey);
-  return pricerunnerProductUrl(mapped.categoryId, mapped.productId);
+  return pricerunnerProductUrl(
+    mapped.categoryId,
+    mapped.productId,
+    mapped.slugPath
+  );
 }
 
 /**

@@ -18,16 +18,28 @@ export function PriceRunnerOfficialWidget({
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
     const script = document.createElement("script");
     script.src = `${pricerunnerProductWidgetSrc(productId, widgetId, offerLimit)}&_=${Date.now()}`;
     script.async = true;
-    script.onload = () => {
+
+    const checkFilled = () => {
+      if (cancelled) return;
       const mount = document.getElementById(widgetId);
       if (!mount || mount.innerHTML.trim().length < 80) setFailed(true);
     };
-    script.onerror = () => setFailed(true);
+
+    script.onload = () => {
+      // Script sætter innerHTML synkront — giv layout et tick før vi dømmer.
+      window.setTimeout(checkFilled, 150);
+    };
+    script.onerror = () => {
+      if (!cancelled) setFailed(true);
+    };
     document.body.appendChild(script);
+
     return () => {
+      cancelled = true;
       script.remove();
       const mount = document.getElementById(widgetId);
       if (mount) mount.innerHTML = "";
@@ -51,7 +63,7 @@ export function PriceRunnerOfficialWidget({
     <div
       id={widgetId}
       className="w-full overflow-hidden rounded-xl bg-white"
-      style={{ display: "block", width: "100%" }}
+      style={{ display: "block", width: "100%", minHeight: 72 }}
     />
   );
 }

@@ -16,11 +16,21 @@ export function pricerunnerSearchUrl(query: string): string {
   return withRefSite(url);
 }
 
+/**
+ * Byg produkt-URL. Korte `/pl/{cat}-{id}/`-URLs kan redirecte til kategori —
+ * brug `slugPath` (efter id) når den kendes, fx
+ * `Frituregryder/Ninja-CRISPi-4-i-1-FN101EUGY-Sammenlign-Priser`.
+ */
 export function pricerunnerProductUrl(
   categoryId: string,
-  productId: string
+  productId: string,
+  slugPath?: string
 ): string {
-  const url = new URL(`/pl/${categoryId}-${productId}/`, PRICERUNNER_ORIGIN);
+  const base = `/pl/${categoryId}-${productId}`;
+  const path = slugPath
+    ? `${base}/${slugPath.replace(/^\/+/, "")}`
+    : `${base}/`;
+  const url = new URL(path, PRICERUNNER_ORIGIN);
   return withRefSite(url);
 }
 

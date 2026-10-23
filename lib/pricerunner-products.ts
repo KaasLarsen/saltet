@@ -1,9 +1,17 @@
 /** PriceRunner product IDs matched to grej-indhold. Fra /pl/{cat}-{id}/. */
 
-export const PRICERUNNER_PRODUCTS: Record<
-  string,
-  { productId: string; categoryId: string; label: string }
-> = {
+export type PriceRunnerProduct = {
+  productId: string;
+  categoryId: string;
+  label: string;
+  /**
+   * Sti efter `/pl/{categoryId}-{productId}/` — kræves for stabile deep-links
+   * (korte pl-URLs kan redirecte til kategorisiden).
+   */
+  slugPath?: string;
+};
+
+export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
   kødhakker: { productId: "3125227",
     categoryId: "10023", label: "Bosch ProPower MFW68660" },
   "kødhakker tilbehør røremaskine": {
@@ -92,16 +100,22 @@ export const PRICERUNNER_PRODUCTS: Record<
     productId: "3418187538",
     categoryId: "81",
     label: "Ninja CRISPi 4-i-1 FN101EU",
+    slugPath:
+      "Frituregryder/Ninja-CRISPi-4-i-1-FN101EUGY-Sammenlign-Priser",
   },
   "Ninja CRISPi PRO": {
     productId: "3470174519",
     categoryId: "81",
     label: "Ninja CRISPi PRO AS101EU",
+    slugPath:
+      "Frituregryder-Airfryere/Ninja-CRISPi-Pro-AS101EULG-Airfryer-Sammenlign-Priser",
   },
   "Ninja CRISPi DualZone": {
     productId: "3610010840",
     categoryId: "81",
     label: "Ninja CRISPi DualZone DD102EU",
+    slugPath:
+      "Frituregryder-Airfryere/Ninja-CRISPi-DualZone-8-i-1-Glasairfryer-Sammenlign-Priser",
   },
   "airfryer 5 liter": {
     productId: "3231353404",

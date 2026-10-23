@@ -138,18 +138,19 @@ function extractComparison(
 
 async function loadComparison(
   categoryId: string,
-  productId: string
+  productId: string,
+  slugPath?: string
 ): Promise<PriceRunnerComparison | null> {
-  const href = pricerunnerProductUrl(categoryId, productId);
+  const href = pricerunnerProductUrl(categoryId, productId, slugPath);
   try {
     const response = await fetch(href, {
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; Saltet/1.0; +https://www.saltet.dk)",
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         Accept: "text/html",
       },
       next: { revalidate: 21600 },
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(10000),
     });
     if (!response.ok) return null;
     const html = await response.text();
@@ -161,11 +162,12 @@ async function loadComparison(
 
 export function getPriceRunnerComparison(
   categoryId: string,
-  productId: string
+  productId: string,
+  slugPath?: string
 ): Promise<PriceRunnerComparison | null> {
   return unstable_cache(
-    () => loadComparison(categoryId, productId),
-    ["pricerunner-offers-v2", categoryId, productId],
+    () => loadComparison(categoryId, productId, slugPath),
+    ["pricerunner-offers-v3", categoryId, productId, slugPath ?? ""],
     { revalidate: 21600 }
   )();
 }
