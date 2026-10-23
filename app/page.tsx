@@ -13,7 +13,7 @@ import { barsetBanner, oaterBanner } from "@/lib/partners";
 import { getFeaturedRecipes, toRecipeListItem } from "@/lib/recipes";
 
 export default function HomePage() {
-  const featuredRecipes = getFeaturedRecipes(8);
+  const featuredRecipes = getFeaturedRecipes(8).map(toRecipeListItem);
   const latestGuides = getAllGuides()
     .slice(0, 8)
     .map((guide) => ({
