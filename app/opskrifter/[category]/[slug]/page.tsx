@@ -9,6 +9,7 @@ import {
   KetoDietCta,
   recipeMatchesKetoDiet,
 } from "@/components/KetoDietCta";
+import { PartnerBanner } from "@/components/PartnerBanner";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { RecipeRating } from "@/components/RecipeRating";
@@ -29,6 +30,7 @@ import {
 } from "@/lib/format";
 import { getGrejForRecipe } from "@/lib/grej";
 import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
+import { kitchoBanner } from "@/lib/partners";
 import { recipeRatingKey } from "@/lib/recipe-ratings/format";
 import { getCachedRecipeRatingSummary } from "@/lib/recipe-ratings/store";
 import {
@@ -299,6 +301,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
             )}
           </div>
         </div>
+
+        <PartnerBanner banner={kitchoBanner} />
 
         {related.length > 0 && (
           <section className="border-t-2 border-bone/15 bg-ash/40 py-14">
