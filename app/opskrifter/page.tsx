@@ -234,6 +234,7 @@ export default async function AllRecipesPage({
                     key={item.slug}
                     href={`/anmeldelser/${item.slug}`}
                     guide={item}
+                    productShot
                   />
                 ))}
               </div>
