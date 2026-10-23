@@ -31,9 +31,9 @@ export default function AboutPage() {
         </p>
         <p>
           Vi bruger kunstig intelligens (AI) som hjælp til at producere
-          indhold — tekster til opskrifter og guides samt billeder. Det er et
-          værktøj, vi beriger og tilpasser, så materialet passer til Saltets
-          tone og er klar til køkkenet. Læs mere i vores{" "}
+          indhold — tekster til opskrifter, guides og anmeldelser samt
+          billeder. Det er et værktøj, vi beriger og tilpasser, så materialet
+          passer til Saltets tone. Læs mere i vores{" "}
           <Link
             href="/vilkaar"
             className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
