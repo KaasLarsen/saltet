@@ -397,23 +397,23 @@ export function buildAnmeldelseArticleJsonLd(item: Anmeldelse): object {
     keywords: item.tags.join(", "),
   };
 
-  if (item.rating != null) {
-    article.review = {
-      "@type": "Review",
-      reviewRating: {
-        "@type": "Rating",
+  const ratingCount = item.ratingCount ?? 0;
+  if (
+    item.rating != null &&
+    item.rating > 0 &&
+    ratingCount > 0 &&
+    Number.isFinite(item.rating)
+  ) {
+    article.about = {
+      "@type": "Product",
+      name: item.productName,
+      ...(item.modelNumber ? { model: item.modelNumber } : {}),
+      aggregateRating: {
+        "@type": "AggregateRating",
         ratingValue: item.rating,
+        ratingCount,
         bestRating: 5,
         worstRating: 1,
-      },
-      author: {
-        "@type": "Organization",
-        name: siteConfig.name,
-      },
-      itemReviewed: {
-        "@type": "Product",
-        name: item.productName,
-        ...(item.modelNumber ? { model: item.modelNumber } : {}),
       },
     };
   }

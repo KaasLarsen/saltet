@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AnmeldelseStars } from "@/components/AnmeldelseStars";
 import type { GuideListItem } from "@/lib/guide-filters";
 
 interface GuideCardProps {
   guide: GuideListItem;
   href?: string;
+  /** PriceRunner-rating (kun anmeldelser). */
+  rating?: number;
+  ratingCount?: number;
 }
 
-export function GuideCard({ guide, href }: GuideCardProps) {
+export function GuideCard({ guide, href, rating, ratingCount }: GuideCardProps) {
   return (
     <Link href={href ?? `/guides/${guide.slug}`} className="group block text-left">
       <article>
@@ -25,6 +29,15 @@ export function GuideCard({ guide, href }: GuideCardProps) {
         <h2 className="mt-4 font-serif text-xl uppercase leading-snug tracking-wide text-bone transition-colors group-hover:text-herb sm:text-2xl">
           {guide.title}
         </h2>
+        {rating != null && rating > 0 ? (
+          <AnmeldelseStars
+            rating={rating}
+            count={ratingCount}
+            size="sm"
+            align="start"
+            className="mt-2"
+          />
+        ) : null}
         <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-bone/55">
           {guide.description}
         </p>

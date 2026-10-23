@@ -8,6 +8,7 @@ export interface AnmeldelseListItem {
   image: string;
   imageAlt: string;
   rating?: number;
+  ratingCount?: number;
 }
 
 export interface AnmeldelseFilterValues {

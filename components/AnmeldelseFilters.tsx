@@ -215,6 +215,8 @@ export function AnmeldelseFilters({ items }: AnmeldelseFiltersProps) {
             key={item.slug}
             href={`/anmeldelser/${item.slug}`}
             guide={item}
+            rating={item.rating}
+            ratingCount={item.ratingCount}
           />
         ))}
       </div>

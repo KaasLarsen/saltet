@@ -17,6 +17,9 @@ export interface PriceRunnerComparison {
   image: string | null;
   href: string;
   offers: PriceRunnerOffer[];
+  /** PriceRunner reviewSummary.average (1–5), null hvis ingen. */
+  ratingAverage: number | null;
+  ratingCount: number;
 }
 
 interface PayloadQuery {
@@ -38,6 +41,10 @@ interface OffersPayload {
 
 interface ProductPayload {
   product?: { name?: string };
+  reviewSummary?: {
+    average?: number;
+    count?: number;
+  };
 }
 
 function productImageUrl(path: string | undefined): string | null {
@@ -128,11 +135,23 @@ function extractComparison(
   const name = product?.product?.name;
   if (!name || offers.length === 0) return null;
 
+  const rawAverage = product?.reviewSummary?.average;
+  const rawCount = product?.reviewSummary?.count ?? 0;
+  const ratingAverage =
+    typeof rawAverage === "number" &&
+    Number.isFinite(rawAverage) &&
+    rawAverage > 0 &&
+    rawCount > 0
+      ? Math.round(rawAverage * 100) / 100
+      : null;
+
   return {
     name,
     image,
     href,
     offers,
+    ratingAverage,
+    ratingCount: rawCount > 0 ? rawCount : 0,
   };
 }
 

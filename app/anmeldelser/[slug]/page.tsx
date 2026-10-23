@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AffiliateCta } from "@/components/AffiliateCta";
+import { AnmeldelseStars } from "@/components/AnmeldelseStars";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
@@ -16,6 +17,8 @@ import {
   getRelatedAnmeldelser,
 } from "@/lib/anmeldelser";
 import { formatDate } from "@/lib/format";
+import { getPriceRunnerComparison } from "@/lib/pricerunner-offers";
+import { findPriceRunnerProduct } from "@/lib/pricerunner-products";
 import {
   absoluteUrl,
   buildAnmeldelseArticleJsonLd,
@@ -51,6 +54,22 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
   const related = getRelatedAnmeldelser(item);
   const pageUrl = absoluteUrl(`/anmeldelser/${item.slug}`);
 
+  const prProduct = findPriceRunnerProduct(item.productName);
+  const comparison = prProduct
+    ? await getPriceRunnerComparison(
+        prProduct.categoryId,
+        prProduct.productId,
+        prProduct.slugPath
+      )
+    : null;
+  const rating =
+    comparison?.ratingAverage ??
+    (item.rating != null && item.rating > 0 ? item.rating : null);
+  const ratingCount =
+    comparison?.ratingAverage != null
+      ? comparison.ratingCount
+      : (item.ratingCount ?? 0);
+
   const headingMatches = [...item.content.matchAll(/^## (.+)$/gm)];
   const toc = headingMatches.map((match) => ({
     id: slugifyTag(match[1]),
@@ -64,8 +83,12 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
   ];
 
   const faqJsonLd = buildFaqJsonLd(item.faq);
+  const jsonLdItem =
+    rating != null && ratingCount > 0
+      ? { ...item, rating, ratingCount }
+      : { ...item, rating: undefined, ratingCount: undefined };
   const jsonLd = [
-    buildAnmeldelseArticleJsonLd(item),
+    buildAnmeldelseArticleJsonLd(jsonLdItem),
     buildBreadcrumbJsonLd(breadcrumbItems),
     ...(faqJsonLd ? [faqJsonLd] : []),
   ];
@@ -103,11 +126,17 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
             <header className="text-center">
               <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-herb">
                 Anmeldelse
-                {item.rating != null ? ` · ${item.rating}/5` : ""}
               </p>
               <h1 className="font-serif text-4xl uppercase leading-tight tracking-wide text-bone md:text-5xl md:leading-[1.05]">
                 {item.title}
               </h1>
+              {rating != null ? (
+                <AnmeldelseStars
+                  rating={rating}
+                  count={ratingCount}
+                  className="mt-5"
+                />
+              ) : null}
               <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-bone/60">
                 {item.description}
               </p>
@@ -217,6 +246,15 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
                     <p className="font-serif text-lg uppercase tracking-wide text-bone">
                       {a.title}
                     </p>
+                    {a.rating != null && a.rating > 0 ? (
+                      <AnmeldelseStars
+                        rating={a.rating}
+                        count={a.ratingCount}
+                        size="sm"
+                        align="start"
+                        className="mt-2"
+                      />
+                    ) : null}
                     <p className="mt-2 line-clamp-3 text-sm text-bone/50">
                       {a.description}
                     </p>

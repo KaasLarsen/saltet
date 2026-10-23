@@ -736,3 +736,22 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     label: "Weber Premium Lumpwood Charcoal 5kg",
   },
 };
+
+/** Match frontmatter productName til PriceRunner-katalog (præcis eller præfiks). */
+export function findPriceRunnerProduct(productName: string): {
+  query: string;
+  productId: string;
+  categoryId: string;
+  label: string;
+  slugPath?: string;
+} | null {
+  const exact = PRICERUNNER_PRODUCTS[productName];
+  if (exact) return { query: productName, ...exact };
+
+  const entry = Object.entries(PRICERUNNER_PRODUCTS).find(
+    ([query]) =>
+      productName.startsWith(query) || query.startsWith(productName)
+  );
+  if (!entry) return null;
+  return { query: entry[0], ...entry[1] };
+}

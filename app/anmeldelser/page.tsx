@@ -21,6 +21,7 @@ export default function AnmeldelserIndexPage() {
     image: item.image,
     imageAlt: item.imageAlt,
     rating: item.rating,
+    ratingCount: item.ratingCount,
   }));
 
   return (

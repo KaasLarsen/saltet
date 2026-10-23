@@ -152,7 +152,10 @@ export interface AnmeldelseFrontmatter {
   /** Affiliate-offer ids vist som forhandler-CTA’er. */
   affiliateOffers?: string[];
   verdict?: string;
+  /** Gennemsnit 1–5 — synk med PriceRunner reviewSummary.average. */
   rating?: number;
+  /** Antal bedømmelser — synk med PriceRunner reviewSummary.count. */
+  ratingCount?: number;
 }
 
 export interface Anmeldelse extends AnmeldelseFrontmatter {
