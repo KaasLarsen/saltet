@@ -91,6 +91,26 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     categoryId: "249",
     label: "Instant Pot Duo 6 5,7 L",
   },
+  "Instant Pot Duo Crisp": {
+    productId: "5275188",
+    categoryId: "249",
+    label: "Instant Pot Duo Crisp + Air Fryer",
+  },
+  "Sage Fast Slow Pro": {
+    productId: "3216374698",
+    categoryId: "249",
+    label: "Sage Fast Slow Pro BPR700",
+  },
+  "Tefal Secure 5 Neo 6L": {
+    productId: "3067115",
+    categoryId: "249",
+    label: "Tefal Secure 5 Neo 6L",
+  },
+  "WMF Perfect Plus": {
+    productId: "3206943274",
+    categoryId: "249",
+    label: "WMF Perfect Plus trykkoger",
+  },
   "Ninja airfryer": {
     productId: "3200338672",
     categoryId: "81",
@@ -117,10 +137,50 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     slugPath:
       "Frituregryder-Airfryere/Ninja-CRISPi-DualZone-8-i-1-Glasairfryer-Sammenlign-Priser",
   },
+  "Ninja FlexDrawer AF500": {
+    productId: "3208440524",
+    categoryId: "81",
+    label: "Ninja Foodi FlexDrawer AF500EU",
+  },
+  "Cosori Dual Blaze": {
+    productId: "3202194825",
+    categoryId: "81",
+    label: "Cosori Dual Blaze CAF-P583S",
+  },
+  "Ninja Double Stack XL": {
+    productId: "3434632009",
+    categoryId: "81",
+    label: "Ninja Double Stack XL SL400EU",
+  },
   "airfryer 5 liter": {
     productId: "3231353404",
     categoryId: "81",
     label: "Philips 3000 Series NA352",
+  },
+  "Siemens iQ700 HB776": {
+    productId: "3211075720",
+    categoryId: "105",
+    label: "Siemens iQ700 HB776G3B2S",
+  },
+  "Bosch Series 8 HBG7741": {
+    productId: "3210082797",
+    categoryId: "105",
+    label: "Bosch Series 8 HBG7741B1",
+  },
+  "Gorenje GO66EPIZZA350C": {
+    productId: "3382886888",
+    categoryId: "105",
+    label: "Gorenje GO66EPIZZA350C",
+  },
+  "Miele H 2863 BP": {
+    productId: "3208171180",
+    categoryId: "105",
+    label: "Miele VitroLine H 2863 BP",
+  },
+  "AEG SteamCrisp BXS6400B": {
+    productId: "3205155158",
+    categoryId: "105",
+    label: "AEG SteamCrisp BXS6400B",
   },
   "gas plancha": {
     productId: "4108334",

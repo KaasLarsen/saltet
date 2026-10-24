@@ -9,6 +9,11 @@ const contentDir = path.join(process.cwd(), "content/grej");
 
 const CATEGORY_GREJ: Record<string, string[]> = {
   airfryer: [
+    "ninja-flexdrawer-af500",
+    "cosori-dual-blaze",
+    "philips-na352-dual-basket",
+    "ninja-double-stack-xl",
+    "onyx-airfryer-8l",
     "airfryer-vs-ovn-opgoer",
     "airfryer-tilbehoer",
     "airfryer-tilbehoer-test",
@@ -57,6 +62,11 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "grillhandske-laeder-silikone-kevlar",
   ],
   ovn: [
+    "siemens-iq700-hb776",
+    "bosch-series-8-hbg7741",
+    "gorenje-pizza-go66",
+    "miele-vitroline-h2863",
+    "aeg-steamcrisp-bxs6400",
     "bagestaal-vs-bagesten",
     "koekkenvaegt-vs-maalebaeger",
     "haevekasser-pizzadej",
@@ -102,7 +112,14 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "spiral-vs-planetarisk-roeremaskine",
     "poelseroer-vs-poelsestopper",
   ],
-  trykkoger: ["trykkoger-vs-slowcooker"],
+  trykkoger: [
+    "sage-fast-slow-pro",
+    "tefal-secure-5-neo",
+    "instant-pot-duo-crisp",
+    "onyx-multicooker-11i1",
+    "wmf-perfect-plus",
+    "trykkoger-vs-slowcooker",
+  ],
   dehydrator: ["dehydrator-koebsguide"],
   fermentering: [
     "fermenteringsglas",

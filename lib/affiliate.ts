@@ -174,7 +174,11 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "To kurve, så sticky vinger og tilbehør lander samtidig — uden at fylde ovnen.",
     ctaLabel: "Se hos Homeshop",
     variant: "grej",
-    grejSlugs: ["airfryer-vs-ovn-opgoer", "airfryer-tilbehoer"],
+    grejSlugs: [
+      "airfryer-vs-ovn-opgoer",
+      "airfryer-tilbehoer",
+      "philips-na352-dual-basket",
+    ],
     categories: ["airfryer"],
   },
   "homeshop-smash-burger-jern": {
@@ -299,6 +303,21 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     variant: "grej",
     grejSlugs: ["trykkoger-vs-slowcooker"],
     categories: ["trykkoger"],
+  },
+  "kitchenone-duo-crisp": {
+    id: "kitchenone-duo-crisp",
+    href: partnerAdsProductUrl(
+      KITCHENONE_BANNER_ID,
+      KITCHENONE_PRODUCTS.instantDuoCrisp
+    ),
+    label: "Instant Pot Duo Crisp + Air Fryer",
+    merchant: "KitchenOne",
+    description:
+      "Tryk til mørhed, AirFry-låg til skorpe — kylling og pulled pork i samme gryde.",
+    ctaLabel: "Se hos KitchenOne",
+    variant: "grej",
+    grejSlugs: ["instant-pot-duo-crisp"],
+    categories: ["trykkoger", "airfryer"],
   },
   "boligcenter-stegepande": {
     id: "boligcenter-stegepande",
