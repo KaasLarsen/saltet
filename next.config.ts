@@ -67,6 +67,28 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       ...topicRedirects,
+      // Produktanmeldelser flyttet fra /grej til /anmeldelser
+      ...[
+        "ninja-flexdrawer-af500",
+        "ninja-double-stack-xl",
+        "cosori-dual-blaze",
+        "philips-na352-dual-basket",
+        "onyx-airfryer-8l",
+        "siemens-iq700-hb776",
+        "bosch-series-8-hbg7741",
+        "gorenje-pizza-go66",
+        "miele-vitroline-h2863",
+        "aeg-steamcrisp-bxs6400",
+        "sage-fast-slow-pro",
+        "tefal-secure-5-neo",
+        "instant-pot-duo-crisp",
+        "onyx-multicooker-11i1",
+        "wmf-perfect-plus",
+      ].map((slug) => ({
+        source: `/grej/${slug}`,
+        destination: `/anmeldelser/${slug}`,
+        permanent: true,
+      })),
     ];
   },
 };

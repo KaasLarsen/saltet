@@ -157,6 +157,11 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     categoryId: "81",
     label: "Philips 3000 Series NA352",
   },
+  "Philips 3000 Series NA352": {
+    productId: "3231353404",
+    categoryId: "81",
+    label: "Philips 3000 Series NA352",
+  },
   "Siemens iQ700 HB776": {
     productId: "3211075720",
     categoryId: "105",

@@ -174,11 +174,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "To kurve, så sticky vinger og tilbehør lander samtidig — uden at fylde ovnen.",
     ctaLabel: "Se hos Homeshop",
     variant: "grej",
-    grejSlugs: [
-      "airfryer-vs-ovn-opgoer",
-      "airfryer-tilbehoer",
-      "philips-na352-dual-basket",
-    ],
+    grejSlugs: ["airfryer-vs-ovn-opgoer", "airfryer-tilbehoer"],
     categories: ["airfryer"],
   },
   "homeshop-smash-burger-jern": {
@@ -263,6 +259,156 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "ninja-flexdrawer-af500": {
+    id: "ninja-flexdrawer-af500",
+    href: fromPriceRunner("Ninja FlexDrawer AF500"),
+    label: "Ninja Foodi FlexDrawer (AF500EU)",
+    merchant: "via PriceRunner",
+    description:
+      "10,4 L MegaZone eller to Dual Zones — Smart Finish til kød og tilbehør samtidigt.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-double-stack-xl": {
+    id: "ninja-double-stack-xl",
+    href: fromPriceRunner("Ninja Double Stack XL"),
+    label: "Ninja Double Stack XL (SL400EU)",
+    merchant: "via PriceRunner",
+    description:
+      "To skuffer stablet vertikalt — dual zone på den smalle bordbredde.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "cosori-dual-blaze": {
+    id: "cosori-dual-blaze",
+    href: fromPriceRunner("Cosori Dual Blaze"),
+    label: "Cosori Dual Blaze (CAF-P583S)",
+    merchant: "via PriceRunner",
+    description:
+      "Top- og bundvarme i én kurv — mindre ryste-pligt til pommes og flæskesteg.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "philips-na352-dual-basket": {
+    id: "philips-na352-dual-basket",
+    href: fromPriceRunner("Philips 3000 Series NA352"),
+    label: "Philips Series 3000 Dual Basket (NA352)",
+    merchant: "via PriceRunner",
+    description:
+      "Asymmetriske skuffer til hverdags dual-basket uden Ninja-pris.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "onyx-airfryer-8l": {
+    id: "onyx-airfryer-8l",
+    href: fromPriceRunner("Onyx Cookware Airfryer 8L"),
+    label: "Onyx Cookware Airfryer 8L",
+    merchant: "via PriceRunner",
+    description:
+      "8 L single basket med vindue — skarp pris til én stor portion ad gangen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "siemens-iq700-hb776": {
+    id: "siemens-iq700-hb776",
+    href: fromPriceRunner("Siemens iQ700 HB776"),
+    label: "Siemens iQ700 (HB776G3B2S)",
+    merchant: "via PriceRunner",
+    description:
+      "Indbygget RoastingSensor, pyrolyse og 71 L — sonde i skabet til culotte.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "bosch-series-8-hbg7741": {
+    id: "bosch-series-8-hbg7741",
+    href: fromPriceRunner("Bosch Series 8 HBG7741"),
+    label: "Bosch Series 8 (HBG7741B1)",
+    merchant: "via PriceRunner",
+    description:
+      "PerfectBake Plus og AirFry i indbygningen — bageentusiastens ovn.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "gorenje-pizza-go66": {
+    id: "gorenje-pizza-go66",
+    href: fromPriceRunner("Gorenje GO66EPIZZA350C"),
+    label: "Gorenje GO66EPIZZA350C",
+    merchant: "via PriceRunner",
+    description:
+      "Pizzaprogram og høj varme i indbygningen — kombiner med bagestål.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "miele-vitroline-h2863": {
+    id: "miele-vitroline-h2863",
+    href: fromPriceRunner("Miele H 2863 BP"),
+    label: "Miele VitroLine H 2863 BP",
+    merchant: "via PriceRunner",
+    description:
+      "76 L, pyrolyse og isolation — premium hvis ovnen er husets arbejdshest.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "aeg-steamcrisp-bxs6400": {
+    id: "aeg-steamcrisp-bxs6400",
+    href: fromPriceRunner("AEG SteamCrisp BXS6400B"),
+    label: "AEG SteamCrisp (BXS6400B)",
+    merchant: "via PriceRunner",
+    description:
+      "Varmluft + damp-hybrid — saftig midte og sprød skorpe uden fuld dampovn.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "sage-fast-slow-pro": {
+    id: "sage-fast-slow-pro",
+    href: fromPriceRunner("Sage Fast Slow Pro"),
+    label: "Sage Fast Slow Pro (BPR700)",
+    merchant: "via PriceRunner",
+    description:
+      "El-trykkoger med automatisk aflastning — luksus uden manuel ventil.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "tefal-secure-5-neo": {
+    id: "tefal-secure-5-neo",
+    href: fromPriceRunner("Tefal Secure 5 Neo 6L"),
+    label: "Tefal Secure 5 Neo 6L",
+    merchant: "via PriceRunner",
+    description:
+      "Komfur-trykkoger til induktion — kraftig fond til skarp pris.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "instant-pot-duo-crisp": {
+    id: "instant-pot-duo-crisp",
+    href: fromPriceRunner("Instant Pot Duo Crisp"),
+    label: "Instant Pot Duo Crisp + Air Fryer",
+    merchant: "via PriceRunner",
+    description:
+      "Tryklåg + AirFry-låg — mør kylling og sprødt skind i samme gryde.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "onyx-multicooker-11i1": {
+    id: "onyx-multicooker-11i1",
+    href: fromPriceRunner("Onyx Cookware Multicooker"),
+    label: "Onyx 11-i-1 Multicooker",
+    merchant: "via PriceRunner",
+    description:
+      "Budget el-tryk med damp og ris — genvej til hverdags-simreretter.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "wmf-perfect-plus": {
+    id: "wmf-perfect-plus",
+    href: fromPriceRunner("WMF Perfect Plus"),
+    label: "WMF Perfect Plus",
+    merchant: "via PriceRunner",
+    description:
+      "Cromargan komfur-trykkoger med TransTherm-bund — premium arvestål.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "homeshop-airfryer-kategori": {
     id: "homeshop-airfryer-kategori",
     href: partnerAdsProductUrl(
@@ -316,7 +462,6 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "Tryk til mørhed, AirFry-låg til skorpe — kylling og pulled pork i samme gryde.",
     ctaLabel: "Se hos KitchenOne",
     variant: "grej",
-    grejSlugs: ["instant-pot-duo-crisp"],
     categories: ["trykkoger", "airfryer"],
   },
   "boligcenter-stegepande": {
