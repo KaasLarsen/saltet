@@ -202,7 +202,7 @@ export function GrejFilters({ items }: GrejFiltersProps) {
             <LoopIcon className="h-4 w-4" />
           </button>
           {searchOpen ? (
-            <div className="absolute left-1/2 top-full z-20 mt-1 w-[min(18rem,calc(100vw-2.5rem))] -translate-x-1/2 overflow-hidden rounded-xl border-2 border-bone/25 bg-ash shadow-lg shadow-black/30">
+            <div className="absolute left-1/2 top-full z-20 mt-1 w-[min(18rem,calc(100dvw-2.5rem))] -translate-x-1/2 overflow-hidden rounded-xl border-2 border-bone/25 bg-ash shadow-lg shadow-black/30">
               <label htmlFor={searchId} className="sr-only">
                 Søg i grej
               </label>
