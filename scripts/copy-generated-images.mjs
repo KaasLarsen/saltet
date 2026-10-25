@@ -2,6 +2,9 @@
 /**
  * Copy GenerateImage artifacts (category--slug.jpg) to public/recipes paths.
  * Usage: node scripts/copy-generated-images.mjs [artifactsDir]
+ *
+ * Image style standard: ./recipe-image-style.md (photojournalism / home kitchen —
+ * not polished stock or glossy AI cookbook).
  */
 import fs from "node:fs";
 import path from "node:path";
