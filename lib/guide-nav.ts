@@ -1725,9 +1725,14 @@ export const GUIDE_LINKS: {
     slug: "sylte-hoest",
     title: "Sylte-høst — græskar, blommer, pærer og hyben på glas",
     description:
-      "Efterårets sylte: græskar, pærer, blommer, hyben, kvæder, kantareller og rødbede.",
+      "Efterårets sylte: græskar, æbler, tranebær, chutney, selleri, pærer og hyben.",
     recipes: [
       "sylte/syltede-graeskar",
+      "sylte/graeskarchutney",
+      "sylte/syltede-aebler-kanel",
+      "sylte/aeblechutney",
+      "sylte/syltede-tranebaer-appelsin",
+      "sylte/syltet-knoldselleri-sennep",
       "sylte/syltede-paerer",
       "sylte/syltede-paerer-roedvin",
       "sylte/syltede-blommer-vanilje-stjerneanis",
