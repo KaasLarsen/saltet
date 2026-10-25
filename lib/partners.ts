@@ -1,3 +1,5 @@
+import { slugifyTag } from "@/lib/slug";
+
 export interface PartnerBannerConfig {
   href: string;
   imgSrc: string;
@@ -5,6 +7,22 @@ export interface PartnerBannerConfig {
 }
 
 export const PARTNER_ADS_PARTNER_ID = "57393";
+
+const SOUS_VIDE_TAG_SLUG = "sous-vide";
+
+/**
+ * True when content is sous vide via category and/or tags
+ * (not body keyword matching).
+ */
+export function isSousVideContent(options: {
+  category?: string;
+  tags?: readonly string[];
+}): boolean {
+  if (options.category === "sous-vide") return true;
+  return (options.tags ?? []).some(
+    (tag) => slugifyTag(tag) === SOUS_VIDE_TAG_SLUG
+  );
+}
 
 /** DH Wines — deep link via htmlurl=produktlink */
 export const DH_WINES_BANNER_ID = "108257";
@@ -74,6 +92,14 @@ export const barsetBanner: PartnerBannerConfig = {
   imgSrc:
     "https://www.partner-ads.com/dk/visbanner.php?partnerid=57393&bannerid=34571",
   alt: "Få dit eget barsæt",
+};
+
+/** Bund af sous vide-opskrifter, -guides og -grej */
+export const sousVideBanner: PartnerBannerConfig = {
+  href: "https://www.partner-ads.com/dk/klikbanner.php?partnerid=57393&bannerid=49121",
+  imgSrc:
+    "https://www.partner-ads.com/dk/visbanner.php?partnerid=57393&bannerid=49121",
+  alt: "SousVide — sous vide-udstyr og vakuumpakkere",
 };
 
 /** Kuraterede produkt-URL’er: se lib/affiliate-products.ts */

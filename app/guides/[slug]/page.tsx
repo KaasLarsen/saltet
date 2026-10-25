@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import { PartnerBanner } from "@/components/PartnerBanner";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { GuideContent } from "@/components/mdx/GuideContent";
@@ -15,6 +16,7 @@ import {
   getRelatedGuides,
 } from "@/lib/guides";
 import { formatDate } from "@/lib/format";
+import { isSousVideContent, sousVideBanner } from "@/lib/partners";
 import {
   absoluteUrl,
   buildArticleJsonLd,
@@ -49,6 +51,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const recipes = getRelatedGuideRecipes(guide);
   const relatedGrej = getRelatedGuideGrej(guide);
   const relatedGuides = getRelatedGuides(guide);
+  const showSousVideBanner = isSousVideContent({ tags: guide.tags });
   const guideUrl = absoluteUrl(`/guides/${guide.slug}`);
 
   const headingMatches = [...guide.content.matchAll(/^## (.+)$/gm)];
@@ -188,6 +191,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
             <RecipeFaqSection items={guide.faq} />
           </div>
         </div>
+
+        {showSousVideBanner ? <PartnerBanner banner={sousVideBanner} /> : null}
 
         {relatedGuides.length > 0 && (
           <section className="border-t-2 border-bone/15 bg-ash/40 py-14">
