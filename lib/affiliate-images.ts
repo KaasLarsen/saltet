@@ -48,7 +48,7 @@ export const AFFILIATE_FEED_IMAGES: Record<string, string> = {
   "dh-wines-hvid":
     "https://cdn.shopify.com/s/files/1/0816/5435/0170/files/Simonsig-Chenin-Blanc.jpg?v=1754387339",
   "dh-wines-rood":
-    "https://cdn.shopify.com/s/files/1/0816/5435/0170/files/quinta-sebastiao-syrah-tinta-roriz-2021-81693.jpg",
+    "https://cdn.shopify.com/s/files/1/0816/5435/0170/files/quinta-sebastiao-syrah-tinta-roriz-2021-816937.jpg?v=1779433030",
   "dh-wines":
     "https://cdn.shopify.com/s/files/1/0816/5435/0170/files/Simonsig-Chenin-Blanc.jpg?v=1754387339",
 
