@@ -90,6 +90,22 @@ export const GUIDE_NAV = [
   { slug: "julemenu-sammensaetning", name: "Julemenu" },
   { slug: "danske-klassikere-guide", name: "Danske klassikere" },
   { slug: "groen-groed", name: "Grøn grød" },
+  { slug: "kul-under-rund-plancha", name: "Kul under rund plancha" },
+  {
+    slug: "carbonstaal-vs-stoebjern-grill-maillard",
+    name: "Carbonstål vs. støbejern på grill",
+  },
+  {
+    slug: "loes-stegeplade-vs-plancha-maskine",
+    name: "Løs stegeplade vs. plancha",
+  },
+  { slug: "trykkoger-laasesystemer", name: "Trykkoger-låsesystemer" },
+  { slug: "wmf-trykkoger-induktion", name: "WMF på induktion" },
+  {
+    slug: "onyx-vs-ninja-foodi-multicooker",
+    name: "Onyx vs. Ninja Foodi",
+  },
+  { slug: "onyx-vs-philips-airfryer", name: "Onyx vs. Philips airfryer" },
 ] as const;
 
 export type GuideNavSlug = (typeof GUIDE_NAV)[number]["slug"];
@@ -1524,6 +1540,103 @@ export const GUIDE_LINKS: {
       "airfryer/bagt-groen-havregrod-airfryer",
       "gryde/saltet-havregroed-spejlaeg-bacon",
       "ovn/baked-feta-oats",
+    ],
+  },
+  {
+    slug: "kul-under-rund-plancha",
+    title:
+      "Guide: Sådan tænder du op med kul under din runde plancha (vanddråbe-test ~250 °C)",
+    description:
+      "Rund plancha over kul: skorsten, zone, vanddråbe-test og IR — ram 250 °C uden hotspot midt i.",
+    recipes: [
+      "plancha/smash-burger-paa-plancha",
+      "plancha/engelsk-bof-paa-plancha",
+      "plancha/tomahawk-steak-board-sauce-plancha",
+      "grill/groentsager-paa-grill",
+      "plancha/smash-kartofler-andefedt-plancha",
+    ],
+  },
+  {
+    slug: "carbonstaal-vs-stoebjern-grill-maillard",
+    title: "Carbonstål vs. støbejern på grillen — hvilken Maillard vinder?",
+    description:
+      "Udendørs Maillard: respons vs. masse, smash vs. tyk steak, blæst og under-varme.",
+    recipes: [
+      "plancha/smash-burger-paa-plancha",
+      "stobejern/cast-iron-ribeye",
+      "plancha/engelsk-bof-paa-plancha",
+      "grill/tomahawk-steak",
+      "stobejern/smash-burgers-stobejern",
+      "grill/groentsager-paa-grill",
+    ],
+  },
+  {
+    slug: "loes-stegeplade-vs-plancha-maskine",
+    title:
+      "Løs stegeplade vs. dedikeret plancha — hvad skal du vælge til udekøkkenet?",
+    description:
+      "Indsats på din grill vs. Blackstone/Cozze/Le Marquier: budget, plads og smash-volumen.",
+    recipes: [
+      "plancha/smash-burger-paa-plancha",
+      "plancha/smash-tacos-oksekoed",
+      "plancha/teppanyaki-fried-rice-plancha",
+      "plancha/engelsk-bof-paa-plancha",
+      "grill/hjemmelavet-burger",
+    ],
+  },
+  {
+    slug: "trykkoger-laasesystemer",
+    title:
+      "Trykkogning uden frygt: markedets nemmeste og mest sikre låsesystemer",
+    description:
+      "Clipso, Secure 5, WMF, Kuhn Rikon, Instant Pot og SmartLid — hvilken lås får dig i gang.",
+    recipes: [
+      "trykkoger/fond-trykkoger",
+      "trykkoger/pulled-pork-trykkoger",
+      "trykkoger/osso-buco-trykkoger",
+      "trykkoger/gullasch-trykkoger",
+      "trykkoger/svinekaeber-trykkoger",
+    ],
+  },
+  {
+    slug: "wmf-trykkoger-induktion",
+    title:
+      "Nørde-guiden: finjustér induktion så WMF Perfect Plus holder stabilt tryk",
+    description:
+      "Effekttrin, TransTherm, boost-fælde og damptab — hold trykket uden dampsøjle.",
+    recipes: [
+      "trykkoger/fond-trykkoger",
+      "trykkoger/osso-buco-trykkoger",
+      "trykkoger/pulled-pork-trykkoger",
+      "trykkoger/oksespidsbryst-trykkoger",
+      "trykkoger/svinekaeber-trykkoger",
+    ],
+  },
+  {
+    slug: "onyx-vs-ninja-foodi-multicooker",
+    title: "Onyx 11-i-1 vs Ninja Foodi MAX SmartLid — er Onyx pengene værd?",
+    description:
+      "Budget-el-tryk vs. SmartLid, probe og airfry-finish. Hvornår Onyx vinder.",
+    recipes: [
+      "trykkoger/pulled-pork-trykkoger",
+      "trykkoger/ris-trykkoger",
+      "trykkoger/gullasch-trykkoger",
+      "trykkoger/grydestegt-kylling-trykkoger",
+      "airfryer/stegt-flaesk",
+    ],
+  },
+  {
+    slug: "onyx-vs-philips-airfryer",
+    title: "Onyx Airfryer 8L vs Philips Dual Basket — hvilken er pengene værd?",
+    description:
+      "Én stor kurv med vindue vs. to zoner: volumen-logik mod samtidighed.",
+    recipes: [
+      "airfryer/frosne-pomfritter",
+      "airfryer/pommes-frites-bagekartofler",
+      "airfryer/flaeskesteg",
+      "airfryer/crispy-chicken-tenders",
+      "airfryer/hel-kylling",
+      "airfryer/bagekartofler",
     ],
   },
 ];
