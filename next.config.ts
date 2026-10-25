@@ -13,6 +13,7 @@ const topicRedirects = TOPIC_NAV.flatMap((topic) => {
 const nextConfig: NextConfig = {
   staticPageGenerationTimeout: 180,
   images: {
+    qualities: [75, 90],
     remotePatterns: [
       { protocol: "https", hostname: "owp.klarna.com" },
       { protocol: "https", hostname: "assets.klarnacdn.net" },

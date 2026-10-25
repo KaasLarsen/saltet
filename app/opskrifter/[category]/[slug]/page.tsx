@@ -118,6 +118,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
             src={recipe.image}
             alt={recipe.imageAlt}
             fill
+            quality={90}
             className="object-cover"
             sizes="100vw"
             priority
