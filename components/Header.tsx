@@ -9,6 +9,7 @@ import { CATEGORY_NAV } from "@/lib/category-nav";
 import { GREJ_NAV } from "@/lib/grej-nav";
 import { GUIDE_NAV } from "@/lib/guide-nav";
 import { HOLIDAY_NAV } from "@/lib/holiday-nav";
+import { SEASON_NAV } from "@/lib/season-nav";
 import { TOPIC_NAV } from "@/lib/topic-nav";
 
 type NavChild = { href: string; label: string };
@@ -71,6 +72,17 @@ const navItems: NavItem[] = [
       ...ANMELDELSE_NAV.map((a) => ({
         href: `/anmeldelser/${a.slug}`,
         label: a.name,
+      })),
+    ],
+  },
+  {
+    href: "/saeson",
+    label: "Sæson",
+    children: [
+      { href: "/saeson", label: "Alle sæsoner" },
+      ...SEASON_NAV.map((s) => ({
+        href: `/saeson/${s.slug}`,
+        label: s.name,
       })),
     ],
   },

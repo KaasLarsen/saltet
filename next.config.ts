@@ -67,6 +67,26 @@ const nextConfig: NextConfig = {
         destination: "/hoejtider/sommerhoejtider",
         permanent: true,
       },
+      {
+        source: "/tags/efteraar",
+        destination: "/saeson/efteraar",
+        permanent: true,
+      },
+      {
+        source: "/tags/sommer",
+        destination: "/saeson/sommer",
+        permanent: true,
+      },
+      {
+        source: "/tags/foraar",
+        destination: "/saeson/foraar",
+        permanent: true,
+      },
+      {
+        source: "/tags/vinter",
+        destination: "/saeson/vinter",
+        permanent: true,
+      },
       ...topicRedirects,
       // Produktanmeldelser flyttet fra /grej til /anmeldelser
       ...[

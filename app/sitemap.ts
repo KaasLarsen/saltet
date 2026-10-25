@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllCategorySlugs } from "@/lib/categories";
 import { getAllHolidaySlugs } from "@/lib/holidays";
+import { getAllSeasonSlugs } from "@/lib/seasons";
 import { getAllTopicSlugs } from "@/lib/topics";
 import { getAllAnmeldelser } from "@/lib/anmeldelser";
 import { getAllGrej } from "@/lib/grej";
@@ -18,8 +19,9 @@ import { absoluteUrl } from "@/lib/seo";
  * - Anmeldelser: auto fra content/anmeldelser/*.mdx
  * - Kategorier: auto fra lib/categories + content/recipes/*
  * - Højtider: auto fra lib/holidays
+ * - Sæsoner: auto fra lib/seasons
  * - Emner: auto fra lib/topics
- * - Tags: auto fra opskrifters tags (højtids- og emne-tags omdirigeres)
+ * - Tags: auto fra opskrifters tags (højtids-, sæson- og emne-tags omdirigeres)
  * - Opskrifter: auto fra content/recipes/**\/*.mdx
  */
 const STATIC_ROUTES: {
@@ -33,6 +35,7 @@ const STATIC_ROUTES: {
   { path: "/grej", changeFrequency: "weekly", priority: 0.88 },
   { path: "/anmeldelser", changeFrequency: "weekly", priority: 0.88 },
   { path: "/hoejtider", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/saeson", changeFrequency: "weekly", priority: 0.85 },
   { path: "/emner", changeFrequency: "weekly", priority: 0.85 },
   { path: "/tags", changeFrequency: "weekly", priority: 0.7 },
   { path: "/om", changeFrequency: "monthly", priority: 0.5 },
@@ -50,6 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const tags = getBrowseTags();
   const categorySlugs = getAllCategorySlugs();
   const holidaySlugs = getAllHolidaySlugs();
+  const seasonSlugs = getAllSeasonSlugs();
   const topicSlugs = getAllTopicSlugs();
   const now = new Date();
 
@@ -69,6 +73,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const holidayPages: MetadataRoute.Sitemap = holidaySlugs.map((slug) => ({
     url: absoluteUrl(`/hoejtider/${slug}`),
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  const seasonPages: MetadataRoute.Sitemap = seasonSlugs.map((slug) => ({
+    url: absoluteUrl(`/saeson/${slug}`),
     lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.8,
@@ -120,6 +131,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPages,
     ...categoryPages,
     ...holidayPages,
+    ...seasonPages,
     ...topicPages,
     ...tagPages,
     ...recipePages,

@@ -5,15 +5,23 @@ import { FeaturedRecipeSpotlight } from "@/components/FeaturedRecipeSpotlight";
 import { GuideCard } from "@/components/GuideCard";
 import { HomeShortcuts } from "@/components/HomeShortcuts";
 import { PartnerBanner } from "@/components/PartnerBanner";
+import { RecipeCard } from "@/components/RecipeCard";
 import { SaltlageBeregner } from "@/components/SaltlageBeregner";
 import { SearchForm } from "@/components/SearchForm";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { barsetBanner, oaterBanner } from "@/lib/partners";
 import { getFeaturedRecipes, toRecipeListItem } from "@/lib/recipes";
+import { getCurrentSeason } from "@/lib/season-nav";
+import { getSeason, getSeasonRecipesForHome } from "@/lib/seasons";
 
 export default function HomePage() {
   const featuredRecipes = getFeaturedRecipes(8).map(toRecipeListItem);
+  const currentSeasonNav = getCurrentSeason();
+  const currentSeason = getSeason(currentSeasonNav.slug);
+  const seasonRecipes = getSeasonRecipesForHome(currentSeasonNav.slug, 8).map(
+    toRecipeListItem
+  );
   const latestGuides = getAllGuides()
     .slice(0, 8)
     .map((guide) => ({
@@ -67,6 +75,35 @@ export default function HomePage() {
       </section>
 
       <HomeShortcuts />
+
+      {seasonRecipes.length > 0 && currentSeason ? (
+        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+          <div className="mb-10 flex flex-col items-center gap-3 text-center">
+            <p className="inline-flex rotate-[-1.5deg] rounded-lg border-2 border-iron bg-herb px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-iron">
+              Sæson · Nu
+            </p>
+            <h2 className="font-serif text-3xl uppercase tracking-wide text-bone md:text-4xl">
+              {currentSeason.name} lige nu
+            </h2>
+            <p className="max-w-md text-sm text-bone/50">
+              {currentSeason.description}
+            </p>
+            <Link
+              href={`/saeson/${currentSeason.slug}`}
+              className="rounded-lg border-2 border-wood/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-wood transition-colors hover:bg-wood hover:text-bone"
+            >
+              Åbn sæsonhubben
+            </Link>
+          </div>
+          <CardCarousel label={`${currentSeason.name} opskrifter`}>
+            {seasonRecipes.map((recipe) => (
+              <CarouselSlide key={`${recipe.category}-${recipe.slug}`}>
+                <RecipeCard recipe={recipe} />
+              </CarouselSlide>
+            ))}
+          </CardCarousel>
+        </section>
+      ) : null}
 
       {featuredRecipes.length > 0 ? (
         <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">

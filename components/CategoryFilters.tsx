@@ -18,11 +18,13 @@ import {
   getAvailableDifficulties,
   getAvailableHolidays,
   getAvailableMethods,
+  getAvailableSeasons,
   getTopTagsForRecipes,
   hasActiveFilters,
   parseDifficultyFilter,
   parseHolidayFilter,
   parseMetodeFilter,
+  parseSeasonFilter,
   parseTimeFilter,
   type CategoryFilterValues,
   type TimeFilter,
@@ -68,6 +70,7 @@ function readFiltersFromLocation(): CategoryFilterValues {
     svar: parseDifficultyFilter(params.get("svar") ?? undefined),
     emne: params.get("emne") ?? undefined,
     hoejtid: parseHolidayFilter(params.get("hoejtid") ?? undefined),
+    saeson: parseSeasonFilter(params.get("saeson") ?? undefined),
     metode: parseMetodeFilter(params.get("metode") ?? undefined),
     q: params.get("q") ?? undefined,
   };
@@ -141,6 +144,7 @@ export function CategoryFilters({
     [recipes]
   );
   const holidays = useMemo(() => getAvailableHolidays(recipes), [recipes]);
+  const seasons = useMemo(() => getAvailableSeasons(recipes), [recipes]);
   const methods = useMemo(() => getAvailableMethods(recipes), [recipes]);
   const topTags = useMemo(() => getTopTagsForRecipes(recipes), [recipes]);
   const filtered = useMemo(
@@ -164,6 +168,7 @@ export function CategoryFilters({
         if (next.svar) params.set("svar", next.svar);
         if (next.emne) params.set("emne", next.emne);
         if (next.hoejtid) params.set("hoejtid", next.hoejtid);
+        if (next.saeson) params.set("saeson", next.saeson);
         if (next.metode) params.set("metode", next.metode);
         if (next.q?.trim()) params.set("q", next.q.trim());
 
@@ -272,6 +277,37 @@ export function CategoryFilters({
                 aria-pressed={filters.hoejtid === holiday.slug}
               >
                 {holiday.label}
+              </button>
+            ))}
+          </FilterGroup>
+        ) : null}
+
+        {seasons.length > 0 ? (
+          <FilterGroup label="Sæson">
+            <button
+              type="button"
+              className={chipClass(!filters.saeson)}
+              onClick={() => updateFilters({ saeson: undefined })}
+              aria-pressed={!filters.saeson}
+            >
+              Alle
+            </button>
+            {seasons.map((season) => (
+              <button
+                key={season.slug}
+                type="button"
+                className={chipClass(filters.saeson === season.slug)}
+                onClick={() =>
+                  updateFilters({
+                    saeson:
+                      filters.saeson === season.slug
+                        ? undefined
+                        : season.slug,
+                  })
+                }
+                aria-pressed={filters.saeson === season.slug}
+              >
+                {season.label}
               </button>
             ))}
           </FilterGroup>

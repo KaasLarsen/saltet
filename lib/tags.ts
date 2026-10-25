@@ -1,4 +1,5 @@
 import { holidayForTagSlug } from "./holiday-nav";
+import { isSeasonTagSlug, seasonForTagSlug } from "./season-nav";
 import { isTopicTagSlug, topicForTagSlug } from "./topic-nav";
 import { getAllRecipes } from "./recipes";
 import { slugifyTag } from "./slug";
@@ -34,7 +35,10 @@ export function getAllTags(): TagInfo[] {
 
 export function getBrowseTags(): TagInfo[] {
   return getAllTags().filter(
-    (tag) => !holidayForTagSlug(tag.slug) && !isTopicTagSlug(tag.slug)
+    (tag) =>
+      !holidayForTagSlug(tag.slug) &&
+      !isSeasonTagSlug(tag.slug) &&
+      !isTopicTagSlug(tag.slug)
   );
 }
 
@@ -52,6 +56,8 @@ export function tagHref(tag: string): string {
   const slug = slugifyTag(tag);
   const holiday = holidayForTagSlug(slug);
   if (holiday) return `/hoejtider/${holiday.slug}`;
+  const season = seasonForTagSlug(slug);
+  if (season) return `/saeson/${season.slug}`;
   const topic = topicForTagSlug(slug);
   if (topic) return `/emner/${topic.slug}`;
   return `/tags/${slug}`;

@@ -1,20 +1,38 @@
 import Link from "next/link";
+import { getCurrentSeason } from "@/lib/season-nav";
 
-const SHORTCUTS = [
+const BASE_SHORTCUTS = [
   { href: "/opskrifter/airfryer", label: "Airfryer", hint: "Sprødt uden drama" },
   { href: "/opskrifter/stobejern", label: "Støbejern", hint: "Skorpe og varme" },
   { href: "/opskrifter/grill", label: "Grill", hint: "Røg og flamme" },
   { href: "/emner/keto", label: "Keto", hint: "Fedt, salt, umami" },
 ] as const;
 
+const SEASON_HINTS: Record<string, string> = {
+  foraar: "Det første grønne",
+  sommer: "Let og grillklart",
+  efteraar: "Gryder og rodfrugt",
+  vinter: "Braiser og varme",
+};
+
 export function HomeShortcuts() {
+  const season = getCurrentSeason();
+  const shortcuts = [
+    ...BASE_SHORTCUTS,
+    {
+      href: `/saeson/${season.slug}`,
+      label: season.name,
+      hint: SEASON_HINTS[season.slug] ?? "Sæsonens mad",
+    },
+  ];
+
   return (
     <section
       className="border-y border-bone/10 bg-ash/50"
       aria-label="Hurtige genveje"
     >
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 px-5 py-8 md:grid-cols-4 md:gap-4 md:px-8 md:py-10">
-        {SHORTCUTS.map((item, index) => (
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 px-5 py-8 md:grid-cols-5 md:gap-4 md:px-8 md:py-10">
+        {shortcuts.map((item, index) => (
           <Link
             key={item.href}
             href={item.href}

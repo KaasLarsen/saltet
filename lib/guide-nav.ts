@@ -106,6 +106,10 @@ export const GUIDE_NAV = [
     name: "Onyx vs. Ninja Foodi",
   },
   { slug: "onyx-vs-philips-airfryer", name: "Onyx vs. Philips airfryer" },
+  { slug: "rodfrugter-i-saeson", name: "Rodfrugter i sæson" },
+  { slug: "svampe-saeson", name: "Svampe-sæson" },
+  { slug: "efteraarsgryder-og-braise", name: "Efterårsgryder og braise" },
+  { slug: "sylte-hoest", name: "Sylte-høst" },
 ] as const;
 
 export type GuideNavSlug = (typeof GUIDE_NAV)[number]["slug"];
@@ -1637,6 +1641,73 @@ export const GUIDE_LINKS: {
       "airfryer/crispy-chicken-tenders",
       "airfryer/hel-kylling",
       "airfryer/bagekartofler",
+    ],
+  },
+  {
+    slug: "rodfrugter-i-saeson",
+    title: "Rodfrugter i sæson — skorpe, sødme og efterår",
+    description:
+      "Pastinak, selleri, jordskok, rødbede og græskar: guldskorpe uden kogegrød.",
+    recipes: [
+      "ovn/andelaar-i-fad-rodfrugter",
+      "ovn/rodfrugtsfritter-timian",
+      "ovn/bagte-graeskarbade-hokkaido-chili-feta",
+      "airfryer/pastinak-persillerod-fritter",
+      "airfryer/rodfrugt-grovfritter-rosmarin",
+      "airfryer/graeskarbaade-rosmarin",
+      "gryde/cremet-jordskokkesuppe-bacon",
+      "gryde/cremet-graeskarsuppe-bacon",
+    ],
+  },
+  {
+    slug: "svampe-saeson",
+    title: "Svampe-sæson — fra skov til pande",
+    description:
+      "Rensning, tørstegning, gryde og toast — uden grå dampkogning.",
+    recipes: [
+      "stobejern/toerstegte-svampe",
+      "stobejern/cremet-svampetoast",
+      "stobejern/svampe-risotto",
+      "gryde/klassisk-svampesuppe",
+      "gryde/gammeldags-jaegergryde",
+      "airfryer/svampe-bites-timian",
+      "grill/grillede-portobellosvampe-hvidloegssmoer",
+      "sylte/syltede-kantareller-timian",
+    ],
+  },
+  {
+    slug: "efteraarsgryder-og-braise",
+    title: "Efterårsgryder og braise — lange gryder til køligt vejr",
+    description:
+      "Vildt, bourguignon, labskovs og skank: brun skorpe, fond og tid.",
+    recipes: [
+      "stobejern/efteraars-vildtgryde",
+      "stobejern/klassisk-boeuf-bourguignon",
+      "stobejern/ungarsk-gullasch",
+      "stobejern/okseskank-roedvin",
+      "gryde/skipperlabskovs",
+      "gryde/hvidlabskovs",
+      "gryde/gammeldags-jaegergryde",
+      "baalmad/one-pot-vildtgryde-enebaer",
+      "trykkoger/gullasch-trykkoger",
+      "trykkoger/oksehalesuppe-trykkoger",
+    ],
+  },
+  {
+    slug: "sylte-hoest",
+    title: "Sylte-høst — græskar, blommer, pærer og hyben på glas",
+    description:
+      "Efterårets sylte: græskar, pærer, blommer, hyben og kvæder på glas.",
+    recipes: [
+      "sylte/syltede-graeskar",
+      "sylte/syltede-paerer",
+      "sylte/syltede-paerer-roedvin",
+      "sylte/syltede-blommer-vanilje-stjerneanis",
+      "sylte/syltede-hyben-rom-nelliker",
+      "sylte/syltede-kvaeder-vaniljelage",
+      "sylte/syltede-kantareller-timian",
+      "sylte/piccalilli-chow-chow",
+      "sylte/syltede-roedbeder",
     ],
   },
 ];

@@ -59,6 +59,17 @@ export interface Holiday {
   headline: string;
 }
 
+export interface Season {
+  slug: string;
+  name: string;
+  description: string;
+  headline: string;
+  /** Guide-slugs vist på sæson-hubben. */
+  relatedGuideSlugs?: string[];
+  /** Højtider der falder i sæsonen (fx Halloween i efterår). */
+  relatedHolidaySlugs?: string[];
+}
+
 export interface Topic {
   slug: string;
   name: string;

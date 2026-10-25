@@ -1,5 +1,6 @@
 import { CATEGORY_NAV_ORDER, categoryNavLabel } from "./category-nav";
 import { HOLIDAY_NAV } from "./holiday-nav";
+import { SEASON_NAV } from "./season-nav";
 import {
   TOPIC_NAV,
   getTopicNav,
@@ -20,6 +21,7 @@ export interface CategoryFilterValues {
   svar?: Difficulty;
   emne?: string;
   hoejtid?: string;
+  saeson?: string;
   metode?: string;
   topic?: string;
   q?: string;
@@ -32,6 +34,12 @@ export interface TagFacet {
 }
 
 export interface HolidayFacet {
+  label: string;
+  slug: string;
+  count: number;
+}
+
+export interface SeasonFacet {
   label: string;
   slug: string;
   count: number;
@@ -123,6 +131,15 @@ export function filterRecipes<T extends RecipeListItem>(
       if (!matches) return false;
     }
 
+    if (filters.saeson) {
+      const season = SEASON_NAV.find((s) => s.slug === filters.saeson);
+      if (!season) return false;
+      const matches = recipe.tags.some((tag) =>
+        season.matchTagSlugs.includes(slugifyTag(tag))
+      );
+      if (!matches) return false;
+    }
+
     if (filters.metode && recipe.category !== filters.metode) return false;
 
     if (filters.topic) {
@@ -174,11 +191,15 @@ export function getTopTagsForRecipes(
   const holidayTagSlugs = new Set(
     HOLIDAY_NAV.flatMap((h) => [h.slug, ...h.matchTagSlugs])
   );
+  const seasonTagSlugs = new Set(
+    SEASON_NAV.flatMap((s) => [s.slug, ...s.matchTagSlugs])
+  );
 
   return Array.from(counts.entries())
     .map(([slug, { label, count }]) => ({ slug, label, count }))
     .filter((tag) => tag.count < coverageCeiling)
     .filter((tag) => !holidayTagSlugs.has(tag.slug))
+    .filter((tag) => !seasonTagSlugs.has(tag.slug))
     .filter((tag) => !isTopicTagSlug(tag.slug))
     .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "da"))
     .slice(0, limit);
@@ -207,6 +228,31 @@ export function parseHolidayFilter(
 ): string | undefined {
   if (!value) return undefined;
   return HOLIDAY_NAV.some((h) => h.slug === value) ? value : undefined;
+}
+
+/** Sæsoner der faktisk findes blandt opskrifterne. */
+export function getAvailableSeasons(
+  recipes: RecipeListItem[]
+): SeasonFacet[] {
+  if (recipes.length === 0) return [];
+
+  return SEASON_NAV.flatMap((season) => {
+    const count = recipes.filter((recipe) =>
+      recipe.tags.some((tag) =>
+        season.matchTagSlugs.includes(slugifyTag(tag))
+      )
+    ).length;
+    const coverageCeiling = recipes.length * 0.75;
+    if (count === 0 || count >= coverageCeiling) return [];
+    return [{ slug: season.slug, label: season.name, count }];
+  });
+}
+
+export function parseSeasonFilter(
+  value: string | undefined
+): string | undefined {
+  if (!value) return undefined;
+  return SEASON_NAV.some((s) => s.slug === value) ? value : undefined;
 }
 
 export function parseMetodeFilter(
@@ -270,6 +316,7 @@ export function hasActiveFilters(filters: CategoryFilterValues): boolean {
     filters.svar != null ||
     Boolean(filters.emne) ||
     Boolean(filters.hoejtid) ||
+    Boolean(filters.saeson) ||
     Boolean(filters.metode) ||
     Boolean(filters.topic) ||
     Boolean(filters.q?.trim())
