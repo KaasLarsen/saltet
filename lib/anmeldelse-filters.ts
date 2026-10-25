@@ -22,6 +22,7 @@ export const ANMELDELSE_SERIES = [
   { slug: "airfryer", label: "Airfryer" },
   { slug: "indbygningsovn", label: "Indbygningsovn" },
   { slug: "trykkoger", label: "Trykkoger" },
+  { slug: "plancha", label: "Plancha" },
 ] as const;
 
 export type AnmeldelseSeriesSlug = (typeof ANMELDELSE_SERIES)[number]["slug"];

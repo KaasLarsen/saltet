@@ -111,6 +111,51 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     categoryId: "249",
     label: "WMF Perfect Plus trykkoger",
   },
+  "Kuhn Rikon Duromatic": {
+    productId: "3135887",
+    categoryId: "249",
+    label: "Kuhn Rikon Duromatic Inox 6L",
+  },
+  "Ninja Foodi MAX SmartLid OL750EU": {
+    productId: "3207385307",
+    categoryId: "249",
+    label: "Ninja Foodi MAX SmartLid OL750EU",
+  },
+  "Funktion Trykkoger 6L": {
+    productId: "3274914",
+    categoryId: "249",
+    label: "Funktion Trykkoger 6L",
+  },
+  "Chef iQ Smart Cooker": {
+    productId: "3201567163",
+    categoryId: "249",
+    label: "Chef iQ Smart Cooker",
+  },
+  "Tefal ClipsoMinut' Easy 6L": {
+    productId: "3068472",
+    categoryId: "249",
+    label: "Tefal ClipsoMinut' Easy 6L",
+  },
+  "Blackstone 2144EU": {
+    productId: "3209764847",
+    categoryId: "335",
+    label: "Blackstone 2144EU tabletop plancha",
+  },
+  "Cozze G-800 Plancha": {
+    productId: "3408619059",
+    categoryId: "335",
+    label: "Cozze G-800 Plancha",
+  },
+  "Taurus Steak Max 2600W": {
+    productId: "3202759659",
+    categoryId: "335",
+    label: "Taurus Steak Max 2600W",
+  },
+  "Napoleon Reversible Griddle 56426": {
+    productId: "3206538041",
+    categoryId: "659",
+    label: "Napoleon reversibel plancha 56426",
+  },
   "Ninja airfryer": {
     productId: "3200338672",
     categoryId: "81",

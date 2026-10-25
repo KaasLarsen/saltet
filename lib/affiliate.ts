@@ -409,6 +409,156 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "kuhn-rikon-duromatic": {
+    id: "kuhn-rikon-duromatic",
+    href: fromPriceRunner("Kuhn Rikon Duromatic"),
+    label: "Kuhn Rikon Duromatic",
+    merchant: "via PriceRunner",
+    description:
+      "Premium komfur-trykkoger med støjsvag fjederventil og bred brunebund.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-foodi-max-smartlid": {
+    id: "ninja-foodi-max-smartlid",
+    href: fromPriceRunner("Ninja Foodi MAX SmartLid OL750EU"),
+    label: "Ninja Foodi MAX SmartLid OL750EU",
+    merchant: "via PriceRunner",
+    description:
+      "Ét SmartLid til tryk og airfry plus integreret stegetermometer.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "funktion-trykkoger-6l": {
+    id: "funktion-trykkoger-6l",
+    href: fromPriceRunner("Funktion Trykkoger 6L"),
+    label: "Funktion Trykkoger 6L",
+    merchant: "via PriceRunner",
+    description:
+      "Budget komfur-trykkoger med induktion — indgangsbillet til tryk.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "chef-iq-smart-cooker": {
+    id: "chef-iq-smart-cooker",
+    href: fromPriceRunner("Chef iQ Smart Cooker"),
+    label: "Chef iQ Smart Cooker",
+    merchant: "via PriceRunner",
+    description:
+      "El-trykkoger med indbygget vægt og app-guides.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "tefal-clipsominut-easy": {
+    id: "tefal-clipsominut-easy",
+    href: fromPriceRunner("Tefal ClipsoMinut' Easy 6L"),
+    label: "Tefal ClipsoMinut' Easy 6L",
+    merchant: "via PriceRunner",
+    description:
+      "Komfur-trykkoger med enhånds Clipso-lås — begyndervenlig.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "blackstone-2144eu": {
+    id: "blackstone-2144eu",
+    href: fromPriceRunner("Blackstone 2144EU"),
+    label: "Blackstone 2144EU",
+    merchant: "via PriceRunner",
+    description:
+      "Bord-gas-plancha med rå stålplade — smashburger-kongen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "le-marquier-amalia": {
+    id: "le-marquier-amalia",
+    href: fromPriceRunner("Le Marquier Amalia plancha"),
+    label: "Le Marquier Amalia",
+    merchant: "via PriceRunner",
+    description:
+      "Fransk premium gas-plancha med emaljeret støbejernsplade.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "cozze-g-800-plancha": {
+    id: "cozze-g-800-plancha",
+    href: fromPriceRunner("Cozze G-800 Plancha"),
+    label: "Cozze G-800 Plancha",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk gas-plancha med LED-temperaturindikator og 3 brændere.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "taurus-steak-max-2600": {
+    id: "taurus-steak-max-2600",
+    href: fromPriceRunner("Taurus Steak Max 2600W"),
+    label: "Taurus Steak Max 2600W",
+    merchant: "via PriceRunner",
+    description:
+      "Kraftig el-stegeplade til altan — 2600W plancha-skorpe uden gas.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "napoleon-indsats-plancha": {
+    id: "napoleon-indsats-plancha",
+    href: fromPriceRunner("Napoleon Reversible Griddle 56426"),
+    label: "Napoleon indsats-plancha 56426",
+    merchant: "via PriceRunner",
+    description:
+      "Reversibel støbejerns-plancha til Rogue/Freestyle-grillen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "qookware-carbonstaal-stegeplade": {
+    id: "qookware-carbonstaal-stegeplade",
+    href: fromPriceRunner("Qookware Carbonstål Stegeplade"),
+    label: "Qookware Carbonstål Stegeplade",
+    merchant: "via PriceRunner",
+    description:
+      "Universal carbonstål-plade 44×23 cm — smash-skorpe op til 300 °C.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "weber-crafted-plancha": {
+    id: "weber-crafted-plancha",
+    href: fromPriceRunner("Weber Crafted Plancha 7682"),
+    label: "Weber Crafted Plancha 7682",
+    merchant: "via PriceRunner",
+    description:
+      "Porcelænsemaljeret støbejerns-indsats til Weber Crafted-systemet.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "satake-vendbar-stegeplade": {
+    id: "satake-vendbar-stegeplade",
+    href: fromPriceRunner("Satake vendbar stegeplade"),
+    label: "Satake Vendbar Stegeplade",
+    merchant: "via PriceRunner",
+    description:
+      "Budget støbejern — glat plancha-side og rillet grillside.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "joergsholm-hybrid-stegeplade": {
+    id: "joergsholm-hybrid-stegeplade",
+    href: fromPriceRunner("Jørgsholm Hybrid Stegeplade"),
+    label: "Jørgsholm Hybrid Stegeplade",
+    merchant: "via PriceRunner",
+    description:
+      "Stor hybrid-stegeplade ~49×31 cm — plads så grønt steger, ikke damper.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "kamado-sumo-rund-plancha": {
+    id: "kamado-sumo-rund-plancha",
+    href: fromPriceRunner("Kamado Sumo støbejern stegeplade rund"),
+    label: "Kamado Sumo rund støbejernsplancha",
+    merchant: "via PriceRunner",
+    description:
+      "Rund støbejernsplade til kuglegrill og kamado.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "homeshop-airfryer-kategori": {
     id: "homeshop-airfryer-kategori",
     href: partnerAdsProductUrl(
