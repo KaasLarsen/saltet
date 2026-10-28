@@ -8,6 +8,7 @@ import {
   BOLIGCENTER_PRODUCTS,
   MED24_PRODUCTS,
   OKO_PRODUCTS,
+  PROSHOP_PRODUCTS,
   RITO_PRODUCTS,
   detectGroceryLanding,
   detectSupplementLanding,
@@ -28,6 +29,7 @@ import {
   KITCHENONE_BANNER_ID,
   MED24_BANNER_ID,
   OKO_SUPERMARKED_BANNER_ID,
+  PROSHOP_BANNER_ID,
   RITO_BANNER_ID,
   barsetBanner,
   oaterBanner,
@@ -87,34 +89,69 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
   "meater-plus": {
     id: "meater-plus",
     href: partnerAdsProductUrl(
-      HOMESHOP_BANNER_ID,
-      HOMESHOP_PRODUCTS.meaterPlus
+      PROSHOP_BANNER_ID,
+      PROSHOP_PRODUCTS.meaterPlus
     ),
     label: "MEATER Plus",
-    merchant: "Homeshop",
+    merchant: "Proshop",
     description:
       "Trådløs sonde med base uden for grillen — så du rammer kernen uden at åbne låget.",
-    ctaLabel: "Se hos Homeshop",
+    ctaLabel: "Se hos Proshop",
     variant: "grej",
     grejSlugs: [
       "tradlost-stegetermometer",
       "instant-read-vs-bluetooth-termometer",
       "termometer-til-andesteg",
+      "meater-plus-vs-pro",
+      "meater-bluetooth-forbindelse",
+      "stegetermometer-kalibrering-isvand",
+      "restvarme-hviletid-app",
+      "smart-ovn-vs-traditionel",
     ],
   },
   "meater-pro": {
     id: "meater-pro",
-    href: partnerAdsProductUrl(
-      HOMESHOP_BANNER_ID,
-      HOMESHOP_PRODUCTS.meaterPro
-    ),
+    href: partnerAdsProductUrl(PROSHOP_BANNER_ID, PROSHOP_PRODUCTS.meaterPro),
     label: "MEATER Pro",
-    merchant: "Homeshop",
+    merchant: "Proshop",
     description:
       "Flere sonder og stærkere varme-tolerance — når du kører grill, rotisseri eller åben ild.",
-    ctaLabel: "Se hos Homeshop",
+    ctaLabel: "Se hos Proshop",
     variant: "grej",
-    grejSlugs: ["tradlost-stegetermometer"],
+    grejSlugs: [
+      "tradlost-stegetermometer",
+      "meater-plus-vs-pro",
+      "meater-bluetooth-forbindelse",
+      "restvarme-hviletid-app",
+    ],
+  },
+  "meater-pro-duo": {
+    id: "meater-pro-duo",
+    href: partnerAdsProductUrl(
+      PROSHOP_BANNER_ID,
+      PROSHOP_PRODUCTS.meaterProDuo
+    ),
+    label: "MEATER Pro Duo",
+    merchant: "Proshop",
+    description:
+      "To Pro-sonder — parallelle stege, gæster med forskellig doneness, eller kerne + andet stykke.",
+    ctaLabel: "Se hos Proshop",
+    variant: "grej",
+    grejSlugs: ["meater-plus-vs-pro", "tradlost-stegetermometer"],
+  },
+  "ninja-woodfire": {
+    id: "ninja-woodfire",
+    href: partnerAdsProductUrl(
+      PROSHOP_BANNER_ID,
+      PROSHOP_PRODUCTS.ninjaWoodfire
+    ),
+    label: "Ninja Woodfire Electric BBQ",
+    merchant: "Proshop",
+    description:
+      "El-grill med pellets-røg til altan og forbud mod åben ild — aroma, ikke Texas-pit.",
+    ctaLabel: "Se hos Proshop",
+    variant: "grej",
+    grejSlugs: ["ninja-woodfire-el-grill"],
   },
   "weber-rotisserie": {
     id: "weber-rotisserie",

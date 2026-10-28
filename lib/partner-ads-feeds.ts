@@ -20,6 +20,12 @@ export const PARTNER_ADS_FEEDS: readonly PartnerAdsFeed[] = [
     merchant: "Homeshop",
   },
   {
+    id: "proshop",
+    bannerId: "67757",
+    feedId: "1399",
+    merchant: "Proshop",
+  },
+  {
     id: "kitchenone",
     bannerId: "79283",
     feedId: "1862",

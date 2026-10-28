@@ -10,16 +10,23 @@ export const AFFILIATE_FEED_IMAGES: Record<string, string> = {
   // Homeshop — feed 67428/1383
   "homeshop-airfryer":
     "https://cdn.homeshop.dk/357435-large_default/philips-na352-00-dual-basket-airfryer.jpg",
-  "meater-plus":
-    "https://cdn.homeshop.dk/425489-large_default/meater-plus-tasty-perk-tradlost-stege-termometer-til-iphoneandroid.jpg",
-  "meater-pro":
-    "https://cdn.homeshop.dk/326259-large_default/meater-2-plus-tradlost-stege-termometer.jpg",
   "homeshop-smash-burger-jern":
     "https://cdn.homeshop.dk/374921-large_default/broil-king-smash-burger-jern.jpg",
   "homeshop-grillspartel-bred":
     "https://cdn.homeshop.dk/46159-large_default/broil-king-imperial-grillspartel-bred---64011.jpg",
   "homeshop-burger-palet":
     "https://cdn.homeshop.dk/387652-large_default/napoleon-plancha-burgerpalet-gatl015.jpg",
+
+  /**
+   * Proshop — feed 67757/1399.
+   * CDN (`www.proshop.dk/Images/…`) giver 403 uden browser-UA, så billederne
+   * er cached lokalt fra feedets billedurl (produkt-id i filnavnet).
+   */
+  "meater-plus": "/affiliate/proshop/meater-plus.jpg",
+  "meater-pro": "/affiliate/proshop/meater-pro.jpg",
+  "meater-pro-duo": "/affiliate/proshop/meater-pro-duo.png",
+  "ninja-woodfire": "/affiliate/proshop/ninja-woodfire.jpg",
+  "ninja-woodfire-pro-xl": "/affiliate/proshop/ninja-woodfire-pro-xl.jpg",
 
   // KitchenOne — feed 79283/1862
   "kitchenone-instant-pot":

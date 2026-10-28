@@ -27,6 +27,23 @@ export const RITO_SHOP_URL = "https://rito.dk/";
 export const HOMESHOP_BANNER_ID = "74171";
 export const HOMESHOP_SHOP_URL = "https://www.homeshop.dk/";
 
+/**
+ * Proshop — MEATER, Woodfire, smart grillgrej.
+ * Feed: bannerid=67757 feedid=1399 (samme bannerid til klikbanner/htmlurl).
+ */
+export const PROSHOP_BANNER_ID = "67757";
+export const PROSHOP_SHOP_URL = "https://www.proshop.dk/";
+
+/**
+ * Smart-køkken / probe-udvidelse (endnu ikke live):
+ * - ComputerSalg (Adtraction)
+ * - KitchenOne-probe-udvidelse (Partner-ads feed findes; probe-sortiment begrænset)
+ */
+export const PENDING_SMART_KITCHEN_NETWORKS = [
+  "ComputerSalg",
+  "KitchenOne-probe-udvidelse",
+] as const;
+
 /** KitchenOne — Instant Pot / trykkogere */
 export const KITCHENONE_BANNER_ID = "18776";
 export const KITCHENONE_SHOP_URL = "https://www.kitchenone.dk/";

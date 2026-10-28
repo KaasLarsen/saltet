@@ -106,6 +106,20 @@ export const HOMESHOP_PRODUCTS = {
     "https://www.homeshop.dk/napoleon-grill-tilbehor/napoleon-plancha-burgerpalet-gatl015",
 } as const;
 
+/** Proshop.dk — MEATER, Woodfire (Partner-ads feed 67757/1399) */
+export const PROSHOP_PRODUCTS = {
+  shop: "https://www.proshop.dk/",
+  meaterPlus:
+    "https://www.proshop.dk/Grill-og-tilbehoer/MEATER-Plus-Traadloes-Stegetermometer/2797734",
+  meaterPro: "https://www.proshop.dk/Grill-og-tilbehoer/MEATER-Pro/3223454",
+  meaterProDuo:
+    "https://www.proshop.dk/Grill-og-tilbehoer/MEATER-Pro-Duo/3349325",
+  ninjaWoodfire:
+    "https://www.proshop.dk/Grill-og-tilbehoer/Ninja-Woodfire-Electric-BBQ-Grill-Smoker/3254512",
+  ninjaWoodfireProXl:
+    "https://www.proshop.dk/Grill-og-tilbehoer/Ninja-Woodfire-Pro-Connect-XL-Electric-BBQ-Grill-Smoker/3350444",
+} as const;
+
 /** KitchenOne — Instant Pot / trykkogere */
 export const KITCHENONE_PRODUCTS = {
   shop: "https://www.kitchenone.dk/",
