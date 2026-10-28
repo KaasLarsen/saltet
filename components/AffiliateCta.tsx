@@ -5,6 +5,11 @@ import {
   type AffiliateOffer,
   type AffiliateVariant,
 } from "@/lib/affiliate";
+import {
+  outboundLinkAttrs,
+  withOutboundSurface,
+  type OutboundSurface,
+} from "@/lib/outbound";
 
 interface AffiliateCtaProps {
   /** Lookup i det centrale affiliate-register. */
@@ -13,6 +18,8 @@ interface AffiliateCtaProps {
   offer?: AffiliateOffer;
   /** Overskriv variant-eyebrow (fx “Annonce”). */
   eyebrow?: string;
+  /** Page type for click attribution. */
+  surface?: OutboundSurface;
   className?: string;
 }
 
@@ -28,10 +35,17 @@ const variantShadow: Record<AffiliateVariant, string> = {
  * Understøtter grej nu; grocery / meal_kit / wine når partnere lander.
  * Produktbillede kommer fra Partner-ads feed (`billedurl`) når sat.
  */
+function sharpenCtaLabel(offer: AffiliateOffer): string {
+  if (offer.ctaLabel === "Sammenlign priser") return "Se laveste pris";
+  if (offer.ctaLabel === "Se aktuel pris") return "Se laveste pris";
+  return offer.ctaLabel;
+}
+
 export function AffiliateCta({
   id,
   offer: offerProp,
   eyebrow,
+  surface = "other",
   className = "",
 }: AffiliateCtaProps) {
   const offer = offerProp ?? (id ? getAffiliateOffer(id) : undefined);
@@ -39,6 +53,12 @@ export function AffiliateCta({
 
   const label = eyebrow ?? affiliateVariantLabel(offer.variant);
   const imageAlt = offer.imageAlt ?? offer.label;
+  const href = withOutboundSurface(offer.href, surface);
+  const linkAttrs = outboundLinkAttrs(surface, {
+    offerId: offer.id,
+    merchant: offer.merchant,
+  });
+  const ctaLabel = sharpenCtaLabel(offer);
 
   return (
     <aside
@@ -61,10 +81,11 @@ export function AffiliateCta({
       >
         {offer.image ? (
           <a
-            href={offer.href}
+            href={href}
             target="_blank"
             rel="nofollow noopener sponsored"
             className="relative block aspect-square h-full min-h-[11rem] bg-iron/80 sm:aspect-auto"
+            {...linkAttrs}
           >
             <Image
               src={offer.image}
@@ -83,13 +104,14 @@ export function AffiliateCta({
             {offer.description}
           </p>
           <a
-            href={offer.href}
+            href={href}
             target="_blank"
             rel="nofollow noopener sponsored"
-            className="mt-4 inline-flex items-center gap-2 rounded-xl border-2 border-herb bg-herb/15 px-4 py-2.5 text-sm font-semibold text-herb transition-colors hover:bg-herb hover:text-iron"
+            className="mt-4 inline-flex items-center gap-2 rounded-xl border-2 border-herb bg-herb px-4 py-2.5 text-sm font-semibold text-iron transition-colors hover:bg-herb/85"
+            {...linkAttrs}
           >
-            {offer.ctaLabel}
-            <span className="text-xs text-bone/50" aria-hidden>
+            {ctaLabel}
+            <span className="text-xs text-iron/70" aria-hidden>
               · {offer.merchant}
             </span>
           </a>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CommercialPriceCta } from "@/components/CommercialPriceCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -16,6 +17,7 @@ import {
 } from "@/lib/grej";
 import { GREJ_TRACKS } from "@/lib/grej-filters";
 import { formatDate } from "@/lib/format";
+import { extractPrimaryPriceRunnerFromContent } from "@/lib/outbound";
 import {
   absoluteUrl,
   buildBreadcrumbJsonLd,
@@ -52,6 +54,9 @@ export default async function GrejPage({ params }: GrejPageProps) {
   const grejUrl = absoluteUrl(`/grej/${item.slug}`);
   const trackLabel =
     GREJ_TRACKS.find((track) => track.slug === item.track)?.label ?? item.track;
+  const primaryPrice =
+    (item.widgets ?? [])[0] ??
+    extractPrimaryPriceRunnerFromContent(item.content);
 
   const headingMatches = [...item.content.matchAll(/^## (.+)$/gm)];
   const toc = headingMatches.map((match) => ({
@@ -116,6 +121,16 @@ export default async function GrejPage({ params }: GrejPageProps) {
               </p>
             </header>
 
+            {primaryPrice ? (
+              <CommercialPriceCta
+                surface="grej"
+                query={primaryPrice.query}
+                label={primaryPrice.label}
+                productId={primaryPrice.productId}
+                categoryId={primaryPrice.categoryId}
+              />
+            ) : null}
+
             {toc.length > 0 && (
               <nav
                 aria-label="Indhold"
@@ -153,6 +168,7 @@ export default async function GrejPage({ params }: GrejPageProps) {
                     productId={widget.productId}
                     categoryId={widget.categoryId}
                     sku={widget.sku}
+                    surface="grej"
                   />
                 ))}
               </div>

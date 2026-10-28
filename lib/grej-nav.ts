@@ -20,6 +20,19 @@ export const GREJ_NAV = [
   { slug: "baaltang-log-lifter", name: "Båltænger og log-lifters" },
   { slug: "sous-vide-stave", name: "Sous vide-stave" },
   { slug: "trykkoger-vs-slowcooker", name: "Trykkoger vs. slowcooker" },
+  {
+    slug: "bedste-trykkoger-induktion-2026",
+    name: "Bedste trykkoger til induktion 2026",
+  },
+  {
+    slug: "bedste-tradlose-stegetermometer-2026",
+    name: "Bedste trådløse stegetermometer 2026",
+  },
+  {
+    slug: "bedste-airfryer-familie-2026",
+    name: "Bedste airfryer til familien 2026",
+  },
+  { slug: "bedste-stavblender-2026", name: "Bedste stavblender 2026" },
   { slug: "dehydrator-koebsguide", name: "Dehydrator" },
   { slug: "fermenteringsglas", name: "Fermenteringsglas" },
   { slug: "palaegsmaskine-pro-vs-billig", name: "Pålægsmaskine" },

@@ -2,17 +2,23 @@
 
 import { useEffect, useId, useState } from "react";
 import { pricerunnerProductWidgetSrc } from "@/lib/pricerunner";
+import {
+  outboundLinkAttrs,
+  type OutboundSurface,
+} from "@/lib/outbound";
 
 interface PriceRunnerOfficialWidgetProps {
   productId: string;
   fallbackHref: string;
   offerLimit?: number;
+  surface?: OutboundSurface;
 }
 
 export function PriceRunnerOfficialWidget({
   productId,
   fallbackHref,
   offerLimit = 5,
+  surface = "other",
 }: PriceRunnerOfficialWidgetProps) {
   const widgetId = `pr-product-widget-${useId().replace(/[^a-zA-Z0-9_-]/g, "").toLowerCase()}`;
   const [failed, setFailed] = useState(false);
@@ -52,9 +58,10 @@ export function PriceRunnerOfficialWidget({
         href={fallbackHref}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        className="block bg-bone px-5 py-4 text-sm font-semibold text-iron hover:bg-herb/15"
+        className="block bg-herb px-5 py-4 text-sm font-semibold text-iron hover:bg-herb/85"
+        {...outboundLinkAttrs(surface, { merchant: "PriceRunner" })}
       >
-        Sammenlign priser på PriceRunner
+        Se laveste pris hos PriceRunner
       </a>
     );
   }

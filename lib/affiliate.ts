@@ -100,6 +100,7 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "tradlost-stegetermometer",
       "instant-read-vs-bluetooth-termometer",
       "termometer-til-andesteg",
+      "bedste-tradlose-stegetermometer-2026",
     ],
   },
   "meater-pro": {
@@ -114,7 +115,21 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "Flere sonder og stærkere varme-tolerance — når du kører grill, rotisseri eller åben ild.",
     ctaLabel: "Se hos Homeshop",
     variant: "grej",
-    grejSlugs: ["tradlost-stegetermometer"],
+    grejSlugs: [
+      "tradlost-stegetermometer",
+      "bedste-tradlose-stegetermometer-2026",
+    ],
+  },
+  "bamix-classic": {
+    id: "bamix-classic",
+    href: fromPriceRunner("stavblender"),
+    label: "Bamix Classic 140W",
+    merchant: "via PriceRunner",
+    description:
+      "Stavblender med rigtig klokke — silkeblød æblemos og mayonnaise uden stænk.",
+    ctaLabel: "Se laveste pris",
+    variant: "grej",
+    grejSlugs: ["stavblender", "bedste-stavblender-2026"],
   },
   "weber-rotisserie": {
     id: "weber-rotisserie",
@@ -296,8 +311,10 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     merchant: "via PriceRunner",
     description:
       "Asymmetriske skuffer til hverdags dual-basket uden Ninja-pris.",
-    ctaLabel: "Sammenlign priser",
+    ctaLabel: "Se laveste pris",
     variant: "grej",
+    grejSlugs: ["bedste-airfryer-familie-2026", "airfryer-vs-ovn-opgoer"],
+    categories: ["airfryer"],
   },
   "onyx-airfryer-8l": {
     id: "onyx-airfryer-8l",
@@ -306,8 +323,10 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     merchant: "via PriceRunner",
     description:
       "8 L single basket med vindue — skarp pris til én stor portion ad gangen.",
-    ctaLabel: "Sammenlign priser",
+    ctaLabel: "Se laveste pris",
     variant: "grej",
+    grejSlugs: ["bedste-airfryer-familie-2026"],
+    categories: ["airfryer"],
   },
   "siemens-iq700-hb776": {
     id: "siemens-iq700-hb776",
@@ -597,7 +616,10 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
       "Trykkoger til hverdags-simreretter — pulled pork, gullasch og supper på en brøkdel af tiden.",
     ctaLabel: "Se hos KitchenOne",
     variant: "grej",
-    grejSlugs: ["trykkoger-vs-slowcooker"],
+    grejSlugs: [
+      "trykkoger-vs-slowcooker",
+      "bedste-trykkoger-induktion-2026",
+    ],
     categories: ["trykkoger"],
   },
   "kitchenone-duo-crisp": {

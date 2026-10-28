@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { AffiliateCta } from "@/components/AffiliateCta";
 import { AnmeldelseStars } from "@/components/AnmeldelseStars";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CommercialPriceCta } from "@/components/CommercialPriceCta";
 import { JsonLd } from "@/components/JsonLd";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -17,6 +18,7 @@ import {
   getRelatedAnmeldelser,
 } from "@/lib/anmeldelser";
 import { formatDate } from "@/lib/format";
+import { extractPrimaryPriceRunnerFromContent } from "@/lib/outbound";
 import { getPriceRunnerComparison } from "@/lib/pricerunner-offers";
 import { findPriceRunnerProduct } from "@/lib/pricerunner-products";
 import {
@@ -62,6 +64,15 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
         prProduct.slugPath
       )
     : null;
+  const primaryPrice = prProduct
+    ? {
+        query: item.productName,
+        label: item.productName,
+        productId: prProduct.productId,
+        categoryId: prProduct.categoryId,
+      }
+    : ((item.widgets ?? [])[0] ??
+      extractPrimaryPriceRunnerFromContent(item.content));
   const rating =
     comparison?.ratingAverage ??
     (item.rating != null && item.rating > 0 ? item.rating : null);
@@ -153,6 +164,16 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
               </p>
             </header>
 
+            {primaryPrice ? (
+              <CommercialPriceCta
+                surface="anmeldelse"
+                query={primaryPrice.query}
+                label={primaryPrice.label}
+                productId={primaryPrice.productId}
+                categoryId={primaryPrice.categoryId}
+              />
+            ) : null}
+
             {toc.length > 0 && (
               <nav
                 aria-label="Indhold"
@@ -186,11 +207,11 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
                   Forhandlere
                 </h2>
                 <p className="mb-6 text-center text-sm text-bone/50">
-                  Sammenlign hos vores partnere — eller brug PriceRunner
+                  Se laveste pris hos vores partnere — eller brug PriceRunner
                   herunder.
                 </p>
                 {(item.affiliateOffers ?? []).map((id) => (
-                  <AffiliateCta key={id} id={id} />
+                  <AffiliateCta key={id} id={id} surface="anmeldelse" />
                 ))}
               </section>
             )}
@@ -205,6 +226,7 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
                     productId={widget.productId}
                     categoryId={widget.categoryId}
                     sku={widget.sku}
+                    surface="anmeldelse"
                   />
                 ))}
               </div>

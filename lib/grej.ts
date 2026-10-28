@@ -9,6 +9,7 @@ const contentDir = path.join(process.cwd(), "content/grej");
 
 const CATEGORY_GREJ: Record<string, string[]> = {
   airfryer: [
+    "bedste-airfryer-familie-2026",
     "airfryer-vs-ovn-opgoer",
     "airfryer-tilbehoer",
     "airfryer-tilbehoer-test",
@@ -61,6 +62,7 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "koekkenvaegt-vs-maalebaeger",
     "haevekasser-pizzadej",
     "koedsnore-og-koednaale",
+    "bedste-tradlose-stegetermometer-2026",
     "termometer-til-andesteg",
   ],
   baalmad: [
@@ -75,6 +77,7 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "traekul-og-briketter-i-indkoebskurven",
     "rotisseri-til-grillen",
     "rygesmuld-flis-og-chunks",
+    "bedste-tradlose-stegetermometer-2026",
     "tradlost-stegetermometer",
     "instant-read-vs-bluetooth-termometer",
     "termometer-til-andesteg",
@@ -102,7 +105,10 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "spiral-vs-planetarisk-roeremaskine",
     "poelseroer-vs-poelsestopper",
   ],
-  trykkoger: ["trykkoger-vs-slowcooker"],
+  trykkoger: [
+    "bedste-trykkoger-induktion-2026",
+    "trykkoger-vs-slowcooker",
+  ],
   dehydrator: ["dehydrator-koebsguide"],
   fermentering: [
     "fermenteringsglas",
@@ -129,10 +135,13 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "laksekniv-fleksibel",
   ],
   sylte: [
+    "bedste-stavblender-2026",
+    "stavblender",
     "sildekrukker-patentglas",
     "fermenteringsglas",
   ],
   dips: [
+    "bedste-stavblender-2026",
     "stavblender",
     "chiffonflaske-sifon",
     "espresso-vs-moccamaster",
@@ -153,6 +162,8 @@ const CATEGORY_GREJ: Record<string, string[]> = {
     "opvaskeboerste-stoebjern",
   ],
   gryde: [
+    "bedste-stavblender-2026",
+    "stavblender",
     "kobbergryder",
     "stoebjernsgryde-storrelsesguide",
     "koekkensakse-fjerkrae-saks",
