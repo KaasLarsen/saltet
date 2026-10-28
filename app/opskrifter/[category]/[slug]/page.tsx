@@ -213,7 +213,11 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 </h2>
                 <Ingredients items={recipe.ingredients} />
                 {groceryOffer ? (
-                  <AffiliateCta offer={groceryOffer} className="mt-6 mb-0" />
+                  <AffiliateCta
+                    offer={groceryOffer}
+                    surface="recipe"
+                    className="mt-6 mb-0"
+                  />
                 ) : null}
               </section>
 
@@ -226,7 +230,11 @@ export default async function RecipePage({ params }: RecipePageProps) {
             </div>
 
             {wineOffer ? (
-              <AffiliateCta offer={wineOffer} className="mt-10 mb-0" />
+              <AffiliateCta
+                offer={wineOffer}
+                surface="recipe"
+                className="mt-10 mb-0"
+              />
             ) : null}
 
             <RecipeTags tags={recipe.tags} className="mt-12" />
@@ -246,7 +254,11 @@ export default async function RecipePage({ params }: RecipePageProps) {
                   Grejet bag retten
                 </h2>
                 {affiliateOffer ? (
-                  <AffiliateCta offer={affiliateOffer} className="mt-0 mb-6" />
+                  <AffiliateCta
+                    offer={affiliateOffer}
+                    surface="recipe"
+                    className="mt-0 mb-6"
+                  />
                 ) : null}
                 {relatedGrej.length > 0 ? (
                   <ul className="space-y-3">

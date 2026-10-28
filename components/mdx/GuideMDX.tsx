@@ -1,11 +1,21 @@
 import Link from "next/link";
-import { Children, isValidElement, type ReactNode } from "react";
+import {
+  Children,
+  isValidElement,
+  type ComponentProps,
+  type ReactNode,
+} from "react";
 import { AffiliateCta } from "@/components/AffiliateCta";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SaltlageBeregner } from "@/components/SaltlageBeregner";
 import { Tip } from "@/components/mdx/RecipeMDX";
 import { resolveAffiliateLink } from "@/lib/affiliate";
+import {
+  outboundLinkAttrs,
+  withOutboundSurface,
+  type OutboundSurface,
+} from "@/lib/outbound";
 import { getRecipe } from "@/lib/recipes";
 import { slugifyTag } from "@/lib/slug";
 
@@ -60,21 +70,25 @@ const linkClass =
 function AffiliateAwareLink({
   href,
   children,
+  surface = "guide",
 }: {
   href?: string;
   children?: ReactNode;
+  surface?: OutboundSurface;
 }) {
   const resolved = resolveAffiliateLink(href ?? "#");
   if (!resolved) {
     return <span className={linkClass}>{children}</span>;
   }
   if (resolved.external) {
+    const tracked = withOutboundSurface(resolved.href, surface);
     return (
       <a
-        href={resolved.href}
+        href={tracked}
         target="_blank"
         rel={resolved.rel}
         className={linkClass}
+        {...outboundLinkAttrs(surface)}
       >
         {children}
       </a>
@@ -87,67 +101,77 @@ function AffiliateAwareLink({
   );
 }
 
-export const guideMdxComponents = {
-  Tip,
-  RecipeGrid,
-  AffiliateCta,
-  PriceRunnerWidget,
-  SaltlageBeregner,
-  h2: ({ children }: { children?: ReactNode }) => (
-    <h2
-      id={headingId(children)}
-      className="mt-12 mb-4 scroll-mt-28 font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl"
-    >
-      {children}
-    </h2>
-  ),
-  h3: ({ children }: { children?: ReactNode }) => (
-    <h3
-      id={headingId(children)}
-      className="mt-8 mb-3 scroll-mt-28 font-serif text-xl uppercase tracking-wide text-bone"
-    >
-      {children}
-    </h3>
-  ),
-  p: ({ children }: { children?: ReactNode }) => (
-    <p className="mb-4 leading-relaxed text-bone/70">{children}</p>
-  ),
-  a: ({ href, children }: { href?: string; children?: ReactNode }) => (
-    <AffiliateAwareLink href={href}>{children}</AffiliateAwareLink>
-  ),
-  ul: ({ children }: { children?: ReactNode }) => (
-    <ul className="mb-6 list-disc space-y-2 pl-5 text-bone/70">{children}</ul>
-  ),
-  ol: ({ children }: { children?: ReactNode }) => (
-    <ol className="mb-6 list-decimal space-y-2 pl-5 text-bone/70">{children}</ol>
-  ),
-  li: ({ children }: { children?: ReactNode }) => (
-    <li className="leading-relaxed">{children}</li>
-  ),
-  strong: ({ children }: { children?: ReactNode }) => (
-    <strong className="font-semibold text-bone">{children}</strong>
-  ),
-  table: ({ children }: { children?: ReactNode }) => (
-    <div className="my-8 overflow-x-auto rounded-2xl border-2 border-bone/20">
-      <table className="w-full min-w-[36rem] text-left text-sm text-bone/75">
+export function createGuideMdxComponents(surface: OutboundSurface = "guide") {
+  return {
+    Tip,
+    RecipeGrid,
+    AffiliateCta: (props: ComponentProps<typeof AffiliateCta>) => (
+      <AffiliateCta {...props} surface={surface} />
+    ),
+    PriceRunnerWidget: (props: ComponentProps<typeof PriceRunnerWidget>) => (
+      <PriceRunnerWidget {...props} surface={surface} />
+    ),
+    SaltlageBeregner,
+    h2: ({ children }: { children?: ReactNode }) => (
+      <h2
+        id={headingId(children)}
+        className="mt-12 mb-4 scroll-mt-28 font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl"
+      >
         {children}
-      </table>
-    </div>
-  ),
-  thead: ({ children }: { children?: ReactNode }) => (
-    <thead className="bg-ash/80 text-[11px] font-bold uppercase tracking-[0.12em] text-herb">
-      {children}
-    </thead>
-  ),
-  th: ({ children }: { children?: ReactNode }) => (
-    <th className="px-3 py-2.5">{children}</th>
-  ),
-  td: ({ children }: { children?: ReactNode }) => (
-    <td className="border-t border-bone/10 px-3 py-2.5">{children}</td>
-  ),
-  blockquote: ({ children }: { children?: ReactNode }) => (
-    <blockquote className="my-6 border-l-4 border-herb pl-4 text-bone/65">
-      {children}
-    </blockquote>
-  ),
-};
+      </h2>
+    ),
+    h3: ({ children }: { children?: ReactNode }) => (
+      <h3
+        id={headingId(children)}
+        className="mt-8 mb-3 scroll-mt-28 font-serif text-xl uppercase tracking-wide text-bone"
+      >
+        {children}
+      </h3>
+    ),
+    p: ({ children }: { children?: ReactNode }) => (
+      <p className="mb-4 leading-relaxed text-bone/70">{children}</p>
+    ),
+    a: ({ href, children }: { href?: string; children?: ReactNode }) => (
+      <AffiliateAwareLink href={href} surface={surface}>
+        {children}
+      </AffiliateAwareLink>
+    ),
+    ul: ({ children }: { children?: ReactNode }) => (
+      <ul className="mb-6 list-disc space-y-2 pl-5 text-bone/70">{children}</ul>
+    ),
+    ol: ({ children }: { children?: ReactNode }) => (
+      <ol className="mb-6 list-decimal space-y-2 pl-5 text-bone/70">{children}</ol>
+    ),
+    li: ({ children }: { children?: ReactNode }) => (
+      <li className="leading-relaxed">{children}</li>
+    ),
+    strong: ({ children }: { children?: ReactNode }) => (
+      <strong className="font-semibold text-bone">{children}</strong>
+    ),
+    table: ({ children }: { children?: ReactNode }) => (
+      <div className="my-8 overflow-x-auto rounded-2xl border-2 border-bone/20">
+        <table className="w-full min-w-[36rem] text-left text-sm text-bone/75">
+          {children}
+        </table>
+      </div>
+    ),
+    thead: ({ children }: { children?: ReactNode }) => (
+      <thead className="bg-ash/80 text-[11px] font-bold uppercase tracking-[0.12em] text-herb">
+        {children}
+      </thead>
+    ),
+    th: ({ children }: { children?: ReactNode }) => (
+      <th className="px-3 py-2.5">{children}</th>
+    ),
+    td: ({ children }: { children?: ReactNode }) => (
+      <td className="border-t border-bone/10 px-3 py-2.5">{children}</td>
+    ),
+    blockquote: ({ children }: { children?: ReactNode }) => (
+      <blockquote className="my-6 border-l-4 border-herb pl-4 text-bone/65">
+        {children}
+      </blockquote>
+    ),
+  };
+}
+
+export const guideMdxComponents = createGuideMdxComponents("guide");

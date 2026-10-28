@@ -3,6 +3,7 @@ import { Archivo_Black, Barlow } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { OutboundClickTracker } from "@/components/OutboundClickTracker";
 import { buildWebsiteJsonLd, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
@@ -60,6 +61,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-stone font-sans text-bone antialiased">
         <JsonLd data={buildWebsiteJsonLd()} />
+        <OutboundClickTracker />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

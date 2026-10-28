@@ -1,8 +1,12 @@
 import Link from "next/link";
-import { Fragment, type ReactNode } from "react";
+import { Fragment, type ComponentProps, type ReactNode } from "react";
 import { AffiliateCta } from "@/components/AffiliateCta";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { resolveAffiliateLink } from "@/lib/affiliate";
+import {
+  outboundLinkAttrs,
+  withOutboundSurface,
+} from "@/lib/outbound";
 
 const linkClass =
   "font-semibold text-herb underline decoration-herb/40 underline-offset-2 hover:text-pool hover:decoration-pool";
@@ -28,10 +32,11 @@ export function LinkedText({ text }: { text: string }) {
           return (
             <a
               key={index}
-              href={resolved.href}
+              href={withOutboundSurface(resolved.href, "recipe")}
               target="_blank"
               rel={resolved.rel}
               className={linkClass}
+              {...outboundLinkAttrs("recipe")}
             >
               {label}
             </a>
@@ -104,10 +109,46 @@ export function Tip({ children }: TipProps) {
   );
 }
 
+function RecipeAffiliateLink({
+  href,
+  children,
+}: {
+  href?: string;
+  children?: ReactNode;
+}) {
+  const resolved = resolveAffiliateLink(href ?? "#");
+  if (!resolved) {
+    return <span className={linkClass}>{children}</span>;
+  }
+  if (resolved.external) {
+    return (
+      <a
+        href={withOutboundSurface(resolved.href, "recipe")}
+        target="_blank"
+        rel={resolved.rel}
+        className={linkClass}
+        {...outboundLinkAttrs("recipe")}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={resolved.href} className={linkClass}>
+      {children}
+    </Link>
+  );
+}
+
 export const mdxComponents = {
   Ingredients,
   Steps,
   Tip,
-  AffiliateCta,
-  PriceRunnerWidget,
+  a: RecipeAffiliateLink,
+  AffiliateCta: (props: ComponentProps<typeof AffiliateCta>) => (
+    <AffiliateCta {...props} surface="recipe" />
+  ),
+  PriceRunnerWidget: (props: ComponentProps<typeof PriceRunnerWidget>) => (
+    <PriceRunnerWidget {...props} surface="recipe" />
+  ),
 };
