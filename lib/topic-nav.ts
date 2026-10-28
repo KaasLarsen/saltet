@@ -193,6 +193,11 @@ export const TOPIC_NAV: readonly TopicNavItem[] = [
     matchTagSlugs: ["bacon"],
   },
   {
+    slug: "deli",
+    name: "Deli",
+    matchTagSlugs: ["deli"],
+  },
+  {
     slug: "pizza",
     name: "Pizza",
     matchTagSlugs: ["pizza", "calzone"],

@@ -159,6 +159,13 @@ export const topics: Topic[] = [
       "Sprødt bacon som hovedrolle — breakfast, topping, wrap og det der gør det hele bedre.",
   },
   {
+    slug: "deli",
+    name: "Deli",
+    headline: "Deli-projekter",
+    description:
+      "Tålmodighed, saltprocenter og intens umami — koldrøget laks, pastrami, rullepølse, bacon og jerky som fulde deli-sessions.",
+  },
+  {
     slug: "pizza",
     name: "Pizza",
     headline: "Pizzaopskrifter",
