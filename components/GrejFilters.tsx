@@ -11,10 +11,12 @@ import {
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { GuideCard } from "@/components/GuideCard";
+import { GREJ_CATEGORY_NAV } from "@/lib/grej-categories";
 import {
   filterGrej,
   GREJ_TRACKS,
   hasActiveGrejFilters,
+  isGrejCategory,
   isGrejTrack,
   type GrejFilterValues,
   type GrejListItem,
@@ -53,8 +55,10 @@ function readFiltersFromLocation(): GrejFilterValues {
   if (typeof window === "undefined") return {};
   const params = new URLSearchParams(window.location.search);
   const spor = params.get("spor") ?? undefined;
+  const kategori = params.get("kategori") ?? undefined;
   return {
     spor: isGrejTrack(spor) ? spor : undefined,
+    kategori: isGrejCategory(kategori) ? kategori : undefined,
     q: params.get("q") ?? undefined,
   };
 }
@@ -132,6 +136,7 @@ export function GrejFilters({ items }: GrejFiltersProps) {
             };
 
         const params = new URLSearchParams();
+        if (next.kategori) params.set("kategori", next.kategori);
         if (next.spor) params.set("spor", next.spor);
         if (next.q?.trim()) params.set("q", next.q.trim());
 
@@ -153,6 +158,35 @@ export function GrejFilters({ items }: GrejFiltersProps) {
   return (
     <div className="mt-10">
       <div className="flex flex-col items-center gap-4">
+        <FilterGroup label="Kategori">
+          <button
+            type="button"
+            className={chipClass(!filters.kategori)}
+            onClick={() => updateFilters({ kategori: undefined })}
+            aria-pressed={!filters.kategori}
+          >
+            Alle
+          </button>
+          {GREJ_CATEGORY_NAV.map((category) => (
+            <button
+              key={category.slug}
+              type="button"
+              className={chipClass(filters.kategori === category.slug)}
+              onClick={() =>
+                updateFilters({
+                  kategori:
+                    filters.kategori === category.slug
+                      ? undefined
+                      : category.slug,
+                })
+              }
+              aria-pressed={filters.kategori === category.slug}
+            >
+              {category.name}
+            </button>
+          ))}
+        </FilterGroup>
+
         <FilterGroup label="Spor">
           <button
             type="button"
@@ -226,7 +260,13 @@ export function GrejFilters({ items }: GrejFiltersProps) {
       {filtered.length === 0 ? (
         <div className="mt-12">
           <p className="text-bone/50">
-            Intet grej matcher {filters.q?.trim() ? "søgningen" : "sporet"}.
+            Intet grej matcher{" "}
+            {filters.q?.trim()
+              ? "søgningen"
+              : filters.kategori
+                ? "kategorien"
+                : "sporet"}
+            .
           </p>
           <button
             type="button"

@@ -10,7 +10,14 @@ export const metadata: Metadata = {
   alternates: { canonical: absoluteUrl("/guides") },
 };
 
-export default function GuidesIndexPage() {
+interface GuidesIndexPageProps {
+  searchParams: Promise<{ emne?: string; q?: string }>;
+}
+
+export default async function GuidesIndexPage({
+  searchParams,
+}: GuidesIndexPageProps) {
+  const params = await searchParams;
   const guides = getAllGuides().map((guide) => ({
     title: guide.title,
     slug: guide.slug,
@@ -35,7 +42,10 @@ export default function GuidesIndexPage() {
         </p>
       </div>
 
-      <GuideFilters guides={guides} />
+      <GuideFilters
+        key={`${params.emne ?? ""}-${params.q ?? ""}`}
+        guides={guides}
+      />
     </div>
   );
 }

@@ -1,3 +1,8 @@
+import {
+  grejBelongsToCategory,
+  isGrejCategory,
+  type GrejCategoryNavSlug,
+} from "./grej-categories";
 import type { GrejTrack } from "./types";
 
 export const GREJ_TRACKS: { slug: GrejTrack; label: string }[] = [
@@ -18,6 +23,7 @@ export interface GrejListItem {
 
 export interface GrejFilterValues {
   spor?: GrejTrack;
+  kategori?: GrejCategoryNavSlug;
   q?: string;
 }
 
@@ -39,12 +45,22 @@ export function filterGrej(
   return items.filter((item) => {
     if (filters.q && !grejMatchesQuery(item, filters.q)) return false;
     if (filters.spor && item.track !== filters.spor) return false;
+    if (
+      filters.kategori &&
+      !grejBelongsToCategory(item.slug, filters.kategori)
+    ) {
+      return false;
+    }
     return true;
   });
 }
 
 export function hasActiveGrejFilters(filters: GrejFilterValues): boolean {
-  return Boolean(filters.spor) || Boolean(filters.q?.trim());
+  return (
+    Boolean(filters.spor) ||
+    Boolean(filters.kategori) ||
+    Boolean(filters.q?.trim())
+  );
 }
 
 export function isGrejTrack(value: string | undefined): value is GrejTrack {
@@ -52,3 +68,5 @@ export function isGrejTrack(value: string | undefined): value is GrejTrack {
     value === "test" || value === "koebsguide" || value === "vedligeholdelse"
   );
 }
+
+export { isGrejCategory };

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Archivo_Black, Barlow } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -60,7 +61,19 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-stone font-sans text-bone antialiased">
         <JsonLd data={buildWebsiteJsonLd()} />
-        <Header />
+        <Suspense
+          fallback={
+            <header className="sticky top-0 z-50 border-b-2 border-bone/15 bg-iron/95">
+              <div className="mx-auto flex h-[3.75rem] max-w-5xl items-center px-5 md:px-8">
+                <span className="font-serif text-2xl uppercase tracking-wide text-bone md:text-3xl">
+                  Saltet
+                </span>
+              </div>
+            </header>
+          }
+        >
+          <Header />
+        </Suspense>
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

@@ -17,12 +17,10 @@ export interface AnmeldelseFilterValues {
 }
 
 export const ANMELDELSE_SERIES = [
-  { slug: "ninja-crispi", label: "Ninja CRISPi" },
-  { slug: "ninja-foodi", label: "Ninja Foodi" },
   { slug: "airfryer", label: "Airfryer" },
-  { slug: "indbygningsovn", label: "Indbygningsovn" },
-  { slug: "trykkoger", label: "Trykkoger" },
   { slug: "plancha", label: "Plancha" },
+  { slug: "trykkoger", label: "Trykkoger" },
+  { slug: "indbygningsovn", label: "Indbygningsovn" },
 ] as const;
 
 export type AnmeldelseSeriesSlug = (typeof ANMELDELSE_SERIES)[number]["slug"];

@@ -10,7 +10,14 @@ export const metadata: Metadata = {
   alternates: { canonical: absoluteUrl("/anmeldelser") },
 };
 
-export default function AnmeldelserIndexPage() {
+interface AnmeldelserIndexPageProps {
+  searchParams: Promise<{ serie?: string; q?: string }>;
+}
+
+export default async function AnmeldelserIndexPage({
+  searchParams,
+}: AnmeldelserIndexPageProps) {
+  const params = await searchParams;
   const items = getAllAnmeldelser().map((item) => ({
     title: item.title,
     slug: item.slug,
@@ -39,7 +46,10 @@ export default function AnmeldelserIndexPage() {
         </p>
       </div>
 
-      <AnmeldelseFilters items={items} />
+      <AnmeldelseFilters
+        key={`${params.serie ?? ""}-${params.q ?? ""}`}
+        items={items}
+      />
     </div>
   );
 }

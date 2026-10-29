@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { SaltShakerMark } from "@/components/SaltShakerMark";
 import { ANMELDELSE_NAV } from "@/lib/anmeldelse-nav";
 import { CATEGORY_NAV } from "@/lib/category-nav";
-import { GREJ_NAV } from "@/lib/grej-nav";
-import { GUIDE_NAV } from "@/lib/guide-nav";
+import { GREJ_CATEGORY_NAV } from "@/lib/grej-categories";
+import { GUIDE_CATEGORY_NAV } from "@/lib/guide-category-nav";
 import { HOLIDAY_NAV } from "@/lib/holiday-nav";
 import { SEASON_NAV } from "@/lib/season-nav";
 import { TOPIC_NAV } from "@/lib/topic-nav";
@@ -47,8 +47,8 @@ const navItems: NavItem[] = [
     label: "Guides",
     children: [
       { href: "/guides", label: "Alle guides" },
-      ...GUIDE_NAV.map((g) => ({
-        href: `/guides/${g.slug}`,
+      ...GUIDE_CATEGORY_NAV.map((g) => ({
+        href: `/guides?emne=${g.slug}`,
         label: g.name,
       })),
     ],
@@ -58,8 +58,8 @@ const navItems: NavItem[] = [
     label: "Grej",
     children: [
       { href: "/grej", label: "Alt grej" },
-      ...GREJ_NAV.map((g) => ({
-        href: `/grej/${g.slug}`,
+      ...GREJ_CATEGORY_NAV.map((g) => ({
+        href: `/grej?kategori=${g.slug}`,
         label: g.name,
       })),
     ],
@@ -70,7 +70,7 @@ const navItems: NavItem[] = [
     children: [
       { href: "/anmeldelser", label: "Alle anmeldelser" },
       ...ANMELDELSE_NAV.map((a) => ({
-        href: `/anmeldelser/${a.slug}`,
+        href: `/anmeldelser?serie=${a.slug}`,
         label: a.name,
       })),
     ],
@@ -100,8 +100,40 @@ const navItems: NavItem[] = [
 ];
 
 function pathIsActive(pathname: string, href: string, exact = false): boolean {
-  if (exact) return pathname === href;
-  return pathname === href || pathname.startsWith(`${href}/`);
+  const pathOnly = href.split("?")[0] ?? href;
+  if (exact) return pathname === pathOnly;
+  return pathname === pathOnly || pathname.startsWith(`${pathOnly}/`);
+}
+
+function navChildIsActive(
+  pathname: string,
+  searchParams: URLSearchParams,
+  href: string,
+  sectionHref: string
+): boolean {
+  const [pathOnly, query = ""] = href.split("?");
+  if (!pathOnly) return false;
+
+  if (href === sectionHref) {
+    if (pathname !== pathOnly) return false;
+    // «Alle …» er aktiv når index er åben uden kategori-query.
+    return (
+      !searchParams.get("serie") &&
+      !searchParams.get("emne") &&
+      !searchParams.get("kategori")
+    );
+  }
+
+  if (query) {
+    if (pathname !== pathOnly) return false;
+    const wanted = new URLSearchParams(query);
+    for (const [key, value] of wanted) {
+      if (searchParams.get(key) !== value) return false;
+    }
+    return true;
+  }
+
+  return pathIsActive(pathname, href);
 }
 
 function dropdownItemClass(active: boolean) {
@@ -133,6 +165,7 @@ function Chevron({ open }: { open: boolean }) {
 
 export function Header() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const menuId = useId();
   const desktopNavRef = useRef<HTMLElement>(null);
   const menuScrollRef = useRef<HTMLDivElement>(null);
@@ -330,7 +363,12 @@ export function Header() {
                         role="menuitem"
                         href={allChild.href}
                         className={dropdownItemClass(
-                          pathname === allChild.href
+                          navChildIsActive(
+                            pathname,
+                            searchParams,
+                            allChild.href,
+                            item.href
+                          )
                         )}
                         onClick={() => setDesktopOpenHref(null)}
                       >
@@ -350,7 +388,12 @@ export function Header() {
                           role="menuitem"
                           href={child.href}
                           className={dropdownItemClass(
-                            pathIsActive(pathname, child.href)
+                            navChildIsActive(
+                              pathname,
+                              searchParams,
+                              child.href,
+                              item.href
+                            )
                           )}
                           onClick={() => setDesktopOpenHref(null)}
                         >
@@ -486,9 +529,12 @@ export function Header() {
                             childIndex: number,
                             isAll: boolean
                           ) {
-                            const active = isAll
-                              ? pathname === child.href
-                              : pathIsActive(pathname, child.href);
+                            const active = navChildIsActive(
+                              pathname,
+                              searchParams,
+                              child.href,
+                              item.href
+                            );
                             return (
                               <Link
                                 href={child.href}

@@ -132,7 +132,7 @@ export function AnmeldelseFilters({ items }: AnmeldelseFiltersProps) {
   return (
     <div className="mt-10">
       <div className="flex flex-col items-center gap-4">
-        <FilterGroup label="Serie">
+        <FilterGroup label="Kategori">
           <button
             type="button"
             className={chipClass(!filters.serie)}

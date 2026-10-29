@@ -149,7 +149,7 @@ export interface AnmeldelseFrontmatter {
   title: string;
   slug: string;
   description: string;
-  /** Produktlinje / brand-gruppe til filtre (fx ninja-crispi). */
+  /** Produkttype til filtre/nav (fx airfryer, plancha). */
   series: string;
   productName: string;
   modelNumber?: string;

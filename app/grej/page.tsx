@@ -10,7 +10,14 @@ export const metadata: Metadata = {
   alternates: { canonical: absoluteUrl("/grej") },
 };
 
-export default function GrejIndexPage() {
+interface GrejIndexPageProps {
+  searchParams: Promise<{ kategori?: string; spor?: string; q?: string }>;
+}
+
+export default async function GrejIndexPage({
+  searchParams,
+}: GrejIndexPageProps) {
+  const params = await searchParams;
   const items = getAllGrej().map((item) => ({
     title: item.title,
     slug: item.slug,
@@ -36,7 +43,10 @@ export default function GrejIndexPage() {
         </p>
       </div>
 
-      <GrejFilters items={items} />
+      <GrejFilters
+        key={`${params.kategori ?? ""}-${params.spor ?? ""}-${params.q ?? ""}`}
+        items={items}
+      />
     </div>
   );
 }
