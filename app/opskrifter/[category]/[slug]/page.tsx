@@ -9,6 +9,7 @@ import {
   KetoDietCta,
   recipeMatchesKetoDiet,
 } from "@/components/KetoDietCta";
+import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { RecipeRating } from "@/components/RecipeRating";
@@ -82,6 +83,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
   );
   const wineOffer = getWineAffiliateOfferForRecipe(recipe);
   const groceryOffer = getGroceryAffiliateOfferForRecipe(recipe);
+  const showAirfryerPriceRunner = recipe.category === "airfryer";
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
   const ratingKey = recipeRatingKey(recipe.category, recipe.slug);
@@ -237,7 +239,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
 
             <RecipeFaqSection items={recipe.faq} />
 
-            {(affiliateOffer || relatedGrej.length > 0) && (
+            {(affiliateOffer ||
+              relatedGrej.length > 0 ||
+              showAirfryerPriceRunner) && (
               <section className="mt-14 text-left" aria-labelledby="grej-heading">
                 <h2
                   id="grej-heading"
@@ -247,6 +251,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 </h2>
                 {affiliateOffer ? (
                   <AffiliateCta offer={affiliateOffer} className="mt-0 mb-6" />
+                ) : null}
+                {showAirfryerPriceRunner ? (
+                  <PriceRunnerWidget query="Philips 3000 Series NA352" />
                 ) : null}
                 {relatedGrej.length > 0 ? (
                   <ul className="space-y-3">
