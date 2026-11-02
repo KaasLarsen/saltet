@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { RecipeCard } from "@/components/RecipeCard";
+import { PaginatedRecipeGrid } from "@/components/PaginatedRecipeGrid";
 import { difficultyLabel } from "@/lib/format";
 import {
   TIME_FILTERS,
@@ -429,11 +429,18 @@ export function CategoryFilters({
           </button>
         </div>
       ) : (
-        <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((recipe) => (
-            <RecipeCard key={recipe.slug} recipe={recipe} />
-          ))}
-        </div>
+        <PaginatedRecipeGrid
+          key={[
+            filters.tid ?? "",
+            filters.svar ?? "",
+            filters.emne ?? "",
+            filters.hoejtid ?? "",
+            filters.saeson ?? "",
+            filters.metode ?? "",
+            filters.q ?? "",
+          ].join("|")}
+          recipes={filtered}
+        />
       )}
     </div>
   );

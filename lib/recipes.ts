@@ -5,8 +5,7 @@ import type { Recipe, RecipeFrontmatter, RecipeListItem } from "./types";
 
 const contentDir = path.join(process.cwd(), "content/recipes");
 
-/** Max opskrifter vist i søgeresultater (holder RSC-payload lille). */
-export const SEARCH_RECIPE_LIMIT = 96;
+export { LISTING_PAGE_SIZE, SEARCH_RECIPE_LIMIT } from "./listing";
 
 /** Stripper ingredients/steps/faq m.m. — kun felter til kort/lister. */
 export function toRecipeListItem(recipe: Recipe | RecipeFrontmatter): RecipeListItem {

@@ -80,6 +80,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
             src={guide.image}
             alt={guide.imageAlt}
             fill
+            quality={75}
             className="object-cover"
             sizes="100vw"
             priority

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GuideCard } from "@/components/GuideCard";
+import { ListingPagination } from "@/components/ListingPagination";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchForm } from "@/components/SearchForm";
 import { SearchMethodFilters } from "@/components/SearchMethodFilters";
@@ -14,10 +15,10 @@ import { grejMatchesQuery } from "@/lib/grej-filters";
 import { getAllGrej } from "@/lib/grej";
 import { guideMatchesQuery } from "@/lib/guide-filters";
 import { getAllGuides } from "@/lib/guides";
+import { LISTING_PAGE_SIZE, SEARCH_RECIPE_LIMIT } from "@/lib/listing";
 import {
   getAllRecipes,
   searchRecipes,
-  SEARCH_RECIPE_LIMIT,
   toRecipeListItem,
 } from "@/lib/recipes";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
@@ -30,7 +31,12 @@ export const metadata: Metadata = {
 };
 
 interface AllRecipesPageProps {
-  searchParams: Promise<{ q?: string; type?: string; metode?: string }>;
+  searchParams: Promise<{
+    q?: string;
+    type?: string;
+    metode?: string;
+    page?: string;
+  }>;
 }
 
 function summaryForType(
@@ -58,10 +64,24 @@ function methodsInResults(recipes: RecipeListItem[]): string[] {
   return [...knownOrder, ...extras];
 }
 
+function parsePage(raw: string | undefined): number {
+  const n = Number.parseInt(raw ?? "1", 10);
+  return Number.isFinite(n) && n > 0 ? n : 1;
+}
+
+function browseHrefForPage(page: number): string {
+  return page <= 1 ? "/opskrifter" : `/opskrifter?page=${page}`;
+}
+
 export default async function AllRecipesPage({
   searchParams,
 }: AllRecipesPageProps) {
-  const { q, type: typeParam, metode: metodeParam } = await searchParams;
+  const {
+    q,
+    type: typeParam,
+    metode: metodeParam,
+    page: pageParam,
+  } = await searchParams;
   const query = q?.trim() ?? "";
   const matchedRecipes = (
     query ? searchRecipes(query) : getAllRecipes()
@@ -142,9 +162,17 @@ export default async function AllRecipesPage({
     : matchedRecipes;
   const recipesTruncated =
     Boolean(query) && recipesForMetode.length > SEARCH_RECIPE_LIMIT;
+
+  const browseTotalPages = Math.max(
+    1,
+    Math.ceil(matchedRecipes.length / LISTING_PAGE_SIZE)
+  );
+  const browsePage = Math.min(parsePage(pageParam), browseTotalPages);
+  const browseStart = (browsePage - 1) * LISTING_PAGE_SIZE;
+
   const recipes = query
     ? recipesForMetode.slice(0, SEARCH_RECIPE_LIMIT)
-    : matchedRecipes;
+    : matchedRecipes.slice(browseStart, browseStart + LISTING_PAGE_SIZE);
 
   const recipeLabel =
     matchedRecipes.length === 1
@@ -306,14 +334,32 @@ export default async function AllRecipesPage({
           ) : null}
         </>
       ) : (
-        <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
-          {recipes.map((recipe) => (
-            <RecipeCard
-              key={`${recipe.category}-${recipe.slug}`}
-              recipe={recipe}
-            />
-          ))}
-        </div>
+        <>
+          {browseTotalPages > 1 ? (
+            <p className="mt-10 text-[12px] uppercase tracking-[0.14em] text-bone/40">
+              Viser {browseStart + 1}–
+              {Math.min(browseStart + recipes.length, matchedRecipes.length)} af{" "}
+              {matchedRecipes.length}
+            </p>
+          ) : null}
+          <div
+            className={`grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3 ${
+              browseTotalPages > 1 ? "mt-8" : "mt-12"
+            }`}
+          >
+            {recipes.map((recipe) => (
+              <RecipeCard
+                key={`${recipe.category}-${recipe.slug}`}
+                recipe={recipe}
+              />
+            ))}
+          </div>
+          <ListingPagination
+            currentPage={browsePage}
+            totalPages={browseTotalPages}
+            hrefForPage={browseHrefForPage}
+          />
+        </>
       )}
     </div>
   );

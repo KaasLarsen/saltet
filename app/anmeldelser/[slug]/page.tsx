@@ -103,7 +103,7 @@ export default async function AnmeldelsePage({ params }: AnmeldelsePageProps) {
             src={item.image}
             alt={item.imageAlt}
             fill
-            quality={90}
+            quality={75}
             className="object-cover"
             sizes="100vw"
             priority

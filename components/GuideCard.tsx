@@ -32,7 +32,7 @@ export function GuideCard({
             src={guide.image}
             alt={guide.imageAlt}
             fill
-            quality={90}
+            quality={75}
             className={`${
               productShot ? "object-contain" : "object-cover"
             } transition-transform duration-500 ease-out group-hover:scale-[1.05]`}

@@ -82,6 +82,7 @@ export default async function GrejPage({ params }: GrejPageProps) {
             src={item.image}
             alt={item.imageAlt}
             fill
+            quality={75}
             className="object-cover"
             sizes="100vw"
             priority

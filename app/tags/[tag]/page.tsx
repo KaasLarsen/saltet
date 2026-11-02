@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { RecipeCard } from "@/components/RecipeCard";
+import { PaginatedRecipeGrid } from "@/components/PaginatedRecipeGrid";
 import { holidayForTagSlug } from "@/lib/holiday-nav";
 import { seasonForTagSlug } from "@/lib/season-nav";
 import { topicForTagSlug } from "@/lib/topic-nav";
@@ -10,6 +10,7 @@ import {
   getRecipesByTagSlug,
   getTagBySlug,
 } from "@/lib/tags";
+import { toRecipeListItem } from "@/lib/recipes";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
 
 interface TagPageProps {
@@ -75,7 +76,7 @@ export default async function TagPage({ params }: TagPageProps) {
   const tag = getTagBySlug(tagSlug);
   if (!tag) notFound();
 
-  const recipes = getRecipesByTagSlug(tagSlug);
+  const recipes = getRecipesByTagSlug(tagSlug).map(toRecipeListItem);
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -98,14 +99,7 @@ export default async function TagPage({ params }: TagPageProps) {
         {recipes.length} opskrift{recipes.length === 1 ? "" : "er"} med dette
         tag.
       </p>
-      <div className="mt-12 grid gap-10 text-left sm:grid-cols-2 lg:grid-cols-3">
-        {recipes.map((recipe) => (
-          <RecipeCard
-            key={`${recipe.category}-${recipe.slug}`}
-            recipe={recipe}
-          />
-        ))}
-      </div>
+      <PaginatedRecipeGrid recipes={recipes} />
     </div>
   );
 }
