@@ -30,6 +30,7 @@ import {
 } from "@/lib/format";
 import { getGrejForRecipe } from "@/lib/grej";
 import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
+import { getRecipePriceRunnerQuery } from "@/lib/recipe-pricerunner-defaults";
 import { recipeRatingKey } from "@/lib/recipe-ratings/format";
 import { getCachedRecipeRatingSummary } from "@/lib/recipe-ratings/store";
 import {
@@ -83,7 +84,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
   );
   const wineOffer = getWineAffiliateOfferForRecipe(recipe);
   const groceryOffer = getGroceryAffiliateOfferForRecipe(recipe);
-  const showAirfryerPriceRunner = recipe.category === "airfryer";
+  const priceRunnerQuery = getRecipePriceRunnerQuery(recipe.category);
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
   const ratingKey = recipeRatingKey(recipe.category, recipe.slug);
@@ -241,7 +242,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
 
             {(affiliateOffer ||
               relatedGrej.length > 0 ||
-              showAirfryerPriceRunner) && (
+              priceRunnerQuery) && (
               <section className="mt-14 text-left" aria-labelledby="grej-heading">
                 <h2
                   id="grej-heading"
@@ -252,8 +253,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
                 {affiliateOffer ? (
                   <AffiliateCta offer={affiliateOffer} className="mt-0 mb-6" />
                 ) : null}
-                {showAirfryerPriceRunner ? (
-                  <PriceRunnerWidget query="Philips 3000 Series NA352" />
+                {priceRunnerQuery ? (
+                  <PriceRunnerWidget query={priceRunnerQuery} />
                 ) : null}
                 {relatedGrej.length > 0 ? (
                   <ul className="space-y-3">
