@@ -12,8 +12,8 @@ interface PriceRunnerWidgetProps {
 }
 
 /**
- * PriceRunner-priser: SSR-forhandlerliste (pålidelig) + officiel widget som bonus.
- * Nye produkter med få tilbud (fx CRISPi DualZone) viser stadig mindst ét klart tilbud.
+ * PriceRunner-priser: SSR-forhandlerliste som primær UI.
+ * Officiel publisher-widget kun som fallback når scrapen ikke returnerer tilbud.
  */
 export async function PriceRunnerWidget({
   query,
@@ -95,14 +95,14 @@ export async function PriceRunnerWidget({
             </li>
           ))}
         </ul>
-      ) : null}
-
-      <div className="bg-bone p-2 sm:p-3">
-        <PriceRunnerOfficialWidget
-          productId={productId}
-          fallbackHref={productHref}
-        />
-      </div>
+      ) : (
+        <div className="bg-bone p-2 sm:p-3">
+          <PriceRunnerOfficialWidget
+            productId={productId}
+            fallbackHref={productHref}
+          />
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-bone/10 px-5 py-3 text-[12px]">
         <a
