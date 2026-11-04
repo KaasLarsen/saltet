@@ -29,6 +29,16 @@ en mere robust produktionsstore.
 2. Tilføj et billede i `public/recipes/[kategori]/min-opskrift.jpg`
 3. Commit og push til `main` — Vercel deployer automatisk
 
+### Opskriftsbilleder (hero)
+
+Hero-fotos skal være **hjemmekøkken / photojournalism** — blødt vindueslys, ujævn plating, reel tekstur — ikke poleret stock eller blank AI-cookbook.
+
+Fuld brief, prompt-skabelon og workflow: [`scripts/recipe-image-style.md`](scripts/recipe-image-style.md).
+
+- Filnavn ved generering: `{kategori}--{slug}.jpg`
+- Kopiér: `node scripts/copy-generated-images.mjs`
+- Verificér: `npm run verify:images`
+
 ### MDX-format
 
 ```yaml
@@ -150,7 +160,7 @@ public/recipes/         # Opskriftsbilleder
 |------------------|----------|-----------------------------------------------|
 | Domæne DNS       | Fra dig  | Peg A/CNAME records som beskrevet ovenfor     |
 | Opskrift-tekster | Løbende  | Erstat AI-udkast med dine egne opskrifter     |
-| Billeder         | Løbende  | Erstat med egne fotos for bedst SEO           |
+| Billeder         | Løbende  | Egne fotos bedst til SEO; AI-heroes kun i stil fra `scripts/recipe-image-style.md` |
 | Logo/brand       | Valgfrit | Tekst-logo "Saltet" bruges indtil videre      |
 | Search Console   | Fra dig  | Verificér domæne og indsend sitemap           |
 
@@ -161,4 +171,7 @@ npm run dev      # Udvikling
 npm run build    # Production build
 npm run start    # Kør production lokalt
 npm run lint     # ESLint
+npm run verify:images  # Unikke opskriftsbilleder + path-match
 ```
+
+Billedstil for nye heroes: [`scripts/recipe-image-style.md`](scripts/recipe-image-style.md).
