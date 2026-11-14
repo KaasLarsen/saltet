@@ -13,6 +13,8 @@ const topicRedirects = TOPIC_NAV.flatMap((topic) => {
 const nextConfig: NextConfig = {
   staticPageGenerationTimeout: 180,
   images: {
+    // Hold optimizer-varianter i CDN længere — undgår gen-fetch ved crawl-bølger.
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     qualities: [75],
     remotePatterns: [
       { protocol: "https", hostname: "owp.klarna.com" },

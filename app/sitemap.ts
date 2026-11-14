@@ -8,7 +8,7 @@ import { getAllFejlfinding } from "@/lib/fejlfinding";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { getAllRecipes, getRecipesByCategory } from "@/lib/recipes";
-import { getBrowseTags, getRecipesByTagSlug } from "@/lib/tags";
+import { getIndexableBrowseTags, getRecipesByTagSlug } from "@/lib/tags";
 import { absoluteUrl } from "@/lib/seo";
 
 /**
@@ -75,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const grej = getAllGrej();
   const anmeldelser = getAllAnmeldelser();
   const fejlfinding = getAllFejlfinding();
-  const tags = getBrowseTags().filter((tag) => tag.count >= 2);
+  const tags = getIndexableBrowseTags();
   const categorySlugs = getAllCategorySlugs();
   const holidaySlugs = getAllHolidaySlugs();
   const seasonSlugs = getAllSeasonSlugs();

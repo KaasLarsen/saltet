@@ -13,6 +13,9 @@ export interface TagInfo {
   count: number;
 }
 
+/** Min. opskrifter før et browse-tag må i sitemap, /tags-indeks og SSG. */
+export const MIN_BROWSE_TAG_COUNT = 2;
+
 export function getAllTags(): TagInfo[] {
   const counts = new Map<string, { label: string; count: number }>();
 
@@ -40,6 +43,20 @@ export function getBrowseTags(): TagInfo[] {
       !isSeasonTagSlug(tag.slug) &&
       !isTopicTagSlug(tag.slug)
   );
+}
+
+/** Browse-tags der må crawles/listes (matcher sitemap-tærsklen). */
+export function getIndexableBrowseTags(
+  minCount: number = MIN_BROWSE_TAG_COUNT
+): TagInfo[] {
+  return getBrowseTags().filter((tag) => tag.count >= minCount);
+}
+
+export function isIndexableBrowseTag(
+  tag: TagInfo,
+  minCount: number = MIN_BROWSE_TAG_COUNT
+): boolean {
+  return tag.count >= minCount;
 }
 
 export function getTagBySlug(slug: string): TagInfo | undefined {

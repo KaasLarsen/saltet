@@ -6,9 +6,11 @@ import { holidayForTagSlug } from "@/lib/holiday-nav";
 import { seasonForTagSlug } from "@/lib/season-nav";
 import { topicForTagSlug } from "@/lib/topic-nav";
 import {
-  getBrowseTags,
+  getIndexableBrowseTags,
   getRecipesByTagSlug,
   getTagBySlug,
+  isIndexableBrowseTag,
+  MIN_BROWSE_TAG_COUNT,
 } from "@/lib/tags";
 import { toRecipeListItem } from "@/lib/recipes";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
@@ -18,7 +20,7 @@ interface TagPageProps {
 }
 
 export async function generateStaticParams() {
-  return getBrowseTags().map((t) => ({ tag: t.slug }));
+  return getIndexableBrowseTags().map((t) => ({ tag: t.slug }));
 }
 
 export async function generateMetadata({
@@ -41,7 +43,7 @@ export async function generateMetadata({
   }
 
   const tag = getTagBySlug(tagSlug);
-  if (!tag) return {};
+  if (!tag || !isIndexableBrowseTag(tag)) return {};
 
   const title = `Opskrifter med tagget “${tag.label}”`;
   const description = `Se alle opskrifter på ${siteConfig.name} tagged med ${tag.label}.`;
@@ -75,6 +77,11 @@ export default async function TagPage({ params }: TagPageProps) {
 
   const tag = getTagBySlug(tagSlug);
   if (!tag) notFound();
+
+  // Tynde tags (1 opskrift) holdes ude af crawl-fladen — stadig OK via direkte link.
+  if (tag.count < MIN_BROWSE_TAG_COUNT) {
+    notFound();
+  }
 
   const recipes = getRecipesByTagSlug(tagSlug).map(toRecipeListItem);
 
