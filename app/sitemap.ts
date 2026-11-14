@@ -4,6 +4,7 @@ import { getAllHolidaySlugs, getRecipesByHoliday } from "@/lib/holidays";
 import { getAllSeasonSlugs, getRecipesBySeason } from "@/lib/seasons";
 import { getAllTopicSlugs, getRecipesByTopic } from "@/lib/topics";
 import { getAllAnmeldelser } from "@/lib/anmeldelser";
+import { getAllFejlfinding } from "@/lib/fejlfinding";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { getAllRecipes, getRecipesByCategory } from "@/lib/recipes";
@@ -17,6 +18,7 @@ import { absoluteUrl } from "@/lib/seo";
  * - Guides: auto fra content/guides/*.mdx
  * - Grej: auto fra content/grej/*.mdx
  * - Anmeldelser: auto fra content/anmeldelser/*.mdx
+ * - Fejlfinding: auto fra content/fejlfinding/*.mdx
  * - Kategorier: auto fra lib/categories + content/recipes/*
  * - Højtider: auto fra lib/holidays
  * - Sæsoner: auto fra lib/seasons
@@ -31,6 +33,7 @@ const STATIC_ROUTES: {
 }[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/opskrifter", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/fejlfinding", changeFrequency: "weekly", priority: 0.92 },
   { path: "/guides", changeFrequency: "weekly", priority: 0.88 },
   { path: "/grej", changeFrequency: "weekly", priority: 0.88 },
   { path: "/anmeldelser", changeFrequency: "weekly", priority: 0.88 },
@@ -71,6 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const guides = getAllGuides();
   const grej = getAllGrej();
   const anmeldelser = getAllAnmeldelser();
+  const fejlfinding = getAllFejlfinding();
   const tags = getBrowseTags().filter((tag) => tag.count >= 2);
   const categorySlugs = getAllCategorySlugs();
   const holidaySlugs = getAllHolidaySlugs();
@@ -82,6 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...guides.map((g) => g.updatedAt ?? g.publishedAt),
     ...grej.map((g) => g.updatedAt ?? g.publishedAt),
     ...anmeldelser.map((a) => a.updatedAt ?? a.publishedAt),
+    ...fejlfinding.map((f) => f.updatedAt ?? f.publishedAt),
   ]);
 
   const staticPages: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
@@ -154,6 +159,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.82,
   }));
 
+  const fejlfindingPages: MetadataRoute.Sitemap = fejlfinding.map((item) => ({
+    url: absoluteUrl(`/fejlfinding/${item.slug}`),
+    lastModified: new Date(item.updatedAt ?? item.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.86,
+  }));
+
   return [
     ...staticPages,
     ...categoryPages,
@@ -165,5 +177,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...guidePages,
     ...grejPages,
     ...anmeldelsePages,
+    ...fejlfindingPages,
   ];
 }

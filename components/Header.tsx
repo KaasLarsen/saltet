@@ -6,6 +6,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { SaltShakerMark } from "@/components/SaltShakerMark";
 import { ANMELDELSE_NAV } from "@/lib/anmeldelse-nav";
 import { CATEGORY_NAV } from "@/lib/category-nav";
+import { FEJLFINDING_GEAR_NAV } from "@/lib/fejlfinding-nav";
 import { GREJ_CATEGORY_NAV } from "@/lib/grej-categories";
 import { GUIDE_CATEGORY_NAV } from "@/lib/guide-category-nav";
 import { HOLIDAY_NAV } from "@/lib/holiday-nav";
@@ -17,9 +18,23 @@ type NavItem = {
   href: string;
   label: string;
   children?: NavChild[];
+  /** Fremhævet SOS-nødknap (wood). */
+  variant?: "sos";
 };
 
 const navItems: NavItem[] = [
+  {
+    href: "/fejlfinding",
+    label: "SOS: Red min mad",
+    variant: "sos",
+    children: [
+      { href: "/fejlfinding", label: "Alle fejlfindinger" },
+      ...FEJLFINDING_GEAR_NAV.map((g) => ({
+        href: `/fejlfinding?grej=${g.slug}`,
+        label: g.name,
+      })),
+    ],
+  },
   {
     href: "/opskrifter",
     label: "Opskrifter",
@@ -301,6 +316,7 @@ export function Header() {
             const sectionActive = pathIsActive(pathname, item.href);
             const dropdownOpen = desktopOpenHref === item.href;
             const dropdownId = `${menuId}-desktop-${item.href.replace(/\W+/g, "-")}`;
+            const isSos = item.variant === "sos";
 
             if (!item.children?.length) {
               return (
@@ -308,9 +324,13 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={`rounded-lg px-2.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
-                    sectionActive
-                      ? "bg-herb text-iron"
-                      : "text-bone/55 hover:bg-bone/10 hover:text-bone"
+                    isSos
+                      ? sectionActive
+                        ? "bg-wood text-iron ring-2 ring-wood/40"
+                        : "bg-wood/90 text-iron hover:bg-wood"
+                      : sectionActive
+                        ? "bg-herb text-iron"
+                        : "text-bone/55 hover:bg-bone/10 hover:text-bone"
                   }`}
                 >
                   {item.label}
@@ -331,9 +351,13 @@ export function Header() {
                 <button
                   type="button"
                   className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
-                    sectionActive || dropdownOpen
-                      ? "bg-herb text-iron"
-                      : "text-bone/55 hover:bg-bone/10 hover:text-bone"
+                    isSos
+                      ? sectionActive || dropdownOpen
+                        ? "bg-wood text-iron ring-2 ring-wood/50"
+                        : "bg-wood/90 text-iron hover:bg-wood"
+                      : sectionActive || dropdownOpen
+                        ? "bg-herb text-iron"
+                        : "text-bone/55 hover:bg-bone/10 hover:text-bone"
                   }`}
                   aria-expanded={dropdownOpen}
                   aria-haspopup="menu"
@@ -453,14 +477,19 @@ export function Header() {
             <ul className="flex flex-col gap-1">
               {navItems.map((item, index) => {
                 const sectionActive = pathIsActive(pathname, item.href);
+                const isSos = item.variant === "sos";
 
                 if (!item.children?.length) {
                   return (
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className={`block rounded-xl border-2 border-bone/10 bg-ash/60 px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-bone/80 transition-colors hover:border-herb hover:text-herb ${
+                        className={`block rounded-xl border-2 px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
                           open ? "animate-rise" : ""
+                        } ${
+                          isSos
+                            ? "border-wood bg-wood text-iron hover:bg-wood/90"
+                            : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
                         }`}
                         style={
                           open
@@ -485,9 +514,13 @@ export function Header() {
                       className={`flex w-full items-center justify-between rounded-xl border-2 px-4 py-3 text-left text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
                         open ? "animate-rise" : ""
                       } ${
-                        sectionActive || sectionOpen
-                          ? "border-herb bg-herb/15 text-herb"
-                          : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
+                        isSos
+                          ? sectionActive || sectionOpen
+                            ? "border-wood bg-wood text-iron"
+                            : "border-wood/60 bg-wood/90 text-iron hover:bg-wood"
+                          : sectionActive || sectionOpen
+                            ? "border-herb bg-herb/15 text-herb"
+                            : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
                       }`}
                       style={
                         open

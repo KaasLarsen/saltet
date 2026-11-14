@@ -189,3 +189,49 @@ export interface AnmeldelseFrontmatter {
 export interface Anmeldelse extends AnmeldelseFrontmatter {
   content: string;
 }
+
+/** Grej-kategori for SOS-fejlfinding. */
+export type FejlfindingGear =
+  | "airfryer"
+  | "stobejern"
+  | "plancha"
+  | "trykkoger"
+  | "ovn"
+  | "generelt";
+
+/** Én fejl i den faste tre-trins-skabelon. */
+export interface FejlMatrixRow {
+  /** Hvad brugeren ser/smager lige nu. */
+  symptom: string;
+  /** Kemisk/termisk årsag. */
+  physics: string;
+  /** Redning lige nu. */
+  now: string;
+  /** Forebyggelse næste gang. */
+  nextTime: string;
+}
+
+export interface FejlfindingFrontmatter {
+  title: string;
+  slug: string;
+  description: string;
+  gear: FejlfindingGear;
+  /** Kort symptom til hub-kort (fx «Paneringen falder af»). */
+  symptom: string;
+  image: string;
+  imageAlt: string;
+  /** Valgfri «kiks»-foto til fail/success-compare. */
+  failImage?: string;
+  failImageAlt?: string;
+  publishedAt: string;
+  updatedAt?: string;
+  matrices: FejlMatrixRow[];
+  faq: GuideFaq[];
+  relatedRecipes: string[];
+  relatedGuides?: string[];
+  relatedGrej?: string[];
+}
+
+export interface Fejlfinding extends FejlfindingFrontmatter {
+  content: string;
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import type { Anmeldelse, Grej, Guide, Recipe } from "./types";
+import type { Anmeldelse, Fejlfinding, Grej, Guide, Recipe } from "./types";
 import { getCategoryName } from "./categories";
+import { getFejlfindingGearName } from "./fejlfinding-nav";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://saltet.dk";
@@ -451,5 +452,92 @@ export function buildWebsiteJsonLd(): object {
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: "da-DK",
+  };
+}
+
+export function buildFejlfindingIndexMetadata(): Metadata {
+  const url = absoluteUrl("/fejlfinding");
+  const title = "SOS: Red min mad — Fejlfinding";
+  const description =
+    "Hjælp, min session fejlede! Ultra-scannbare fejlfindings-guides til airfryer, støbejern, plancha og trykkoger — symptom, fysik og action-plan. Drop panikken, red maden.";
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${title} | Saltet`,
+      description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "website",
+    },
+  };
+}
+
+export function buildFejlfindingMetadata(item: Fejlfinding): Metadata {
+  const url = absoluteUrl(`/fejlfinding/${item.slug}`);
+
+  return {
+    title: `${item.title} | Saltet`,
+    description: item.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: item.title,
+      description: item.description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "article",
+      publishedTime: item.publishedAt,
+      modifiedTime: item.updatedAt ?? item.publishedAt,
+      images: [
+        {
+          url: absoluteUrl(item.image),
+          alt: item.imageAlt,
+          width: 1200,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: item.title,
+      description: item.description,
+      images: [absoluteUrl(item.image)],
+    },
+  };
+}
+
+export function buildFejlfindingArticleJsonLd(item: Fejlfinding): object {
+  const url = absoluteUrl(`/fejlfinding/${item.slug}`);
+  const gearName = getFejlfindingGearName(item.gear);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item.title,
+    description: item.description,
+    image: [absoluteUrl(item.image)],
+    datePublished: item.publishedAt,
+    dateModified: item.updatedAt ?? item.publishedAt,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    inLanguage: "da-DK",
+    keywords: ["fejlfinding", gearName, item.symptom].join(", "),
+    articleSection: gearName,
   };
 }

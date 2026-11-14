@@ -15,6 +15,7 @@ import { RecipeEquipmentIcons } from "@/components/RecipeEquipmentIcons";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { RecipeRating } from "@/components/RecipeRating";
 import { RecipeTags } from "@/components/RecipeTags";
+import { RecipeFejlfindingCta } from "@/components/fejlfinding/RecipeFejlfindingCta";
 import { RecipeContent } from "@/components/mdx/RecipeContent";
 import { Ingredients } from "@/components/mdx/RecipeMDX";
 import { Steps } from "@/components/mdx/RecipeMDX";
@@ -24,6 +25,7 @@ import {
   getWineAffiliateOfferForRecipe,
 } from "@/lib/affiliate";
 import { getCategoryName } from "@/lib/categories";
+import { getFejlfindingForRecipe } from "@/lib/fejlfinding";
 import {
   formatDate,
   formatDuration,
@@ -71,6 +73,10 @@ export default async function RecipePage({ params }: RecipePageProps) {
   if (!recipe) notFound();
 
   const related = getRelatedRecipes(recipe);
+  const relatedFejlfinding = getFejlfindingForRecipe(
+    recipe.category,
+    recipe.slug
+  );
   const mentionedInGuides = getGuidesMentioningRecipe(
     recipe.category,
     recipe.slug
@@ -244,6 +250,11 @@ export default async function RecipePage({ params }: RecipePageProps) {
             ) : null}
 
             <RecipeFaqSection items={recipe.faq} />
+
+            <RecipeFejlfindingCta
+              items={relatedFejlfinding}
+              recipeTitle={recipe.title}
+            />
 
             {(affiliateOffer ||
               relatedGrej.length > 0 ||

@@ -88,18 +88,49 @@ Emner er **ikke** tilberedningsmetoder. De er madtyper på tværs af metoder:
 - Tagget `sauce` på en opskrift linker til `/emner/sovs` (gamle `/tags/sauce` omdirigeres)
 - Tilføj emne-tags i opskriftens `tags` for at få den med. Listen står i [`lib/topic-nav.ts`](lib/topic-nav.ts) og [`lib/topics.ts`](lib/topics.ts).
 
+### Fejlfinding (SOS: Red min mad)
+
+Ultra-scannbare fejlfindings-artikler til panik-søgninger — fast tre-trins-format (symptom → fysik → action).
+
+1. Opret `content/fejlfinding/min-fejl.mdx`
+2. Genbrug gerne et opskriftsbillede i `image` (valgfrit `failImage` til kiks-foto)
+3. Udfyld `matrices` (2–5 rækker) + `relatedRecipes` (`kategori/slug`) — så vises SOS-CTA automatisk under opskriften
+4. Hub: `/fejlfinding` · artikel: `/fejlfinding/min-fejl` · grej-filter: `/fejlfinding?grej=airfryer`
+
+```yaml
+---
+title: "Hvorfor …?"
+slug: min-fejl
+description: "Kort SEO-beskrivelse."
+gear: airfryer   # airfryer | stobejern | plancha | trykkoger | ovn | generelt
+symptom: "Det brugeren oplever"
+image: /recipes/airfryer/eksempel.jpg
+imageAlt: "…"
+publishedAt: 2026-11-14
+matrices:
+  - symptom: "…"
+    physics: "…"
+    now: "…"
+    nextTime: "…"
+faq: []
+relatedRecipes:
+  - airfryer/eksempel
+---
+```
+
 ## SEO
 
 Sitet genererer automatisk:
 
-- `sitemap.xml` — **alle** offentlige sider: forside, om, opskrifter, kategorier, højtider, emner, tags og enkeltopskrifter
+- `sitemap.xml` — **alle** offentlige sider: forside, om, opskrifter, kategorier, højtider, emner, tags, fejlfinding og enkeltopskrifter
 - `robots.txt`
 - JSON-LD Recipe + FAQ schema på hver opskriftsside
+- JSON-LD Article + FAQ på fejlfinding
 - BreadcrumbList schema
 - Open Graph og Twitter cards
 - Canonical URLs
 
-Når du tilføjer en **ny fast side** (fx `/kontakt`), skal stien også tilføjes i `STATIC_ROUTES` i [`app/sitemap.ts`](app/sitemap.ts). Opskrifter, tags, højtider, emner og kategorier opdateres automatisk.
+Når du tilføjer en **ny fast side** (fx `/kontakt`), skal stien også tilføjes i `STATIC_ROUTES` i [`app/sitemap.ts`](app/sitemap.ts). Opskrifter, tags, højtider, emner, fejlfinding og kategorier opdateres automatisk.
 
 Test rich results: [Google Rich Results Test](https://search.google.com/test/rich-results)
 
@@ -140,6 +171,7 @@ Vercel udsteder SSL automatisk.
 app/                    # Next.js sider
 components/             # UI-komponenter
 content/recipes/        # MDX opskrifter
+content/fejlfinding/    # SOS-fejlfindings-artikler
 lib/                    # Parser, SEO, kategorier
 public/recipes/         # Opskriftsbilleder
 ```
