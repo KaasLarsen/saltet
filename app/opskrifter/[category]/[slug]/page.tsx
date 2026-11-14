@@ -11,6 +11,7 @@ import {
 } from "@/components/KetoDietCta";
 import { PriceRunnerWidget } from "@/components/PriceRunnerWidget";
 import { RecipeCard } from "@/components/RecipeCard";
+import { RecipeEquipmentIcons } from "@/components/RecipeEquipmentIcons";
 import { RecipeFaqSection } from "@/components/RecipeFaq";
 import { RecipeRating } from "@/components/RecipeRating";
 import { RecipeTags } from "@/components/RecipeTags";
@@ -30,6 +31,7 @@ import {
 } from "@/lib/format";
 import { getGrejForRecipe } from "@/lib/grej";
 import { getGuidesMentioningRecipe } from "@/lib/guide-nav";
+import { resolveEquipment } from "@/lib/recipe-equipment";
 import { getRecipePriceRunnerQuery } from "@/lib/recipe-pricerunner-defaults";
 import { recipeRatingKey } from "@/lib/recipe-ratings/format";
 import { getCachedRecipeRatingSummary } from "@/lib/recipe-ratings/store";
@@ -85,6 +87,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
   const wineOffer = getWineAffiliateOfferForRecipe(recipe);
   const groceryOffer = getGroceryAffiliateOfferForRecipe(recipe);
   const priceRunnerQuery = getRecipePriceRunnerQuery(recipe.category);
+  const equipment = resolveEquipment(recipe);
   const categoryName = getCategoryName(recipe.category);
   const recipeUrl = absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`);
   const ratingKey = recipeRatingKey(recipe.category, recipe.slug);
@@ -196,6 +199,8 @@ export default async function RecipePage({ params }: RecipePageProps) {
                   </dd>
                 </div>
               </dl>
+
+              <RecipeEquipmentIcons items={equipment} />
 
               <RecipeRating
                 kind="recipe"

@@ -23,8 +23,21 @@ export interface RecipeListItem {
   featured?: boolean;
 }
 
+/** Grej vist som ikon i opskriftens meta-header. */
+export interface RecipeEquipmentItem {
+  /** Stabilt id (airfryer, meater, plancha, …). */
+  id: string;
+  /** Valgfri kort label — ellers default fra id. */
+  label?: string;
+}
+
 export interface RecipeFrontmatter extends RecipeListItem {
   relatedGrej?: string[];
+  /**
+   * Specifikt grej til meta-ikoner. Tom/udefineret → kategori-default.
+   * Brug label til præcise callouts (fx «8L Airfryer», «250°C Plancha»).
+   */
+  equipment?: RecipeEquipmentItem[];
   /** Id fra lib/affiliate.ts — eksplicit grej/produkt-CTA på opskriften. */
   affiliateProduct?: string;
   /** Direkte dhwines.dk-produkt-URL — wrap'es i Partner-ads tracking. */
