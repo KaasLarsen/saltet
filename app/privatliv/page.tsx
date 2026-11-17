@@ -51,6 +51,19 @@ export default function PrivacyPage() {
           sælger ikke din e-mail eller opretter profiler selv.
         </p>
         <p>
+          Google AdSense kan vise annoncer på sitet. Når det sker, kan Google
+          sætte cookies og behandle data til annoncer efter{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Googles privatlivspolitik
+          </a>
+          .
+        </p>
+        <p>
           Vi samarbejder også med Partner-ads og andre affiliate-partnere.
           Produktanbefalinger og links på opskrifter og grej-sider kan være
           betalte eller provisionsbaserede. Når du klikker videre, behandler
