@@ -186,26 +186,38 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     productId: "3208440524",
     categoryId: "81",
     label: "Ninja Foodi FlexDrawer AF500EU",
+    slugPath:
+      "Frituregryder/Ninja-Foodi-FlexDrawer-AF500EU-Sammenlign-Priser",
   },
-  "Cosori Dual Blaze": {
-    productId: "3202194825",
-    categoryId: "81",
-    label: "Cosori Dual Blaze CAF-P583S",
-  },
+  // Cosori Dual Blaze CAF-P583S: ikke længere aktivt PR-produkt (gammelt ID
+  // 3202194825 redirectede til kategorien). Widget/CTA bruger søgning.
   "Ninja Double Stack XL": {
     productId: "3434632009",
     categoryId: "81",
     label: "Ninja Double Stack XL SL400EU",
+    slugPath:
+      "Frituregryder/Ninja-Double-Stack-XL-SL400-Sammenlign-Priser",
+  },
+  "Onyx Cookware Airfryer 8L": {
+    productId: "3436707506",
+    categoryId: "81",
+    label: "ONYX Cookware Airfryer 8l",
+    slugPath:
+      "Frituregryder-Airfryere/ONYX-Cookware-Airfryer-8l-Sammenlign-Priser",
   },
   "airfryer 5 liter": {
     productId: "3231353404",
     categoryId: "81",
     label: "Philips 3000 Series NA352",
+    slugPath:
+      "Frituregryder/Philips-3000-Series-NA352-00-Sammenlign-Priser",
   },
   "Philips 3000 Series NA352": {
     productId: "3231353404",
     categoryId: "81",
     label: "Philips 3000 Series NA352",
+    slugPath:
+      "Frituregryder/Philips-3000-Series-NA352-00-Sammenlign-Priser",
   },
   "Siemens iQ700 HB776": {
     productId: "3211075720",
