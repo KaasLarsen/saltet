@@ -346,6 +346,106 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "cosori-dual-blaze-twinfry": {
+    id: "cosori-dual-blaze-twinfry",
+    href: fromPriceRunner("Cosori Dual Blaze TwinFry"),
+    label: "Cosori Dual Blaze TwinFry (CAF-TF101S)",
+    merchant: "via PriceRunner",
+    description:
+      "10 L dual-skuffe med MegaZone og over-/undervarme — direkte duel til FlexDrawer.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "philips-na555-dual-basket": {
+    id: "philips-na555-dual-basket",
+    href: fromPriceRunner("Philips 5000 Series NA555"),
+    label: "Philips 5000 Series Dual Basket (NA555)",
+    merchant: "via PriceRunner",
+    description:
+      "Dobbeltskuffe med damp i den ene kurv — saftigere kød og grønt samtidigt.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "tefal-dual-easy-fry-ey901n": {
+    id: "tefal-dual-easy-fry-ey901n",
+    href: fromPriceRunner("Tefal Dual Easy Fry EY901N"),
+    label: "Tefal Dual Easy Fry & Grill (EY901N)",
+    merchant: "via PriceRunner",
+    description:
+      "Asymmetriske skuffer og grillrist — en af Nordens mest solgte dual-zone-modeller.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-foodi-max-dual-zone-af400": {
+    id: "ninja-foodi-max-dual-zone-af400",
+    href: fromPriceRunner("Ninja Foodi Max Dual Zone AF400"),
+    label: "Ninja Foodi Max Dual Zone (AF400EU)",
+    merchant: "via PriceRunner",
+    description:
+      "Klassisk 9,5 L dobbeltskuffe med Dual Zone og Max Crisp — stadig tung dansk søgevolumen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-max-pro-af180": {
+    id: "ninja-max-pro-af180",
+    href: fromPriceRunner("Ninja Max Pro AF180"),
+    label: "Ninja Max Pro (AF180EU)",
+    merchant: "via PriceRunner",
+    description:
+      "Kompakt 6,2 L single-basket med Max Crisp op til 240 °C — Maillard-skorpe uden dual zone.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "cosori-turboblaze": {
+    id: "cosori-turboblaze",
+    href: fromPriceRunner("Cosori TurboBlaze"),
+    label: "Cosori TurboBlaze (6 L)",
+    merchant: "via PriceRunner",
+    description:
+      "DC-motor og fem blæserhastigheder — hurtigere, mere præcis luftstrøm i én 6 L-kurv.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "philips-hd9880-combi-7000": {
+    id: "philips-hd9880-combi-7000",
+    href: fromPriceRunner("Philips Airfryer Combi 7000 HD9880"),
+    label: "Philips Airfryer Combi 7000 (HD9880/90)",
+    merchant: "via PriceRunner",
+    description:
+      "Topmodel med stegesonde og Rapid CombiAir — XXL single basket til store stykker.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "aiviq-premio-dual": {
+    id: "aiviq-premio-dual",
+    href: fromPriceRunner("AIVIQ Premio Dual AAF-D321"),
+    label: "AIVIQ Premio Dual (AAF-D321)",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk prisfavorit i dual-zone: to skuffer, MEAL-sync og skarp Black Friday-pris.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "onyx-airfryer-dual-11l": {
+    id: "onyx-airfryer-dual-11l",
+    href: fromPriceRunner("Onyx Cookware Airfryer Dual 11L"),
+    label: "Onyx Cookware Airfryer Dual 11L",
+    merchant: "via PriceRunner",
+    description:
+      "To skuffer à 5,5 L med sync — dual-udgaven af den populære Onyx 8L.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "instant-vortex-plus-dual-clearcook": {
+    id: "instant-vortex-plus-dual-clearcook",
+    href: fromPriceRunner("Instant Vortex Plus Dual ClearCook"),
+    label: "Instant Vortex Plus Dual ClearCook",
+    merchant: "via PriceRunner",
+    description:
+      "Dual-skuffer med rude (ClearCook) og lugtfilter — synlig tilberedning uden at åbne.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "siemens-iq700-hb776": {
     id: "siemens-iq700-hb776",
     href: fromPriceRunner("Siemens iQ700 HB776"),

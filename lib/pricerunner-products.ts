@@ -161,6 +161,72 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     categoryId: "81",
     label: "Ninja Foodi Max Dual Zone AF400",
   },
+  "Ninja Foodi Max Dual Zone AF400": {
+    productId: "3200338672",
+    categoryId: "81",
+    label: "Ninja Foodi Max Dual Zone AF400EU",
+    slugPath:
+      "Frituregryder/Ninja-Foodi-Max-Dual-Zone-AF400-Black-Sammenlign-Priser",
+  },
+  "Ninja Max Pro AF180": {
+    productId: "3277863044",
+    categoryId: "81",
+    label: "Ninja Max Pro AF180EU",
+    slugPath:
+      "Frituregryder/Ninja-Air-Fryer-MAX-Heissluft-Fritteuse-Sammenlign-Priser",
+  },
+  "Cosori Dual Blaze TwinFry": {
+    productId: "3320113707",
+    categoryId: "81",
+    label: "Cosori Dual Blaze TwinFry CAF-TF101S",
+    slugPath: "Frituregryder/Cosori-CAF-TF101S-Sammenlign-Priser",
+  },
+  "Cosori TurboBlaze": {
+    productId: "3270703528",
+    categoryId: "81",
+    label: "Cosori TurboBlaze CAF-DC602-KEUR",
+    slugPath: "Frituregryder/Cosori-CAF-DC-602-KEUR-Sammenlign-Priser",
+  },
+  "Philips 5000 Series NA555": {
+    productId: "3390160838",
+    categoryId: "81",
+    label: "Philips 5000 Series NA555/00",
+    slugPath:
+      "Frituregryder/Philips-5000-Series-NA555-00-Sammenlign-Priser",
+  },
+  "Philips Airfryer Combi 7000 HD9880": {
+    productId: "3207050552",
+    categoryId: "81",
+    label: "Philips Airfryer Combi 7000 HD9880/90",
+    slugPath: "Frituregryder/Philips-HD9880-Sammenlign-Priser",
+  },
+  "Tefal Dual Easy Fry EY901N": {
+    productId: "3316371575",
+    categoryId: "81",
+    label: "Tefal Dual Easy Fry & Grill EY901N",
+    slugPath: "Frituregryder/Tefal-EY901N-Dual-Easy-Fry-Sammenlign-Priser",
+  },
+  "AIVIQ Premio Dual AAF-D321": {
+    productId: "3206392362",
+    categoryId: "81",
+    label: "AIVIQ Premio Dual AAF-D321",
+    slugPath:
+      "Frituregryder/AIVIQ-Appliances-Premio-Dual-AAF-D321-Sammenlign-Priser",
+  },
+  "Onyx Cookware Airfryer Dual 11L": {
+    productId: "3442136394",
+    categoryId: "81",
+    label: "ONYX Cookware Airfryer Dual 11l",
+    slugPath:
+      "Frituregryder-Airfryere/ONYX-Cookware-Airfryer-Dual-11l-Sammenlign-Priser",
+  },
+  "Instant Vortex Plus Dual ClearCook": {
+    productId: "3201744014",
+    categoryId: "81",
+    label: "Instant Vortex Plus Dual ClearCook",
+    slugPath:
+      "Frituregryder/Instant-Pot-Vortex-Plus-8-Dual-Sammenlign-Priser",
+  },
   "Ninja CRISPi 4-i-1": {
     productId: "3418187538",
     categoryId: "81",
