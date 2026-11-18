@@ -14,69 +14,100 @@ import { SEASON_NAV } from "@/lib/season-nav";
 import { TOPIC_NAV } from "@/lib/topic-nav";
 
 type NavChild = { href: string; label: string };
+
+type NavGroup = {
+  id: string;
+  label: string;
+  /** Hub-link øverst i gruppen (fx «Alle emner»). */
+  hubHref?: string;
+  hubLabel?: string;
+  children: NavChild[];
+};
+
 type NavItem = {
   href: string;
   label: string;
   children?: NavChild[];
-  /** Fremhævet SOS-nødknap (wood). */
-  variant?: "sos";
+  groups?: NavGroup[];
+  /** Path-prefixes der også markerer sektionen aktiv (ud over href). */
+  activePrefixes?: string[];
+};
+
+const OPSKRIFTER_PREFIXES = [
+  "/opskrifter",
+  "/emner",
+  "/grej",
+  "/saeson",
+  "/hoejtider",
+] as const;
+
+const sosNav: NavItem = {
+  href: "/fejlfinding",
+  label: "SOS",
+  children: [
+    { href: "/fejlfinding", label: "Alle fejlfindinger" },
+    ...FEJLFINDING_GEAR_NAV.map((g) => ({
+      href: `/fejlfinding?grej=${g.slug}`,
+      label: g.name,
+    })),
+  ],
 };
 
 const navItems: NavItem[] = [
   {
-    href: "/fejlfinding",
-    label: "SOS: Red min mad",
-    variant: "sos",
-    children: [
-      { href: "/fejlfinding", label: "Alle fejlfindinger" },
-      ...FEJLFINDING_GEAR_NAV.map((g) => ({
-        href: `/fejlfinding?grej=${g.slug}`,
-        label: g.name,
-      })),
-    ],
-  },
-  {
     href: "/opskrifter",
     label: "Opskrifter",
-    children: [
-      { href: "/opskrifter", label: "Alle opskrifter" },
-      ...CATEGORY_NAV.map((c) => ({
-        href: `/opskrifter/${c.slug}`,
-        label: c.name,
-      })),
-    ],
-  },
-  {
-    href: "/emner",
-    label: "Emner",
-    children: [
-      { href: "/emner", label: "Alle emner" },
-      ...TOPIC_NAV.map((t) => ({
-        href: `/emner/${t.slug}`,
-        label: t.name,
-      })),
-    ],
-  },
-  {
-    href: "/guides",
-    label: "Guides",
-    children: [
-      { href: "/guides", label: "Alle guides" },
-      ...GUIDE_CATEGORY_NAV.map((g) => ({
-        href: `/guides?emne=${g.slug}`,
-        label: g.name,
-      })),
-    ],
-  },
-  {
-    href: "/grej",
-    label: "Grej",
-    children: [
-      { href: "/grej", label: "Alt grej" },
-      ...GREJ_CATEGORY_NAV.map((g) => ({
-        href: `/grej?kategori=${g.slug}`,
-        label: g.name,
-      })),
+    activePrefixes: [...OPSKRIFTER_PREFIXES],
+    children: [{ href: "/opskrifter", label: "Alle opskrifter" }],
+    groups: [
+      {
+        id: "kategorier",
+        label: "Kategorier",
+        children: CATEGORY_NAV.map((c) => ({
+          href: `/opskrifter/${c.slug}`,
+          label: c.name,
+        })),
+      },
+      {
+        id: "emner",
+        label: "Emner",
+        hubHref: "/emner",
+        hubLabel: "Alle emner",
+        children: TOPIC_NAV.map((t) => ({
+          href: `/emner/${t.slug}`,
+          label: t.name,
+        })),
+      },
+      {
+        id: "grej",
+        label: "Grej",
+        hubHref: "/grej",
+        hubLabel: "Alt grej",
+        children: GREJ_CATEGORY_NAV.map((g) => ({
+          href: `/grej?kategori=${g.slug}`,
+          label: g.name,
+        })),
+      },
+      {
+        id: "saeson",
+        label: "Sæson",
+        hubHref: "/saeson",
+        hubLabel: "Alle sæsoner",
+        children: SEASON_NAV.map((s) => ({
+          href: `/saeson/${s.slug}`,
+          label: s.name,
+        })),
+      },
+      {
+        id: "hoejtider",
+        label: "Højtider",
+        hubHref: "/hoejtider",
+        hubLabel: "Alle højtider",
+        children: HOLIDAY_NAV.map((h) => ({
+          href: `/hoejtider/${h.slug}`,
+          label: h.name,
+        })),
+      },
     ],
   },
   {
@@ -91,24 +122,13 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    href: "/saeson",
-    label: "Sæson",
+    href: "/guides",
+    label: "Guides",
     children: [
-      { href: "/saeson", label: "Alle sæsoner" },
-      ...SEASON_NAV.map((s) => ({
-        href: `/saeson/${s.slug}`,
-        label: s.name,
-      })),
-    ],
-  },
-  {
-    href: "/hoejtider",
-    label: "Højtider",
-    children: [
-      { href: "/hoejtider", label: "Alle højtider" },
-      ...HOLIDAY_NAV.map((h) => ({
-        href: `/hoejtider/${h.slug}`,
-        label: h.name,
+      { href: "/guides", label: "Alle guides" },
+      ...GUIDE_CATEGORY_NAV.map((g) => ({
+        href: `/guides?emne=${g.slug}`,
+        label: g.name,
       })),
     ],
   },
@@ -118,6 +138,13 @@ function pathIsActive(pathname: string, href: string, exact = false): boolean {
   const pathOnly = href.split("?")[0] ?? href;
   if (exact) return pathname === pathOnly;
   return pathname === pathOnly || pathname.startsWith(`${pathOnly}/`);
+}
+
+function sectionIsActive(pathname: string, item: NavItem): boolean {
+  if (item.activePrefixes?.length) {
+    return item.activePrefixes.some((prefix) => pathIsActive(pathname, prefix));
+  }
+  return pathIsActive(pathname, item.href);
 }
 
 function navChildIsActive(
@@ -135,7 +162,8 @@ function navChildIsActive(
     return (
       !searchParams.get("serie") &&
       !searchParams.get("emne") &&
-      !searchParams.get("kategori")
+      !searchParams.get("kategori") &&
+      !searchParams.get("grej")
     );
   }
 
@@ -178,6 +206,14 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
+function closeDesktopMenus(
+  setDesktopOpenHref: (value: string | null) => void,
+  setDesktopGroupId: (value: string | null) => void
+) {
+  setDesktopOpenHref(null);
+  setDesktopGroupId(null);
+}
+
 export function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -186,12 +222,17 @@ export function Header() {
   const menuScrollRef = useRef<HTMLDivElement>(null);
   const [openedPath, setOpenedPath] = useState<string | null>(null);
   const [desktopOpenHref, setDesktopOpenHref] = useState<string | null>(null);
+  const [desktopGroupId, setDesktopGroupId] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState<Record<string, boolean>>({});
+  const [mobileGroupOpen, setMobileGroupOpen] = useState<
+    Record<string, boolean>
+  >({});
   const [menuPath, setMenuPath] = useState(pathname);
   if (pathname !== menuPath) {
     setMenuPath(pathname);
     setOpenedPath(null);
     setDesktopOpenHref(null);
+    setDesktopGroupId(null);
   }
   const open = openedPath === pathname;
 
@@ -250,6 +291,7 @@ export function Header() {
       if (e.key === "Escape") {
         setOpenedPath(null);
         setDesktopOpenHref(null);
+        setDesktopGroupId(null);
       }
     }
 
@@ -264,6 +306,7 @@ export function Header() {
       const el = desktopNavRef.current;
       if (el && !el.contains(e.target as Node)) {
         setDesktopOpenHref(null);
+        setDesktopGroupId(null);
       }
     }
 
@@ -282,10 +325,417 @@ export function Header() {
   function handleLogoClick(event: React.MouseEvent<HTMLAnchorElement>) {
     setOpenedPath(null);
     setDesktopOpenHref(null);
+    setDesktopGroupId(null);
     if (pathname === "/") {
       event.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+  }
+
+  function toggleDesktopItem(href: string) {
+    setDesktopGroupId(null);
+    setDesktopOpenHref((current) => (current === href ? null : href));
+  }
+
+  function renderDesktopDropdown(item: NavItem, isSos = false) {
+    const sectionActive = sectionIsActive(pathname, item);
+    const dropdownOpen = desktopOpenHref === item.href;
+    const dropdownId = `${menuId}-desktop-${item.href.replace(/\W+/g, "-")}`;
+    const hasGroups = Boolean(item.groups?.length);
+    const allChild = item.children?.find((child) => child.href === item.href);
+    const flatChildren =
+      item.children?.filter((child) => child.href !== item.href) ?? [];
+    const wide = hasGroups || flatChildren.length > 6;
+
+    return (
+      <div key={item.href} className="relative">
+        <button
+          type="button"
+          className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
+            isSos
+              ? sectionActive || dropdownOpen
+                ? "bg-wood text-iron ring-2 ring-wood/50"
+                : "bg-wood/90 text-iron hover:bg-wood"
+              : sectionActive || dropdownOpen
+                ? "bg-herb text-iron"
+                : "text-bone/55 hover:bg-bone/10 hover:text-bone"
+          }`}
+          aria-expanded={dropdownOpen}
+          aria-haspopup="menu"
+          aria-controls={dropdownId}
+          onClick={() => toggleDesktopItem(item.href)}
+        >
+          {item.label}
+          <Chevron open={dropdownOpen} />
+        </button>
+
+        {dropdownOpen ? (
+          <div
+            id={dropdownId}
+            role="menu"
+            className={`absolute right-0 top-full z-50 mt-2 max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain rounded-xl border-2 border-bone/15 bg-iron py-1.5 shadow-lg shadow-black/30 ${
+              wide
+                ? "w-[min(28rem,calc(100vw-2.5rem))]"
+                : "w-56"
+            }`}
+          >
+            {allChild ? (
+              <Link
+                role="menuitem"
+                href={allChild.href}
+                className={dropdownItemClass(
+                  navChildIsActive(
+                    pathname,
+                    searchParams,
+                    allChild.href,
+                    item.href
+                  )
+                )}
+                onClick={() =>
+                  closeDesktopMenus(setDesktopOpenHref, setDesktopGroupId)
+                }
+              >
+                {allChild.label}
+              </Link>
+            ) : null}
+
+            {hasGroups ? (
+              <div className="mt-1 border-t border-bone/15 pt-1">
+                {item.groups!.map((group) => {
+                  const groupOpen = desktopGroupId === group.id;
+                  const groupPanelId = `${dropdownId}-group-${group.id}`;
+                  const groupWide = group.children.length > 6;
+
+                  return (
+                    <div key={group.id} className="px-1">
+                      <button
+                        type="button"
+                        className={`flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                          groupOpen
+                            ? "bg-bone/10 text-bone"
+                            : "text-bone/55 hover:bg-bone/10 hover:text-bone"
+                        }`}
+                        aria-expanded={groupOpen}
+                        aria-controls={groupPanelId}
+                        onClick={() =>
+                          setDesktopGroupId((current) =>
+                            current === group.id ? null : group.id
+                          )
+                        }
+                      >
+                        {group.label}
+                        <Chevron open={groupOpen} />
+                      </button>
+
+                      {groupOpen ? (
+                        <div id={groupPanelId} className="pb-1.5">
+                          {group.hubHref && group.hubLabel ? (
+                            <Link
+                              role="menuitem"
+                              href={group.hubHref}
+                              className={dropdownItemClass(
+                                navChildIsActive(
+                                  pathname,
+                                  searchParams,
+                                  group.hubHref,
+                                  group.hubHref
+                                )
+                              )}
+                              onClick={() =>
+                                closeDesktopMenus(
+                                  setDesktopOpenHref,
+                                  setDesktopGroupId
+                                )
+                              }
+                            >
+                              {group.hubLabel}
+                            </Link>
+                          ) : null}
+                          <div
+                            className={groupWide ? "grid grid-cols-2" : ""}
+                          >
+                            {group.children.map((child) => (
+                              <Link
+                                key={`${child.href}-${child.label}`}
+                                role="menuitem"
+                                href={child.href}
+                                className={dropdownItemClass(
+                                  navChildIsActive(
+                                    pathname,
+                                    searchParams,
+                                    child.href,
+                                    group.hubHref ?? item.href
+                                  )
+                                )}
+                                onClick={() =>
+                                  closeDesktopMenus(
+                                    setDesktopOpenHref,
+                                    setDesktopGroupId
+                                  )
+                                }
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <>
+                <div
+                  className="mx-2 my-1 border-t border-bone/15"
+                  aria-hidden
+                />
+                <div className={wide ? "grid grid-cols-2" : ""}>
+                  {flatChildren.map((child) => (
+                    <Link
+                      key={`${child.href}-${child.label}`}
+                      role="menuitem"
+                      href={child.href}
+                      className={dropdownItemClass(
+                        navChildIsActive(
+                          pathname,
+                          searchParams,
+                          child.href,
+                          item.href
+                        )
+                      )}
+                      onClick={() =>
+                        closeDesktopMenus(
+                          setDesktopOpenHref,
+                          setDesktopGroupId
+                        )
+                      }
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
+  function renderMobileChildLink(
+    child: NavChild,
+    sectionHref: string,
+    childIndex: number,
+    isAll: boolean,
+    sectionOpen: boolean
+  ) {
+    const active = navChildIsActive(
+      pathname,
+      searchParams,
+      child.href,
+      sectionHref
+    );
+    return (
+      <Link
+        href={child.href}
+        className={`mt-1 block rounded-xl border-2 px-3 py-2.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+          isAll ? "pl-6" : "text-center"
+        } ${open ? "animate-rise" : ""} ${
+          active
+            ? "border-herb bg-herb text-iron"
+            : "border-bone/10 bg-ash/40 text-bone/70 hover:border-herb hover:text-herb"
+        }`}
+        style={
+          open && sectionOpen
+            ? { animationDelay: `${0.1 + childIndex * 0.03}s` }
+            : undefined
+        }
+        onClick={closeMenu}
+      >
+        {child.label}
+      </Link>
+    );
+  }
+
+  function renderMobileItem(
+    item: NavItem,
+    index: number,
+    isSos = false
+  ) {
+    const sectionActive = sectionIsActive(pathname, item);
+    const hasGroups = Boolean(item.groups?.length);
+    const hasChildren = Boolean(item.children?.length) || hasGroups;
+
+    if (!hasChildren) {
+      return (
+        <li key={item.href}>
+          <Link
+            href={item.href}
+            className={`block rounded-xl border-2 px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+              open ? "animate-rise" : ""
+            } ${
+              isSos
+                ? "border-wood bg-wood text-iron hover:bg-wood/90"
+                : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
+            }`}
+            style={
+              open ? { animationDelay: `${0.06 + index * 0.05}s` } : undefined
+            }
+            onClick={closeMenu}
+          >
+            {item.label}
+          </Link>
+        </li>
+      );
+    }
+
+    const sectionId = `${menuId}-section-${item.href.replace(/\W+/g, "-")}`;
+    const sectionOpen = mobileOpen[item.href] ?? false;
+    const allChild = item.children?.find((child) => child.href === item.href);
+    const flatChildren =
+      item.children?.filter((child) => child.href !== item.href) ?? [];
+
+    return (
+      <li key={item.href} className="flex flex-col gap-1">
+        <button
+          type="button"
+          className={`flex w-full items-center justify-between rounded-xl border-2 px-4 py-3 text-left text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+            open ? "animate-rise" : ""
+          } ${
+            isSos
+              ? sectionActive || sectionOpen
+                ? "border-wood bg-wood text-iron"
+                : "border-wood/60 bg-wood/90 text-iron hover:bg-wood"
+              : sectionActive || sectionOpen
+                ? "border-herb bg-herb/15 text-herb"
+                : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
+          }`}
+          style={
+            open ? { animationDelay: `${0.06 + index * 0.05}s` } : undefined
+          }
+          aria-expanded={sectionOpen}
+          aria-controls={sectionId}
+          onClick={() =>
+            setMobileOpen((current) => ({
+              ...current,
+              [item.href]: !sectionOpen,
+            }))
+          }
+        >
+          {item.label}
+          <Chevron open={sectionOpen} />
+        </button>
+
+        <div
+          id={sectionId}
+          className={`grid ${
+            sectionOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          } transition-[grid-template-rows] duration-300 ease-out`}
+        >
+          <ul className="overflow-hidden">
+            {allChild ? (
+              <li>
+                {renderMobileChildLink(
+                  allChild,
+                  item.href,
+                  0,
+                  true,
+                  sectionOpen
+                )}
+              </li>
+            ) : null}
+
+            {hasGroups
+              ? item.groups!.map((group, groupIndex) => {
+                  const groupKey = `${item.href}::${group.id}`;
+                  const groupOpen = mobileGroupOpen[groupKey] ?? false;
+                  const groupId = `${sectionId}-group-${group.id}`;
+
+                  return (
+                    <li key={group.id} className="mt-1">
+                      <button
+                        type="button"
+                        className={`flex w-full items-center justify-between rounded-xl border-2 px-3 py-2.5 text-left text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                          groupOpen
+                            ? "border-herb/40 bg-herb/10 text-herb"
+                            : "border-bone/10 bg-ash/40 text-bone/70 hover:border-herb hover:text-herb"
+                        }`}
+                        aria-expanded={groupOpen}
+                        aria-controls={groupId}
+                        onClick={() =>
+                          setMobileGroupOpen((current) => ({
+                            ...current,
+                            [groupKey]: !groupOpen,
+                          }))
+                        }
+                      >
+                        {group.label}
+                        <Chevron open={groupOpen} />
+                      </button>
+
+                      <div
+                        id={groupId}
+                        className={`grid ${
+                          groupOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        } transition-[grid-template-rows] duration-300 ease-out`}
+                      >
+                        <ul className="overflow-hidden pl-1">
+                          {group.hubHref && group.hubLabel ? (
+                            <li>
+                              {renderMobileChildLink(
+                                {
+                                  href: group.hubHref,
+                                  label: group.hubLabel,
+                                },
+                                group.hubHref,
+                                groupIndex,
+                                true,
+                                groupOpen
+                              )}
+                            </li>
+                          ) : null}
+                          <li>
+                            <ul className="grid grid-cols-2 gap-x-1">
+                              {group.children.map((child, childIndex) => (
+                                <li key={`${child.href}-${child.label}`}>
+                                  {renderMobileChildLink(
+                                    child,
+                                    group.hubHref ?? item.href,
+                                    childIndex + 1,
+                                    false,
+                                    groupOpen
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  );
+                })
+              : (
+                <li>
+                  <ul className="grid grid-cols-2 gap-x-1">
+                    {flatChildren.map((child, childIndex) => (
+                      <li key={`${child.href}-${child.label}`}>
+                        {renderMobileChildLink(
+                          child,
+                          item.href,
+                          childIndex + 1,
+                          false,
+                          sectionOpen
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+          </ul>
+        </div>
+      </li>
+    );
   }
 
   return (
@@ -312,124 +762,8 @@ export function Header() {
           aria-label="Hovedmenu"
           className="hidden items-center gap-1 md:flex"
         >
-          {navItems.map((item) => {
-            const sectionActive = pathIsActive(pathname, item.href);
-            const dropdownOpen = desktopOpenHref === item.href;
-            const dropdownId = `${menuId}-desktop-${item.href.replace(/\W+/g, "-")}`;
-            const isSos = item.variant === "sos";
-
-            if (!item.children?.length) {
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`rounded-lg px-2.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
-                    isSos
-                      ? sectionActive
-                        ? "bg-wood text-iron ring-2 ring-wood/40"
-                        : "bg-wood/90 text-iron hover:bg-wood"
-                      : sectionActive
-                        ? "bg-herb text-iron"
-                        : "text-bone/55 hover:bg-bone/10 hover:text-bone"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            }
-
-            const allChild = item.children.find(
-              (child) => child.href === item.href
-            );
-            const childItems = item.children.filter(
-              (child) => child.href !== item.href
-            );
-            const wide = childItems.length > 6;
-
-            return (
-              <div key={item.href} className="relative">
-                <button
-                  type="button"
-                  className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors ${
-                    isSos
-                      ? sectionActive || dropdownOpen
-                        ? "bg-wood text-iron ring-2 ring-wood/50"
-                        : "bg-wood/90 text-iron hover:bg-wood"
-                      : sectionActive || dropdownOpen
-                        ? "bg-herb text-iron"
-                        : "text-bone/55 hover:bg-bone/10 hover:text-bone"
-                  }`}
-                  aria-expanded={dropdownOpen}
-                  aria-haspopup="menu"
-                  aria-controls={dropdownId}
-                  onClick={() =>
-                    setDesktopOpenHref((current) =>
-                      current === item.href ? null : item.href
-                    )
-                  }
-                >
-                  {item.label}
-                  <Chevron open={dropdownOpen} />
-                </button>
-
-                {dropdownOpen ? (
-                  <div
-                    id={dropdownId}
-                    role="menu"
-                    className={`absolute right-0 top-full z-50 mt-2 max-h-[min(70vh,24rem)] overflow-y-auto overscroll-contain rounded-xl border-2 border-bone/15 bg-iron py-1.5 shadow-lg shadow-black/30 ${
-                      wide
-                        ? "w-[min(28rem,calc(100vw-2.5rem))]"
-                        : "w-56"
-                    }`}
-                  >
-                    {allChild ? (
-                      <Link
-                        role="menuitem"
-                        href={allChild.href}
-                        className={dropdownItemClass(
-                          navChildIsActive(
-                            pathname,
-                            searchParams,
-                            allChild.href,
-                            item.href
-                          )
-                        )}
-                        onClick={() => setDesktopOpenHref(null)}
-                      >
-                        {allChild.label}
-                      </Link>
-                    ) : null}
-
-                    <div
-                      className="mx-2 my-1 border-t border-bone/15"
-                      aria-hidden
-                    />
-
-                    <div className={wide ? "grid grid-cols-2" : ""}>
-                      {childItems.map((child) => (
-                        <Link
-                          key={`${child.href}-${child.label}`}
-                          role="menuitem"
-                          href={child.href}
-                          className={dropdownItemClass(
-                            navChildIsActive(
-                              pathname,
-                              searchParams,
-                              child.href,
-                              item.href
-                            )
-                          )}
-                          onClick={() => setDesktopOpenHref(null)}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
+          {navItems.map((item) => renderDesktopDropdown(item))}
+          {renderDesktopDropdown(sosNav, true)}
         </nav>
 
         <button
@@ -475,151 +809,10 @@ export function Header() {
             className="border-t-2 border-bone/15 px-5 pb-[max(2rem,env(safe-area-inset-bottom))] pt-3"
           >
             <ul className="flex flex-col gap-1">
-              {navItems.map((item, index) => {
-                const sectionActive = pathIsActive(pathname, item.href);
-                const isSos = item.variant === "sos";
-
-                if (!item.children?.length) {
-                  return (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={`block rounded-xl border-2 px-4 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                          open ? "animate-rise" : ""
-                        } ${
-                          isSos
-                            ? "border-wood bg-wood text-iron hover:bg-wood/90"
-                            : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
-                        }`}
-                        style={
-                          open
-                            ? { animationDelay: `${0.06 + index * 0.05}s` }
-                            : undefined
-                        }
-                        onClick={closeMenu}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  );
-                }
-
-                const sectionId = `${menuId}-section-${index}`;
-                const sectionOpen = mobileOpen[item.href] ?? false;
-
-                return (
-                  <li key={item.href} className="flex flex-col gap-1">
-                    <button
-                      type="button"
-                      className={`flex w-full items-center justify-between rounded-xl border-2 px-4 py-3 text-left text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                        open ? "animate-rise" : ""
-                      } ${
-                        isSos
-                          ? sectionActive || sectionOpen
-                            ? "border-wood bg-wood text-iron"
-                            : "border-wood/60 bg-wood/90 text-iron hover:bg-wood"
-                          : sectionActive || sectionOpen
-                            ? "border-herb bg-herb/15 text-herb"
-                            : "border-bone/10 bg-ash/60 text-bone/80 hover:border-herb hover:text-herb"
-                      }`}
-                      style={
-                        open
-                          ? { animationDelay: `${0.06 + index * 0.05}s` }
-                          : undefined
-                      }
-                      aria-expanded={sectionOpen}
-                      aria-controls={sectionId}
-                      onClick={() =>
-                        setMobileOpen((current) => ({
-                          ...current,
-                          [item.href]: !sectionOpen,
-                        }))
-                      }
-                    >
-                      {item.label}
-                      <Chevron open={sectionOpen} />
-                    </button>
-
-                    <div
-                      id={sectionId}
-                      className={`grid ${
-                        sectionOpen
-                          ? "grid-rows-[1fr]"
-                          : "grid-rows-[0fr]"
-                      } transition-[grid-template-rows] duration-300 ease-out`}
-                    >
-                      <ul className="overflow-hidden">
-                        {(() => {
-                          const allChild = item.children.find(
-                            (child) => child.href === item.href
-                          );
-                          const childItems = item.children.filter(
-                            (child) => child.href !== item.href
-                          );
-
-                          function childLink(
-                            child: NavChild,
-                            childIndex: number,
-                            isAll: boolean
-                          ) {
-                            const active = navChildIsActive(
-                              pathname,
-                              searchParams,
-                              child.href,
-                              item.href
-                            );
-                            return (
-                              <Link
-                                href={child.href}
-                                className={`mt-1 block rounded-xl border-2 px-3 py-2.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                                  isAll ? "pl-6" : "text-center"
-                                } ${open ? "animate-rise" : ""} ${
-                                  active
-                                    ? "border-herb bg-herb text-iron"
-                                    : "border-bone/10 bg-ash/40 text-bone/70 hover:border-herb hover:text-herb"
-                                }`}
-                                style={
-                                  open && sectionOpen
-                                    ? {
-                                        animationDelay: `${
-                                          0.1 + childIndex * 0.03
-                                        }s`,
-                                      }
-                                    : undefined
-                                }
-                                onClick={closeMenu}
-                              >
-                                {child.label}
-                              </Link>
-                            );
-                          }
-
-                          return (
-                            <>
-                              {allChild ? (
-                                <li>
-                                  {childLink(allChild, 0, true)}
-                                </li>
-                              ) : null}
-                              <li>
-                                <ul className="grid grid-cols-2 gap-x-1">
-                                  {childItems.map((child, childIndex) => (
-                                    <li
-                                      key={`${child.href}-${child.label}`}
-                                    >
-                                      {childLink(child, childIndex + 1, false)}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </li>
-                            </>
-                          );
-                        })()}
-                      </ul>
-                    </div>
-                  </li>
-                );
-              })}
+              {renderMobileItem(sosNav, 0, true)}
+              {navItems.map((item, index) =>
+                renderMobileItem(item, index + 1)
+              )}
             </ul>
           </nav>
         </div>
