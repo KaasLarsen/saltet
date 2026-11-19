@@ -57,6 +57,7 @@ export const seasons: Season[] = [
       "julemiddag-prep",
       "en-ovn-to-stege-juleaften",
       "julemenu-sammensaetning",
+      "kolde-salater-julebordet",
     ],
     relatedHolidaySlugs: ["jul", "nytaar"],
   },
