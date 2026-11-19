@@ -3,6 +3,7 @@
 export const ANMELDELSE_NAV = [
   { slug: "airfryer", name: "Airfryer" },
   { slug: "plancha", name: "Plancha" },
+  { slug: "gasgrill", name: "Gasgrill" },
   { slug: "trykkoger", name: "Trykkoger" },
   { slug: "indbygningsovn", name: "Indbygningsovn" },
 ] as const;

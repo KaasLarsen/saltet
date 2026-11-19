@@ -151,6 +151,21 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     categoryId: "335",
     label: "Taurus Steak Max 2600W",
   },
+  "Weber Q 3200N+": {
+    productId: "3394013788",
+    categoryId: "335",
+    label: "Weber Q 3200N+ Gasgrill med Premium Vogn",
+  },
+  "Napoleon Rogue 425": {
+    productId: "3767922",
+    categoryId: "335",
+    label: "Napoleon Rogue 425",
+  },
+  "Morsø Forno Gas Grande": {
+    productId: "4966499",
+    categoryId: "335",
+    label: "Morsø Forno Grande Gasgrill",
+  },
   "Napoleon Reversible Griddle 56426": {
     productId: "3206538041",
     categoryId: "659",

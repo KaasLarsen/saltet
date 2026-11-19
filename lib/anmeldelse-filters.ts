@@ -21,6 +21,7 @@ export interface AnmeldelseFilterValues {
 export const ANMELDELSE_SERIES = [
   { slug: "airfryer", label: "Airfryer" },
   { slug: "plancha", label: "Plancha" },
+  { slug: "gasgrill", label: "Gasgrill" },
   { slug: "trykkoger", label: "Trykkoger" },
   { slug: "indbygningsovn", label: "Indbygningsovn" },
 ] as const;

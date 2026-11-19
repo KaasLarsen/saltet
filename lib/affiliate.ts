@@ -666,6 +666,57 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+
+  "weber-q-3200n-plus": {
+    id: "weber-q-3200n-plus",
+    href: fromPriceRunner("Weber Q 3200N+"),
+    label: "Weber Q 3200N+",
+    merchant: "via PriceRunner",
+    description:
+      "Kompakt Weber-gasgrill med premium-vogn — 2 brændere til altan og terrasse.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "napoleon-rogue-425": {
+    id: "napoleon-rogue-425",
+    href: fromPriceRunner("Napoleon Rogue 425"),
+    label: "Napoleon Rogue 425",
+    merchant: "via PriceRunner",
+    description:
+      "3-brænder hverdagsgrill med ca. 60×45 cm rist — zoner til culotte og gæster.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "morso-forno-gas-grande": {
+    id: "morso-forno-gas-grande",
+    href: fromPriceRunner("Morsø Forno Gas Grande"),
+    label: "Morsø Forno Gas Grande",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk gasgrill med kuppel — hybrid mellem rist-grill og outdoor-ovn.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "char-broil-professional-pro-s-3": {
+    id: "char-broil-professional-pro-s-3",
+    href: fromPriceRunner("Char-Broil Professional PRO S 3"),
+    label: "Char-Broil Professional PRO S 3",
+    merchant: "via PriceRunner",
+    description:
+      "Prisgunstig 3-brænder med TRU-Infrared — flest zoner for pengene.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "napoleon-travelq-pro285x": {
+    id: "napoleon-travelq-pro285x",
+    href: fromPriceRunner("Napoleon TravelQ PRO285X"),
+    label: "Napoleon TravelQ PRO285X",
+    merchant: "via PriceRunner",
+    description:
+      "Bærbar 2-brænder med saksevogn — altan, camping og small space.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "satake-vendbar-stegeplade": {
     id: "satake-vendbar-stegeplade",
     href: fromPriceRunner("Satake vendbar stegeplade"),
