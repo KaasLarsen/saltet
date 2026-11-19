@@ -52,7 +52,12 @@ export const seasons: Season[] = [
     headline: "Vinteropskrifter",
     description:
       "Braiser, supper, rodfrugter og det tunge bord — når det er koldt, og gryden skal stå længe.",
-    relatedGuideSlugs: [],
+    relatedGuideSlugs: [
+      "juleaften-tidsplan",
+      "julemiddag-prep",
+      "en-ovn-to-stege-juleaften",
+      "julemenu-sammensaetning",
+    ],
     relatedHolidaySlugs: ["jul", "nytaar"],
   },
 ];
