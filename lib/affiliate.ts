@@ -717,6 +717,56 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "weber-spirit-e-410": {
+    id: "weber-spirit-e-410",
+    href: fromPriceRunner("Weber Spirit E-410"),
+    label: "Weber Spirit E-410",
+    merchant: "via PriceRunner",
+    description:
+      "4-brænder hverdags-Weber med Flavorizer Bars — mellem Q og Genesis.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "weber-genesis-e-335w": {
+    id: "weber-genesis-e-335w",
+    href: fromPriceRunner("Weber Genesis E-335W"),
+    label: "Weber Genesis E-335W",
+    merchant: "via PriceRunner",
+    description:
+      "Premium 3-brænder med Sear Zone, sidebrænder og Crafted-rist.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "broil-king-baron-490": {
+    id: "broil-king-baron-490",
+    href: fromPriceRunner("Broil King Baron 490"),
+    label: "Broil King Baron 490",
+    merchant: "via PriceRunner",
+    description:
+      "4-brænder med bagbrænder — rotisseri-klar hverdagsgrill.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "everdure-force-gen-iii": {
+    id: "everdure-force-gen-iii",
+    href: fromPriceRunner("Everdure Force Gen III"),
+    label: "Everdure Force Gen III",
+    merchant: "via PriceRunner",
+    description:
+      "Mobil 2-brænder design-grill med hjul — altan og compact cart.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "weber-go-anywhere-gas": {
+    id: "weber-go-anywhere-gas",
+    href: fromPriceRunner("Weber Go-Anywhere Gas"),
+    label: "Weber Go-Anywhere Gas",
+    merchant: "via PriceRunner",
+    description:
+      "Mini Weber-gasgrill til camping og bitte altaner.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "satake-vendbar-stegeplade": {
     id: "satake-vendbar-stegeplade",
     href: fromPriceRunner("Satake vendbar stegeplade"),
