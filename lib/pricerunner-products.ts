@@ -166,6 +166,31 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     categoryId: "335",
     label: "Morsø Forno Grande Gasgrill",
   },
+  "Weber Spirit E-410": {
+    productId: "3392835635",
+    categoryId: "335",
+    label: "Weber Spirit E-410 Gasgrill",
+  },
+  "Weber Genesis E-335W": {
+    productId: "3399502269",
+    categoryId: "335",
+    label: "Weber Genesis E-335W Gasgrill",
+  },
+  "Broil King Baron 490": {
+    productId: "3062208",
+    categoryId: "335",
+    label: "Broil King Baron 490 Gasgrill",
+  },
+  "Everdure Force Gen III": {
+    productId: "3457419344",
+    categoryId: "335",
+    label: "Everdure Force Gasgrill Gen III Sort",
+  },
+  "Weber Go-Anywhere Gas": {
+    productId: "3057968",
+    categoryId: "335",
+    label: "Weber Go-Anywhere Gas",
+  },
   "Napoleon Reversible Griddle 56426": {
     productId: "3206538041",
     categoryId: "659",
