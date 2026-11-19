@@ -7,6 +7,7 @@ import {
   isTopicTagSlug,
   recipeMatchesTopic,
 } from "./topic-nav";
+import { textMatchesQuery } from "./search-query";
 import { slugifyTag } from "./slug";
 import type { Difficulty, RecipeListItem } from "./types";
 
@@ -85,20 +86,16 @@ export function recipeMatchesQuery(
   recipe: RecipeListItem & { ingredients?: string[] },
   query: string
 ): boolean {
-  const q = query.trim().toLowerCase();
-  if (!q) return true;
-
   const haystack = [
     recipe.title,
     recipe.description,
     recipe.category,
+    recipe.slug,
     ...recipe.tags,
     ...(recipe.ingredients ?? []),
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" ");
 
-  return haystack.includes(q);
+  return textMatchesQuery(haystack, query);
 }
 
 export function filterRecipes<T extends RecipeListItem>(

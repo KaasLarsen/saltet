@@ -1,3 +1,4 @@
+import { textMatchesQuery } from "./search-query";
 import { slugifyTag } from "./slug";
 
 export const TOP_GUIDE_TAG_LIMIT = 8;
@@ -23,14 +24,11 @@ export interface GuideTagFacet {
 }
 
 export function guideMatchesQuery(guide: GuideListItem, query: string): boolean {
-  const q = query.trim().toLowerCase();
-  if (!q) return true;
+  const haystack = [guide.title, guide.description, guide.slug, ...guide.tags].join(
+    " "
+  );
 
-  const haystack = [guide.title, guide.description, ...guide.tags]
-    .join(" ")
-    .toLowerCase();
-
-  return haystack.includes(q);
+  return textMatchesQuery(haystack, query);
 }
 
 export function filterGuides(

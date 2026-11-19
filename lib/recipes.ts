@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { textMatchesQuery } from "./search-query";
 import type { Recipe, RecipeFrontmatter, RecipeListItem } from "./types";
 
 const contentDir = path.join(process.cwd(), "content/recipes");
@@ -111,7 +112,7 @@ export function getAllRecipeParams(): { category: string; slug: string }[] {
 }
 
 export function searchRecipes(query: string): Recipe[] {
-  const q = query.trim().toLowerCase();
+  const q = query.trim();
   if (!q) return getAllRecipes();
 
   return getAllRecipes().filter((r) => {
@@ -119,12 +120,11 @@ export function searchRecipes(query: string): Recipe[] {
       r.title,
       r.description,
       r.category,
+      r.slug,
       ...r.tags,
       ...r.ingredients,
-    ]
-      .join(" ")
-      .toLowerCase();
+    ].join(" ");
 
-    return haystack.includes(q);
+    return textMatchesQuery(haystack, q);
   });
 }

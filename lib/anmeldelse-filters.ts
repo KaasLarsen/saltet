@@ -1,3 +1,5 @@
+import { textMatchesQuery } from "./search-query";
+
 export interface AnmeldelseListItem {
   title: string;
   slug: string;
@@ -35,20 +37,16 @@ export function anmeldelseMatchesQuery(
   item: AnmeldelseListItem,
   query: string
 ): boolean {
-  const q = query.trim().toLowerCase();
-  if (!q) return true;
-
   const haystack = [
     item.title,
     item.description,
+    item.slug,
     item.productName,
     item.series,
     ...item.tags,
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" ");
 
-  return haystack.includes(q);
+  return textMatchesQuery(haystack, query);
 }
 
 export function filterAnmeldelser(

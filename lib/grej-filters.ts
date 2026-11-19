@@ -3,6 +3,7 @@ import {
   isGrejCategory,
   type GrejCategoryNavSlug,
 } from "./grej-categories";
+import { textMatchesQuery } from "./search-query";
 import type { GrejTrack } from "./types";
 
 export const GREJ_TRACKS: { slug: GrejTrack; label: string }[] = [
@@ -28,14 +29,15 @@ export interface GrejFilterValues {
 }
 
 export function grejMatchesQuery(item: GrejListItem, query: string): boolean {
-  const q = query.trim().toLowerCase();
-  if (!q) return true;
+  const haystack = [
+    item.title,
+    item.description,
+    item.slug,
+    item.track,
+    ...item.tags,
+  ].join(" ");
 
-  const haystack = [item.title, item.description, item.track, ...item.tags]
-    .join(" ")
-    .toLowerCase();
-
-  return haystack.includes(q);
+  return textMatchesQuery(haystack, query);
 }
 
 export function filterGrej(
