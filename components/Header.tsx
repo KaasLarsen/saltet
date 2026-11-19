@@ -36,7 +36,6 @@ type NavItem = {
 const OPSKRIFTER_PREFIXES = [
   "/opskrifter",
   "/emner",
-  "/grej",
   "/saeson",
   "/hoejtider",
 ] as const;
@@ -79,16 +78,6 @@ const navItems: NavItem[] = [
         })),
       },
       {
-        id: "grej",
-        label: "Grej",
-        hubHref: "/grej",
-        hubLabel: "Alt grej",
-        children: GREJ_CATEGORY_NAV.map((g) => ({
-          href: `/grej?kategori=${g.slug}`,
-          label: g.name,
-        })),
-      },
-      {
         id: "saeson",
         label: "Sæson",
         hubHref: "/saeson",
@@ -124,12 +113,27 @@ const navItems: NavItem[] = [
   {
     href: "/guides",
     label: "Guides",
-    children: [
-      { href: "/guides", label: "Alle guides" },
-      ...GUIDE_CATEGORY_NAV.map((g) => ({
-        href: `/guides?emne=${g.slug}`,
-        label: g.name,
-      })),
+    activePrefixes: ["/guides", "/grej"],
+    children: [{ href: "/guides", label: "Alle guides" }],
+    groups: [
+      {
+        id: "emner",
+        label: "Emner",
+        children: GUIDE_CATEGORY_NAV.map((g) => ({
+          href: `/guides?emne=${g.slug}`,
+          label: g.name,
+        })),
+      },
+      {
+        id: "grej",
+        label: "Grej",
+        hubHref: "/grej",
+        hubLabel: "Alt grej",
+        children: GREJ_CATEGORY_NAV.map((g) => ({
+          href: `/grej?kategori=${g.slug}`,
+          label: g.name,
+        })),
+      },
     ],
   },
 ];
