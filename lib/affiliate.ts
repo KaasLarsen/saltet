@@ -506,6 +506,66 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "tefal-easy-fry-grill-precision-ey5058": {
+    id: "tefal-easy-fry-grill-precision-ey5058",
+    href: fromPriceRunner("Tefal Easy Fry Grill Precision EY5058"),
+    label: "Tefal Easy Fry & Grill Precision+ (EY5058)",
+    merchant: "via PriceRunner",
+    description:
+      "Kompakt 4,2 L med støbt grillrist — dansk bestseller i single-klassen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "philips-hd9252-3000-series-l": {
+    id: "philips-hd9252-3000-series-l",
+    href: fromPriceRunner("Philips 3000 Series HD9252"),
+    label: "Philips 3000 Series L (HD9252/90)",
+    merchant: "via PriceRunner",
+    description:
+      "Klassisk 4,1 L entry-Philips — den mange starter med før XXL eller Dual.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "wilfa-crisp-dual-afd-802b": {
+    id: "wilfa-crisp-dual-afd-802b",
+    href: fromPriceRunner("Wilfa Crisp Dual AFD-802B"),
+    label: "Wilfa Crisp Dual (AFD-802B)",
+    merchant: "via PriceRunner",
+    description:
+      "Nordisk 8 L dual-zone — stærk hos isenkræmmere vs. Ninja og Philips.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "breville-halo-flex-rotisserie": {
+    id: "breville-halo-flex-rotisserie",
+    href: fromPriceRunner("Breville Halo Flex Rotisserie"),
+    label: "Breville Halo Flex Rotisserie",
+    merchant: "via PriceRunner",
+    description:
+      "Tønde-ovn med roterende spyd og kurv — til kød- og stegeteknik-nørder.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "witt-pizza-airfryer": {
+    id: "witt-pizza-airfryer",
+    href: fromPriceRunner("Witt Pizza Airfryer"),
+    label: "Witt Pizza & Airfryer",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk design pizza-hybrid — synlig hos Elgiganten, Power og K&K.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "witt-dual-airfryer": {
+    id: "witt-dual-airfryer",
+    href: fromPriceRunner("Witt Dual Airfryer"),
+    label: "Witt Dual Airfryer",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk design dual-zone med høj kædesynlighed vs. Wilfa og Ninja.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "ninja-foodi-max-dual-zone-af400": {
     id: "ninja-foodi-max-dual-zone-af400",
     href: fromPriceRunner("Ninja Foodi Max Dual Zone AF400"),
