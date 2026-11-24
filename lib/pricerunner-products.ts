@@ -283,6 +283,38 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     label: "Caso AirFry & Steam 700",
     slugPath: "Frituregryder/Caso-700-Steam-Airfryer-Friture-Sammenlign-Priser",
   },
+  "Sage Smart Oven Air Fryer SOV860": {
+    productId: "3200055006",
+    categoryId: "105",
+    label: "Sage Smart Oven Air Fryer SOV860",
+    slugPath: "Ovne/Sage-SOV-860-BSS-Rostfritt-staal-Sammenlign-Priser",
+  },
+  "Cosori Pro LE 4.7L": {
+    productId: "3390160850",
+    categoryId: "81",
+    label: "Cosori Pro LE / L501 4,7 L",
+    slugPath:
+      "Frituregryder-Airfryere/Cosori-L501-7-in-1-Heissluftfritteuse-4-7-L-Sammenlign-Priser",
+  },
+  "Gastroback Design Air Fry Pizza": {
+    productId: "3203140958",
+    categoryId: "105",
+    label: "Gastroback Design Air Fry & Pizza 42815",
+    slugPath: "Ovne/Gastroback-Design-Oven-Air-Fry-Pizza-Svart-Sammenlign-Priser",
+  },
+  "Severin FR 2445": {
+    productId: "4749482",
+    categoryId: "81",
+    label: "Severin FR 2445 XXL 5 L",
+    slugPath: "Frituregryder/Severin-FR-2445-Sammenlign-Priser",
+  },
+  "Melissa Digital Air Fryer XXL 7.6L": {
+    productId: "3457662972",
+    categoryId: "81",
+    label: "Melissa Digital Air Fryer XXL 7,6 L",
+    slugPath:
+      "Frituregryder-Airfryere/Melissa-Digital-Air-Fryer-XXL-7.6L-Sammenlign-Priser",
+  },
   "AIVIQ Premio Dual AAF-D321": {
     productId: "3206392362",
     categoryId: "81",

@@ -436,6 +436,76 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "sage-smart-oven-air-fryer-pro": {
+    id: "sage-smart-oven-air-fryer-pro",
+    href: fromPriceRunner("Sage Smart Oven Air Fryer SOV860"),
+    label: "Sage Smart Oven Air Fryer (SOV860)",
+    merchant: "via PriceRunner",
+    description:
+      "Premium 22 L bordovn med Element IQ og airfry — til madnørder.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "cosori-pro-le": {
+    id: "cosori-pro-le",
+    href: fromPriceRunner("Cosori Pro LE 4.7L"),
+    label: "Cosori Pro LE (4,7 L)",
+    merchant: "via PriceRunner",
+    description:
+      "Kompakt begynder-airfryer til singler og små køkkener under 6 L-klassen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "cosori-lite": {
+    id: "cosori-lite",
+    href: fromPriceRunner("Cosori Lite 3.8L"),
+    label: "Cosori Lite (3,8 L)",
+    merchant: "via PriceRunner",
+    description:
+      "Mini-Cosori til minimal bordplads — når 4,7 L stadig er for meget.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "gastroback-design-air-fry-pizza": {
+    id: "gastroback-design-air-fry-pizza",
+    href: fromPriceRunner("Gastroback Design Air Fry Pizza"),
+    label: "Gastroback Design Air Fry & Pizza (42815)",
+    merchant: "via PriceRunner",
+    description:
+      "Hybrid med dedikeret pizzafunktion og airfry — bro mellem pizza og airfryer.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "severin-fr-2445": {
+    id: "severin-fr-2445",
+    href: fromPriceRunner("Severin FR 2445"),
+    label: "Severin FR 2445 XXL (5 L)",
+    merchant: "via PriceRunner",
+    description:
+      "Billig tilbuds-airfryer — test af hvornår en airfryer bliver for billig.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "melissa-airfryer": {
+    id: "melissa-airfryer",
+    href: fromPriceRunner("Melissa Digital Air Fryer XXL 7.6L"),
+    label: "Melissa Digital Air Fryer XXL (7,6 L)",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk kæde-/tilbudsbudget med mange liter — forsøgs-XXL på kampagne.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "kitchenaid-digital-countertop-oven-air-fry": {
+    id: "kitchenaid-digital-countertop-oven-air-fry",
+    href: fromPriceRunner("KitchenAid Digital Countertop Oven Air Fry"),
+    label: "KitchenAid Digital Countertop Oven Air Fry",
+    merchant: "via PriceRunner",
+    description:
+      "Premium design-bordovn med air fry — til dem der ikke vil have en sort plastikkasse.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "ninja-foodi-max-dual-zone-af400": {
     id: "ninja-foodi-max-dual-zone-af400",
     href: fromPriceRunner("Ninja Foodi Max Dual Zone AF400"),
