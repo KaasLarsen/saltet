@@ -246,6 +246,43 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     label: "Tefal Dual Easy Fry & Grill EY901N",
     slugPath: "Frituregryder/Tefal-EY901N-Dual-Easy-Fry-Sammenlign-Priser",
   },
+  "OBH Nordica Easy Fry Mega": {
+    productId: "3318909553",
+    categoryId: "81",
+    label: "OBH Nordica Easy Fry Mega 7,5 L",
+    slugPath:
+      "Frituregryder/OBH-Nordica-Easy-Fry-Mega-Airfryer-7.5-L-Sammenlign-Priser",
+  },
+  "Ninja Foodi AF451EU": {
+    productId: "3206566758",
+    categoryId: "81",
+    label: "Ninja Foodi Max Dual Zone AF451EU",
+    slugPath: "Frituregryder/Ninja-AF451EU-Sammenlign-Priser",
+  },
+  "Philips Airfryer 2000 Series NA230": {
+    productId: "3318902424",
+    categoryId: "81",
+    label: "Philips 2000 Series NA230/00",
+    slugPath: "Frituregryder/Philips-Airfryer-2000-series-Sammenlign-Priser",
+  },
+  "Ninja Foodi DT200EU": {
+    productId: "3200944200",
+    categoryId: "105",
+    label: "Ninja Foodi DT200EU 10-i-1",
+    slugPath: "Ovne/Ninja-DT200EU-Rustfri-staal-Sammenlign-Priser",
+  },
+  "Xiaomi Smart Air Fryer 6.5L": {
+    productId: "3214860074",
+    categoryId: "81",
+    label: "Xiaomi Smart Air Fryer 6,5 L",
+    slugPath: "Frituregryder/Xiaomi-Smart-Air-Fryer-6.5L-Sammenlign-Priser",
+  },
+  "Caso AirFry Steam 700": {
+    productId: "3267332336",
+    categoryId: "81",
+    label: "Caso AirFry & Steam 700",
+    slugPath: "Frituregryder/Caso-700-Steam-Airfryer-Friture-Sammenlign-Priser",
+  },
   "AIVIQ Premio Dual AAF-D321": {
     productId: "3206392362",
     categoryId: "81",

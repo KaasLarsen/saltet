@@ -376,6 +376,66 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "obh-nordica-easy-fry-mega": {
+    id: "obh-nordica-easy-fry-mega",
+    href: fromPriceRunner("OBH Nordica Easy Fry Mega"),
+    label: "OBH Nordica Easy Fry Mega (7,5 L)",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk mellemklasse single-basket med Extra Crisp — 7,5 L uden dual-pris.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-foodi-af451eu": {
+    id: "ninja-foodi-af451eu",
+    href: fromPriceRunner("Ninja Foodi AF451EU"),
+    label: "Ninja Foodi Max Dual Zone (AF451EU)",
+    merchant: "via PriceRunner",
+    description:
+      "9,5 L Dual Zone med Smart Cook-stegtermometer — kernetemperatur + Max Crisp.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "philips-na230-2000-series": {
+    id: "philips-na230-2000-series",
+    href: fromPriceRunner("Philips Airfryer 2000 Series NA230"),
+    label: "Philips 2000 Series (NA230/00)",
+    merchant: "via PriceRunner",
+    description:
+      "Prisvenlig 6,2 L RapidAir single — klassisk volumenvare under NA352/NA555.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "ninja-foodi-dt200eu": {
+    id: "ninja-foodi-dt200eu",
+    href: fromPriceRunner("Ninja Foodi DT200EU"),
+    label: "Ninja Foodi 10-i-1 Multifunction Oven (DT200EU)",
+    merchant: "via PriceRunner",
+    description:
+      "29 L bordovn med airfryer-funktion — ovnkammer når kurven ikke er nok.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "xiaomi-smart-air-fryer-65l": {
+    id: "xiaomi-smart-air-fryer-65l",
+    href: fromPriceRunner("Xiaomi Smart Air Fryer 6.5L"),
+    label: "Xiaomi Smart Air Fryer (6,5 L)",
+    merchant: "via PriceRunner",
+    description:
+      "Skarp budget-single med app-styring — Mi Home som nice-to-have.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "caso-airfry-steam-700": {
+    id: "caso-airfry-steam-700",
+    href: fromPriceRunner("Caso AirFry Steam 700"),
+    label: "Caso AirFry & Steam 700",
+    merchant: "via PriceRunner",
+    description:
+      "7 L single med damp/kombi — direkte damp-konkurrent til Philips NA555.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "ninja-foodi-max-dual-zone-af400": {
     id: "ninja-foodi-max-dual-zone-af400",
     href: fromPriceRunner("Ninja Foodi Max Dual Zone AF400"),
