@@ -15,7 +15,7 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
   const href = `/opskrifter/${recipe.category}/${recipe.slug}`;
 
   return (
-    <Link href={href} className="group block text-center sm:text-left">
+    <Link href={href} className="group block min-w-0 text-center sm:text-left">
       <article>
         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border-2 border-bone/20 bg-ash shadow-[4px_4px_0_0_rgba(212,255,0,0.35)] transition-[transform,box-shadow,border-color] duration-300 group-hover:-translate-y-1 group-hover:border-herb group-hover:shadow-[6px_6px_0_0_rgba(212,255,0,0.7)]">
           {/* eslint-disable-next-line @next/next/no-img-element -- grid CDN budget: skip optimizer */}
@@ -40,7 +40,7 @@ export function RecipeCard({ recipe, priority = false }: RecipeCardProps) {
             <span className="text-wood">·</span>
             <span className="text-bone/40">{recipe.category}</span>
           </div>
-          <h2 className="font-serif text-xl uppercase leading-snug tracking-wide text-bone transition-colors group-hover:text-herb sm:text-2xl">
+          <h2 className="wrap-break-word font-serif text-xl uppercase leading-snug tracking-wide text-bone transition-colors group-hover:text-herb sm:text-2xl">
             {recipe.title}
           </h2>
           <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-bone/55">
