@@ -24,6 +24,7 @@ export const ANMELDELSE_SERIES = [
   { slug: "gasgrill", label: "Gasgrill" },
   { slug: "trykkoger", label: "Trykkoger" },
   { slug: "indbygningsovn", label: "Indbygningsovn" },
+  { slug: "friture", label: "Friture" },
 ] as const;
 
 export type AnmeldelseSeriesSlug = (typeof ANMELDELSE_SERIES)[number]["slug"];

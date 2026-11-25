@@ -308,6 +308,37 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     label: "Severin FR 2445 XXL 5 L",
     slugPath: "Frituregryder/Severin-FR-2445-Sammenlign-Priser",
   },
+  "Tefal Oleoclean Pro FR8040": {
+    productId: "3006339620",
+    categoryId: "81",
+    label: "Tefal Oleoclean Pro FR8040",
+    slugPath:
+      "Frituregryder-Airfryere/Tefal-Oleoclean-Pro-Sammenlign-Priser",
+  },
+  "Tefal Easy Pro FR3330": {
+    productId: "1554164215",
+    categoryId: "81",
+    label: "Tefal Easy Pro FR3330",
+    slugPath:
+      "Frituregryder-Airfryere/Tefal-Easy-Pro-FR3330-Sammenlign-Priser",
+  },
+  "Tefal Oleoclean Compact FR7016": {
+    productId: "3010235738",
+    categoryId: "81",
+    label: "Tefal Oleoclean Compact FR7016",
+    slugPath:
+      "Frituregryder-Airfryere/Tefal-Oleoclean-Compact-FR701616-Sammenlign-Priser",
+  },
+  "DeLonghi RotoFry F28311": {
+    productId: "3267333159",
+    categoryId: "81",
+    label: "De'Longhi RotoFry F28311",
+    slugPath:
+      "Frituregryder-Airfryere/De-Longhi-RotoFry-F28311-Sammenlign-Priser",
+  },
+  // Fritel Turbo SF 4208 / Frytastic 5371 / Onyx Frituregryde 3L:
+  // ingen stabile DK PriceRunner-produkt-ID'er — widget/CTA bruger søgning.
+
   "Melissa Digital Air Fryer XXL 7.6L": {
     productId: "3457662972",
     categoryId: "81",

@@ -786,6 +786,76 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "tefal-oleoclean-pro-fr8040": {
+    id: "tefal-oleoclean-pro-fr8040",
+    href: fromPriceRunner("Tefal Oleoclean Pro FR8040"),
+    label: "Tefal Oleoclean Pro (FR8040)",
+    merchant: "via PriceRunner",
+    description:
+      "Oliefriture med automatisk filtrering og olieboks — hverdagens konge.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "tefal-easy-pro-fr3330": {
+    id: "tefal-easy-pro-fr3330",
+    href: fromPriceRunner("Tefal Easy Pro FR3330"),
+    label: "Tefal Easy Pro (FR3330)",
+    merchant: "via PriceRunner",
+    description:
+      "Klassisk 3 L oliefriture med cool zone — prisvenlig bestseller.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "fritel-turbo-sf-4208": {
+    id: "fritel-turbo-sf-4208",
+    href: fromPriceRunner("Fritel Turbo SF 4208"),
+    label: "Fritel Turbo SF 4208",
+    merchant: "via PriceRunner",
+    description:
+      "Belgisk 3 L med dobbelt varmelegeme — lynhurtig temp-recovery.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "fritel-frytastic-5371": {
+    id: "fritel-frytastic-5371",
+    href: fromPriceRunner("Fritel Frytastic 5371"),
+    label: "Fritel Frytastic 5371",
+    merchant: "via PriceRunner",
+    description:
+      "4 L rustfrit stål med Turbo SF op til 3200 W — familieportioner.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "delonghi-rotofry-f28311": {
+    id: "delonghi-rotofry-f28311",
+    href: fromPriceRunner("DeLonghi RotoFry F28311"),
+    label: "De'Longhi RotoFry (F28311)",
+    merchant: "via PriceRunner",
+    description:
+      "Roterende skrå kurv — ægte frituresprødhed med halv olie.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "tefal-oleoclean-compact-fr7016": {
+    id: "tefal-oleoclean-compact-fr7016",
+    href: fromPriceRunner("Tefal Oleoclean Compact FR7016"),
+    label: "Tefal Oleoclean Compact (FR7016)",
+    merchant: "via PriceRunner",
+    description:
+      "Kompakt 2 L Oleoclean med filtrering — til små husstande.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "onyx-frituregryde-3l": {
+    id: "onyx-frituregryde-3l",
+    href: fromPriceRunner("Onyx Cookware Frituregryde 3L"),
+    label: "Onyx Cookware Frituregryde 3L",
+    merchant: "via PriceRunner",
+    description:
+      "Dansk online-brand 3 L oliefriture — skarp pris og volumen.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "blackstone-2144eu": {
     id: "blackstone-2144eu",
     href: fromPriceRunner("Blackstone 2144EU"),

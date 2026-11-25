@@ -6,6 +6,7 @@ export const ANMELDELSE_NAV = [
   { slug: "gasgrill", name: "Gasgrill" },
   { slug: "trykkoger", name: "Trykkoger" },
   { slug: "indbygningsovn", name: "Indbygningsovn" },
+  { slug: "friture", name: "Friture" },
 ] as const;
 
 export type AnmeldelseNavSlug = (typeof ANMELDELSE_NAV)[number]["slug"];
