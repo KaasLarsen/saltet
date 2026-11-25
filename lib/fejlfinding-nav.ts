@@ -2,6 +2,7 @@
 
 export const FEJLFINDING_GEAR_NAV = [
   { slug: "airfryer", name: "Airfryer" },
+  { slug: "friture", name: "Friture" },
   { slug: "stobejern", name: "Støbejern" },
   { slug: "plancha", name: "Plancha" },
   { slug: "trykkoger", name: "Trykkoger" },

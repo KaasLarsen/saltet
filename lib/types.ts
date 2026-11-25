@@ -193,6 +193,7 @@ export interface Anmeldelse extends AnmeldelseFrontmatter {
 /** Grej-kategori for SOS-fejlfinding. */
 export type FejlfindingGear =
   | "airfryer"
+  | "friture"
   | "stobejern"
   | "plancha"
   | "trykkoger"

@@ -111,7 +111,7 @@ Ultra-scannbare fejlfindings-artikler til panik-søgninger — fast tre-trins-fo
 title: "Hvorfor …?"
 slug: min-fejl
 description: "Kort SEO-beskrivelse."
-gear: airfryer   # airfryer | stobejern | plancha | trykkoger | ovn | generelt
+gear: airfryer   # airfryer | friture | stobejern | plancha | trykkoger | ovn | generelt
 symptom: "Det brugeren oplever"
 image: /recipes/airfryer/eksempel.jpg
 imageAlt: "…"
