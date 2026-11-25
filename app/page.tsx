@@ -8,6 +8,7 @@ import { PartnerBanner } from "@/components/PartnerBanner";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SaltlageBeregner } from "@/components/SaltlageBeregner";
 import { SearchForm } from "@/components/SearchForm";
+import { SeasonalProduceTeaser } from "@/components/SeasonalProduceTeaser";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { barsetBanner, oaterBanner } from "@/lib/partners";
@@ -104,6 +105,8 @@ export default function HomePage() {
           </CardCarousel>
         </section>
       ) : null}
+
+      <SeasonalProduceTeaser />
 
       {featuredRecipes.length > 0 ? (
         <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">

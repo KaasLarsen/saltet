@@ -105,4 +105,55 @@ describe("recipeMatchesIngredient", () => {
       false
     );
   });
+
+  const spidskaal = INGREDIENT_NAV.find((i) => i.slug === "spidskaal")!;
+  const hvidkaal = INGREDIENT_NAV.find((i) => i.slug === "hvidkaal")!;
+  const hokkaido = INGREDIENT_NAV.find((i) => i.slug === "hokkaido")!;
+  const graeskar = INGREDIENT_NAV.find((i) => i.slug === "graeskar")!;
+  const rucola = INGREDIENT_NAV.find((i) => i.slug === "rucola")!;
+  const salat = INGREDIENT_NAV.find((i) => i.slug === "salat")!;
+  const aerter = INGREDIENT_NAV.find((i) => i.slug === "aerter")!;
+  const kikaerter = INGREDIENT_NAV.find((i) => i.slug === "kikaerter")!;
+
+  it("matcher spidskål på egen råvare — ikke hvidkål", () => {
+    const recipe = { ingredients: ["1 spidskål (ca. 400 g), fint snittet"] };
+    assert.equal(recipeMatchesIngredient(recipe, spidskaal), true);
+    assert.equal(recipeMatchesIngredient(recipe, hvidkaal), false);
+  });
+
+  it("matcher hokkaido på egen råvare — ikke generisk græskar-only", () => {
+    const recipe = { ingredients: ["1 kg hokkaido, i tern"] };
+    assert.equal(recipeMatchesIngredient(recipe, hokkaido), true);
+    assert.equal(recipeMatchesIngredient(recipe, graeskar), false);
+  });
+
+  it("matcher rucola på egen råvare — ikke salat", () => {
+    const recipe = { ingredients: ["2 håndfulde rucola"] };
+    assert.equal(recipeMatchesIngredient(recipe, rucola), true);
+    assert.equal(recipeMatchesIngredient(recipe, salat), false);
+  });
+
+  it("matcher grønne ærter uden at ramme kikærter", () => {
+    assert.equal(
+      recipeMatchesIngredient(
+        { ingredients: ["100 g ærter (friske eller frosne)"] },
+        aerter
+      ),
+      true
+    );
+    assert.equal(
+      recipeMatchesIngredient(
+        { ingredients: ["1 dåse kikærter, skyllede"] },
+        aerter
+      ),
+      false
+    );
+    assert.equal(
+      recipeMatchesIngredient(
+        { ingredients: ["1 dåse kikærter, skyllede"] },
+        kikaerter
+      ),
+      true
+    );
+  });
 });

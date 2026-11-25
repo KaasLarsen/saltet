@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { IngredientIdeas } from "@/components/IngredientIdeas";
 import { PaginatedRecipeGrid } from "@/components/PaginatedRecipeGrid";
+import { getIngredientIdeas } from "@/lib/ingredient-ideas";
 import {
   getAllIngredientSlugs,
   getIngredientBySlug,
@@ -44,6 +46,7 @@ export default async function IngredientPage({ params }: IngredientPageProps) {
   }
 
   const recipes = getRecipesByIngredientSlug(slug).map(toRecipeListItem);
+  const ideas = getIngredientIdeas(slug);
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 text-center md:px-8 md:py-16">
@@ -66,6 +69,7 @@ export default async function IngredientPage({ params }: IngredientPageProps) {
         {recipes.length} opskrift{recipes.length === 1 ? "" : "er"} med{" "}
         {ingredient.name.toLowerCase()}.
       </p>
+      {ideas ? <IngredientIdeas entry={ideas} /> : null}
       <PaginatedRecipeGrid recipes={recipes} />
     </div>
   );

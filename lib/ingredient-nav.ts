@@ -65,6 +65,19 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     name: "Æg",
     match: ["æg", "aeg", "æggeblomme", "æggehvide", "æggeblommer", "æggehvider"],
   },
+  {
+    slug: "aerter",
+    name: "Ærter",
+    match: [
+      "ærter",
+      "aerter",
+      "grønne ærter",
+      "frosne ærter",
+      "ærtepure",
+      "aertepure",
+    ],
+    seasonSlugs: ["foraar", "sommer"],
+  },
 
   // B
   {
@@ -231,7 +244,7 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
   {
     slug: "graeskar",
     name: "Græskar",
-    match: ["græskar", "graeskar", "hokkaido", "græskarkerner"],
+    match: ["græskar", "graeskar", "græskarkerner"],
     seasonSlugs: ["efteraar"],
   },
   {
@@ -296,9 +309,15 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     match: ["honning", "hot honey"],
   },
   {
+    slug: "hokkaido",
+    name: "Hokkaido",
+    match: ["hokkaido"],
+    seasonSlugs: ["efteraar"],
+  },
+  {
     slug: "hvidkaal",
     name: "Hvidkål",
-    match: ["hvidkål", "hvidkaal", "spids kål", "spidskål", "spidskaal"],
+    match: ["hvidkål", "hvidkaal"],
     seasonSlugs: ["efteraar", "vinter"],
   },
   {
@@ -592,6 +611,12 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     match: ["porre", "porrer"],
     seasonSlugs: ["efteraar", "vinter"],
   },
+  {
+    slug: "purloeg",
+    name: "Purløg",
+    match: ["purløg", "purloeg"],
+    seasonSlugs: ["sommer"],
+  },
 
   // R
   {
@@ -629,6 +654,12 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     match: ["ris", "grødris", "groedris", "jasminris", "basmatiris", "arborio", "risotto"],
   },
   {
+    slug: "rosenkaal",
+    name: "Rosenkål",
+    match: ["rosenkål", "rosenkaal", "rosenkålene", "rosenkaalene"],
+    seasonSlugs: ["efteraar", "vinter"],
+  },
+  {
     slug: "rosmarin",
     name: "Rosmarin",
     match: ["rosmarin"],
@@ -653,9 +684,15 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
 
   // S
   {
+    slug: "rucola",
+    name: "Rucola",
+    match: ["rucola"],
+    seasonSlugs: ["sommer"],
+  },
+  {
     slug: "salat",
     name: "Salat",
-    match: ["salat", "hovedsalat", "romainesalat", "rucola", "spinatsalat"],
+    match: ["salat", "hovedsalat", "romainesalat", "spinatsalat"],
     seasonSlugs: ["sommer"],
   },
   {
@@ -692,6 +729,12 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     slug: "soede-kartofler",
     name: "Søde kartofler",
     match: ["søde kartofler", "soede kartofler", "sød kartoffel", "batat"],
+  },
+  {
+    slug: "spidskaal",
+    name: "Spidskål",
+    match: ["spidskål", "spidskaal", "spids kål"],
+    seasonSlugs: ["efteraar", "vinter"],
   },
   {
     slug: "spinat",
