@@ -906,6 +906,56 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "hendi-blue-line-4l": {
+    id: "hendi-blue-line-4l",
+    href: fromPriceRunner("Hendi Kitchen Line 4L"),
+    label: "Hendi Kitchen Line 4L",
+    merchant: "via PriceRunner",
+    description:
+      "Semi-pro 4 L / 3000 W horeca-friture — pølsevognskvalitet på bordet.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "proficook-pc-fr-1088": {
+    id: "proficook-pc-fr-1088",
+    href: fromPriceRunner("ProfiCook PC-FR 1088"),
+    label: "ProfiCook PC-FR 1088",
+    merchant: "via PriceRunner",
+    description:
+      "4 L stålfriture med LCD, timer og koldzone — digital midtklasse.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "delonghi-fs6067": {
+    id: "delonghi-fs6067",
+    href: fromPriceRunner("DeLonghi FS6067"),
+    label: "De'Longhi FS6067",
+    merchant: "via PriceRunner",
+    description:
+      "Lukket 2,4 L med Easy Clean-aftapning — alternativ til Oleoclean-boks.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "severin-fr-2431": {
+    id: "severin-fr-2431",
+    href: fromPriceRunner("Severin FR 2431"),
+    label: "Severin FR 2431",
+    merchant: "via PriceRunner",
+    description:
+      "3 L rustfri budget-klassiker på 2000 W — bundlinje under 500 kr.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "clatronic-fr-3390": {
+    id: "clatronic-fr-3390",
+    href: fromPriceRunner("Clatronic FR 3390"),
+    label: "Clatronic FR 3390",
+    merchant: "via PriceRunner",
+    description:
+      "Ultra-budget 2 L under 300 kr — hvornår en friture bliver for billig.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "blackstone-2144eu": {
     id: "blackstone-2144eu",
     href: fromPriceRunner("Blackstone 2144EU"),

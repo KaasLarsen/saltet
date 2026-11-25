@@ -338,7 +338,9 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
   },
   // Fritel Turbo SF 4208 / Frytastic 5371 / Onyx Frituregryde 3L /
   // TriStar FR-6937 / Princess 185000 / Moulinex Super Uno AM302130 /
-  // Fritel FR 1355 / Severin FR 2408:
+  // Fritel FR 1355 / Severin FR 2408 /
+  // Hendi Kitchen Line 4L / ProfiCook PC-FR 1088 / DeLonghi FS6067 /
+  // Severin FR 2431 / Clatronic FR 3390:
   // ingen stabile DK PriceRunner-produkt-ID'er — widget/CTA bruger søgning.
 
   "Melissa Digital Air Fryer XXL 7.6L": {
