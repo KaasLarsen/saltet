@@ -12,6 +12,9 @@ export interface IngredientIdea {
 export interface IngredientIdeasEntry {
   slug: string;
   blurb: string;
+  /** Foto til forside-teaser (gerne en opskrift hvor råvaren er synlig). */
+  image: string;
+  imageAlt: string;
   ideas: readonly IngredientIdea[];
 }
 
@@ -20,6 +23,8 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
     slug: "spidskaal",
     blurb:
       "Spidskål er mildere og hurtigere at tilberede end hvidkål, hvilket gør den ideel til travle hverdage.",
+    image: "/recipes/airfryer/spidskaal.jpg",
+    imageAlt: "Stegt spidskål i airfryer",
     ideas: [
       {
         title: "Stegt spidskål med brunet smør, hasselnødder og citron",
@@ -45,6 +50,8 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
     slug: "rosenkaal",
     blurb:
       "Rosenkål har fået en renæssance og er oplagt i efterårs- og vinterhalvåret, især når de tilberedes ved høj varme.",
+    image: "/recipes/airfryer/rosenkaal-balsamico.jpg",
+    imageAlt: "Rosenkål med balsamico",
     ideas: [
       {
         title: "Bagte rosenkål med bacon, balsamico og parmesan",
@@ -68,6 +75,8 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
     slug: "hokkaido",
     blurb:
       "Hokkaido-græskar er taknemmeligt at arbejde med, fordi skrællen kan spises, og det har en lang holdbarhed.",
+    image: "/recipes/gryde/hokkaido-graeskarsuppe-ingefaer.jpg",
+    imageAlt: "Hokkaido-græskarsuppe med ingefær",
     ideas: [
       {
         title: "Cremet hokkaidosuppe med ingefær, kokosmælk og ristede kerner",
@@ -92,6 +101,8 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
     slug: "rucola",
     blurb:
       "Rucola mister hurtigt sin sprødhed i køleskabet, så opskrifter der bruger en hel bakke eller redder slatten rucola er meget værdifulde.",
+    image: "/recipes/dips/rucolapesto.jpg",
+    imageAlt: "Rucolapesto",
     ideas: [
       {
         title: "Rucolapesto med mandler, hvidløg og parmesan",
@@ -115,6 +126,8 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
     slug: "purloeg",
     blurb:
       "Purløg bruges ofte kun som drys, så brugerne mangler ofte idéer til at få brugt et helt bundt op.",
+    image: "/recipes/palaeg/kartoffelsalat.jpg",
+    imageAlt: "Kartoffelsalat med purløg",
     ideas: [
       {
         title: "Purløgsolie",
@@ -137,6 +150,8 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
     slug: "aerter",
     blurb:
       "Friske ærter er en kort sommerfavorit, mens frosne ærter er en uundværlig basisvare i fryseren året rundt.",
+    image: "/recipes/dehydrator/wasabi-aerter-dehydrator.jpg",
+    imageAlt: "Sprøde wasabi-ærter",
     ideas: [
       {
         title: "Ærtepure med mynte, citron og olivenolie",

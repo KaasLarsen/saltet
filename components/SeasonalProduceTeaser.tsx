@@ -41,7 +41,7 @@ export function SeasonalProduceTeaser() {
           Se alle råvarer
         </Link>
       </div>
-      <ul className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <ul className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-5">
         {produce.map((entry, index) => {
           const nav = ingredientNavBySlug(entry.slug);
           const name = nav?.name ?? entry.slug;
@@ -51,10 +51,23 @@ export function SeasonalProduceTeaser() {
             <li key={entry.slug}>
               <Link
                 href={`/raavare-indeks/${entry.slug}`}
-                className="group animate-rise block border-b-2 border-bone/15 pb-4 transition-colors hover:border-herb"
+                className="group animate-rise block text-center sm:text-left"
                 style={{ animationDelay: `${index * 60}ms` }}
               >
-                <span className="font-serif text-xl uppercase tracking-wide text-bone transition-colors group-hover:text-herb">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border-2 border-bone/20 bg-ash shadow-[4px_4px_0_0_rgba(212,255,0,0.35)] transition-[transform,box-shadow,border-color] duration-300 group-hover:-translate-y-1 group-hover:border-herb group-hover:shadow-[6px_6px_0_0_rgba(212,255,0,0.7)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- grid CDN budget: skip optimizer */}
+                  <img
+                    src={entry.image}
+                    alt={entry.imageAlt}
+                    width={800}
+                    height={600}
+                    decoding="async"
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-iron/55 via-transparent to-transparent" />
+                </div>
+                <span className="mt-4 block font-serif text-xl uppercase tracking-wide text-bone transition-colors group-hover:text-herb">
                   {name}
                 </span>
                 <span className="mt-2 block text-sm leading-relaxed text-bone/45 group-hover:text-bone/60">
