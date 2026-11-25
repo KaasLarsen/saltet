@@ -8,6 +8,10 @@ import { getAllFejlfinding } from "@/lib/fejlfinding";
 import { getAllGrej } from "@/lib/grej";
 import { getAllGuides } from "@/lib/guides";
 import { getAllRecipes, getRecipesByCategory } from "@/lib/recipes";
+import {
+  getIndexableIngredients,
+  getRecipesByIngredientSlug,
+} from "@/lib/ingredients";
 import { getIndexableBrowseTags, getRecipesByTagSlug } from "@/lib/tags";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -23,6 +27,7 @@ import { absoluteUrl } from "@/lib/seo";
  * - Højtider: auto fra lib/holidays
  * - Sæsoner: auto fra lib/seasons
  * - Emner: auto fra lib/topics
+ * - Råvareindeks: auto fra lib/ingredient-nav (kun råvarer med ≥2 opskrifter)
  * - Tags: auto fra opskrifters tags (kun tags med ≥2 opskrifter; højtids-/sæson-/emne-tags omdirigeres)
  * - Opskrifter: auto fra content/recipes/**\/*.mdx
  */
@@ -40,6 +45,7 @@ const STATIC_ROUTES: {
   { path: "/hoejtider", changeFrequency: "weekly", priority: 0.85 },
   { path: "/saeson", changeFrequency: "weekly", priority: 0.85 },
   { path: "/emner", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/raavare-indeks", changeFrequency: "weekly", priority: 0.85 },
   { path: "/tags", changeFrequency: "weekly", priority: 0.7 },
   { path: "/om", changeFrequency: "monthly", priority: 0.5 },
   { path: "/kontakt", changeFrequency: "yearly", priority: 0.3 },
@@ -76,6 +82,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const anmeldelser = getAllAnmeldelser();
   const fejlfinding = getAllFejlfinding();
   const tags = getIndexableBrowseTags();
+  const ingredients = getIndexableIngredients();
   const categorySlugs = getAllCategorySlugs();
   const holidaySlugs = getAllHolidaySlugs();
   const seasonSlugs = getAllSeasonSlugs();
@@ -131,6 +138,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
+  const ingredientPages: MetadataRoute.Sitemap = ingredients.map((item) => ({
+    url: absoluteUrl(`/raavare-indeks/${item.slug}`),
+    lastModified: latestRecipePublishedAt(
+      getRecipesByIngredientSlug(item.slug)
+    ),
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+
   const recipePages: MetadataRoute.Sitemap = recipes.map((recipe) => ({
     url: absoluteUrl(`/opskrifter/${recipe.category}/${recipe.slug}`),
     lastModified: new Date(recipe.publishedAt),
@@ -172,6 +188,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...holidayPages,
     ...seasonPages,
     ...topicPages,
+    ...ingredientPages,
     ...tagPages,
     ...recipePages,
     ...guidePages,

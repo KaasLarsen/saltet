@@ -39,6 +39,7 @@ const OPSKRIFTER_PREFIXES = [
   "/grej",
   "/saeson",
   "/hoejtider",
+  "/raavare-indeks",
 ] as const;
 
 const sosNav: NavItem = {
@@ -77,6 +78,20 @@ const navItems: NavItem[] = [
           href: `/emner/${t.slug}`,
           label: t.name,
         })),
+      },
+      {
+        id: "raavarer",
+        label: "Råvarer",
+        hubHref: "/raavare-indeks",
+        hubLabel: "Råvareindeks A–Å",
+        children: [
+          { href: "/raavare-indeks", label: "Alle råvarer" },
+          { href: "/raavare-indeks/kartoffel", label: "Kartoffel" },
+          { href: "/raavare-indeks/kylling", label: "Kylling" },
+          { href: "/raavare-indeks/laks", label: "Laks" },
+          { href: "/raavare-indeks/loeg", label: "Løg" },
+          { href: "/raavare-indeks/groenkaal", label: "Grønkål" },
+        ],
       },
       {
         id: "grej",

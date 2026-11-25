@@ -141,6 +141,28 @@ export function buildTopicMetadata(
   };
 }
 
+export function buildIngredientMetadata(
+  ingredientSlug: string,
+  headline: string,
+  description: string
+): Metadata {
+  const url = absoluteUrl(`/raavare-indeks/${ingredientSlug}`);
+
+  return {
+    title: `${headline} | Saltet`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${headline} | Saltet`,
+      description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "website",
+    },
+  };
+}
+
 export function buildBreadcrumbJsonLd(
   items: { name: string; url: string }[]
 ): object {

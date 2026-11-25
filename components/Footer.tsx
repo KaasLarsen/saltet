@@ -9,6 +9,7 @@ const footerLinks = [
   { href: "/grej", label: "Grej" },
   { href: "/anmeldelser", label: "Anmeldelser" },
   { href: "/emner", label: "Emner" },
+  { href: "/raavare-indeks", label: "Råvarer" },
   { href: "/saeson", label: "Sæson" },
   { href: "/hoejtider", label: "Højtider" },
   { href: "/om", label: "Om" },
