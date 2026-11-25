@@ -19,8 +19,22 @@ export default function PrivacyPage() {
       </h1>
       <div className="mt-8 space-y-5 text-left leading-relaxed text-bone/65 md:text-center">
         <p>
-          {siteConfig.name} respekterer dit privatliv. Vi indsamler ikke
-          personoplysninger via formularer, konti eller nyhedsbreve.
+          {siteConfig.name} respekterer dit privatliv. Vi indsamler kun de
+          personoplysninger, der er nødvendige for de funktioner, du bruger —
+          fx kontaktmail og nyhedsbrev.
+        </p>
+        <p>
+          Tilmelder du dig nyhedsbrevet, gemmer vi din e-mailadresse hos
+          Supabase (EU, når projektet er sat op der) for at sende dig
+          opskrifter og tips. Vi sælger ikke din e-mail. Vil du afmeldes,
+          skriv til{" "}
+          <a
+            href={`mailto:${siteConfig.email}?subject=Afmeld%20nyhedsbrev`}
+            className="font-semibold text-herb underline decoration-herb/40 underline-offset-4 transition-colors hover:decoration-herb"
+          >
+            {siteConfig.email}
+          </a>
+          .
         </p>
         <p>
           Skriver du til os på{" "}

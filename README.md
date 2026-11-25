@@ -23,6 +23,15 @@ Virker out-of-the-box via MantleDB-fallback (ingen Vercel-secrets påkrævet).
 Valgfrit: sæt `NEXT_PUBLIC_SUPABASE_*` og kør `supabase/recipe-ratings.sql` for
 en mere robust produktionsstore.
 
+### Nyhedsbrev
+
+Footer-tilmelding gemmer e-mails i Supabase (ingen mail-udbyder endnu).
+
+1. Sæt `NEXT_PUBLIC_SUPABASE_URL` og `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+2. Kør `supabase/newsletter.sql` i Supabase SQL Editor
+3. Eksporter senere: Table Editor → CSV, eller
+   `select email from newsletter_subscribers where unsubscribed_at is null`
+
 ## Tilføj en ny opskrift
 
 1. Opret en `.mdx`-fil i `content/recipes/[kategori]/`, fx `content/recipes/airfryer/min-opskrift.mdx`

@@ -1,4 +1,6 @@
 import Link from "next/link";
+
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { siteConfig } from "@/lib/seo";
 
 const footerLinks = [
@@ -23,9 +25,12 @@ export function Footer() {
         <p className="font-serif text-xl uppercase tracking-wide text-herb">
           Saltet
         </p>
+        <div className="mt-8">
+          <NewsletterSignup />
+        </div>
         <nav
           aria-label="Sidefod"
-          className="mt-5 flex flex-wrap items-center justify-center gap-2"
+          className="mt-8 flex flex-wrap items-center justify-center gap-2"
         >
           {footerLinks.map((link) => (
             <Link
