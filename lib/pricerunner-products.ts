@@ -336,7 +336,9 @@ export const PRICERUNNER_PRODUCTS: Record<string, PriceRunnerProduct> = {
     slugPath:
       "Frituregryder-Airfryere/De-Longhi-RotoFry-F28311-Sammenlign-Priser",
   },
-  // Fritel Turbo SF 4208 / Frytastic 5371 / Onyx Frituregryde 3L:
+  // Fritel Turbo SF 4208 / Frytastic 5371 / Onyx Frituregryde 3L /
+  // TriStar FR-6937 / Princess 185000 / Moulinex Super Uno AM302130 /
+  // Fritel FR 1355 / Severin FR 2408:
   // ingen stabile DK PriceRunner-produkt-ID'er — widget/CTA bruger søgning.
 
   "Melissa Digital Air Fryer XXL 7.6L": {

@@ -856,6 +856,56 @@ export const AFFILIATE_OFFERS: Record<string, AffiliateOffer> = {
     ctaLabel: "Sammenlign priser",
     variant: "grej",
   },
+  "tristar-fr-6937": {
+    id: "tristar-fr-6937",
+    href: fromPriceRunner("TriStar FR-6937"),
+    label: "TriStar FR-6937",
+    merchant: "via PriceRunner",
+    description:
+      "Dobbeltfriture 2 × 3 L og 3600 W — to retter ved hver sin temp.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "princess-185000": {
+    id: "princess-185000",
+    href: fromPriceRunner("Princess 185000"),
+    label: "Princess 185000",
+    merchant: "via PriceRunner",
+    description:
+      "Budget 5 L rustfri med 3270 W og koldzone — højwatt uden Fritel-pris.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "moulinex-super-uno-am302130": {
+    id: "moulinex-super-uno-am302130",
+    href: fromPriceRunner("Moulinex Super Uno AM302130"),
+    label: "Moulinex Super Uno (AM302130)",
+    merchant: "via PriceRunner",
+    description:
+      "Lukket 2,2 L med kulfilter — Tænk-klassiker mod stegeos.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "fritel-fr-1355": {
+    id: "fritel-fr-1355",
+    href: fromPriceRunner("Fritel FR 1355"),
+    label: "Fritel FR 1355",
+    merchant: "via PriceRunner",
+    description:
+      "Prisvenlig belgisk 3 L på 2200 W — midtklasse mod Easy Pro.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
+  "severin-fr-2408": {
+    id: "severin-fr-2408",
+    href: fromPriceRunner("Severin FR 2408"),
+    label: "Severin FR 2408",
+    merchant: "via PriceRunner",
+    description:
+      "Mini 0,95 L med fondue — til enkeltpersoner og små portioner.",
+    ctaLabel: "Sammenlign priser",
+    variant: "grej",
+  },
   "blackstone-2144eu": {
     id: "blackstone-2144eu",
     href: fromPriceRunner("Blackstone 2144EU"),
