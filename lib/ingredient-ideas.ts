@@ -44,6 +44,23 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         description:
           "En hurtig hverdagsret, hvor et halvt spidskål nemt kan bruges op.",
       },
+      {
+        title: "Bagte spidskålsbåde med tahindressing og sesam",
+        description:
+          "Halve eller kvarte spidskål bagt møre i ovnen, toppet med en cremet tahindressing og ristede sesamfrø.",
+      },
+      {
+        title: "Spidskålswrap med krydret hakket oksekød og avocado",
+        description:
+          "Brug de store yderblade fra spidskålet som sprøde, sunde wraps i stedet for tortillapandekager.",
+        recipeHref: "/opskrifter/airfryer/spidskaals-tacoskaller",
+      },
+      {
+        title: "Flødestuvet spidskål med muskatnød og persille",
+        description:
+          "En hurtig, moderne udgave af den klassiske stuvede hvidkål, der passer godt til frikadeller eller medister.",
+        recipeHref: "/opskrifter/gryde/one-pot-floede-spidskaal-bacon",
+      },
     ],
   },
   {
@@ -68,6 +85,21 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         title: "Cremet pasta med rosenkål, hvidløg, citron og timian",
         description:
           "En nem vegetarisk ret, hvor kålen steges gylden på panden før den vendes i saucen.",
+      },
+      {
+        title: "Rosenkål på pande med æbler, sennep og timian",
+        description:
+          "Halverede rosenkål stegt hårdt på panden sammen med æbletern og vendt i en grov sennepsglasering.",
+      },
+      {
+        title: "Gratin med rosenkål, porre og cheddar",
+        description:
+          "En varm og mættende vinterret, hvor rosenkålene bages i en cremet ostesauce med sprødt rasp på toppen.",
+      },
+      {
+        title: "Lynstegt rosenkål med chili, hvidløg og honning",
+        description:
+          "Et smagfuldt og let stærkt tilbehør, der gør rosenkål spændende selv for skeptikere.",
       },
     ],
   },
@@ -95,6 +127,22 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         description:
           "En oplagt måde at bruge en rest græskarpuré på i det søde køkken.",
       },
+      {
+        title: "Hokkaidopure med smør, salvie og hvidløg",
+        description:
+          "Et farverigt og sødmefuldt alternativ til kartoffelmos, der passer perfekt til efterårets gryderetter og stegt kød.",
+      },
+      {
+        title: "Fyldt hokkaido med linser, feta og valnødder",
+        description:
+          "Et halvt udhulet græskar bagt i ovnen med et krydret vegetarisk fyld — en flot servering til gæster.",
+        recipeHref: "/opskrifter/ovn/fyldte-hokkaido-halvdele",
+      },
+      {
+        title: "Hokkaidoboller med græskarkerner",
+        description:
+          "Revet eller bagt hokkaido i bolledejen gør brødet ekstra saftigt og giver en flot gylden krumme.",
+      },
     ],
   },
   {
@@ -120,6 +168,21 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         description:
           "En fyldig salat til madpakken eller som tilbehør til grillmad.",
       },
+      {
+        title: "Omelet eller frittata med rucola, kartoffel og gedeost",
+        description:
+          "En nem måde at få brugt både en rest kogte kartofler og en pose rucola, der er ved at miste pusten.",
+      },
+      {
+        title: "Rucolasmør med citron og hvidløg",
+        description:
+          "Finthakket rucola rørt i blødt smør — perfekt til at smelte oven på en varm bøf, grillede grøntsager eller nybagt brød.",
+      },
+      {
+        title: "Rugbrødssandwich med parmaskinke, mozzarella og rucola",
+        description:
+          "En hurtig frokostklassiker, hvor rucolaens pebrede smag giver modspil til den fede ost og salte skinke.",
+      },
     ],
   },
   {
@@ -144,6 +207,22 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         description:
           "En sommerfavorit, hvor purløg spiller hovedrollen i smagen.",
       },
+      {
+        title: "Purløgsflødeost eller rygeostecreme",
+        description:
+          "Finthakket purløg rørt i flødeost med lidt citron og peber — oplagt som dip, på bagels eller til røget laks.",
+        recipeHref: "/opskrifter/palaeg/floedeost-urter",
+      },
+      {
+        title: "Ostepandekager eller vafler med purløg",
+        description:
+          "Kom masser af friskklippet purløg direkte i dejen til salte madpandekager eller kartoffelvafler.",
+      },
+      {
+        title: "Smørrebrød med æggestand og purløg",
+        description:
+          "En klassisk, dansk frokostfavorit, hvor purløg udgør et generøst grønt lag på toppen.",
+      },
     ],
   },
   {
@@ -167,6 +246,21 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         title: "Ærtesuppe med sprød bacon og cremefraiche",
         description:
           "En budgetvenlig og lynhurtig hverdagssuppe, der kan laves på under 20 minutter.",
+      },
+      {
+        title: "Ærtehummus med tahin, hvidløg og spidskommen",
+        description:
+          "En frisk, lysegrøn dip til grøntsagsstave, pita eller som smørelse i sandwiches.",
+      },
+      {
+        title: "Pasta med ærter, bacon, fløde og parmesan",
+        description:
+          "En cremet hverdagsfavorit, hvor de frosne ærter blot vendes i saucen de sidste to minutter.",
+      },
+      {
+        title: "Ærtefrikadeller med feta og mynte",
+        description:
+          "Grønne vegetarfrikadeller lavet på blendede ærter, æg og havregryn — gode både varme til aftensmad og kolde i madpakken.",
       },
     ],
   },
