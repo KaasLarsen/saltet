@@ -61,6 +61,22 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
           "En hurtig, moderne udgave af den klassiske stuvede hvidkål, der passer godt til frikadeller eller medister.",
         recipeHref: "/opskrifter/gryde/one-pot-floede-spidskaal-bacon",
       },
+      {
+        title: "Spidskålstacos med stegt fisk eller kikærter",
+        description:
+          "Fintsnittet spidskål vendt med lime og koriander fungerer som et sprødt og friskt fyld i tacos.",
+      },
+      {
+        title: "Spidskåls-okonomiyaki (japansk kålpandekage)",
+        description:
+          "En smart måde at få brugt et halvt eller helt spidskål på ved at stege det sammen med æg, mel og forårsløg som en mættende madpandekage.",
+        recipeHref: "/opskrifter/plancha/japansk-okonomiyaki",
+      },
+      {
+        title: "Simreret spidskål med pølser og sennep i én gryde",
+        description:
+          "Groftsnittet spidskål der falder sammen i en cremet bouillon- og sennepssauce med stegte pølseskiver.",
+      },
     ],
   },
   {
@@ -100,6 +116,21 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         title: "Lynstegt rosenkål med chili, hvidløg og honning",
         description:
           "Et smagfuldt og let stærkt tilbehør, der gør rosenkål spændende selv for skeptikere.",
+      },
+      {
+        title: "Rosenkåls-chips med flagesalt og parmesan",
+        description:
+          "Løse blade fra rosenkål vendt i lidt olie og bagt helt sprøde i ovnen eller airfryeren som en sund snack eller sprød topping.",
+      },
+      {
+        title: "Lynstegt rosenkål med chorizo og hvide bønner",
+        description:
+          "En rustik, smagfuld hverdagsret på 15 minutter, hvor den krydrede chorizo giver masser af smag til kålen.",
+      },
+      {
+        title: "Tærte med karamelliserede løg, rosenkål og gedeost",
+        description:
+          "En mættende efterårs- og vintertærte, hvor rosenkålene bages møre i æggemassen.",
       },
     ],
   },
@@ -143,6 +174,23 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         description:
           "Revet eller bagt hokkaido i bolledejen gør brødet ekstra saftigt og giver en flot gylden krumme.",
       },
+      {
+        title: "Hokkaidokarry med kikærter og spinat",
+        description:
+          "En varmende vegetarisk gryderet, hvor tern af hokkaido koger møre i kokosmælk og karry og giver en naturlig cremet konsistens.",
+      },
+      {
+        title: "Ristede græskarkerner med paprika og salt",
+        description:
+          'En klassisk "red min mad"-opskrift, der lærer brugerne at udnytte kernerne i stedet for at smide dem ud.',
+        recipeHref: "/opskrifter/ovn/ristede-graeskarkerner-roget-paprika",
+      },
+      {
+        title: "Hokkaidorisotto med salvie og parmesan",
+        description:
+          "Revet eller ternet hokkaido kogt med i risottoen giver en smuk, gylden farve og en mild sødme.",
+        recipeHref: "/opskrifter/gryde/graeskar-risotto-parmesan",
+      },
     ],
   },
   {
@@ -182,6 +230,23 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         title: "Rugbrødssandwich med parmaskinke, mozzarella og rucola",
         description:
           "En hurtig frokostklassiker, hvor rucolaens pebrede smag giver modspil til den fede ost og salte skinke.",
+      },
+      {
+        title: "Rucola- og kartoffelsuppe",
+        description:
+          "En grøn, let pebret kartoffelsuppe, hvor en hel bakke rucola blendes i til sidst for at give farve, smag og redde slatne blade.",
+      },
+      {
+        title: "Grillet sandwich med cheddar, æble og rucola",
+        description:
+          "Varm toast hvor den friske rucola kommes i lige inden servering for at give sprødhed til den smeltede ost.",
+      },
+      {
+        title: "Focaccia med rucola, cherrytomater og oliven",
+        description:
+          "Bagt direkte oven på dejen eller lagt på det lune brød med god olivenolie og flagesalt.",
+        recipeHref:
+          "/opskrifter/pizzaovn/focaccia-rosmarin-cherrytomater-pizzaovn",
       },
     ],
   },
@@ -223,6 +288,23 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         description:
           "En klassisk, dansk frokostfavorit, hvor purløg udgør et generøst grønt lag på toppen.",
       },
+      {
+        title: "Purløgssmør til majs, kartofler eller brød",
+        description:
+          "Et nemt kryddersmør med masser af frisk purløg og lidt citronskal, som kan rulles til en pølse og fryses ned i skiver.",
+        recipeHref: "/opskrifter/roeremaskine/kryddersmoer-roeremaskine",
+      },
+      {
+        title: "Røræg eller omeletsandwich med masser af purløg",
+        description:
+          "En simpel morgenmads- eller frokostopskrift, hvor purløg bruges i rigelige mængder frem for blot som pynt.",
+        recipeHref: "/opskrifter/pande/aeggekage-bacon-purloeg",
+      },
+      {
+        title: "Kold agurke- og yoghurtsuppe med purløg og dild",
+        description:
+          "En forfriskende sommersuppe eller forret, hvor krydderurterne giver hele karakteren.",
+      },
     ],
   },
   {
@@ -261,6 +343,21 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
         title: "Ærtefrikadeller med feta og mynte",
         description:
           "Grønne vegetarfrikadeller lavet på blendede ærter, æg og havregryn — gode både varme til aftensmad og kolde i madpakken.",
+      },
+      {
+        title: "Kold ærte- og myntesuppe med rygeost",
+        description:
+          "En hurtig, grøn sommersuppe på frosne eller friske ærter, der serveres kold med en skefuld rygeost i midten.",
+      },
+      {
+        title: "Gnocchi med ærter, citron, smør og parmesan",
+        description:
+          "En 10-minutters hverdagsret på én pande, hvor søde ærter og frisk citron balancerer den salte ost.",
+      },
+      {
+        title: "Kartoffel- og ærtecurry (Aloo Matar)",
+        description:
+          "En krydret, budgetvenlig indisk-inspireret gryderet baseret på to råvarer, de fleste allerede har i køkkenet.",
       },
     ],
   },
