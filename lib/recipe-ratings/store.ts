@@ -28,9 +28,11 @@ export function getCachedRecipeRatingSummary(
   kind: RecipeRatingKind,
   slug: string
 ): Promise<RecipeRatingSummary> {
+  // Cache key includes backend epoch so empty Supabase-era entries are not sticky
+  // after switching back to Mantle (revalidate: false otherwise never refreshes).
   return unstable_cache(
     () => readRecipeRatingSummary(kind, slug),
-    ["recipe-rating-summary", kind, slug],
+    ["recipe-rating-summary", "mantle-default-v1", kind, slug],
     { tags: [recipeRatingCacheTag(kind, slug)], revalidate: false }
   )();
 }
