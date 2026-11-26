@@ -19,9 +19,13 @@ NEXT_PUBLIC_SITE_URL=https://saltet.dk
 
 ### Stjerne-ratings
 
-Virker out-of-the-box via MantleDB-fallback (ingen Vercel-secrets påkrævet).
-Valgfrit: sæt `NEXT_PUBLIC_SUPABASE_*` og kør `supabase/recipe-ratings.sql` for
-en mere robust produktionsstore.
+Virker out-of-the-box via MantleDB (ingen Vercel-secrets påkrævet).
+`NEXT_PUBLIC_SUPABASE_*` til nyhedsbrev skifter **ikke** ratings-backend.
+
+Valgfrit upgrade til Supabase:
+
+1. Kør `supabase/recipe-ratings.sql` i SQL Editor
+2. Sæt `RECIPE_RATINGS_BACKEND=supabase` (samme Vercel-env som øvrige secrets)
 
 ### Nyhedsbrev
 

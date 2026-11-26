@@ -9,6 +9,10 @@ import {
   type RecipeRatingSummary,
 } from "@/lib/recipe-ratings/format";
 import {
+  isRecipeRatingsStoreConfigured,
+  isSupabaseRatingsBackend,
+} from "@/lib/recipe-ratings/backend";
+import {
   isMantleRatingsConfigured,
   MantleRateLimitError,
   mantleCastRating,
@@ -17,11 +21,8 @@ import {
 } from "@/lib/recipe-ratings/mantle";
 import { hashIp } from "@/lib/recipe-ratings/voter";
 import { createSupabaseAnonClient } from "@/lib/supabase/anon";
-import { isSupabaseConfigured } from "@/lib/supabase/env";
 
-export function isRecipeRatingsStoreConfigured(): boolean {
-  return isSupabaseConfigured() || isMantleRatingsConfigured();
-}
+export { isRecipeRatingsStoreConfigured, isSupabaseRatingsBackend };
 
 export function getCachedRecipeRatingSummary(
   kind: RecipeRatingKind,
@@ -48,7 +49,7 @@ export async function readRecipeRatingSummary(
   kind: RecipeRatingKind,
   slug: string
 ): Promise<RecipeRatingSummary> {
-  if (isSupabaseConfigured()) {
+  if (isSupabaseRatingsBackend()) {
     try {
       const supabase = createSupabaseAnonClient();
       const { data, error } = await supabase.rpc("recipe_rating_summary", {
@@ -74,7 +75,7 @@ export async function readVoterRating(
   slug: string,
   voterHash: string
 ): Promise<number | null> {
-  if (isSupabaseConfigured()) {
+  if (isSupabaseRatingsBackend()) {
     const supabase = createSupabaseAnonClient();
     const { data, error } = await supabase.rpc("recipe_rating_mine", {
       p_kind: kind,
@@ -104,7 +105,7 @@ export async function saveRecipeRating(input: {
   voterHash: string;
   ip: string;
 }): Promise<SaveRecipeRatingResult> {
-  if (isSupabaseConfigured()) {
+  if (isSupabaseRatingsBackend()) {
     const supabase = createSupabaseAnonClient();
     const { data, error } = await supabase.rpc("recipe_rating_cast", {
       p_kind: input.kind,
