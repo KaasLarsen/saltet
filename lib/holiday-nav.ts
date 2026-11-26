@@ -20,7 +20,7 @@ export const HOLIDAY_NAV: readonly HolidayNavItem[] = [
   {
     slug: "jul",
     name: "Jul",
-    matchTagSlugs: ["jul", "julegaas", "juleand", "juleroedkaal"],
+    matchTagSlugs: ["jul", "julegaas", "juleand", "juleroedkaal", "julefrokost", "julemad"],
     windows: [{ startMonth: 11, startDay: 16, endMonth: 12, endDay: 26 }],
   },
   {
