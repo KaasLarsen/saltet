@@ -126,6 +126,11 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     seasonSlugs: ["sommer", "efteraar"],
   },
   {
+    slug: "burrata",
+    name: "Burrata",
+    match: ["burrata"],
+  },
+  {
     slug: "butternut",
     name: "Butternut",
     match: ["butternut", "butternutsquash"],
@@ -174,6 +179,11 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     slug: "citron",
     name: "Citron",
     match: ["citron", "citroner", "citronsaft", "citronskal"],
+  },
+  {
+    slug: "chorizo",
+    name: "Chorizo",
+    match: ["chorizo"],
   },
 
   // D
@@ -325,6 +335,11 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     name: "Hvidløg",
     match: ["hvidløg", "hvidloeg", "hvidløgsfed", "hvidløgspulver"],
   },
+  {
+    slug: "hytteost",
+    name: "Hytteost",
+    match: ["hytteost"],
+  },
 
   // I
   {
@@ -452,7 +467,7 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
   {
     slug: "loeg",
     name: "Løg",
-    match: ["løg", "loeg", "skalotteløg", "skalotteloeg", "rødløg", "roedloeg"],
+    match: ["løg", "loeg", "skalotteløg", "skalotteloeg"],
   },
 
   // M
@@ -618,6 +633,13 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     seasonSlugs: ["sommer"],
   },
 
+  // Q
+  {
+    slug: "quinoa",
+    name: "Quinoa",
+    match: ["quinoa"],
+  },
+
   // R
   {
     slug: "rabarber",
@@ -663,6 +685,11 @@ export const INGREDIENT_NAV: readonly IngredientNavItem[] = [
     slug: "rosmarin",
     name: "Rosmarin",
     match: ["rosmarin"],
+  },
+  {
+    slug: "roedloeg",
+    name: "Rødløg",
+    match: ["rødløg", "roedloeg"],
   },
   {
     slug: "roedbeder",

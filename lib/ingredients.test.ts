@@ -156,4 +156,18 @@ describe("recipeMatchesIngredient", () => {
       true
     );
   });
+
+  const roedloeg = INGREDIENT_NAV.find((i) => i.slug === "roedloeg")!;
+
+  it("matcher rødløg på egen råvare — ikke generisk løg", () => {
+    const recipe = { ingredients: ["2 rødløg, tyndt skåret"] };
+    assert.equal(recipeMatchesIngredient(recipe, roedloeg), true);
+    assert.equal(recipeMatchesIngredient(recipe, loeg), false);
+  });
+
+  it("matcher almindeligt løg uden at ramme rødløg", () => {
+    const recipe = { ingredients: ["1 lille løg, finthakket"] };
+    assert.equal(recipeMatchesIngredient(recipe, loeg), true);
+    assert.equal(recipeMatchesIngredient(recipe, roedloeg), false);
+  });
 });
