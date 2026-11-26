@@ -361,6 +361,163 @@ export const INGREDIENT_IDEAS: readonly IngredientIdeasEntry[] = [
       },
     ],
   },
+  {
+    slug: "persillerod",
+    blurb:
+      "Persillerod er en overset dansk vinterrodfrugt, der ofte forveksles med pastinak, men har en fin, nøddeagtig smag af persille.",
+    image: "/recipes/airfryer/pastinak-persillerod-fritter.jpg",
+    imageAlt: "Pastinak- og persillerodsfritter fra airfryeren",
+    ideas: [
+      {
+        title: "Bagte persillerødder med honning, timian og hasselnødder",
+        description:
+          "Enkel tilbehørsret, hvor rodfrugterne karamelliserer i ovnen.",
+      },
+      {
+        title: "Cremet persillerodssuppe med sprød bacon og æbletern",
+        description:
+          "En fløjlsblød vintersuppe, hvor syren fra æblet balancerer den søde rod.",
+      },
+      {
+        title: "Persillerodsmos med brunet smør",
+        description:
+          "Et smagfuldt alternativ til almindelig kartoffelmos til efterårets og vinterens simreretter.",
+      },
+    ],
+  },
+  {
+    slug: "quinoa",
+    blurb:
+      "Quinoa er en proteinrig og glutenfri basisvare, som mange bruger i salater og som sundt alternativ til ris og pasta.",
+    image: "/recipes/ovn/bagt-feta-quinoa-oliven.jpg",
+    imageAlt: "Bagt feta med cherrytomater, oliven og quinoa",
+    ideas: [
+      {
+        title:
+          "Quinoasalat med bagt græskar, feta, granatæble og græskarkerner",
+        description:
+          "En mættende efterårs- og vintersalat, der holder sig god i flere dage.",
+        recipeHref: "/opskrifter/ovn/bagt-feta-quinoa-oliven",
+      },
+      {
+        title: "Quinoadeller med gulerod, forårsløg og spidskommen",
+        description:
+          "Sprøde vegetarfrikadeller, som fungerer godt både til aftensmad og i madpakken.",
+      },
+      {
+        title: "One-pot quinoa med kylling, tomat og spinat",
+        description:
+          "En nem hverdagsret, hvor quinoaen koger direkte i saucen og suger masser af smag.",
+      },
+    ],
+  },
+  {
+    slug: "hytteost",
+    blurb:
+      "Hytteost er en af de mest søgte ingredienser lige nu — især til proteinrige morgenmåltider, madpakker og bagværk.",
+    image: "/recipes/ovn/hytteost-madboller-havregryn.jpg",
+    imageAlt: "Hytteost-madboller med havregryn",
+    ideas: [
+      {
+        title: "Hytteostboller med havregryn og kerner",
+        description:
+          "Hurtige, saftige boller uden hævetid, som er blevet en fast hverdagsfavorit hos mange.",
+        recipeHref: "/opskrifter/ovn/hytteost-madboller-havregryn",
+      },
+      {
+        title: "Vafler eller pandekager med hytteost og banan",
+        description:
+          "Mættende morgenmad, hvor hytteosten gør dejen ekstra svampet.",
+        recipeHref: "/opskrifter/pande/proteinpandekager-hytteost",
+      },
+      {
+        title: "Pisket hytteost med urter, citron og hvidløg",
+        description:
+          "En cremet og proteinrig dip eller smørelse til sandwich og rugbrød.",
+        recipeHref: "/opskrifter/dips/hytteost-obatzda",
+      },
+    ],
+  },
+  {
+    slug: "burrata",
+    blurb:
+      "Burrata er en cremet italiensk ost, der hurtigt løfter en simpel ret til gæstemad — populær i både salater og pastaretter.",
+    image: "/recipes/antipasti/burrata-rucola-troeffelolie.jpg",
+    imageAlt: "Burrata på rucola med trøffelolie",
+    ideas: [
+      {
+        title: "Tomatsalat med burrata, basilikum og balsamico",
+        description:
+          "En sommerklassiker, der kræver minimal tilberedning.",
+        recipeHref: "/opskrifter/antipasti/burrata-rucola-troeffelolie",
+      },
+      {
+        title:
+          "Pasta med bagte cherrytomater, hvidløg og hel burrata på toppen",
+        description:
+          "Når den kolde ost skæres op over den varme pasta, fungerer den som en cremet sauce.",
+      },
+      {
+        title: "Bruschetta med grillet brød, parmaskinke, figner og burrata",
+        description:
+          "En oplagt forret eller tapasret med kontrast mellem sprødt, salt, sødt og cremet.",
+        recipeHref:
+          "/opskrifter/pizzaovn/bruschetta-hvidloeg-burrata-pizzaovn",
+      },
+    ],
+  },
+  {
+    slug: "chorizo",
+    blurb:
+      "Chorizo er en krydret pølse med lang holdbarhed, der fungerer som en genial smagsgiver i alt fra gryderetter til tapas.",
+    image: "/recipes/stobejern/shakshuka-chorizo.jpg",
+    imageAlt: "Shakshuka med chorizo",
+    ideas: [
+      {
+        title: "Pastaret med chorizo, peberfrugt, fløde og parmesan",
+        description:
+          "En hurtig hverdagsret på 20 minutter med masser af dybde fra pølsens krydderier.",
+        recipeHref: "/opskrifter/stobejern/one-pot-pasta-chorizo",
+      },
+      {
+        title: "Bagte kartofler eller kartoffelfad med chorizo, løg og rosmarin",
+        description:
+          "Pølsens paprikaolie giver smag og farve til kartoflerne i ovnen.",
+      },
+      {
+        title: "Shakshuka med chorizo, hakkede tomater og pocherede æg",
+        description:
+          "En varmende brunch- eller aftensmadsklassiker på én pande.",
+        recipeHref: "/opskrifter/stobejern/shakshuka-chorizo",
+      },
+    ],
+  },
+  {
+    slug: "roedloeg",
+    blurb:
+      "Rødløg søges ofte specifikt — især til syltning, salater og ovnretter — selvom almindelige løg allerede er i indekset.",
+    image: "/recipes/sylte/syltede-roedloeg.jpg",
+    imageAlt: "Syltede rødløg",
+    ideas: [
+      {
+        title: "Syltede rødløg",
+        description:
+          "En uundværlig basisopskrift til burgere, tacos, smørrebrød og salater.",
+        recipeHref: "/opskrifter/sylte/syltede-roedloeg",
+      },
+      {
+        title: "Tærte med karamelliserede rødløg, gedeost og timian",
+        description:
+          "En smuk og smagfuld tærte, hvor rødløgene bliver helt søde.",
+        recipeHref: "/opskrifter/ovn/viral-upside-down-butterdejstaerter",
+      },
+      {
+        title: "Rødløgskompot med rødvin og balsamico",
+        description:
+          "Perfekt tilbehør til ostebordet, stegt and eller en god bøf.",
+      },
+    ],
+  },
 ];
 
 const ideasBySlug = new Map(
